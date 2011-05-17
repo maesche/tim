@@ -22,6 +22,9 @@ public class Appointment {
 		this.employee = employee;
 		this.client = client;
 	}
+	
+	
+	
 	/**
 	 * @return the id
 	 */

@@ -2,6 +2,7 @@ package tim.application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import tim.application.ErrorHandler;
 
@@ -27,7 +28,10 @@ public class Db {
 			if (conn != null) {
 				conn = DriverManager.getConnection(url, user, password);
 			}
-		} catch (Exception ex) {
+		} catch(ClassNotFoundException ex) {
+			ErrorHandler.getException(ex);
+		}
+		catch (SQLException ex) {
 			ErrorHandler.getException(ex);
 		}
 
