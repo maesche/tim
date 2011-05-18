@@ -32,30 +32,30 @@ INSERT INTO clients VALUES (1, 'Mireille', 'Goud', '021 333 33 33', 'rue du c', 
 INSERT INTO clients VALUES (2, 'Patrick', 'Lachaize', '021 444 44 44', 'rue du java', '');
 
 
-DROP TABLE IF EXISTS employes;
-CREATE TABLE IF NOT EXISTS employes (
-  employe_id INTEGER(9) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS employees;
+CREATE TABLE IF NOT EXISTS employees (
+  employee_id INTEGER(9) NOT NULL AUTO_INCREMENT,
   firstName VARCHAR(30) NOT NULL,
   lastName VARCHAR(30) NOT NULL,
-  PRIMARY KEY (employe_id)
+  PRIMARY KEY (employee_id)
 ) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO employes VALUES (1, 'Alain', 'Bellatalla');
-INSERT INTO employes VALUES (2, 'Mathieu', 'Noverraz');
-INSERT INTO employes VALUES (3, 'Stefan', 'Meier');
+INSERT INTO employees VALUES (1, 'Alain', 'Bellatalla');
+INSERT INTO employees VALUES (2, 'Mathieu', 'Noverraz');
+INSERT INTO employees VALUES (3, 'Stefan', 'Meier');
 
 
 DROP TABLE IF EXISTS appointments;
 CREATE TABLE IF NOT EXISTS appointments (
   appointment_id VARCHAR(255) NOT NULL,
   client_id INTEGER(9) NOT NULL,
-  employe_id INTEGER(9) NOT NULL,
+  employee_id INTEGER(9) NOT NULL,
   title VARCHAR(50) NOT NULL DEFAULT '',
   description TEXT NOT NULL DEFAULT '',
   PRIMARY KEY (appointment_id),
   FOREIGN KEY (client_id) REFERENCES clients(client_id)
     ON DELETE cascade,
-  FOREIGN KEY (employe_id) REFERENCES employes(employe_id)
+  FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
     ON DELETE cascade
  ) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
  

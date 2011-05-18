@@ -1,6 +1,7 @@
 package tim.calendar;
 
 import java.util.Date;
+import tim.application.DateHelper;
 
 public class Appointment {
 	private int id;
@@ -70,7 +71,15 @@ public class Appointment {
 	}
 	
 	public String toString() {
-		return String.valueOf(id);
+		String ret = "";
+		
+		ret += "id:\t\t" + String.valueOf(id) + "\n";
+		ret += "titre:\t\t" + title + "\n";
+		ret += "description:\t" + description + "\n";
+		ret += "begin:\t\t" + DateHelper.DateToString(begin) + "\n"; 
+		ret += "end:\t\t" + DateHelper.DateToString(end) + "\n"; 
+		
+		return  ret;
 		
 	}
 	
