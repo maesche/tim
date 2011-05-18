@@ -15,8 +15,13 @@ public class Appointment {
 	
 	public Appointment(long id, Date begin, Date end, String title,
 			String description, Employee employee, Client client) {
-		super();
+		this(begin, end, title, description, employee, client);
+
 		this.id = id;
+	}
+	
+	public Appointment(Date begin, Date end, String title, String description, Employee employee, Client client) {
+		this.id = new Date().getTime();
 		this.begin = begin;
 		this.end = end;
 		this.title = title;
@@ -24,7 +29,6 @@ public class Appointment {
 		this.employee = employee;
 		this.client = client;
 	}
-	
 	
 	
 	/**

@@ -51,7 +51,7 @@ public class AppointmentHandler {
 			while (rs.next()) {
 				long id = rs.getLong("A_id");
 				
-				System.out.println(rs.getTime("test"));
+				//System.out.println(rs.getTime("test"));
 
 				/*Date begin = DateHelper.StringToDate(rs.getString("begin"));
 				Date end = DateHelper.StringToDate(rs.getString("end"));*/
@@ -82,7 +82,7 @@ public class AppointmentHandler {
 	}
 
 	public void add(Appointment appointment) {
-		long id = new Date().getTime();
+		long id = appointment.getId();
 		int client_id = appointment.getClient().getId();
 		int employee_id = appointment.getEmployee().getId();
 		String title = appointment.getTitle();
@@ -103,10 +103,8 @@ public class AppointmentHandler {
 				"'" + begin + "', " +
 				"'" + end + "')";
 		
-		System.out.println(sql_appointment);
-		System.out.println(sql_dates);
 		
-		/*Connection conn;
+		Connection conn;
 		Statement stmt;
 
 		try {
@@ -121,7 +119,7 @@ public class AppointmentHandler {
 		}
 		finally {
 			Db.close();
-		}*/
+		}
 
 	}
 

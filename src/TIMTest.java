@@ -28,7 +28,7 @@ public class TIMTest {
 		Employee employee = new Employee(3, null, null);
 		Client client = new Client(1, null, null);
 		
-		Appointment appointment = new Appointment(0, 
+		Appointment appointment = new Appointment( 
 				DateHelper.StringToDate("2011-06-15 13:45:00"), 
 				DateHelper.StringToDate("2011-06-15 14:45:00"),
 				"test 4",
