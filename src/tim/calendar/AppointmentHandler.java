@@ -10,6 +10,7 @@ import java.util.Date;
 import tim.application.Db;
 import tim.application.ErrorHandler;
 import tim.application.DateHelper;
+import tim.calendar.TimeTable;
 
 public class AppointmentHandler {
 
@@ -72,8 +73,62 @@ public class AppointmentHandler {
 
 	}
 
-	public void add(Appointment appointment) {
-		// TODO Auto-generated method stub
+	public void add(Appointment appointment, ArrayList<TimeTable> timeTables) {
+		/*
+		 * $success = true;
+        if (count($dates) > 0) {
+            $event_id = $event->getOwner() . microtime() . rand(0, 10);
+
+            $sql = "INSERT INTO events (event_id, room_id, owner, title, description, mode) ";
+            $sql .= "VALUES ";
+            $sql .= "(";
+            $sql .= "'" . $event_id . "'";
+            $sql .= ", ";
+            $sql .= "'" . $room->getId() . "'";
+            $sql .= ", ";
+            $sql .= "'" . $event->getOwner() . "'";
+            $sql .= ", ";
+            $sql .= "'" . $event->getTitle() . "'";
+            $sql .= ", ";
+            $sql .= "'" . $event->getDescription() . "'";
+            $sql .= ", ";
+            $sql .= "'" . $event->getMode() . "'";
+            $sql .= ")";
+
+            $sql_dates = "INSERT INTO event_dates (event_id, begin, end) ";
+            $sql_dates .= "VALUES ";
+
+            $count = 0;
+
+            foreach ($dates as $date => $details) {
+                $begin = $details["start"];
+                $end = $details["end"];
+                $sql_dates .= "(";
+                $sql_dates .= "'$event_id'";
+                $sql_dates .= ", ";
+                $sql_dates .= "'$date $begin'";
+                $sql_dates .= ", ";
+                $sql_dates .= "'$date $end'";
+                $sql_dates .= ") ";
+
+                if ($count < count($dates) - 1) {
+                    $sql_dates .= ", ";
+                }
+                $count++;
+            }
+
+            $db = new Db();
+            $db->insert($sql, false);
+            $db->insert($sql_dates);
+        } else {
+//aucune date spécifiée
+            $success = false;
+        }
+
+        return $success;
+		 */
+		
+		
 
 	}
 
