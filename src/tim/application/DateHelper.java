@@ -9,10 +9,10 @@ import java.util.TimeZone;
 public class DateHelper {
 	
 	private static final String timeZone = "Europe/Zurich";
-	private static final String dateFormat = "yyyy-MM-dd HH:mm:ss";
+	private static final String dateFormat = "yyyy-MM-dd HH:mm";
 	
 	public static Date StringToDate(String date) {
-		DateFormat sdf = new SimpleDateFormat(dateFormat);
+		DateFormat sdf = new SimpleDateFormat(dateFormat + ":ss");
 		sdf.setTimeZone(TimeZone.getTimeZone(timeZone));
 		Date ret = null;
 		try {

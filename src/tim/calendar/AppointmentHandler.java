@@ -26,9 +26,8 @@ public class AppointmentHandler {
 					 "	A.appointment_id AS A_id, " +
 					 "	A.title, " +
 					 "	A.description, " +
-					 "  DATE_FORMAT(D.begin, '%Y-%m-%d %H:%i:%s') AS begin, " +
-					 "  DATE_FORMAT(D.end, '%Y-%m-%d %H:%i:%s') AS end, " +
-					 "  DATE_FORMAT(D.end, '%H:%i') AS test, " +
+					 "  D.begin, " +
+					 "  D.end, " +
 					 "	C.client_id AS C_id, " +
 					 "	C.firstName AS C_firstName, " +
 					 "	C.lastName AS C_lastName, " +
@@ -85,8 +84,8 @@ public class AppointmentHandler {
 
 				/*Date begin = DateHelper.StringToDate(rs.getString("begin"));
 				Date end = DateHelper.StringToDate(rs.getString("end"));*/
-				Date begin = rs.getDate("begin");
-				Date end = rs.getDate("end");
+				Date begin = rs.getTimestamp("begin");
+				Date end = rs.getTimestamp("end");
 				String title = rs.getString("title");
 				String description = rs.getString("description");
 	

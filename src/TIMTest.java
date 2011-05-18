@@ -25,7 +25,7 @@ public class TIMTest {
 		/*
 		 * add test
 		 */
-		Employee employee = new Employee(3, null, null);
+		/*Employee employee = new Employee(3, null, null);
 		Client client = new Client(1, null, null);
 		
 		Appointment appointment = new Appointment( 
@@ -36,7 +36,7 @@ public class TIMTest {
 				employee,
 				client);
 		
-		appHandler.add(appointment);
+		appHandler.add(appointment);*/
 		
 		
 	}
