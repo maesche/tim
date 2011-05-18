@@ -13,7 +13,7 @@ import tim.application.DateHelper;
 
 public class AppointmentHandler {
 
-	public ArrayList<Appointment> getElements(Client fClient, Employee fEmployee, Date fBegin, Date fEnd, long fId) {
+	public ArrayList<Appointment> getElements(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) {
 		Connection conn;
 		Statement stmt;
 		ResultSet rs;
@@ -47,11 +47,11 @@ public class AppointmentHandler {
 			filter.add("A.appointment_id=" + fId);
 		}
 
-		if (fBegin != null) {
-			filter.add("begin >= '" + fBegin + "'");
+		if (fSince != null) {
+			filter.add("begin >= '" + fSince + "'");
 			
-			if (fEnd != null) {
-				filter.add("end <= '" + fEnd + "'");
+			if (fUntil != null) {
+				filter.add("end <= '" + fUntil + "'");
 			}
 		}
 		
