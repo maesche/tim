@@ -2,37 +2,22 @@ package tim.application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 import tim.application.ErrorHandler;
 import tim.application.CurrentClassGetter;;
 
 public class Db {
 	private static final String user = "root", password = "";
-	private static final String url = "jdbc:mysql://localhost:3306/tim";;
+	private static final String url = "jdbc:mysql://localhost:3306/tim?autoReconnect=true";
 	private static Connection conn = null;
-
-	/*
-	 * public static void main(String[] args) throws Exception { connnection
-	 * conn = getOracleJDBCconnnection(); if(conn!= null){
-	 * System.out.println(�Got connnection.�); DatabaseMetaData meta =
-	 * conn.getMetaData(); System.out.println(�Driver Name :
-	 * �+meta.getDriverName()); System.out.println(�Driver Version :
-	 * �+meta.getDriverVersion());
-	 * 
-	 * }else{ System.out.println(�Could not Get connnection�); } }
-	 */
 
 	public static Connection open() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			if (conn == null) {
 				conn = DriverManager.getConnection(url, user, password);
 			}
-		} catch(ClassNotFoundException ex) {
-			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
-		}
-		catch (SQLException ex) {
+		} catch(Exception ex) {
 			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
 		}
 
@@ -43,9 +28,10 @@ public class Db {
 		if (conn != null) {
 			try {
 			conn.close();
+			conn = null;
 			}
 			catch (Exception ex) {
-				ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
+				ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "close");
 			}
 		}
 	}

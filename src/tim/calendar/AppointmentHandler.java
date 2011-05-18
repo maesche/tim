@@ -15,7 +15,7 @@ public class AppointmentHandler {
 
 	public ArrayList<Appointment> getElements(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) {
 		Connection conn;
-		Statement stmt;
+		Statement stmt = null;
 		ResultSet rs;
 		
 		ArrayList<String> filter = new ArrayList<String>();
@@ -94,13 +94,15 @@ public class AppointmentHandler {
 				Client client = new Client(rs.getInt("C_id"), rs.getString("C_firstName"), rs.getString("C_lastName"));
 
 				Appointment appointment = new Appointment(id, begin, end, title, description, employee, client);
-
+				
 				appointments.add(appointment);
 			}
+			stmt.close();
 		} catch (Exception ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(), "getElements");
 		}
 		finally {
+	
 			Db.close();
 		}
 		return appointments;
@@ -178,7 +180,7 @@ public class AppointmentHandler {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql_appointment);
 			stmt.executeUpdate(sql_dates);
-		
+			stmt.close();
 		} catch (SQLException ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(), "add");
 		}
