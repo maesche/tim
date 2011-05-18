@@ -54,17 +54,17 @@ public class AppointmentHandler {
 				String title = rs.getString("title");
 				String description = rs.getString("description");
 	
-				Employee employee = null;
-				Client client = null;
+				Employee employee = new Employee(rs.getInt("E_id"), rs.getString("E_firstName"), rs.getString("E_lastName"), null, null, null);
 				
-				System.out.println(rs.getString("E_lastName"));
-				
+
+				Client client = new Client(rs.getInt("C_id"), rs.getString("C_firstName"), rs.getString("C_lastName"), null, null, null);
+
 				Appointment appointment = new Appointment(id, begin, end, title, description, employee, client);
 
 				appointments.add(appointment);
 			}
 		} catch (SQLException ex) {
-			ErrorHandler.getException(ex);
+			ErrorHandler.getException(ex, this.getClass().getName(), "getElements");
 		}
 		return appointments;
 	}
@@ -74,12 +74,12 @@ public class AppointmentHandler {
 
 	}
 
-	public void add() {
+	public void add(Appointment appointment) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void update() {
+	public void update(Appointment appointment) {
 		// TODO Auto-generated method stub
 
 	}

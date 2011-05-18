@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import tim.application.ErrorHandler;
+import tim.application.CurrentClassGetter;;
 
 public class Db {
 	private static final String user = "root", password = "";
@@ -14,12 +15,12 @@ public class Db {
 	/*
 	 * public static void main(String[] args) throws Exception { connnection
 	 * conn = getOracleJDBCconnnection(); if(conn!= null){
-	 * System.out.println(ÓGot connnection.Ó); DatabaseMetaData meta =
-	 * conn.getMetaData(); System.out.println(ÓDriver Name :
-	 * Ò+meta.getDriverName()); System.out.println(ÓDriver Version :
-	 * Ò+meta.getDriverVersion());
+	 * System.out.println(ï¿½Got connnection.ï¿½); DatabaseMetaData meta =
+	 * conn.getMetaData(); System.out.println(ï¿½Driver Name :
+	 * ï¿½+meta.getDriverName()); System.out.println(ï¿½Driver Version :
+	 * ï¿½+meta.getDriverVersion());
 	 * 
-	 * }else{ System.out.println(ÓCould not Get connnectionÓ); } }
+	 * }else{ System.out.println(ï¿½Could not Get connnectionï¿½); } }
 	 */
 
 	public static Connection open() {
@@ -29,10 +30,10 @@ public class Db {
 				conn = DriverManager.getConnection(url, user, password);
 			}
 		} catch(ClassNotFoundException ex) {
-			ErrorHandler.getException(ex);
+			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
 		}
 		catch (SQLException ex) {
-			ErrorHandler.getException(ex);
+			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
 		}
 
 		return conn;
@@ -44,7 +45,7 @@ public class Db {
 			conn.close();
 			}
 			catch (Exception ex) {
-				ErrorHandler.getException(ex);
+				ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
 			}
 		}
 	}

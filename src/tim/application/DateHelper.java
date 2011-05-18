@@ -18,7 +18,7 @@ public class DateHelper {
 		try {
 			ret = sdf.parse(date);
 		} catch (ParseException ex) {
-			ErrorHandler.getException(ex);
+			ErrorHandler.getException(ex, "tim.application.DateHelper", "StringToDate");
 		}
 		return ret;
 	}
