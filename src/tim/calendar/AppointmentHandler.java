@@ -54,10 +54,10 @@ public class AppointmentHandler {
 				String title = rs.getString("title");
 				String description = rs.getString("description");
 	
-				Employee employee = new Employee(rs.getInt("E_id"), rs.getString("E_firstName"), rs.getString("E_lastName"), null, null, null);
+				Employee employee = new Employee(rs.getInt("E_id"), rs.getString("E_firstName"), rs.getString("E_lastName"));
 				
 
-				Client client = new Client(rs.getInt("C_id"), rs.getString("C_firstName"), rs.getString("C_lastName"), null, null, null);
+				Client client = new Client(rs.getInt("C_id"), rs.getString("C_firstName"), rs.getString("C_lastName"));
 
 				Appointment appointment = new Appointment(id, begin, end, title, description, employee, client);
 

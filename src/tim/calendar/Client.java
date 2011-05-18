@@ -7,5 +7,7 @@ public class Client extends Person {
 		super(id, firstName, lastName, phone, address, comment);
 		// TODO Auto-generated constructor stub
 	}
-
+	public Client(int id, String firstName, String lastName) {
+		super(id, firstName, lastName);
+	}
 }

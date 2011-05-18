@@ -78,8 +78,8 @@ public class Appointment {
 		ret += "description:\t" + description + "\n";
 		ret += "begin:\t\t" + DateHelper.DateToString(begin) + "\n"; 
 		ret += "end:\t\t" + DateHelper.DateToString(end) + "\n"; 
-		ret += "emplyoee:\t" + employee.getFirstName() +  " " + employee.getLastName()  + "\n"; 
-		ret += "client:\t\t" + client.getFirstName() +  " " + client.getLastName()  + "\n"; 
+		ret += "emplyoee:\t" + employee.toString()  + "\n"; 
+		ret += "client:\t\t" + client.toString()  + "\n"; 
 		
 		return  ret;
 		
