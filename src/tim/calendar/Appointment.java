@@ -68,5 +68,10 @@ public class Appointment {
 		return client;
 	}
 	
+	public String toString() {
+		return String.valueOf(id);
+		
+	}
+	
 	
 }

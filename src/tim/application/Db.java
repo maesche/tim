@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import tim.application.ErrorHandler;
 
 public class Db {
-	static String user = "root", password = "";
-	static String url = "jdbc:mysql://localhost:3306/tim";;
-	static Connection conn = null;
+	private static final String user = "root", password = "";
+	private static final String url = "jdbc:mysql://localhost:3306/tim";;
+	private static Connection conn = null;
 
 	/*
 	 * public static void main(String[] args) throws Exception { connnection
@@ -25,7 +25,7 @@ public class Db {
 	public static Connection open() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			if (conn != null) {
+			if (conn == null) {
 				conn = DriverManager.getConnection(url, user, password);
 			}
 		} catch(ClassNotFoundException ex) {

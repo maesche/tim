@@ -1,5 +1,6 @@
 package tim.calendar;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,19 +16,23 @@ public class AppointmentHandler {
 		ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 
 		String sql = "SELECT" +
-					 "	A.appointment_id" +
-					 "FROM appointments A" +
+					 "	A.appointment_id AS id " +
+					 "FROM appointments A " +
 					 "ORDER BY A.appointment_id";
 
 		Statement stmt;
 		ResultSet rs;
 		try {
-			stmt = Db.open().createStatement();
+			Connection conn = Db.open();
+			
+			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-
+			
 			while (rs.next()) {
-				String s = rs.getString("appointment_id");
-				System.out.println(s);
+				int id = rs.getInt("id");
+				Appointment appointment = new Appointment(id, null, null, null, null, null, null);
+
+				appointments.add(appointment);
 			}
 		} catch (SQLException ex) {
 			ErrorHandler.getException(ex);
