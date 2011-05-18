@@ -9,8 +9,8 @@
 				 
 	Détails: 	 l'ordre de création est à respecter (contraintes)
 
-	Restauration d'un fichier: 
-	mysql --user=USR --password=PWD --default-character-set=utf8  < /iafbm_personnes.sql
+	Restauration d'un fichier depuis la ligne de commande: 
+	mysql --user=USR --password=PWD --default-character-set=utf8  < /tim.sql
 
 */
 DROP DATABASE IF EXISTS tim;
@@ -50,8 +50,6 @@ CREATE TABLE IF NOT EXISTS appointments (
   appointment_id VARCHAR(255) NOT NULL,
   client_id INTEGER(9) NOT NULL,
   employe_id INTEGER(9) NOT NULL,
-  begin DATETIME NOT NULL,
-  end DATETIME NOT NULL,
   title VARCHAR(50) NOT NULL DEFAULT '',
   description TEXT NOT NULL DEFAULT '',
   PRIMARY KEY (appointment_id),
@@ -60,10 +58,24 @@ CREATE TABLE IF NOT EXISTS appointments (
   FOREIGN KEY (employe_id) REFERENCES employes(employe_id)
     ON DELETE cascade
  ) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+ 
+ INSERT INTO appointments VALUES
+(1, 1, 1, 'test1', 'description 1'),
+(2, 2, 2, 'test2', 'description 2'),
+(3, 2, 3, 'test3', 'description 3');
 
+DROP TABLE IF EXISTS appointment_dates;
+CREATE TABLE IF NOT EXISTS appointment_dates (
+  appointment_date_id INTEGER(9) NOT NULL AUTO_INCREMENT,
+  appointment_id VARCHAR(255) NOT NULL,
+  begin DATETIME NOT NULL,
+  end DATETIME NOT NULL,
+  PRIMARY KEY (appointment_date_id),
+  FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id)
+    ON DELETE cascade
+) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
-INSERT INTO appointments VALUES
-(1, 1, 1, '2011-05-14 09:00', '2011-05-14 10:00', 'test1', ''),
-(2, 2, 2, '2011-05-14 08:00', '2011-05-14 09:00', 'test2', ''),
-(3, 2, 3, '2011-05-14 15:00', '2011-05-14 16:30', 'test3', '');
+INSERT INTO appointment_dates VALUES
+(1, 1, '2011-05-14 09:00', '2011-05-14 10:00'),
+(2, 2, '2011-05-14 08:00', '2011-05-14 09:00'),
+(3, 3, '2011-05-14 15:00', '2011-05-14 16:30');

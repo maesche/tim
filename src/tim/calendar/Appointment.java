@@ -11,6 +11,7 @@ public class Appointment {
 	
 	private Employee employee;
 	private Client client;
+	
 	public Appointment(int id, Date begin, Date end, String title,
 			String description, Employee employee, Client client) {
 		super();
