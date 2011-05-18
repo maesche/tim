@@ -4,7 +4,7 @@ import java.util.Date;
 import tim.application.DateHelper;
 
 public class Appointment {
-	private int id;
+	private long id;
 	private Date begin;
 	private Date end;
 	private String title;
@@ -13,7 +13,7 @@ public class Appointment {
 	private Employee employee;
 	private Client client;
 	
-	public Appointment(int id, Date begin, Date end, String title,
+	public Appointment(long id, Date begin, Date end, String title,
 			String description, Employee employee, Client client) {
 		super();
 		this.id = id;
@@ -30,7 +30,7 @@ public class Appointment {
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	/**
