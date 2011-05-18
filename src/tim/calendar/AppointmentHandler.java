@@ -13,8 +13,13 @@ import tim.application.DateHelper;
 
 public class AppointmentHandler {
 
-	public ArrayList<Appointment> getElements() {
-
+	public ArrayList<Appointment> getElements(Client fClient, Employee fEmployee, Date fBegin, Date fEnd, long fId) {
+		Connection conn;
+		Statement stmt;
+		ResultSet rs;
+		
+		ArrayList<String> filter = new ArrayList<String>();
+		
 		ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 
 		String sql = "SELECT" +
@@ -36,12 +41,37 @@ public class AppointmentHandler {
                      "LEFT JOIN clients C " +
                      "	ON A.client_id = C.client_id " +
                      "LEFT JOIN employees E" +
-                     "	ON A.employee_id = E.employee_id " +
-					 "ORDER BY begin";
+                     "	ON A.employee_id = E.employee_id";
+		
+		if (fId > 0) {
+			filter.add("A.appointment_id=" + fId);
+		}
 
-		Connection conn;
-		Statement stmt;
-		ResultSet rs;
+		if (fBegin != null) {
+			filter.add("begin >= '" + fBegin + "'");
+			
+			if (fEnd != null) {
+				filter.add("end <= '" + fEnd + "'");
+			}
+		}
+		
+		if (fClient != null) {
+			filter.add("A.client_id = " + fClient.getId());
+		}
+		
+		if (fEmployee != null) {
+			filter.add("A.employee = " + fEmployee.getId());
+		}
+		
+		for (int i = 0; i < filter.size(); i++) {
+			if (i > 0) {
+				sql += "AND";
+			}
+			sql += " " + filter.get(i);
+		}
+		
+		sql +=  " ORDER BY begin";
+
 		try {
 			conn = Db.open();
 			
@@ -67,7 +97,7 @@ public class AppointmentHandler {
 
 				appointments.add(appointment);
 			}
-		} catch (SQLException ex) {
+		} catch (Exception ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(), "getElements");
 		}
 		finally {
@@ -75,10 +105,45 @@ public class AppointmentHandler {
 		}
 		return appointments;
 	}
+	
+	public ArrayList<Appointment> getElements() {
+		return this.getElements(null, null, null, null, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(long id) {
+		return this.getElements(null, null, null, null, id);
+	}
+	
+	public ArrayList<Appointment> getElements(Client client) {
+		return this.getElements(client, null, null, null, 0);
+	}
 
-	public void delete(Appointment appointment) {
-		// TODO Auto-generated method stub
-
+	public ArrayList<Appointment> getElements(Client client, Date begin) {
+		return this.getElements(client, null, begin, null, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(Client client, Date begin, Date end) {
+		return this.getElements(client, null, begin, end, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(Employee employee) {
+		return this.getElements(null, employee, null, null, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(Employee employee, Date begin) {
+		return this.getElements(null, employee, begin, null, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(Employee employee, Date begin, Date end) {
+		return this.getElements(null, employee, begin, null, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(Client client, Employee employee) {
+		return this.getElements(client, employee, null, null, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(Client client, Employee employee, Date begin) {
+		return this.getElements(client, employee, begin, null, 0);
 	}
 
 	public void add(Appointment appointment) {
@@ -127,5 +192,8 @@ public class AppointmentHandler {
 		// TODO Auto-generated method stub
 
 	}
+	public void delete(Appointment appointment) {
+		// TODO Auto-generated method stub
 
+	}
 }
