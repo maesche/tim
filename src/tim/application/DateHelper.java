@@ -12,7 +12,7 @@ public class DateHelper {
 	private static final String dateFormat = "yyyy-MM-dd HH:mm";
 	
 	public static Date StringToDate(String date) {
-		DateFormat sdf = new SimpleDateFormat(dateFormat + ":ss");
+		DateFormat sdf = new SimpleDateFormat(dateFormat);
 		sdf.setTimeZone(TimeZone.getTimeZone(timeZone));
 		Date ret = null;
 		try {

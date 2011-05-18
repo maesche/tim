@@ -47,10 +47,10 @@ public class AppointmentHandler {
 		}
 
 		if (fSince != null) {
-			filter.add("begin >= '" + fSince + "'");
+			filter.add("begin >= '" + DateHelper.DateToString(fSince) + "'");
 			
 			if (fUntil != null) {
-				filter.add("end <= '" + fUntil + "'");
+				filter.add("end <= '" + DateHelper.DateToString(fUntil) + "'");
 			}
 		}
 		
@@ -65,11 +65,14 @@ public class AppointmentHandler {
 		for (int i = 0; i < filter.size(); i++) {
 			if (i > 0) {
 				sql += "AND";
+			}else {
+				sql += " WHERE";
 			}
 			sql += " " + filter.get(i);
 		}
 		
 		sql +=  " ORDER BY begin";
+		
 
 		try {
 			conn = Db.open();
@@ -80,10 +83,6 @@ public class AppointmentHandler {
 			while (rs.next()) {
 				long id = rs.getLong("A_id");
 				
-				//System.out.println(rs.getTime("test"));
-
-				/*Date begin = DateHelper.StringToDate(rs.getString("begin"));
-				Date end = DateHelper.StringToDate(rs.getString("end"));*/
 				Date begin = rs.getTimestamp("begin");
 				Date end = rs.getTimestamp("end");
 				String title = rs.getString("title");
@@ -113,6 +112,14 @@ public class AppointmentHandler {
 	
 	public ArrayList<Appointment> getElements(long id) {
 		return this.getElements(null, null, null, null, id);
+	}
+	
+	public ArrayList<Appointment> getElements(Date begin) {
+		return this.getElements(null, null, begin, null, 0);
+	}
+	
+	public ArrayList<Appointment> getElements(Date begin, Date end) {
+		return this.getElements(null, null, begin, end, 0);
 	}
 	
 	public ArrayList<Appointment> getElements(Client client) {
