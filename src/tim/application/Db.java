@@ -7,7 +7,7 @@ import tim.application.ErrorHandler;
 import tim.application.CurrentClassGetter;;
 
 public class Db {
-	private static final String user = "root", password = "";
+	private static final String user = "tim", password = "tim";
 	private static final String url = "jdbc:mysql://localhost:3306/tim?autoReconnect=true";
 	private static Connection conn = null;
 
