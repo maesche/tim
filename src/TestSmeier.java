@@ -7,7 +7,7 @@ import tim.calendar.Employee;
 import tim.application.DateHelper;
 
 
-public class TIMTest {
+public class TestSmeier {
 	public static void main(String[] args) {
 		
 		AppointmentHandler appHandler = new AppointmentHandler();
