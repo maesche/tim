@@ -15,7 +15,7 @@ public class TIMTest {
 		/*
 		 * getElements test
 		 */
-		ArrayList<Appointment> appointments = appHandler.getElements(DateHelper.StringToDate("2011-05-14 8:45"), DateHelper.StringToDate("2011-05-14 11:45"));	
+		ArrayList<Appointment> appointments = appHandler.getElements(DateHelper.StringToDate("2011-05-13 8:45"), DateHelper.StringToDate("2011-05-14 11:45"));	
 		
 		for(Appointment appointment : appointments) {
 			System.out.println(appointment);
