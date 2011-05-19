@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
-import tim.calendar.AppointmentHandler;
-import tim.calendar.Appointment;
-import tim.calendar.Client;
-import tim.calendar.Employee;
+import tim.calendar.model.Appointment;
+import tim.calendar.model.AppointmentHandler;
+import tim.calendar.model.Client;
+import tim.calendar.model.Employee;
 import tim.application.DateHelper;
 
 
