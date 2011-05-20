@@ -178,8 +178,7 @@ public class AppointmentHandler extends Handler{
 				id + ", " +
 				"'" + begin + "', " +
 				"'" + end + "')";
-		
-		
+
 		Connection conn;
 		Statement stmt;
 
