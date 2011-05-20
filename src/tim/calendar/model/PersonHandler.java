@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.DateHelper;
+import tim.application.Db;
 import tim.application.Element;
 import tim.application.ErrorHandler;
 import tim.application.Handler;
-import tim.application.db.Db;
 
 public abstract class PersonHandler extends Handler {
 

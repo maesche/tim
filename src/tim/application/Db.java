@@ -1,10 +1,8 @@
-package tim.application.db;
+package tim.application;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import tim.application.ErrorHandler;
-import tim.application.CurrentClassGetter;;
 
 public class Db {
 	private static final String user = "tim", password = "tim";
