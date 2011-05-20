@@ -12,4 +12,7 @@ public class Employee extends Person {
 		super(id, firstName, lastName);
 	}
 
+	public String test() {
+		return "test";
+	}
 }

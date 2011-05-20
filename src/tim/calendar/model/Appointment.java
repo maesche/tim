@@ -11,17 +11,17 @@ public class Appointment extends Element {
 	private String title;
 	private String description;
 	
-	private Employee employee;
-	private Client client;
+	private Person employee;
+	private Person client;
 	
 	public Appointment(long id, Date begin, Date end, String title,
-			String description, Employee employee, Client client) {
+			String description, Person employee, Person client) {
 		this(begin, end, title, description, employee, client);
 
 		this.id = id;
 	}
 	
-	public Appointment(Date begin, Date end, String title, String description, Employee employee, Client client) {
+	public Appointment(Date begin, Date end, String title, String description, Person employee, Person client) {
 		this.id = new Date().getTime();
 		this.begin = begin;
 		this.end = end;
@@ -65,13 +65,13 @@ public class Appointment extends Element {
 	/**
 	 * @return the employee
 	 */
-	public Employee getEmployee() {
+	public Person getEmployee() {
 		return employee;
 	}
 	/**
 	 * @return the client
 	 */
-	public Client getClient() {
+	public Person getClient() {
 		return client;
 	}
 	
