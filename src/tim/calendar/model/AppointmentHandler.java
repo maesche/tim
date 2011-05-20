@@ -159,8 +159,8 @@ public class AppointmentHandler extends Handler{
 	public void add(Element element) {
 		Appointment appointment = (Appointment) element;
 		long id = appointment.getId();
-		int client_id = appointment.getClient().getId();
-		int employee_id = appointment.getEmployee().getId();
+		long client_id = appointment.getClient().getId();
+		long employee_id = appointment.getEmployee().getId();
 		String title = appointment.getTitle();
 		String description = appointment.getDescription();
 		

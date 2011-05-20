@@ -5,7 +5,7 @@ import tim.application.DateHelper;
 import tim.application.Element;
 
 public class Appointment extends Element {
-	private long id;
+
 	private Date begin;
 	private Date end;
 	private String title;
@@ -16,13 +16,13 @@ public class Appointment extends Element {
 	
 	public Appointment(long id, Date begin, Date end, String title,
 			String description, Person employee, Person client) {
-		this(begin, end, title, description, employee, client);
+		super(id);
+		initialize(begin, end, title, description, employee, client);
 
-		this.id = id;
 	}
 	
-	public Appointment(Date begin, Date end, String title, String description, Person employee, Person client) {
-		this.id = new Date().getTime();
+	private void initialize(Date begin, Date end, String title,
+			String description, Person employee, Person client) {
 		this.begin = begin;
 		this.end = end;
 		this.title = title;
@@ -31,13 +31,12 @@ public class Appointment extends Element {
 		this.client = client;
 	}
 	
-	
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
+	public Appointment(Date begin, Date end, String title, String description, Person employee, Person client) {
+		super(new Date().getTime());	
+		initialize(begin, end, title, description, employee, client);
 	}
+	
+	
 	/**
 	 * @return the begin
 	 */
@@ -78,7 +77,7 @@ public class Appointment extends Element {
 	public String toString() {
 		String ret = "";
 		
-		ret += "id:\t\t" + String.valueOf(id) + "\n";
+		ret += "id:\t\t" + String.valueOf(super.getId()) + "\n";
 		ret += "titre:\t\t" + title + "\n";
 		ret += "description:\t" + description + "\n";
 		ret += "begin:\t\t" + DateHelper.DateToString(begin) + "\n"; 

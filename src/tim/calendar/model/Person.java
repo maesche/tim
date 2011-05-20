@@ -3,13 +3,12 @@ package tim.calendar.model;
 import tim.application.Element;
 
 public abstract class Person extends Element {
-	private int id;
 	private String firstName;
 	private String lastName;
 	private String phone;
 	private String address;
 	private String comment;
-	public Person(int id, String firstName, String lastName, String phone,
+	public Person(long id, String firstName, String lastName, String phone,
 			String address, String comment) {
 		this(id, firstName, lastName);
 		this.phone = phone;
@@ -17,15 +16,12 @@ public abstract class Person extends Element {
 		this.comment = comment;
 	}
 
-	public Person(int id, String firstName, String lastName) {
-		this.id = id;
+	public Person(long id, String firstName, String lastName) {
+		super(id);
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 	
-	public int getId() {
-		return id;
-	}
 
 
 
