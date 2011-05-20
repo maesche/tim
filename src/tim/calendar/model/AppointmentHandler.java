@@ -8,19 +8,21 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
+import tim.application.Element;
 import tim.application.ErrorHandler;
 import tim.application.DateHelper;
+import tim.application.Handler;
 
-public class AppointmentHandler {
+public class AppointmentHandler extends Handler{
 
-	public ArrayList<Appointment> getElements(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) {
+	public ArrayList<Element> get(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) {
 		Connection conn;
 		Statement stmt = null;
 		ResultSet rs;
 		
 		ArrayList<String> filter = new ArrayList<String>();
 		
-		ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+		ArrayList<Element> appointments = new ArrayList<Element>();
 
 		String sql = "SELECT" +
 					 "	A.appointment_id AS A_id, " +
@@ -106,55 +108,56 @@ public class AppointmentHandler {
 		return appointments;
 	}
 	
-	public ArrayList<Appointment> getElements() {
-		return this.getElements(null, null, null, null, 0);
+	public ArrayList<Element> get() {
+		return this.get(null, null, null, null, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(long id) {
-		return this.getElements(null, null, null, null, id);
+	public ArrayList<Element> get(long id) {
+		return this.get(null, null, null, null, id);
 	}
 	
-	public ArrayList<Appointment> getElements(Date begin) {
-		return this.getElements(null, null, begin, null, 0);
+	public ArrayList<Element> get(Date begin) {
+		return this.get(null, null, begin, null, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Date begin, Date end) {
-		return this.getElements(null, null, begin, end, 0);
+	public ArrayList<Element> get(Date begin, Date end) {
+		return this.get(null, null, begin, end, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Client client) {
-		return this.getElements(client, null, null, null, 0);
+	public ArrayList<Element> get(Client client) {
+		return this.get(client, null, null, null, 0);
 	}
 
-	public ArrayList<Appointment> getElements(Client client, Date begin) {
-		return this.getElements(client, null, begin, null, 0);
+	public ArrayList<Element> get(Client client, Date begin) {
+		return this.get(client, null, begin, null, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Client client, Date begin, Date end) {
-		return this.getElements(client, null, begin, end, 0);
+	public ArrayList<Element> get(Client client, Date begin, Date end) {
+		return this.get(client, null, begin, end, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Employee employee) {
-		return this.getElements(null, employee, null, null, 0);
+	public ArrayList<Element> get(Employee employee) {
+		return this.get(null, employee, null, null, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Employee employee, Date begin) {
-		return this.getElements(null, employee, begin, null, 0);
+	public ArrayList<Element> get(Employee employee, Date begin) {
+		return this.get(null, employee, begin, null, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Employee employee, Date begin, Date end) {
-		return this.getElements(null, employee, begin, null, 0);
+	public ArrayList<Element> get(Employee employee, Date begin, Date end) {
+		return this.get(null, employee, begin, null, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Client client, Employee employee) {
-		return this.getElements(client, employee, null, null, 0);
+	public ArrayList<Element> get(Client client, Employee employee) {
+		return this.get(client, employee, null, null, 0);
 	}
 	
-	public ArrayList<Appointment> getElements(Client client, Employee employee, Date begin) {
-		return this.getElements(client, employee, begin, null, 0);
+	public ArrayList<Element> get(Client client, Employee employee, Date begin) {
+		return this.get(client, employee, begin, null, 0);
 	}
 
-	public void add(Appointment appointment) {
+	public void add(Element element) {
+		Appointment appointment = (Appointment) element;
 		long id = appointment.getId();
 		int client_id = appointment.getClient().getId();
 		int employee_id = appointment.getEmployee().getId();
@@ -196,11 +199,11 @@ public class AppointmentHandler {
 
 	}
 
-	public void update(Appointment appointment) {
+	public void edit(Element element) {
 		// TODO Auto-generated method stub
 
 	}
-	public void delete(Appointment appointment) {
+	public void remove(Element element) {
 		// TODO Auto-generated method stub
 
 	}

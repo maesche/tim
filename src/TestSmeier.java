@@ -5,6 +5,7 @@ import tim.calendar.model.AppointmentHandler;
 import tim.calendar.model.Client;
 import tim.calendar.model.Employee;
 import tim.application.DateHelper;
+import tim.application.Element;
 
 
 public class TestSmeier {
@@ -15,9 +16,10 @@ public class TestSmeier {
 		/*
 		 * getElements test
 		 */
-		ArrayList<Appointment> appointments = appHandler.getElements(DateHelper.StringToDate("2011-05-13 8:45"), DateHelper.StringToDate("2011-05-14 11:45"));	
+		ArrayList<Element> appointments = appHandler.get(DateHelper.StringToDate("2011-05-13 8:45"), DateHelper.StringToDate("2011-05-14 11:45"));	
 		
-		for(Appointment appointment : appointments) {
+		for(Element element : appointments) {
+			Appointment appointment = (Appointment) element;
 			System.out.println(appointment);
 		}
 		

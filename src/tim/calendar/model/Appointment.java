@@ -2,8 +2,9 @@ package tim.calendar.model;
 
 import java.util.Date;
 import tim.application.DateHelper;
+import tim.application.Element;
 
-public class Appointment {
+public class Appointment extends Element {
 	private long id;
 	private Date begin;
 	private Date end;
