@@ -5,8 +5,10 @@ import tim.calendar.model.AppointmentHandler;
 import tim.calendar.model.Client;
 import tim.calendar.model.Employee;
 import tim.calendar.model.Person;
+import tim.application.CurrentClassGetter;
 import tim.application.DateHelper;
 import tim.application.Element;
+import tim.application.ErrorHandler;
 
 
 public class TestSmeier {
@@ -40,7 +42,12 @@ public class TestSmeier {
 				employee,
 				client);
 		
+		try {
 		appHandler.add(appointment);
+		} 
+		catch (ClassCastException ex) {
+			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "main");
+		}
 		*/
 		
 	}
