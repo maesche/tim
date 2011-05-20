@@ -7,11 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
-import tim.application.Db;
 import tim.application.Element;
 import tim.application.ErrorHandler;
 import tim.application.DateHelper;
 import tim.application.Handler;
+import tim.application.db.Db;
 
 public class AppointmentHandler extends Handler{
 

@@ -1,4 +1,4 @@
-package tim.application;
+package tim.application.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
