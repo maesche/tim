@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import tim.calendar.gui.Application;
 import tim.calendar.model.Appointment;
 import tim.calendar.model.AppointmentHandler;
 import tim.calendar.model.Client;
@@ -26,6 +27,9 @@ public class TestSmeier {
 			System.out.println(appointment);
 		}
 		
+		Application app = new Application();
+		app.pack();
+		app.setVisible(true);
 		
 		/*
 		 * add test
