@@ -1,19 +1,14 @@
 package tim.calendar.gui;
-import java.awt.Button;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
-import javax.swing.JButton;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTree;
+import javax.swing.UIManager;
+
+import tim.application.ErrorHandler;
 
 
 
@@ -40,6 +35,13 @@ public class Cal extends JFrame  {
 	
 	
 	public Cal(){
+		try {
+            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+	    } catch (Exception ex) {
+	            ErrorHandler.getException(ex, this.getClass().getName(), "Application()");
+	    }
+		
+		
 		int nbrPerson = 3;
 		
 		
