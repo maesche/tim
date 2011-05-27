@@ -1,6 +1,7 @@
 package tim.model;
 
 
+
 public abstract class Person extends Element {
 	private String firstName;
 	private String lastName;
