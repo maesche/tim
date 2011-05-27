@@ -39,7 +39,14 @@ public class Application extends JFrame {
 		btnDialog.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				eventDialog = new EventDialog();
+				eventDialog.setSize(200, 200);
 				eventDialog.setLocationRelativeTo(Application.this);
+				eventDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				eventDialog.setModal(true);
+				eventDialog.setResizable(false);
+
+				eventDialog.pack();
 				eventDialog.setVisible(true);
 			}
 			
