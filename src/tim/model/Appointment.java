@@ -1,4 +1,4 @@
-package tim.calendar.model;
+package tim.model;
 
 import java.util.Date;
 import tim.application.DateHelper;

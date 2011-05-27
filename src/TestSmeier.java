@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 
-import tim.calendar.gui.Application;
-import tim.calendar.model.Appointment;
-import tim.calendar.model.AppointmentHandler;
-import tim.calendar.model.Client;
-import tim.calendar.model.Employee;
-import tim.calendar.model.Person;
+import tim.model.Appointment;
+import tim.model.AppointmentModel;
+import tim.model.Client;
+import tim.model.Element;
+import tim.model.Employee;
+import tim.model.Person;
+import tim.view.Application;
 import tim.application.CurrentClassGetter;
 import tim.application.DateHelper;
-import tim.application.Element;
 import tim.application.ErrorHandler;
 
 
 public class TestSmeier {
 	public static void main(String[] args) {
 		
-		AppointmentHandler appHandler = new AppointmentHandler();
+		AppointmentModel appHandler = new AppointmentModel();
 		
 		/*
 		 * getElements test

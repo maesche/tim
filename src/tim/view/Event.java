@@ -1,4 +1,4 @@
-package tim.calendar.gui;
+package tim.view;
 
 import javax.swing.JButton;
 

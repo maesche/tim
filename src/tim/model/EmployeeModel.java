@@ -1,4 +1,4 @@
-package tim.calendar.model;
+package tim.model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
-import tim.application.Element;
 import tim.application.ErrorHandler;
 
-public class EmployeeHandler extends PersonHandler {
+public class EmployeeModel extends PersonModel {
 	public ArrayList<Element> get(long fId) {
 
 		Connection conn;

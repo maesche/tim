@@ -1,9 +1,9 @@
-package tim.calendar.model;
+package tim.model;
 
 import java.util.ArrayList;
 
 
-public abstract class PersonHandler extends AbstractModel {
+public abstract class PersonModel extends AbstractModel {
 
 	public abstract ArrayList<Element> get(long id);
 	
