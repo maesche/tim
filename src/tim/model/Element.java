@@ -1,4 +1,4 @@
-package tim.application;
+package tim.model;
 
 public abstract class Element {
 	private long id;

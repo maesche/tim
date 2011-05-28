@@ -1,4 +1,4 @@
-package tim.calendar.model;
+package tim.model;
 
 public class Client extends Person {
 

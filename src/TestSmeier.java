@@ -1,47 +1,26 @@
-import java.util.ArrayList;
+import tim.model.AbstractModel;
+import tim.model.AppointmentModel;
 
-import tim.calendar.model.Appointment;
-import tim.calendar.model.AppointmentHandler;
-import tim.calendar.model.Client;
-import tim.calendar.model.Employee;
-import tim.calendar.model.Person;
-import tim.application.DateHelper;
-import tim.application.Element;
+import tim.view.Application;
+
+import tim.controller.AbstractController;
+import tim.controller.ApplicationController;
 
 
 public class TestSmeier {
 	public static void main(String[] args) {
 		
-		AppointmentHandler appHandler = new AppointmentHandler();
+		AbstractModel appointmentModel = new AppointmentModel();
 		
-		/*
-		 * getElements test
-		 */
-		ArrayList<Element> appointments = appHandler.get(DateHelper.StringToDate("2011-05-13 8:45"), DateHelper.StringToDate("2011-06-17 11:45"));	
-		
-		for(Element element : appointments) {
-			Appointment appointment = (Appointment) element;
-			System.out.println(appointment);
-		}
+		AbstractController applicationController = new ApplicationController(appointmentModel);
 		
 		
-		/*
-		 * add test
-		 */
-		/*
-		Person employee = new Employee(3, null, null);
-		Person client = new Client(1, null, null);
+		applicationController.getTest();
 		
-		Appointment appointment = new Appointment( 
-				DateHelper.StringToDate("2011-06-15 13:45:00"), 
-				DateHelper.StringToDate("2011-06-15 14:45:00"),
-				"test 4",
-				"description 4",
-				employee,
-				client);
+		Application app = new Application();
+		app.pack();
+		app.setVisible(true);
 		
-		appHandler.add(appointment);
-		*/
 		
 	}
 }

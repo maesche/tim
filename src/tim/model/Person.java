@@ -1,6 +1,6 @@
-package tim.calendar.model;
+package tim.model;
 
-import tim.application.Element;
+
 
 public abstract class Person extends Element {
 	private String firstName;
