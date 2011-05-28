@@ -1,4 +1,4 @@
-package tim.calendar.gui;
+package tim.view;
 
 import java.awt.GridLayout;
 import javax.swing.JPanel;

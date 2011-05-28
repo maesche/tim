@@ -1,4 +1,4 @@
-package tim.calendar.gui.test;
+package tim.view.test;
 
 
 import javax.swing.*;
