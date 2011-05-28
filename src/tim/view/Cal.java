@@ -1,4 +1,4 @@
-package tim.calendar.gui;
+package tim.view;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

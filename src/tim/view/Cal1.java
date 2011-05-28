@@ -1,4 +1,4 @@
-package tim.calendar.gui;
+package tim.view;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
