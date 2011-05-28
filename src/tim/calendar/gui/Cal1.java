@@ -1,12 +1,13 @@
 package tim.calendar.gui;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
-import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 
 
-public class Cal1 extends JLayeredPane{
+public class Cal1 extends JPanel{
 	JButton btn1 = new JButton("1");
 	JButton btn2 = new JButton("2");
 	JButton btn3 = new JButton("3");
@@ -30,6 +31,7 @@ public class Cal1 extends JLayeredPane{
         
         btn2.setPreferredSize(new Dimension(250,50));
         btn2.setBorderPainted(false);
+        btn2.setBackground(new Color(1f,1f,1f,0f));
         
         btn2.setText("h");
         
