@@ -13,7 +13,7 @@ public class Cal1 extends JLayeredPane{
 	
 	public Cal1(){
 		
-		
+		this.setBounds(0,50,600,600);
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.LEFT);
 		layout.setHgap(0);
