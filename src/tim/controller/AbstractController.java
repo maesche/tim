@@ -17,5 +17,9 @@ public abstract class AbstractController {
 	
 	public void removeModel(AbstractModel model) {
 		models.remove(model);
-	}	
+	}
+	
+	abstract public void save();
+	abstract public void update();
+	abstract public void delete();
 }
