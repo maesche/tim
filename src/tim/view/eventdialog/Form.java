@@ -15,6 +15,12 @@ public class Form extends JPanel {
 	private JComboBox cbClient;
 	private JLabel lblDate;
 	private JTextField txtDate;
+	private JLabel lblBegin;
+	private JComboBox cbBeginH;
+	private JComboBox cbBeginM;
+	private JLabel lblEnd;
+	private JComboBox cbEndM;
+	private JComboBox cbEndH;
 
 	public Form() {
 
@@ -24,7 +30,15 @@ public class Form extends JPanel {
 		cbClient.addItem("test2");
 
 		lblDate = new JLabel("Date");
-		txtDate = new JTextField(25);
+		txtDate = new JTextField(10);
+		
+		lblBegin = new JLabel("Begin");
+		cbBeginH = new JComboBox();
+		cbBeginM = new JComboBox();
+		
+		lblEnd = new JLabel("End");
+		cbEndH = new JComboBox();
+		cbEndM = new JComboBox();
 
 		GridBagLayout gbl = new GridBagLayout();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -46,6 +60,41 @@ public class Form extends JPanel {
 		add(Box.createHorizontalStrut(10));
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(txtDate, gbc);
+		
+		gbc.gridwidth = 1;
+		add(lblBegin, gbc);
 
+		add(Box.createHorizontalStrut(10));
+		add(cbBeginH, gbc);
+		add(Box.createHorizontalStrut(10));
+		add(new JLabel(":"), gbc);
+		add(Box.createHorizontalStrut(10));
+		add(cbBeginM, gbc);
+		
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.gridwidth = 1;
+		add(lblEnd, gbc);
+
+		add(Box.createHorizontalStrut(10));
+		add(cbEndH, gbc);
+		add(Box.createHorizontalStrut(10));
+		add(new JLabel(":"), gbc);
+		add(Box.createHorizontalStrut(10));
+		add(cbEndM, gbc);
+
+		init();
+	}
+	
+	public void init() {
+		
+		for (int i = 0; i <= 23; i++) {
+			cbBeginH.addItem(i);
+			cbEndH.addItem(i);
+		}
+		
+		for (int i = 0 ; i <= 60; i += 5) {
+			cbBeginM.addItem(i);
+			cbEndM.addItem(i);
+		}
 	}
 }

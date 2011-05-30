@@ -66,13 +66,16 @@ public class Application extends JFrame implements Observer{
 	
 	public void showDialog() {
 		eventDialog = new EventDialog(Application.this);
-		eventDialog.setSize(600, 600);
+
+
 		eventDialog.setLocationRelativeTo(Application.this);
 		eventDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		eventDialog.setModal(true);
-		eventDialog.setResizable(false);
 
-		eventDialog.pack();
+
+		eventDialog.setSize(300, 300);	
+		eventDialog.setResizable(false);
+		//eventDialog.pack();
 		eventDialog.setVisible(true);
 	}
 }
