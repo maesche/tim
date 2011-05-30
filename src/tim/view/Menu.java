@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import tim.application.BootLoader;
+
 public class Menu extends JMenuBar {
 	
 	private Application application;
@@ -16,7 +18,7 @@ public class Menu extends JMenuBar {
 
 	public Menu(Application app) {
 		this.application = app;
-		file = new JMenu("File");
+		file = new JMenu(BootLoader.APPLICATION_MENU_FILE);
 		edit = new JMenu("Edit");
 		help = new JMenu("?");
 		add(file);
