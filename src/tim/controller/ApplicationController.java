@@ -11,12 +11,10 @@ import tim.model.Element;
 public class ApplicationController extends AbstractController {
 	
 	
-	public ApplicationController(AbstractModel model) {
-		super(model);
-	}
+
 	
 	public void getTest() {
-		AppointmentModel appointmentModel = (AppointmentModel) this.model;
+		AppointmentModel appointmentModel = (AppointmentModel) this.models.get("appointment");
 		/*
 		 * getElements test
 		 */
