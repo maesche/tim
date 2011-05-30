@@ -21,21 +21,15 @@ public class Application extends JFrame implements Observer{
 	JButton btnDialog;
 	JDialog eventDialog;
 	
+	public static void main (String args[]) {
+		
+	}
+	
 	public Application() {
-		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-		} catch (Exception ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "Application()");
-		}
-
-		setTitle("Application");
-		setPreferredSize(new Dimension(300, 300));
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		btnDialog = new JButton("Dialogue");
+		
+		
+		
+		/*btnDialog = new JButton("Dialogue");
 		Container container = getContentPane();
 
 		btnDialog.addActionListener(new ActionListener() {
@@ -54,7 +48,7 @@ public class Application extends JFrame implements Observer{
 			
 		});
 		
-		container.add(btnDialog);
+		container.add(btnDialog);*/
 	}
 
 	@Override
