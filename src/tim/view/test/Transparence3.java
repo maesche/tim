@@ -23,7 +23,7 @@ public class Transparence3 extends JFrame implements ChangeListener {
 		slider.setMinorTickSpacing(5);
 		slider.setPaintTicks(true);
         slider.addChangeListener(this);
-        container = new MonContainer(this.getLayeredPane());
+        //container = new MonContainer(this.getLayeredPane());
         this.setContentPane(container);
  
 		this.pack();
@@ -55,7 +55,7 @@ public class Transparence3 extends JFrame implements ChangeListener {
 class MonContainer extends JPanel {
  
 	private JLayeredPane layeredPane;
-	private Dessin panel1;
+	/*private Dessin panel1;
 	private Dessin panel2;
  
 	public MonContainer (JLayeredPane aLayeredPane)
@@ -67,5 +67,5 @@ class MonContainer extends JPanel {
 		this.layeredPane = aLayeredPane;
 		this.layeredPane.add(panel1,new Integer(-3000));
 		this.layeredPane.add(panel2,new Integer(0));
-    }
+    }*/
 }

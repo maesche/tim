@@ -10,12 +10,12 @@ import tim.controller.ApplicationController;
 public class TestSmeier {
 	public static void main(String[] args) {
 		
-		AbstractModel appointmentModel = new AppointmentModel();
+		/*AbstractModel appointmentModel = new AppointmentModel();
 		
 		AbstractController applicationController = new ApplicationController(appointmentModel);
 		
 		
-		applicationController.getTest();
+		applicationController.getTest();*/
 		
 		Application app = new Application();
 		app.pack();

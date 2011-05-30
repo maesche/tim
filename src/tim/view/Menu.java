@@ -1,0 +1,40 @@
+package tim.view;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+public class Menu extends JMenuBar {
+	
+	private Application application;
+	
+	private JMenu file, edit, help;
+	private JMenuItem quit;
+
+	public Menu(Application app) {
+		this.application = app;
+		file = new JMenu("File");
+		edit = new JMenu("Edit");
+		help = new JMenu("?");
+		add(file);
+		add(edit);
+		add(help);
+		
+		quit = new JMenuItem("Quit");
+	
+		quit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+		});
+		file.add(quit);
+
+		
+	}
+}

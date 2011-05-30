@@ -2,6 +2,7 @@ package tim.view;
 
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -12,14 +13,17 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 
 import tim.application.ErrorHandler;
+import tim.view.eventdialog.EventDialog;
 
 public class Application extends JFrame implements Observer{
 	
 	JButton btnDialog;
-	JDialog eventDialog;
+	EventDialog eventDialog;
+	Menu menu;
 	
 	public Application() {
 		try {
@@ -28,31 +32,28 @@ public class Application extends JFrame implements Observer{
 			ErrorHandler.getException(ex, this.getClass().getName(), "Application()");
 		}
 
-		setTitle("Application");
-		setPreferredSize(new Dimension(300, 300));
+		setTitle("TIM - Time Is Money");
+		setPreferredSize(new Dimension(600, 600));
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
+		
+		menu = new Menu(this);
+		setJMenuBar(menu);
+		
 		btnDialog = new JButton("Dialogue");
 		Container container = getContentPane();
 
 		btnDialog.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				eventDialog = new EventDialog();
-				eventDialog.setSize(200, 200);
-				eventDialog.setLocationRelativeTo(Application.this);
-				eventDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				eventDialog.setModal(true);
-				eventDialog.setResizable(false);
-
-				eventDialog.pack();
-				eventDialog.setVisible(true);
+				showDialog();
 			}
 			
 		});
+		container.setLayout(new FlowLayout());
 		
 		container.add(btnDialog);
 	}
@@ -61,5 +62,17 @@ public class Application extends JFrame implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void showDialog() {
+		eventDialog = new EventDialog(Application.this);
+		eventDialog.setSize(600, 600);
+		eventDialog.setLocationRelativeTo(Application.this);
+		eventDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		eventDialog.setModal(true);
+		eventDialog.setResizable(false);
+
+		eventDialog.pack();
+		eventDialog.setVisible(true);
 	}
 }

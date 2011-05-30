@@ -1,0 +1,27 @@
+package tim.view.eventdialog;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JDialog;
+import tim.view.Application;
+
+public class EventDialog extends JDialog implements ActionListener {
+	Application application;
+
+	public EventDialog(Application app) {
+		this.application = app;
+
+		Container cb = getContentPane();
+		cb.add(new Form(), BorderLayout.CENTER);
+
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		setVisible(false);
+		dispose();
+	}
+
+}
