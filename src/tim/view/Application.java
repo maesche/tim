@@ -15,12 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import tim.application.ErrorHandler;
-import tim.view.eventdialog.EventDialog;
+import tim.view.appointmentdialog.AppointmentDialog;
 
 public class Application extends JFrame implements Observer{
 	
 	JButton btnDialog;
-	EventDialog eventDialog;
+	AppointmentDialog eventDialog;
 	Menu menu;
 	
 	public Application() {
@@ -63,7 +63,7 @@ public class Application extends JFrame implements Observer{
 	}
 	
 	public void showDialog() {
-		eventDialog = new EventDialog(Application.this);
+		eventDialog = new AppointmentDialog(Application.this);
 
 
 		eventDialog.setLocationRelativeTo(Application.this);

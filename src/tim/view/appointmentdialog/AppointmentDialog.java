@@ -1,4 +1,4 @@
-package tim.view.eventdialog;
+package tim.view.appointmentdialog;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import tim.view.Application;
 
-public class EventDialog extends JDialog implements ActionListener {
+public class AppointmentDialog extends JDialog implements ActionListener {
 	Application application;
 
-	public EventDialog(Application app) {
+	public AppointmentDialog(Application app) {
 		this.application = app;
 
 		setTitle("TIM - Appointment");

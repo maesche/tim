@@ -1,4 +1,4 @@
-package tim.view.eventdialog;
+package tim.view.appointmentdialog;
 
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
