@@ -1,13 +1,15 @@
 package tim.view.eventdialog;
 
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
-import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -24,6 +26,11 @@ public class Form extends JPanel {
 	private JComboBox cbEndH;
 	private JLabel lblDescription;
 	private JTextArea txtDescription;
+	private JScrollPane spDescription;
+	private JButton btnSave;
+	private JButton btnDelete;
+	private JButton btnCancel;
+	private JPanel buttonPanel;
 
 	public Form() {
 
@@ -44,13 +51,23 @@ public class Form extends JPanel {
 		cbEndM = new JComboBox();
 
 		lblDescription = new JLabel("Description :");
-		txtDescription = new JTextArea(50, 50);
-		txtDescription.setMinimumSize(getSize());
+		txtDescription = new JTextArea(10, 20);
+		spDescription = new JScrollPane();
+		spDescription.setViewportView(txtDescription);
+		
+		buttonPanel = new JPanel();
+		btnCancel = new JButton("Canel");
+		btnSave = new JButton("Save");
+		btnDelete = new JButton("Delete");
+		
+		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		buttonPanel.add(btnCancel);
+		buttonPanel.add(btnDelete);
+		buttonPanel.add(btnSave);
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 		gbc.insets = new Insets(5, 5, 5, 5);
 		gbc.gridwidth = 1;
 
@@ -131,6 +148,16 @@ public class Form extends JPanel {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(txtDate, gbc);
 
+		/*
+		 * Buttonpanel
+		 */
+		gbc.gridy = 5;
+		gbc.gridx = 0;
+		gbc.anchor = GridBagConstraints.SOUTH;
+		gbc.insets = new Insets(15, 0, 0, 0);
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		add(buttonPanel, gbc);
+		
 		init();
 	}
 

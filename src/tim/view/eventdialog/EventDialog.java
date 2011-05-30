@@ -1,6 +1,5 @@
 package tim.view.eventdialog;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +13,7 @@ public class EventDialog extends JDialog implements ActionListener {
 	public EventDialog(Application app) {
 		this.application = app;
 
+		setTitle("TIM - Appointment");
 		Container cb = getContentPane();
 		cb.add(new Form());
 

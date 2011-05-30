@@ -11,9 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.UIManager;
 
 import tim.application.ErrorHandler;
@@ -73,9 +71,9 @@ public class Application extends JFrame implements Observer{
 		eventDialog.setModal(true);
 
 
-		eventDialog.setSize(300, 300);	
+		//eventDialog.setSize(250, 280);	
 		eventDialog.setResizable(false);
-		//eventDialog.pack();
+		eventDialog.pack();
 		eventDialog.setVisible(true);
 	}
 }
