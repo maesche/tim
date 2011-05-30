@@ -15,7 +15,7 @@ public class EventDialog extends JDialog implements ActionListener {
 		this.application = app;
 
 		Container cb = getContentPane();
-		cb.add(new Form(), BorderLayout.CENTER);
+		cb.add(new Form());
 
 	}
 
