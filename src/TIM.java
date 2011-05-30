@@ -1,16 +1,14 @@
-import tim.model.AbstractModel;
 import tim.model.AppointmentModel;
 
 import tim.view.Application;
 
-import tim.controller.AbstractController;
 import tim.controller.ApplicationController;
 
 
-public class TestSmeier {
+public class TIM {
 	public static void main(String[] args) {
 		
-		AbstractModel appointmentModel = new AppointmentModel();
+		AppointmentModel appointmentModel = new AppointmentModel();
 		
 		ApplicationController applicationController = new ApplicationController();
 		applicationController.addModel("appointment", appointmentModel);
@@ -19,6 +17,7 @@ public class TestSmeier {
 		applicationController.getTest();
 		
 		Application app = new Application();
+		app.setLocationRelativeTo(null);
 		app.pack();
 		app.setVisible(true);
 		
