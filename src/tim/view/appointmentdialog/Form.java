@@ -56,7 +56,7 @@ public class Form extends JPanel {
 		spDescription.setViewportView(txtDescription);
 		
 		buttonPanel = new JPanel();
-		btnCancel = new JButton("Canel");
+		btnCancel = new JButton("Cancel");
 		btnSave = new JButton("Save");
 		btnDelete = new JButton("Delete");
 		
