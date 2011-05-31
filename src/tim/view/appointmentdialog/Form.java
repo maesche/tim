@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -32,7 +33,6 @@ public class Form extends JPanel {
 	private JComboBox cbEndH;
 	private JLabel lblDescription;
 	private JTextArea txtDescription;
-	private JScrollPane spDescription;
 	private JButton btnSave;
 	private JButton btnDelete;
 	private JButton btnCancel;
@@ -41,12 +41,13 @@ public class Form extends JPanel {
 
 	public Form() {
 		errorPanel = new JPanel();
-		lblErrorMsg = new JLabel ("Please check the following errors: ");
+		lblErrorMsg = new JLabel (" ");
 		lblErrorMsg.setForeground(Color.RED);
 
 		
 		errorPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		errorPanel.add(lblErrorMsg);
+		
 
 		
 		lblClient = new JLabel("Client :");
@@ -67,21 +68,17 @@ public class Form extends JPanel {
 
 		lblDescription = new JLabel("Description :");
 		txtDescription = new JTextArea(10, 20);
-		spDescription = new JScrollPane();
-		spDescription.setViewportView(txtDescription);
+		//txtDescription.setBorder(BorderFactory.createCompoundBorder());
 		
 		buttonPanel = new JPanel();
 		btnCancel = new JButton("Cancel");
 		btnSave = new JButton("Save");
 		
 		btnSave.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				validate();
-				
+				validate();	
 			}
-			
 		});
 		
 		btnDelete = new JButton("Delete");
@@ -224,7 +221,11 @@ public class Form extends JPanel {
 	private JTextArea txtDescription;
 
 		 */
-		lblErrorMsg.setVisible(FormValidator.textField(lblDate, txtDate));
+		lblErrorMsg.setText(" ");
+		if (!(FormValidator.dateField(lblDate, txtDate))) {
+			lblErrorMsg.setText("Please check the following errors: ");
+		}
+
 
 	}
 }

@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import tim.application.ErrorHandler;
+import tim.application.utils.ErrorHandler;
 import tim.view.appointmentdialog.AppointmentDialog;
 
 public class Application extends JFrame implements Observer{
