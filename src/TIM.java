@@ -1,3 +1,5 @@
+import java.awt.Dimension;
+
 import tim.model.AppointmentModel;
 
 import tim.view.Application;
