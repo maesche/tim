@@ -13,8 +13,7 @@ import tim.model.Element;
 public class ApplicationController extends AbstractController {
 
 	public void getTest() {
-		AppointmentModel appointmentModel = (AppointmentModel) this.models
-				.get("appointment");
+		AppointmentModel appointmentModel = (AppointmentModel) this.model;
 		/*
 		 * getElements test
 		 */
@@ -52,21 +51,4 @@ public class ApplicationController extends AbstractController {
 		 */
 	}
 
-	@Override
-	public void save() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete() {
-		// TODO Auto-generated method stub
-
-	}
 }
