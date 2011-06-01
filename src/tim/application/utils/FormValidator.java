@@ -26,7 +26,7 @@ public class FormValidator {
 
 		if (text != null) {
 			try {
-				DateHelper.StringToDate(text.getText() + " 00:00");
+				DateHelper.StringToDate(text.getText());
 			}
 			catch (ParseException ex) {
 				res = false;

@@ -10,18 +10,18 @@ import tim.controller.AppointmentController;
 public class TIM {
 	public static void main(String[] args) {
 		
-		/*AppointmentModel appointmentModel = new AppointmentModel();
-		
-		ApplicationController applicationController = new ApplicationController();
-		applicationController.addModel("appointment", appointmentModel);
-		
-		
-		applicationController.getTest();*/
-		
 		AbstractModel appointmentModel = new AppointmentModel();
 		
+		ApplicationController applicationController = new ApplicationController();
+		applicationController.addModel(appointmentModel);
+		
+		
+		applicationController.getTest();
+		
+		/*AbstractModel appointmentModel = new AppointmentModel();
+		
 		AppointmentController appointmentController = new AppointmentController();
-		appointmentController.addModel(appointmentModel);
+		appointmentController.addModel(appointmentModel);*/
 		
 		
 		Application app = new Application();

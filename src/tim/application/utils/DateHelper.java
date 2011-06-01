@@ -4,28 +4,26 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
+
+import tim.application.Config;
 
 public class DateHelper {
 
-	private static final String timeZone = "Europe/Zurich";
-	private static final String dateFormat = "yyyy-MM-dd HH:mm";
-
 	public static Date StringToDate(String date) throws ParseException {
-		DateFormat sdf = new SimpleDateFormat(dateFormat);
-		sdf.setTimeZone(TimeZone.getTimeZone(timeZone));
-		Date ret = null;
-
-		ret = sdf.parse(date);
-
-		return ret;
+		return StringToDate(date, Config.DATE_FORMAT_SHORT);
 	}
-
+	
+	public static Date StringToDate(String date, String dateFormat) throws ParseException {
+		DateFormat sdf = new SimpleDateFormat(dateFormat);
+		return sdf.parse(date);
+	}
+	
 	public static String DateToString(Date date) {
-		String ret = "";
+		return DateToString(date, Config.DATE_FORMAT_SHORT);
+	}
+	
+	public static String DateToString(Date date, String dateFormat) {
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-
-		ret = sdf.format(date);
-		return ret;
+		return sdf.format(date);
 	}
 }

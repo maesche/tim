@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import tim.application.Config;
 import tim.application.utils.DateHelper;
+import tim.application.utils.ErrorHandler;
 import tim.model.AbstractModel;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
@@ -19,10 +21,10 @@ public class ApplicationController extends AbstractController {
 		 */
 		Date begin = null, end = null;
 		try {
-			begin = DateHelper.StringToDate("2011-06-13 8:45");
-			end = DateHelper.StringToDate("2011-07-17 11:45");
+			begin = DateHelper.StringToDate("2011-06-13 8:45", Config.DATE_FORMAT_LONG);
+			end = DateHelper.StringToDate("2011-07-17 11:45", Config.DATE_FORMAT_LONG);
 		} catch (ParseException ex) {
-
+			ErrorHandler.getException(ex, this.getClass().getName(), "getTest");
 		}
 		if (begin != null && end != null) {
 			ArrayList<Element> appointments = appointmentModel.get(begin, end);
