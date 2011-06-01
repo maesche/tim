@@ -25,8 +25,8 @@ public class TIM {
 		
 		
 		Application app = new Application();
-		app.setLocationRelativeTo(null);
 		app.pack();
+		app.setLocationRelativeTo(null);
 		app.setVisible(true);
 		
 		
