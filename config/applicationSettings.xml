@@ -8,8 +8,10 @@
 	<calendar>
 		<min-date>31.12.2010</min-date>
 		<max-date>31.12.2020</max-date>
-		<start-time>9:00</start-time>
-		<end-time>19:00</end-time>
+		<start-time-hour>09</start-time-hour>
+		<start-time-minute>00</start-time-minute>
+		<end-time-hour>19</end-time-hour>
+		<end-time-minute>00</end-time-minute>
 		<interval>15</interval>
 	</calendar>
 </configuration>
