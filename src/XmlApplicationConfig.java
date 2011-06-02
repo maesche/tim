@@ -1,41 +1,52 @@
+//__________________________________________________________________________________
+//
+//	Project: 		TIM (Time Is Money)
+//	class:			XmlApplicationConfig
+//	Authors: 		Stefan Meier ; Mathieu Noverraz ; Alain Bellatalla
+//	School team: 	IGL3
+//	Creation Date: 	02.06.2010
+//	Last update:
+//	Comments:		This class is the configuration of TIM application
+//__________________________________________________________________________________
+
 //import java.sql.Date;
 import java.util.Date;
+//import java.util.GregorianCalendar;
 
 public class XmlApplicationConfig 
 {
-	//---Format de la date
+	//---Date Format
 	private String dateFormat;
 	
-	//---Languaguage par défaut
+	//---Default Languaguage
 	private String defaultLanguage;
 	  
-	//---Date min possible
+	//---Date available from
 	private Date minDate;
 	
-	//---Date max possible
+	//---Date available to
 	private Date maxDate;
 	
-	//---Début de la journée commence à (heure)
+	//---Time begining of the day (hour)
 	private Integer startTimeHour;
 	
-	//---Début de la journée commence à (minute)
+	//---Time begining of the day (minute)
 	private Integer startTimeMinute;
 	
-	//---Fin de la journée se termine à (heure)
+	//---Time ending of the day (hour)
 	private Integer endTimeHour;
 	
-	//---Fin de la journée se termine à (minute)
+	//---Time ending of the day (minute)
 	private Integer endTimeMinute;
 	
-	//---Intervale minimum en minute (découpage minimum, ex.: 15 min)
+	//---Minimum interval in minute (ex.: 15 min)
 	private Integer interval;
 	
-	//---Couleur par défaut
+	//---Default color
 	
 	//...
 	
-	//---Constructeur par défaut
-	@SuppressWarnings("deprecation")
+	//---Default constructor
 	public XmlApplicationConfig()
 	{
 		dateFormat ="dd.mm.yyyy";
@@ -49,7 +60,7 @@ public class XmlApplicationConfig
 		interval = 15;
 	}
 	
-	//---Constructeur d'initialisation
+	//---Constructor initialization
 	public XmlApplicationConfig(String pDateFormat, String pdefaultLanguage, 
 				  				Date pMinDate, Date pMaxDate, 
 		  						Integer pStartTimeHour, Integer pStartTimeMinute,
@@ -69,7 +80,7 @@ public class XmlApplicationConfig
 
 	//______________________________________________________________________________
 	//
-	//			ACCESSEURS
+	//			Accessor
 	//______________________________________________________________________________
 	  
 	public String getDateFormat()

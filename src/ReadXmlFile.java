@@ -1,4 +1,13 @@
+//__________________________________________________________________________________
 //
+//	Project: 		TIM (Time Is Money)
+//	class:			ReadXmlFile
+//	Authors: 		Stefan Meier ; Mathieu Noverraz ; Alain Bellatalla
+//	School team: 	IGL3
+//	Creation Date: 	02.06.2010
+//	Last update:
+//	Comments:		This class is used to read the application config file (xml)
+//__________________________________________________________________________________
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
@@ -9,16 +18,78 @@ import java.io.File;
 
 import java.text.SimpleDateFormat;
 
+//__________________________________________________________________________________
+//
+//		class: ReadXmlFile
+//__________________________________________________________________________________
 public class ReadXmlFile 
 {
+	//______________________________________________________________________________
+	//
+	//		main
+	//______________________________________________________________________________
 	public static void main(String argv[]) 
 	{
 		try 
 		{
+			String xmlFilePath = "d:\\_My Documents\\_HEIG-VD\\IL3\\_ProjSem\\tim\\config\\applicationSettings.xml";
+			
 			XmlApplicationConfig appConfig = new XmlApplicationConfig();
 			
+			//---Read the xml file
+			appConfig = readConfig(xmlFilePath);
+			
+			if (appConfig != null)
+			{
+			    //---Just for test
+			    System.out.println("Date format: "  + appConfig.getDateFormat());
+			    System.out.println("Language: "  + appConfig.getDefaultLanguage());
+			    System.out.println("Min date: "  + appConfig.getMinDate());
+			    System.out.println("Max date: "  + appConfig.getMaxDate());
+			    System.out.println("Start time: "  + appConfig.getStartTimeHour() + ":" + appConfig.getStartTimeMinute());
+			    System.out.println("End time: "  + appConfig.getEndTimeHour() + ":" + appConfig.getEndTimeMinute());
+			    System.out.println("Interval: "  + appConfig.getInterval());
+			  
+			    SimpleDateFormat sdf = new SimpleDateFormat("dd");		    
+			    System.out.println("Min date day: "  + sdf.format(appConfig.getMinDate()));
+			}
+			else
+			{
+				System.out.println("No values was returned from xml file");
+			}
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	//______________________________________________________________________________
+	//
+	//		Methode: getTagValue ; return: String
+	//______________________________________________________________________________
+	private static String getTagValue(String sTag, Element eElement)
+	{
+		NodeList nlList= eElement.getElementsByTagName(sTag).item(0).getChildNodes();
+		Node nValue = (Node) nlList.item(0); 
+ 
+		return nValue.getNodeValue();    
+	}
+	
+	//______________________________________________________________________________
+	//
+	//		Methode: readConfig ; return: XmlApplicationConfig
+	//______________________________________________________________________________
+	private static XmlApplicationConfig readConfig(String xmlFilePath)
+	{
+		XmlApplicationConfig appConfig = new XmlApplicationConfig();
+		
+		try 
+		{
+			//XmlApplicationConfig appConfig = new XmlApplicationConfig();
+			
 		    //File fXmlFile = new File("c:\\file.xml");
-		    File fXmlFile = new File("d:\\_My Documents\\_HEIG-VD\\IL3\\_ProjSem\\tim\\config\\applicationSettings.xml");
+		    File fXmlFile = new File(xmlFilePath);
 		    
 		    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -27,7 +98,7 @@ public class ReadXmlFile
 		    Node nNode;
 		    String expectedPattern = "";
 		    
-		    System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
+		    //System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
 		    
 		    //---System
 		    NodeList nList = doc.getElementsByTagName("system");
@@ -85,33 +156,12 @@ public class ReadXmlFile
 		          //---Interval
 		          appConfig.setInterval(Integer.parseInt(getTagValue("interval", eElement)));
 		       }
-		    }
-		    
-		    //---Just for test
-		    System.out.println("Date format: "  + appConfig.getDateFormat());
-		    System.out.println("Language: "  + appConfig.getDefaultLanguage());
-		    System.out.println("Min date: "  + appConfig.getMinDate());
-		    System.out.println("Max date: "  + appConfig.getMaxDate());
-		    System.out.println("Start time: "  + appConfig.getStartTimeHour() + ":" + appConfig.getStartTimeMinute());
-		    System.out.println("End time: "  + appConfig.getEndTimeHour() + ":" + appConfig.getEndTimeMinute());
-		    System.out.println("Interval: "  + appConfig.getInterval());
-		  
-		    
-		    SimpleDateFormat sdf = new SimpleDateFormat("dd");		    
-		    System.out.println("Min date day: "  + sdf.format(appConfig.getMinDate()));
-		} 
+		    }  
+		}
 		catch (Exception e) 
 		{
 			e.printStackTrace();
 		}
+		return appConfig;
 	}
- 
-	private static String getTagValue(String sTag, Element eElement)
-	{
-		NodeList nlList= eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-		Node nValue = (Node) nlList.item(0); 
- 
-		return nValue.getNodeValue();    
-	}
- 
 }

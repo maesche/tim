@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-FICHIER 1
+FICHIER 1 config specifique
 <configuration>
 	<system>
 		<date-format>dd.mm.yyyy<date-format>
@@ -15,7 +15,7 @@ FICHIER 1
 	</calendar>
 </configuration>
 
-FICHIER 2
+FICHIER 2 language
 
 <application lang='fr'>
 	<view>
