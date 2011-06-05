@@ -20,13 +20,13 @@ import javax.swing.JTextField;
 
 import tim.application.Config;
 import tim.application.utils.ErrorHandler;
-import tim.controller.AppointmentController;
+import tim.controller.AppointmentDialogController;
 import tim.model.Client;
 import tim.model.Element;
 import tim.view.appointmentdialog.AppointmentDialogValidator;
 
 public class Form extends JPanel {
-	AppointmentController controller;
+	AppointmentDialogController controller;
 	private JLabel lblErrorMsg;
 	private JLabel lblClient;
 	private JComboBox cbClient;
@@ -46,7 +46,7 @@ public class Form extends JPanel {
 	private JPanel buttonPanel;
 	private JPanel errorPanel;
 
-	public Form(AppointmentController controller) {
+	public Form(AppointmentDialogController controller) {
 		this.controller = controller;
 		errorPanel = new JPanel();
 		lblErrorMsg = new JLabel (" ");

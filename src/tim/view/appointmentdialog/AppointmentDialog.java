@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 
-import tim.controller.AppointmentController;
+import tim.controller.AppointmentDialogController;
 import tim.model.AppointmentModel;
 import tim.view.Application;
 
@@ -18,7 +18,7 @@ public class AppointmentDialog extends JDialog implements ActionListener {
 		/*
 		 * Only for testing we create the model at this place
 		 */
-		AppointmentController controller = new AppointmentController();
+		AppointmentDialogController controller = new AppointmentDialogController();
 		controller.addModel(new AppointmentModel());
 
 		setTitle("TIM - Appointment");

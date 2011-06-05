@@ -13,7 +13,7 @@ import tim.model.Element;
 import tim.model.Employee;
 
 
-public class AppointmentController extends AbstractController {
+public class AppointmentDialogController extends AbstractController {
 
 	public boolean save(Employee employee, Client client, String date, int beginH, int beginM, int endH, int endM, String description) throws ParseException {
 		

@@ -4,7 +4,7 @@ import tim.model.AppointmentModel;
 import tim.view.Application;
 
 import tim.controller.ApplicationController;
-import tim.controller.AppointmentController;
+import tim.controller.AppointmentDialogController;
 
 
 public class TIM {
