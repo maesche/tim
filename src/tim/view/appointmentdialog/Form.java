@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,9 +19,14 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import tim.application.Config;
+import tim.application.utils.ErrorHandler;
+import tim.controller.AppointmentController;
+import tim.model.Client;
+import tim.model.Element;
 import tim.view.appointmentdialog.AppointmentDialogValidator;
 
 public class Form extends JPanel {
+	AppointmentController controller;
 	private JLabel lblErrorMsg;
 	private JLabel lblClient;
 	private JComboBox cbClient;
@@ -39,7 +46,8 @@ public class Form extends JPanel {
 	private JPanel buttonPanel;
 	private JPanel errorPanel;
 
-	public Form() {
+	public Form(AppointmentController controller) {
+		this.controller = controller;
 		errorPanel = new JPanel();
 		lblErrorMsg = new JLabel (" ");
 		lblErrorMsg.setForeground(Color.RED);
@@ -52,8 +60,11 @@ public class Form extends JPanel {
 		
 		lblClient = new JLabel("Client :");
 		cbClient = new JComboBox();
-		cbClient.addItem("test1");
-		cbClient.addItem("test2");
+		
+		for (Element element : controller.getClients()) {
+			cbClient.addItem((Client) element);
+		}
+		
 
 		lblDate = new JLabel("Date :");
 		txtDate = new JTextField(10);
@@ -207,20 +218,6 @@ public class Form extends JPanel {
 	}
 	
 	public void validate() {
-		/*
-		 * private JComboBox cbClient;
-
-	private JTextField txtDate;
-
-	private JComboBox cbBeginH;
-	private JComboBox cbBeginM;
-
-	private JComboBox cbEndM;
-	private JComboBox cbEndH;
-
-	private JTextArea txtDescription;
-
-		 */
 		int beginH = 0, endH = 0, beginM = 0, endM = 0;
 		
 		beginH = (Integer)cbBeginH.getSelectedItem();
@@ -228,11 +225,22 @@ public class Form extends JPanel {
 		beginM = (Integer) cbBeginM.getSelectedItem();
 		endM = (Integer) cbEndM.getSelectedItem();
 		
+		Client client = (Client) cbClient.getSelectedItem();
+		
 		
 		
 		lblErrorMsg.setText(" ");
-		if (!(AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator.startEnd(beginH, beginM, endH, endM))) {
+		if (!(AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator.startEnd(lblBegin, lblEnd, beginH, beginM, endH, endM))) {
 			lblErrorMsg.setText("Please check the following errors: ");
+		}
+		else {
+			try {
+				if (controller.save(null, client, txtDate.getText(), beginH, beginM, endH, endM, txtDescription.getText())) {
+					//close dialog
+				}
+			} catch (ParseException ex) {
+				ErrorHandler.getException(ex, this.getClass().getName(), "validate");
+			}
 		}
 
 
