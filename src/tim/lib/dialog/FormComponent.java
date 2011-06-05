@@ -8,10 +8,15 @@ public class FormComponent {
 	private JComponent component;
 	
 	public FormComponent(JLabel label, JComponent component) {
-		super();
 		this.label = label;
 		this.component = component;
 	}
+	
+	public FormComponent(JComponent component) {
+		this.component = component;
+	}
+
+	
 	public JLabel getLabel() {
 		return label;
 	}
