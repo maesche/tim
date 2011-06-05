@@ -13,11 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import tim.application.utils.FormValidator;
+import tim.application.Config;
+import tim.view.appointmentdialog.AppointmentDialogValidator;
 
 public class Form extends JPanel {
 	private JLabel lblErrorMsg;
@@ -195,12 +195,12 @@ public class Form extends JPanel {
 
 	public void init() {
 
-		for (int i = 0; i <= 23; i++) {
+		for (int i = Config.CALENDAR_DAY_START; i <= Config.CALENDAR_DAY_END; i++) {
 			cbBeginH.addItem(i);
 			cbEndH.addItem(i);
 		}
 
-		for (int i = 0; i <= 60; i += 5) {
+		for (int i = 0; i < 60; i += Config.CALENDAR_DAY_INTERVAL) {
 			cbBeginM.addItem(i);
 			cbEndM.addItem(i);
 		}
@@ -221,8 +221,17 @@ public class Form extends JPanel {
 	private JTextArea txtDescription;
 
 		 */
+		int beginH = 0, endH = 0, beginM = 0, endM = 0;
+		
+		beginH = (Integer)cbBeginH.getSelectedItem();
+		endH = (Integer) cbEndH.getSelectedItem();
+		beginM = (Integer) cbBeginM.getSelectedItem();
+		endM = (Integer) cbEndM.getSelectedItem();
+		
+		
+		
 		lblErrorMsg.setText(" ");
-		if (!(FormValidator.dateField(lblDate, txtDate))) {
+		if (!(AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator.startEnd(beginH, beginM, endH, endM))) {
 			lblErrorMsg.setText("Please check the following errors: ");
 		}
 
