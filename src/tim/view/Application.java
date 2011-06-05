@@ -64,14 +64,8 @@ public class Application extends JFrame implements Observer{
 	
 	public void showDialog() {
 		eventDialog = new AppointmentDialog(Application.this);
-
-
-		
 		eventDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		eventDialog.setModal(true);
-
-
-		//eventDialog.setSize(250, 280);	
 		eventDialog.setResizable(false);
 		eventDialog.pack();
 		eventDialog.setLocationRelativeTo(Application.this);
