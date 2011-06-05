@@ -27,9 +27,7 @@ public class Application extends JFrame{
 		this.pack();
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 		this.show();
-		
-		Graphics g = getGraphics();
-		paintComponent(g);
+
 	}
  
 	public static void main (String args[]) {
@@ -41,14 +39,6 @@ public class Application extends JFrame{
 		}
 		new Application();
  
-	}
-	
-	protected void paintComponent(Graphics g) {
-        // TODO Auto-generated method stub
-        //super.paintComponent(g);
-        
-		Dimension d = this.getSize();
-		System.out.println(d.width + "x" + d.height);
 	}
 
  
