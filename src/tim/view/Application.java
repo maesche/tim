@@ -117,9 +117,17 @@ public class Application extends JFrame implements Observer{
 		eDate.addComponent(cDate);
 		form.addEntry(eDate);
 		
-		FormComponent cTest = new FormComponent(new JTextField(10));
-		FormEntry eTest = new FormEntry(new JLabel ("Test"));
-		eTest.addComponent(cTest);
+		FormComponent cBeginH = new FormComponent(new JTextField(10));
+		FormComponent cBeginM = new FormComponent(new JTextField(10));
+		FormComponent cEndH = new FormComponent(new JTextField(10));
+		FormComponent cEndM = new FormComponent(new JTextField(10));
+		FormComponent cSeparator = new FormComponent(new JLabel(":"));
+		FormEntry eTest = new FormEntry(new JLabel ("Begin"));
+		eTest.addComponent(cBeginH);
+		eTest.addComponent(cBeginM);
+		eTest.addComponent(cSeparator);
+		eTest.addComponent(cEndH);
+		eTest.addComponent(cEndM);
 		form.addEntry(eTest);
 		
 		

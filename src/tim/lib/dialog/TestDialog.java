@@ -15,6 +15,7 @@ public class TestDialog extends Dialog {
 		Container container = getContentPane();
 		
 		container.add(form.generate());
+		setTitle("TIM - Appointment");
 	}
 
 }

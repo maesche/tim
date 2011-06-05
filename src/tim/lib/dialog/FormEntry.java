@@ -8,15 +8,10 @@ import javax.swing.JLabel;
  */
 public class FormEntry {
 	private ArrayList<FormComponent> formComponents;
-	private int order;
+	private int length;
 	private JLabel label;
 	
-	public FormEntry(int order, JLabel label) {
-		this.order = order;
-		this.label = label;
-		init();
 
-	}
 	
 	public FormEntry(JLabel label) {
 		this.label = label;
@@ -29,21 +24,24 @@ public class FormEntry {
 	
 	private void init() {
 		formComponents = new ArrayList<FormComponent>();
+		length = 0;
 	}
 	
 	public void addComponent(FormComponent formComponent) {
 		formComponents.add(formComponent);
+		length++;
 
 	}
 	
 	public void removeComponent(FormComponent formComponent) {
 		formComponents.remove(formComponent);
+		length--;
 
 	}
 	
 
-	public int getOrder() {
-		return order;
+	public int getLength() {
+		return length;
 	}
 	
 	public JLabel getLabel() {
