@@ -4,12 +4,18 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import tim.model.Appointment;
+import tim.model.AppointmentModel;
 import tim.model.Element;
+import tim.model.Employee;
+import tim.model.EmployeeModel;
 
 
 public class UserCalendar extends JPanel{
@@ -23,7 +29,7 @@ public class UserCalendar extends JPanel{
 	
 	
 		
-	public UserCalendar(Element employee){
+	public UserCalendar(Employee employee){
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.LEFT);
@@ -36,7 +42,17 @@ public class UserCalendar extends JPanel{
 		//Paramètrage des boutons
 		//btn1.setSize(this.getWidth(), this.getHeight());
 		
-
+		
+		//Initialisation du controller
+		UserCalendarController controller = new UserCalendarController();
+		controller.addModel(new AppointmentModel());
+		
+		ArrayList<Element> appointments = controller.getEmployeeEvents(employee, new Date(2011, 01, 06), new Date(2011,06,06));
+		
+		
+		for(Element appointment : appointments){
+			add(new JButton(appointment.toString()));
+		}
 		//ajout des boutons
 		btn1.setSize(100,this.getHeight());
 		btn1.setText("<html>" + employee.toString() + "</html>");

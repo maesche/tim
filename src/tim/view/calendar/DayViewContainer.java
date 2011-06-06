@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import tim.controller.AppointmentDialogController;
 import tim.model.AppointmentModel;
 import tim.model.Element;
+import tim.model.Employee;
 import tim.model.EmployeeModel;
 
 
@@ -34,7 +35,7 @@ public class DayViewContainer extends JPanel {
 		this.setBounds(0, 0, 800, 600);
 		
 		for(Element employee : employees){
-			add(new UserCalendar(employee));
+			add(new UserCalendar((Employee)employee));
 		}
 	}
 	
