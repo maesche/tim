@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import tim.application.utils.ErrorHandler;
+import tim.view.test.Calendrier;
 
 
 
@@ -46,9 +47,9 @@ public class Cal extends JFrame  {
 		
 		
 		setLayout(new GridLayout(nbrPerson,1));
-        add(new Cal1());
-        add(new Cal1());
-        add(new Cal1());
+        add(new Calendrier());
+        add(new Calendrier());
+        add(new Calendrier());
 		
 	}
 
