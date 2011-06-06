@@ -12,18 +12,20 @@ import tim.lib.dialog.FormComponent;
 
 public class Form {
 	private ArrayList<FormEntry> formEntries;
-	private int maxLength;
+	private int maxLength; // transform to array with pointer to biggest value
+	private int posMaxLength;
 
 	public Form() {
 		formEntries = new ArrayList<FormEntry>();
 		maxLength = 0;
+		posMaxLength = 0;
 	}
 
 	public void addEntry(FormEntry formEntry) {
 		formEntries.add(formEntry);
 		if (formEntry.getLength() > maxLength) {
 			maxLength = formEntry.getLength();
-			
+			posMaxLength = formEntries.size() - 1;
 		}
 	}
 
@@ -43,41 +45,31 @@ public class Form {
 		int x = 0;
 		int y = 0;
 
-		gbc.anchor = GridBagConstraints.EAST;
 		for (FormEntry formEntry : formEntries) {
-			JLabel entryLabel = formEntry.getLabel();
-
+			gbc.gridwidth = 1;
+			gbc.gridy = y;
+			x = 0;
 			
-			gbc.gridy = y;
-			gbc.gridx = x;
-			form.add(entryLabel, gbc);
-			System.out.println("y: " + y + " | x: " + x);
-
-			y++;
-		}
-		y = 0;
-		gbc.anchor = GridBagConstraints.WEST;
-		for (FormEntry formEntry : formEntries) {
-
-			gbc.gridy = y;
-			x = 1;
+			JLabel entryLabel = formEntry.getLabel();
+			if (entryLabel != null) {
+				gbc.anchor = GridBagConstraints.EAST;
+				gbc.gridx = x;
+				form.add(entryLabel, gbc);
+				x++;	
+			}
+			
 			for (FormComponent formComponent : formEntry.getComponents()) {
 				JComponent component = formComponent.getComponent();
 
-				
+				gbc.anchor = GridBagConstraints.WEST;
 
 				gbc.gridx = x;
 				form.add(component, gbc);
-				System.out.println("y: " + y + " | x: " + x);
 
 				x++;
 			}
-			if (formEntry.getLength() < maxLength) {
-				gbc.gridx = x;
-				form.add(new JLabel(), gbc);
-				x++;
-			}
 			gbc.gridwidth = GridBagConstraints.REMAINDER;
+
 			y++;
 		}
 
