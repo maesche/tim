@@ -9,6 +9,8 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import tim.model.Element;
+
 
 public class UserCalendar extends JPanel{
 	private JButton btn1 = new JButton("1");
@@ -18,8 +20,10 @@ public class UserCalendar extends JPanel{
 	
 	private int calendarHeight;
 	private int calendarWidth;
+	
+	
 		
-	public UserCalendar(){
+	public UserCalendar(Element employee){
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.LEFT);
