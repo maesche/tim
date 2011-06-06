@@ -14,7 +14,7 @@ public class Application extends JFrame{
 	private Layer layer;
 	public Dimension appSize;
  
-	@SuppressWarnings("deprecation")
+
 	public Application () {
  
 		super();
@@ -26,7 +26,7 @@ public class Application extends JFrame{
  
 		this.pack();
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-		this.show();
+		this.setVisible(true);
 
 	}
  
