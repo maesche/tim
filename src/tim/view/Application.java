@@ -1,5 +1,6 @@
 package tim.view;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -82,11 +84,13 @@ public class Application extends JFrame implements Observer{
 			
 		});
 		
-		container.setLayout(new FlowLayout());
+		container.setLayout(new BorderLayout());
 		
-		container.add(btnDialog);
-		container.add(btnTstDialog);
-		container.add(calendarContainer);
+		JPanel testBar = new JPanel(new FlowLayout());
+		testBar.add(btnDialog);
+		testBar.add(btnTstDialog);
+		container.add(testBar, BorderLayout.NORTH);
+		container.add(calendarContainer, BorderLayout.SOUTH);
 	}
 
 	@Override

@@ -14,16 +14,16 @@ public class CalendarContainer extends JPanel {
 	JLayeredPane layer;
 	public Dimension JLayerPaneDimension;
 	public CalendarContainer() {
-		layer = new JLayeredPane();
-		this.JLayerPaneDimension = new Dimension(300,300);
-		this.setPreferredSize(JLayerPaneDimension);
 
+		JLayerPaneDimension = new Dimension(300,300);
+		this.setPreferredSize(JLayerPaneDimension);
+		layer = new JLayeredPane();
+		layer.setPreferredSize(JLayerPaneDimension);
 		
 
 		layer.add(new DayViewContainer(),new Integer(0));
 		layer.add(new DayTableView(),new Integer(-3));
 
-		add(new JLabel("test"));
 		add(layer);
 	}
 }
