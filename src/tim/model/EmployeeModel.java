@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
-import tim.application.ErrorHandler;
+import tim.application.utils.ErrorHandler;
 
 public class EmployeeModel extends PersonModel {
 	public ArrayList<Element> get(long fId) {

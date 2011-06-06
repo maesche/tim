@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
-import tim.application.ErrorHandler;
-import tim.application.DateHelper;
+import tim.application.utils.DateHelper;
+import tim.application.utils.ErrorHandler;
 
 public class AppointmentModel extends AbstractModel{
 

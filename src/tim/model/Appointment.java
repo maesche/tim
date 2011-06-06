@@ -1,7 +1,8 @@
 package tim.model;
 
 import java.util.Date;
-import tim.application.DateHelper;
+
+import tim.application.utils.DateHelper;
 
 public class Appointment extends Element {
 

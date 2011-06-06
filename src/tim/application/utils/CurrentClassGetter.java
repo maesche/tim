@@ -1,4 +1,4 @@
-package tim.application;
+package tim.application.utils;
 
 public class CurrentClassGetter extends SecurityManager {
 

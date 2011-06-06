@@ -5,16 +5,11 @@ import tim.model.AbstractModel;
 public abstract class AbstractController {
 	protected AbstractModel model = null;
 	
-	public AbstractController(AbstractModel model) {
+	public void addModel(AbstractModel model) {
 		this.model = model;
 	}
-
-	public void getTest() {
-		// TODO Auto-generated method stub
-		
+	
+	public void removeModel() {
+		model = null;
 	}
-	
-	
-	
-	
 }
