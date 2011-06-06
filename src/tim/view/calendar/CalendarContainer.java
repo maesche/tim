@@ -2,6 +2,7 @@ package tim.view.calendar;
 
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -15,7 +16,7 @@ public class CalendarContainer extends JPanel {
 	public Dimension JLayerPaneDimension;
 	public CalendarContainer() {
 
-		JLayerPaneDimension = new Dimension(300,300);
+		JLayerPaneDimension = new Dimension(800,600);
 		this.setPreferredSize(JLayerPaneDimension);
 		layer = new JLayeredPane();
 		layer.setPreferredSize(JLayerPaneDimension);
@@ -25,5 +26,14 @@ public class CalendarContainer extends JPanel {
 		layer.add(new DayTableView(),new Integer(-3));
 
 		add(layer);
+	}
+	
+	public void paintComponent(Graphics g) {
+	    // Appel de la méthode de la classe JPanel
+	    super.paintComponent(g);
+	    this.JLayerPaneDimension.setSize(this.getWidth(), this.getHeight());
+	    this.setPreferredSize(this.JLayerPaneDimension);
+	    this.setSize(this.JLayerPaneDimension);
+	    System.out.println(this.getWidth() + "x" + this.getHeight());
 	}
 }

@@ -16,9 +16,8 @@ public class DayViewContainer extends JPanel {
 		this.setOpaque(false);
 		
 		setLayout(new GridLayout(nbrPerson,1));
-		this.setBounds(0, 0, 300, 300);
-		add(new JLabel("asdfas"));
-        //add(new Calendrier());	
+		this.setBounds(0, 0, 800, 600);
+        add(new UserCalendar());	
         add(new UserCalendar());
         add(new UserCalendar());
 	}

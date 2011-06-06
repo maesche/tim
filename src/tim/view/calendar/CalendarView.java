@@ -1,5 +1,6 @@
 package tim.view.calendar;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -28,6 +29,17 @@ public class CalendarView extends JPanel {
 		this.layeredPane.add(new DayTableView(),new Integer(-3));
 		
     }
+	
+	
+	// çA ne marche pas.
+	public void paintComponent(Graphics g) {
+	    // Appel de la méthode de la classe JPanel
+	    super.paintComponent(g);
+	    this.JLayerPaneDimension.setSize(this.getWidth(), this.getHeight());
+	    this.setPreferredSize(this.JLayerPaneDimension);
+	    this.setSize(this.JLayerPaneDimension);
+	    System.out.println(this.getWidth() + "x" + this.getHeight());
+	}
 	
 	
 }
