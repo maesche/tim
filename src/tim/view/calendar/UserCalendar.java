@@ -39,8 +39,11 @@ public class UserCalendar extends JPanel{
 
 		//ajout des boutons
 		btn1.setSize(100,this.getHeight());
+		btn1.setText("<html>" + employee.toString() + "</html>");
 	    btn2.setSize(200,this.getHeight());
+	    btn2.setText("<html>" + employee.toString() + "</html>");
 	    btn3.setSize(300,this.getHeight());
+	    btn3.setText("<html>" + employee.toString() + "</html>");
         add(btn1);
         add(btn2);
         add(btn3);
@@ -85,7 +88,7 @@ public class UserCalendar extends JPanel{
         btn2.setOpaque(false);
         
 	    btn3.setSize(300,this.getHeight());
-	    btn3.setBackground(new Color(1, 1, 1, 80));
+	    //btn3.setBackground(new Color(1, 1, 1, 0));
 	    btn3.setPreferredSize(new Dimension(300,200));
 	    
 	    

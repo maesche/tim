@@ -28,12 +28,12 @@ public class CalendarContainer extends JPanel {
 		add(layer);
 	}
 	
-	public void paintComponent(Graphics g) {
+	/*public void paintComponent(Graphics g) {
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
 	    this.JLayerPaneDimension.setSize(this.getWidth(), this.getHeight());
 	    this.setPreferredSize(this.JLayerPaneDimension);
 	    this.setSize(this.JLayerPaneDimension);
 	    System.out.println(this.getWidth() + "x" + this.getHeight());
-	}
+	}*/
 }
