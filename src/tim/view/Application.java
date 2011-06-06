@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import tim.application.Config;
 import tim.application.utils.ErrorHandler;
 import tim.lib.dialog.Form;
 import tim.lib.dialog.FormComponent;
@@ -117,10 +118,26 @@ public class Application extends JFrame implements Observer{
 		eDate.addComponent(cDate);
 		form.addEntry(eDate);
 		
-		FormComponent cBeginH = new FormComponent(new JTextField(10));
-		FormComponent cBeginM = new FormComponent(new JTextField(10));
-		FormComponent cEndH = new FormComponent(new JTextField(10));
-		FormComponent cEndM = new FormComponent(new JTextField(10));
+		JComboBox cbBeginH = new JComboBox();
+		JComboBox cbBeginM = new JComboBox();
+
+		JComboBox cbEndH = new JComboBox();
+		JComboBox cbEndM = new JComboBox();
+		
+		for (int i = Config.CALENDAR_DAY_START; i <= Config.CALENDAR_DAY_END; i++) {
+			cbBeginH.addItem(i);
+			cbEndH.addItem(i);
+		}
+
+		for (int i = 0; i < 60; i += Config.CALENDAR_DAY_INTERVAL) {
+			cbBeginM.addItem(i);
+			cbEndM.addItem(i);
+		}
+		
+		FormComponent cBeginH = new FormComponent(cbBeginH);
+		FormComponent cBeginM = new FormComponent(cbBeginM);
+		FormComponent cEndH = new FormComponent(cbEndH);
+		FormComponent cEndM = new FormComponent(cbEndM);
 		FormComponent cSeparator = new FormComponent(new JLabel(":"));
 		FormEntry eTest = new FormEntry(new JLabel ("Begin"));
 		eTest.addComponent(cBeginH);
