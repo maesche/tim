@@ -21,20 +21,12 @@ public class EmployeeModel extends PersonModel {
 		ArrayList<Element> employees = new ArrayList<Element>();
 
 		String sql = "SELECT" + 
-				"	employee_id, " 
-				+ "	A.title, "
-				+ "	A.description, " 
-				+ "  D.begin, " 
-				+ "  D.end, "
-				+ "	C.client_id AS C_id, "
-				+ "	C.firstName AS C_firstName, "
-				+ "	C.lastName AS C_lastName, " 
-				+ "	E.employee_id AS E_id, "
-				+ "	E.firstName AS E_firstName, "
-				+ "	E.lastName AS E_lastName " + "FROM employees";
+		"	employee_id, " 
+		+ "	firstName, "
+		+ "	lastName " + "FROM employees";
 
 		if (fId > 0) {
-			filter.add("A.appointment_id=" + fId);
+			filter.add("employee_id=" + fId);
 		}
 
 		for (int i = 0; i < filter.size(); i++) {
@@ -46,7 +38,7 @@ public class EmployeeModel extends PersonModel {
 			sql += " " + filter.get(i);
 		}
 
-		sql += " ORDER BY begin";
+		sql += " ORDER BY employee_id";
 
 		try {
 			conn = Db.open();
@@ -55,33 +47,22 @@ public class EmployeeModel extends PersonModel {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				long id = rs.getLong("A_id");
+				Person employee = new Employee(rs.getInt("employee_id"),
+						rs.getString("firstName"), rs.getString("lastName"));
 
-				Date begin = rs.getTimestamp("begin");
-				Date end = rs.getTimestamp("end");
-				String title = rs.getString("title");
-				String description = rs.getString("description");
-
-				Person employee = new Employee(rs.getInt("E_id"),
-						rs.getString("E_firstName"), rs.getString("E_lastName"));
-				Person client = new Client(rs.getInt("C_id"),
-						rs.getString("C_firstName"), rs.getString("C_lastName"));
-
-				Appointment appointment = new Appointment(id, begin, end,
-						title, description, employee, client);
-
-				employees.add(appointment);
+				employees.add(employee);
 			}
 			stmt.close();
 		} catch (Exception ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(),
-					"getElements");
+					"get");
 		} finally {
 
 			Db.close();
 		}
 		return employees;
 	}
+
 
 	@Override
 	public void add(Element element) throws ClassCastException {

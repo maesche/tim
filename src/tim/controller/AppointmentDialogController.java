@@ -11,6 +11,7 @@ import tim.model.Client;
 import tim.model.ClientModel;
 import tim.model.Element;
 import tim.model.Employee;
+import tim.model.EmployeeModel;
 
 
 public class AppointmentDialogController extends AbstractController {
@@ -39,6 +40,6 @@ public class AppointmentDialogController extends AbstractController {
 	}
 	
 	public ArrayList<Element> getClients() {		
-		return new ClientModel().get(0);
+		return new ClientModel().get();
 	}
 }
