@@ -1,6 +1,7 @@
-package tim.view.test;
+package tim.view.calendar;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 
 import javax.swing.JLayeredPane;
@@ -8,24 +9,23 @@ import javax.swing.JPanel;
 
 
 
-
-
-class Layer extends JPanel {
+public class CalendarView extends JPanel {
 	 
 	public JLayeredPane layeredPane;
 	public Dimension JLayerPaneDimension;
 
  
-	public Layer (JLayeredPane layer)
+	public CalendarView (JLayeredPane layer)
 	{
 		super();
 		this.JLayerPaneDimension = new Dimension(800,600);
+
 		this.setPreferredSize(JLayerPaneDimension);
 		
 		
 		this.layeredPane = layer;
-		this.layeredPane.add(new CalendarContainer(),new Integer(0));
-		this.layeredPane.add(new Table(),new Integer(-3));
+		this.layeredPane.add(new DayViewContainer(),new Integer(0));
+		this.layeredPane.add(new DayTableView(),new Integer(-3));
 		
     }
 	

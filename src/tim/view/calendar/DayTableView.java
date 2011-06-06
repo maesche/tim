@@ -1,15 +1,18 @@
-package tim.view.test;
+package tim.view.calendar;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-public class Table extends JPanel {
+public class DayTableView extends JPanel {
 	
-	public Table(){
+	public DayTableView(){
 		this.setOpaque(false);
 		
-		this.setBounds(0,0,800,600);
+		this.setBounds(0,0,300,300);
+
 		Object[][] donnees = {  
 			   {"1","2","3","4","5","6","7","8","9"},
 			   {"1","2","3","4","5","6","7","8","9"},

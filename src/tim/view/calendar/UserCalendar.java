@@ -1,4 +1,4 @@
-package tim.view.test;
+package tim.view.calendar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -10,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
-public class Calendrier extends JPanel{
+public class UserCalendar extends JPanel{
 	private JButton btn1 = new JButton("1");
 	private JButton btn2 = new JButton("2");
 	private JButton btn3 = new JButton("3");
@@ -19,7 +19,7 @@ public class Calendrier extends JPanel{
 	private int calendarHeight;
 	private int calendarWidth;
 		
-	public Calendrier(){
+	public UserCalendar(){
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.LEFT);

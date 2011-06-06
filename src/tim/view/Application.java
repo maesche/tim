@@ -26,12 +26,16 @@ import tim.lib.dialog.TestDialog;
 import tim.model.Client;
 import tim.model.Element;
 import tim.view.appointmentdialog.AppointmentDialog;
+import tim.view.calendar.CalendarContainer;
 
 public class Application extends JFrame implements Observer{
 	
 	JButton btnDialog;
 	AppointmentDialog eventDialog;
 	Menu menu;
+	CalendarContainer calendarContainer;
+	
+
 	
 	//test
 	TestDialog tstDialog;
@@ -57,6 +61,9 @@ public class Application extends JFrame implements Observer{
 		
 		btnDialog = new JButton("Dialogue");
 		btnTstDialog = new JButton("Dialogue de test");
+		calendarContainer = new CalendarContainer();
+
+		
 		Container container = getContentPane();
 
 		btnDialog.addActionListener(new ActionListener() {
@@ -79,6 +86,7 @@ public class Application extends JFrame implements Observer{
 		
 		container.add(btnDialog);
 		container.add(btnTstDialog);
+		container.add(calendarContainer);
 	}
 
 	@Override

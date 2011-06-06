@@ -6,12 +6,14 @@ import java.awt.Graphics;
 
 import javax.swing.*;
 
+import tim.view.calendar.CalendarView;
+
 
 
  
 public class Application extends JFrame{
  
-	private Layer layer;
+	private CalendarView layer;
 	public Dimension appSize;
  
 
@@ -19,7 +21,7 @@ public class Application extends JFrame{
  
 		super();
  
-        layer = new Layer(this.getLayeredPane());
+        layer = new CalendarView(this.getLayeredPane());
         this.setContentPane(layer);
         
         

@@ -1,4 +1,4 @@
-package tim.view.test;
+package tim.view.calendar;
 
 import javax.swing.Action;
 import javax.swing.Icon;
