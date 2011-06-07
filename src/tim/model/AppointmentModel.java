@@ -59,12 +59,12 @@ public class AppointmentModel extends AbstractModel{
 		}
 		
 		if (fEmployee != null) {
-			filter.add("A.employee = " + fEmployee.getId());
+			filter.add("A.employee_id = " + fEmployee.getId());
 		}
 		
 		for (int i = 0; i < filter.size(); i++) {
 			if (i > 0) {
-				sql += "AND";
+				sql += " AND";
 			}else {
 				sql += " WHERE";
 			}
@@ -72,7 +72,6 @@ public class AppointmentModel extends AbstractModel{
 		}
 		
 		sql +=  " ORDER BY begin";
-		
 
 		try {
 			conn = Db.open();
