@@ -142,7 +142,7 @@ public class AppointmentModel extends AbstractModel{
 	}
 	
 	public ArrayList<Element> get(Employee employee, Date begin, Date end) {
-		return this.get(null, employee, begin, null, 0);
+		return this.get(null, employee, begin, end, 0);
 	}
 	
 	public ArrayList<Element> get(Client client, Employee employee) {

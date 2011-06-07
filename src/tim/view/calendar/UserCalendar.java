@@ -54,7 +54,7 @@ public class UserCalendar extends JPanel{
 
 		Date begin = null, end = null;
 		try {
-			begin = DateHelper.StringToDate("2011-06-06", Config.DATE_FORMAT_SHORT);
+			begin = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
 			end = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
 		} catch (ParseException ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(), "constructor");
