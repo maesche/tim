@@ -4,13 +4,18 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Insets;
-import java.sql.Date;
+
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import tim.application.Config;
+import tim.application.utils.DateHelper;
+import tim.application.utils.ErrorHandler;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;
@@ -46,20 +51,32 @@ public class UserCalendar extends JPanel{
 		//Initialisation du controller
 		UserCalendarController controller = new UserCalendarController();
 		controller.addModel(new AppointmentModel());
-		
-		ArrayList<Element> appointments = controller.getEmployeeEvents(employee, new Date(2011, 01, 06), new Date(2011,06,06));
-		
-		
-		for(Element appointment : appointments){
-			add(new JButton(appointment.toString()));
+
+		Date begin = null, end = null;
+		try {
+			begin = DateHelper.StringToDate("2011-06-06", Config.DATE_FORMAT_SHORT);
+			end = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
+		} catch (ParseException ex) {
+			ErrorHandler.getException(ex, this.getClass().getName(), "constructor");
 		}
+		if (begin != null && end != null) {
+			ArrayList<Element> appointments = controller.getEmployeeEvents(employee, begin, end);
+
+			for (Element element : appointments) {
+				Appointment appointment = (Appointment) element;
+				add(new JButton(appointment.toString()));
+			}
+		}
+		
+		
+
 		//ajout des boutons
 		btn1.setSize(100,this.getHeight());
-		btn1.setText("<html>" + employee.toString() + "</html>");
+		btn1.setText("<html>" + employee + "</html>");
 	    btn2.setSize(200,this.getHeight());
-	    btn2.setText("<html>" + employee.toString() + "</html>");
+	    btn2.setText("<html>" + employee + "</html>");
 	    btn3.setSize(300,this.getHeight());
-	    btn3.setText("<html>" + employee.toString() + "</html>");
+	    btn3.setText("<html>" + employee + "</html>");
         add(btn1);
         add(btn2);
         add(btn3);
