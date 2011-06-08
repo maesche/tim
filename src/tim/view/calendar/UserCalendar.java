@@ -33,7 +33,7 @@ public class UserCalendar extends JPanel{
 	private int calendarHeight;
 	private int calendarWidth;
 	
-	
+	private ArrayList<Appointment> appointments;
 		
 	public UserCalendar(Employee employee){
 		//Layout du calendrier
@@ -64,10 +64,11 @@ public class UserCalendar extends JPanel{
 			ArrayList<Element> appointments = controller.getEmployeeEvents(employee, begin, end);
 
 			for (Element element : appointments) {
-				Appointment appointment = (Appointment) element;
-				add(new JButton(appointment.toString()));
+				this.appointments.add((Appointment) element);
 			}
 		}
+		
+		
 		
 		
 
@@ -101,6 +102,12 @@ public class UserCalendar extends JPanel{
         
         //btn3.setMargin(new Insets(0, 0, 0, 0));
 		
+	}
+	
+	public void eventSizing(Dimension d){
+		for(Appointment a : appointments){
+			
+		}
 	}
 
 	public void paintComponent(Graphics g) {
