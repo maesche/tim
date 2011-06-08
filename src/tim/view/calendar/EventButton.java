@@ -11,9 +11,6 @@ public class EventButton extends JButton {
 
 	public EventButton(Appointment a) {
 		
-		
-		
-		//this.setText("<html>" + a.getEmployee().getFirstName() + "<br />" + a.getTitle() + "</html>");
 		this.setText(toString(a));
 		this.setMargin(new Insets(0, 2, 0, 2));
 	}
@@ -34,6 +31,8 @@ public class EventButton extends JButton {
 		title += a.getDescription() + "<br />";
 		
 		title += "</html>";
+		
+		System.out.println(a.toString());
 		
 		return title;
 		
