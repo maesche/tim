@@ -13,6 +13,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import sun.security.jca.GetInstance.Instance;
 import tim.application.Config;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
@@ -25,15 +26,8 @@ import tim.model.EmployeeModel;
 
 
 public class UserCalendar extends JPanel{
-	private JButton btn1 = new JButton("1");
-	private JButton btn2 = new JButton("2");
-	private JButton btn3 = new JButton("3");
-	private JButton btn4 = new JButton("4");
 	
-	private int calendarHeight;
-	private int calendarWidth;
-	
-	private ArrayList<Appointment> appointments;
+	private ArrayList<EventButton> eventButtons;
 		
 	public UserCalendar(Employee employee){
 		//Layout du calendrier
@@ -44,15 +38,14 @@ public class UserCalendar extends JPanel{
 		setLayout(layout);
 		this.setOpaque(false);
 		
-		
-		//Paramètrage des boutons
-		//btn1.setSize(this.getWidth(), this.getHeight());
-		
+		//Initialisation des collections
+		this.eventButtons = new ArrayList<EventButton>();
 		
 		//Initialisation du controller
 		UserCalendarController controller = new UserCalendarController();
 		controller.addModel(new AppointmentModel());
 
+		
 		Date begin = null, end = null;
 		try {
 			begin = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
@@ -64,7 +57,11 @@ public class UserCalendar extends JPanel{
 			ArrayList<Element> appointments = controller.getEmployeeEvents(employee, begin, end);
 
 			for (Element element : appointments) {
-				this.appointments.add((Appointment) element);
+				this.eventButtons.add(new EventButton((Appointment) element));
+			}
+			
+			for (EventButton btn : eventButtons) {
+				add(btn);
 			}
 		}
 		
@@ -105,8 +102,9 @@ public class UserCalendar extends JPanel{
 	}
 	
 	public void eventSizing(Dimension d){
-		for(Appointment a : appointments){
-			
+		for(EventButton btn : eventButtons){
+			btn.setSize(new Dimension(100,(int) d.getHeight()));
+		    btn.setPreferredSize(new Dimension(100,(int) d.getHeight()));
 		}
 	}
 
@@ -114,11 +112,11 @@ public class UserCalendar extends JPanel{
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
 	    
+	    eventSizing(new Dimension(this.getWidth(),this.getHeight()));
 	    
 	    
 	    
-	    
-	    btn1.setSize(100,this.getHeight());
+	    /*btn1.setSize(100,this.getHeight());
 	    btn1.setPreferredSize(new Dimension(100,200));
 	    
 	    btn2.setSize(200,this.getHeight());
@@ -130,7 +128,7 @@ public class UserCalendar extends JPanel{
         
 	    btn3.setSize(300,this.getHeight());
 	    //btn3.setBackground(new Color(1, 1, 1, 0));
-	    btn3.setPreferredSize(new Dimension(300,200));
+	    btn3.setPreferredSize(new Dimension(300,200));*/
 	    
 	    
 	    
