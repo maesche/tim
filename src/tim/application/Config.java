@@ -16,7 +16,7 @@ public class Config {
 	public static int CALENDAR_DAY_END = 19;
 	public static int CALENDAR_DAY_INTERVAL = 15; //in minutes
 	
-	public static int APPLICATION_DEFAULT_FRAME_WIDTH = 800;
-	public static int APPLICATION_DEFAULT_FRAME_HEIGHT = 600;
+	public static int APPLICATION_DEFAULT_FRAME_WIDTH = 1024;
+	public static int APPLICATION_DEFAULT_FRAME_HEIGHT = 768;
 
 }

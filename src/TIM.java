@@ -1,8 +1,11 @@
+import java.awt.Dimension;
+
 import tim.model.AbstractModel;
 import tim.model.AppointmentModel;
 
 import tim.view.Application;
 
+import tim.application.Config;
 import tim.controller.ApplicationController;
 import tim.controller.AppointmentDialogController;
 
@@ -25,9 +28,11 @@ public class TIM {
 		
 		
 		Application app = new Application();
-		app.pack();
-		app.setLocationRelativeTo(null);
+		//app.setLocationRelativeTo(null);
 		app.setVisible(true);
+		app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
+		app.pack();
+		
 		
 		
 	}
