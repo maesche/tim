@@ -1,5 +1,7 @@
 package tim.view.calendar;
 
+import java.awt.Insets;
+
 import javax.swing.JButton;
 
 import tim.model.Appointment;
@@ -13,6 +15,7 @@ public class EventButton extends JButton {
 		
 		//this.setText("<html>" + a.getEmployee().getFirstName() + "<br />" + a.getTitle() + "</html>");
 		this.setText(toString(a));
+		this.setMargin(new Insets(0, 2, 0, 2));
 	}
 	
 	
@@ -25,9 +28,10 @@ public class EventButton extends JButton {
 		String title;
 		title = "<html>";
 		//title += a.getEmployee().getFirstName() + "<br />";
-		title += a.getBegin() + "<br />";
+		title += a.getBegin().getHours() + ":" + a.getBegin().getMinutes() + "<br />";
 		title += a.getTitle() + "<br />";
-		title += "with" + a.getClient().getFirstName() + "<br />";
+		title += "with " + a.getClient().getFirstName() + " " + a.getClient().getLastName() + "<br />";
+		title += a.getDescription() + "<br />";
 		
 		title += "</html>";
 		
