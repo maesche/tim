@@ -103,8 +103,8 @@ public class UserCalendar extends JPanel{
 	
 	public void eventSizing(Dimension d){
 		for(EventButton btn : eventButtons){
-			btn.setSize(new Dimension(100,(int) d.getHeight()));
-		    btn.setPreferredSize(new Dimension(100,(int) d.getHeight()));
+			btn.setSize(new Dimension(200,(int) d.getHeight()));
+		    btn.setPreferredSize(new Dimension(200,(int) d.getHeight()));
 		}
 	}
 
