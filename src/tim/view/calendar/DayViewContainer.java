@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tim.controller.AppointmentDialogController;
+import tim.controller.DayViewController;
 import tim.model.AppointmentModel;
 import tim.model.Element;
 import tim.model.Employee;

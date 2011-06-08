@@ -1,9 +1,8 @@
-package tim.view.calendar;
+package tim.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-import tim.controller.AbstractController;
 import tim.model.AppointmentModel;
 import tim.model.Element;
 import tim.model.Employee;

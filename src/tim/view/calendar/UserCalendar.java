@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import tim.application.Config;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
+import tim.controller.UserCalendarController;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;
