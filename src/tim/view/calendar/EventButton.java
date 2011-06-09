@@ -4,6 +4,8 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 
+import tim.application.Config;
+import tim.application.utils.DateHelper;
 import tim.model.Appointment;
 
 public class EventButton extends JButton {
@@ -25,7 +27,7 @@ public class EventButton extends JButton {
 		String title;
 		title = "<html>";
 		//title += a.getEmployee().getFirstName() + "<br />";
-		title += a.getBegin().getHours() + ":" + a.getBegin().getMinutes() + "<br />";
+		title += DateHelper.DateToString(a.getBegin(), Config.DATE_FORMAT_EVENT_HOUR) + "<br />";
 		title += a.getTitle() + "<br />";
 		title += "with " + a.getClient().getFirstName() + " " + a.getClient().getLastName() + "<br />";
 		title += a.getDescription() + "<br />";
