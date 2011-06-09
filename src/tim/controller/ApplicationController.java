@@ -15,7 +15,7 @@ import tim.model.Element;
 public class ApplicationController extends AbstractController {
 
 	public void getTest() {
-		AppointmentModel appointmentModel = (AppointmentModel) this.model;
+		AppointmentModel appointmentModel = (AppointmentModel) this.models.get("AppointmentModel");
 		/*
 		 * getElements test
 		 */

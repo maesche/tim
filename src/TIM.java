@@ -13,13 +13,13 @@ import tim.controller.AppointmentDialogController;
 public class TIM {
 	public static void main(String[] args) {
 		
-		/*AbstractModel appointmentModel = new AppointmentModel();
+		AbstractModel appointmentModel = new AppointmentModel();
 		
 		ApplicationController applicationController = new ApplicationController();
 		applicationController.addModel(appointmentModel);
 		
 		
-		applicationController.getTest();*/
+		applicationController.getTest();
 		
 		/*AbstractModel appointmentModel = new AppointmentModel();
 		
@@ -28,11 +28,12 @@ public class TIM {
 		
 		
 		Application app = new Application();
-		//app.setLocationRelativeTo(null);
+
 		app.setVisible(true);
 		app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
+
 		app.pack();
-		
+		app.setLocationRelativeTo(null);
 		
 		
 	}

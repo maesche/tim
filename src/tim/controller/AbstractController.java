@@ -1,15 +1,22 @@
 package tim.controller;
 
+import java.util.HashMap;
+
 import tim.model.AbstractModel;
 
 public abstract class AbstractController {
-	protected AbstractModel model = null;
+	protected HashMap<String, AbstractModel> models = null;
 	
-	public void addModel(AbstractModel model) {
-		this.model = model;
+	public AbstractController() {
+		models = new HashMap<String, AbstractModel>();
 	}
 	
-	public void removeModel() {
-		model = null;
+	public synchronized void addModel(AbstractModel model) {
+		models.put(model.toString(), model);
+		
+	}
+	
+	public synchronized void removeModel(AbstractModel model) {
+		models.remove(model.toString());
 	}
 }

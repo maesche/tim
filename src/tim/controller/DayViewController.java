@@ -8,7 +8,7 @@ import tim.model.EmployeeModel;
 
 public class DayViewController extends AbstractController {
 	
-	public ArrayList<Element> getEmployees() {		
-		return new EmployeeModel().get();
+	public ArrayList<Element> getEmployees() {	
+		return models.get("EmployeeModel").get();
 	}
 }
