@@ -26,4 +26,9 @@ public class DateHelper {
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		return sdf.format(date);
 	}
+	
+	public static int DateDiff(Date date1, Date date2){
+		return (int) (date2.getTime()-date1.getTime())/60000;
+		
+	}
 }
