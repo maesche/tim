@@ -13,13 +13,13 @@ import tim.controller.AppointmentDialogController;
 public class TIM {
 	public static void main(String[] args) {
 		
-		AbstractModel appointmentModel = new AppointmentModel();
+		/*AbstractModel appointmentModel = new AppointmentModel();
 		
 		ApplicationController applicationController = new ApplicationController();
 		applicationController.addModel(appointmentModel);
 		
 		
-		applicationController.getTest();
+		applicationController.getTest();*/
 		
 		/*AbstractModel appointmentModel = new AppointmentModel();
 		
