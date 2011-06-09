@@ -10,7 +10,6 @@ import tim.model.Employee;
 public class UserCalendarController extends AbstractController {
 	
 	public ArrayList<Element> getEmployeeEvents(Employee employee, Date begin, Date end){
-		AppointmentModel appointmentModel = (AppointmentModel) models.get("AppointmentModel");
-		return appointmentModel.get(employee, begin, end);
+		return ((AppointmentModel) models.get("AppointmentModel")).get(employee, begin, end);
 	}
 }
