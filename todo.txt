@@ -7,4 +7,6 @@ tim.controller.Appointment (save) vraiment gérer les exceptions dans la vue?
 transmettre employee au dialogue
 
 
-adsf
+
+tim.view.calendar.EventButton
+(revoir le toString qui malheureusement prends un appointment en param. Voir pour fusionner avec AppointmentModel.toString)
