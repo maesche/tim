@@ -60,7 +60,9 @@ public class UserCalendar extends JPanel{
 			ArrayList<Element> appointments = controller.getEmployeeEvents(employee, begin, end);
 
 			for (Element element : appointments) {
-				this.eventButtons.add(new EventButton((Appointment) element, userColor));
+				EventButton eventButton = new EventButton((Appointment) element, userColor);
+
+				this.eventButtons.add(eventButton);
 			}
 			
 			for (EventButton btn : eventButtons) {
@@ -85,6 +87,7 @@ public class UserCalendar extends JPanel{
 			//il faut faire les deux opération pour qu'il n'y ait pas de bug d'affichage
 			btn.setSize(btnDimension);
 		    btn.setPreferredSize(btnDimension);
+
 		}
 	}
 
@@ -93,8 +96,5 @@ public class UserCalendar extends JPanel{
 	    super.paintComponent(g);
 	    
 	    eventSizing(new Dimension(this.getWidth(),this.getHeight()));
-	    
-	}
-
-	
+	}	
 }
