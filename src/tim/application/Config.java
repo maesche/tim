@@ -1,5 +1,8 @@
 package tim.application;
 
+import java.awt.Color;
+
+
 public class Config {
 	public static String APPLICATION_MENU_FILE;
 	public static String RESSOURCE_BUNDLE = "";
@@ -16,6 +19,10 @@ public class Config {
 	public static int CALENDAR_DAY_START = 9;
 	public static int CALENDAR_DAY_END = 19;
 	public static int CALENDAR_DAY_INTERVAL = 15; //in minutes
+	
+	public static int CALENDAR_EVENT_ALPHA = 150; // 0-255
+	
+	public static Color COLOR_USER [] = { new Color(255,0,0,CALENDAR_EVENT_ALPHA), new Color(0,255,0,CALENDAR_EVENT_ALPHA), new Color(0,0,255,CALENDAR_EVENT_ALPHA) , new Color(255,6,200,CALENDAR_EVENT_ALPHA)};
 	
 	public static int APPLICATION_DEFAULT_FRAME_WIDTH = 1024;
 	public static int APPLICATION_DEFAULT_FRAME_HEIGHT = 768;
