@@ -20,12 +20,10 @@ import tim.model.EmployeeModel;
 public class DayViewContainer extends JPanel {
 	
 	int nbrPerson;
-	int i;
 
 	public DayViewContainer(){
 		
 		this.nbrPerson = 0;
-		this.i = 0;
 		
 		//Initialisation du controller
 		DayViewController controller = new DayViewController();
@@ -40,8 +38,7 @@ public class DayViewContainer extends JPanel {
 		this.setBounds(0, 0, 800, 600);
 		
 		for(Element employee : employees){
-			add(new UserCalendar((Employee)employee, Config.COLOR_USER[i]));
-			i++;
+			add(new UserCalendar((Employee)employee));
 		}
 	}
 	

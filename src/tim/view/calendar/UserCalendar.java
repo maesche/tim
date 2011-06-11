@@ -29,8 +29,10 @@ public class UserCalendar extends JPanel{
 	
 	private ArrayList<EventButton> eventButtons;
 	private int minutesInDay;
+	private Date beginFindDate;
+	private Date endFindDate;
 		
-	public UserCalendar(Employee employee, Color userColor){
+	public UserCalendar(Employee employee){
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.LEFT);
@@ -47,11 +49,19 @@ public class UserCalendar extends JPanel{
 		//Initialisation du controller
 		UserCalendarController controller = new UserCalendarController();
 		controller.addModel(new AppointmentModel());
-		//this.eventButtons = controller.getEventButtons();
+
 		
+		Date begin = null, end = null;
+		try {
+			this.beginFindDate = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
+			this.endFindDate = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
+		} catch (ParseException ex) {
+			ErrorHandler.getException(ex, this.getClass().getName(), "constructor");
+		}
 		
-		this.eventButtons = controller.getEventButtons(employee, "2010-06-06", "2011-10-02");
-		for (EventButton btn : this.eventButtons) {
+		eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
+		
+		for (EventButton btn : eventButtons) {
 			add(btn);
 		}
         
@@ -69,7 +79,7 @@ public class UserCalendar extends JPanel{
 			
 			Dimension btnDimension = new Dimension((int) (btn.getDuration()*d.getWidth()/minutesInDay), (int) d.getHeight());
 			
-			//il faut faire les deux opération pour qu'il n'y ait pas de bug d'affichage
+			//il faut faire les deux op√©ration pour qu'il n'y ait pas de bug d'affichage
 			btn.setSize(btnDimension);
 		    btn.setPreferredSize(btnDimension);
 
@@ -77,7 +87,7 @@ public class UserCalendar extends JPanel{
 	}
 
 	public void paintComponent(Graphics g) {
-	    // Appel de la méthode de la classe JPanel
+	    // Appel de la m√©thode de la classe JPanel
 	    super.paintComponent(g);
 	    
 	    eventSizing(new Dimension(this.getWidth(),this.getHeight()));

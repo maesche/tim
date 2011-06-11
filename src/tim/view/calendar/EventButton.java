@@ -18,51 +18,49 @@ public class EventButton extends JButton {
 	private String title;
 	private int duration;
 
-	public EventButton(Appointment a) {
+	public EventButton(String title, int duration, Color color) {
 
-		this.duration = DateHelper.DateDiff(a.getBegin(), a.getEnd());
-
-		super.setText(toString(a));
-		//this.color = a.getEmployee().getColor();
-		this.color = new Color(255,0,0,200);
+		this.duration = duration;
+		this.title = title;
+		this.color = color;
 
 		this.setMargin(new Insets(0, 2, 0, 2));
 		this.setOpaque(true);
 		this.setRolloverEnabled(false);
 		this.setFocusPainted(false);
 		this.setBackground(color);
+		this.setText(title);
 
 		// System.out.println(a.toString());
 
 	}
-
+	
 	public String getTitle() {
 		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getDuration() {
 		return duration;
 	}
-
-	public String toString(Appointment a) {
-		String title;
-		title = "<html>";
-		title += DateHelper.DateToString(a.getBegin(),
-				Config.DATE_FORMAT_EVENT_HOUR)
-				+ " - "
-				+ DateHelper.DateToString(a.getEnd(),
-						Config.DATE_FORMAT_EVENT_HOUR) + "<br />";
-		title += a.getTitle() + "<br />";
-		title += "with " + a.getClient().getFirstName() + " "
-				+ a.getClient().getLastName() + "<br />";
-		title += a.getDescription() + "<br />";
-		title += "durée: " + String.valueOf(duration) + "<br />";
-
-		title += "</html>";
-
-		return title;
-
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
+	
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	
+
+	
+	
+	
 
 	/*
 	 * public void paintComponent(Graphics g) {

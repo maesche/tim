@@ -1,13 +1,11 @@
 package tim.controller;
 
-import java.awt.Dimension;
-import java.text.ParseException;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Config;
 import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;
@@ -16,61 +14,50 @@ import tim.view.calendar.EventButton;
 
 public class UserCalendarController extends AbstractController {
 	
-	/*private ArrayList<Appointment> appointments = null;
-	
-	public UserCalendarController() {
-		appointments = new ArrayList<Appointment>();
-		
+	public ArrayList<Element> getEmployeeEvents(Employee employee, Date begin, Date end){
+		return ((AppointmentModel) models.get("AppointmentModel")).get(employee, begin, end);
 	}
 	
-	private ArrayList<Element> getEmployeeEvents(Employee employee, String sBegin, String sEnd){
-		
-		Date begin = null, end = null;
-		try {
-			begin = DateHelper.StringToDate(sBegin, Config.DATE_FORMAT_SHORT);
-			end = DateHelper.StringToDate(sEnd, Config.DATE_FORMAT_SHORT);
-		} catch (ParseException ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "getEmployeeEvents");
-		}
-		if (begin != null && end != null) {
-			return ((AppointmentModel) models.get("AppointmentModel")).get(employee, begin, end);
-		}else{
-			return null;
-		}
-	}*/
 	
-	public ArrayList<EventButton> getEventButtons(Employee employee, String sBegin, String sEnd){
-		ArrayList<Element> appointments = null;
-		ArrayList<EventButton> eventButtons = new ArrayList<EventButton>();
-		
-		Date begin = null, end = null;
-		try {
-			begin = DateHelper.StringToDate(sBegin, Config.DATE_FORMAT_SHORT);
-			end = DateHelper.StringToDate(sEnd, Config.DATE_FORMAT_SHORT);
-		} catch (ParseException ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "getEmployeeEvents");
-		}
+	public ArrayList<EventButton> getEventButtons(Employee employee, Date begin, Date end){
+		ArrayList<EventButton> eventButtons = null;
 		
 		if (begin != null && end != null) {
-			appointments = models.get("AppointmentModel").get();
+			ArrayList<Element> appointments = ((AppointmentModel) models.get("AppointmentModel")).get(employee, begin, end);
 			
+			
+			eventButtons = new ArrayList<EventButton>();
 			for (Element element : appointments) {
-				Appointment test = (Appointment) element;
-				System.out.println(test.getTitle());
-				
-				EventButton eventButton = new EventButton((Appointment) element);
-				eventButton.toString();
-				
-
-				eventButtons.add(eventButton);
+				Appointment a = (Appointment) element;
+				eventButtons.add(new EventButton(a.getTitle(), this.getEventDuration(a), new Color(255,0,0,100)));
 			}
-			
-			
 		}
 		
 		
 		return eventButtons;
-		
 	}
 	
+	
+	public int getEventDuration(Appointment a){
+		return DateHelper.DateDiff(a.getBegin(), a.getEnd());
+	}
+	
+	public String getEventTitle(Appointment a){
+		String title;
+		title = "<html>";
+		title += DateHelper.DateToString(a.getBegin(),
+				Config.DATE_FORMAT_EVENT_HOUR)
+				+ " - "
+				+ DateHelper.DateToString(a.getEnd(),
+						Config.DATE_FORMAT_EVENT_HOUR) + "<br />";
+		title += a.getTitle() + "<br />";
+		title += "with " + a.getClient().getFirstName() + " "
+				+ a.getClient().getLastName() + "<br />";
+		title += a.getDescription() + "<br />";
+		title += "durée: " + String.valueOf(getEventDuration(a)) + "<br />";
+
+		title += "</html>";
+
+		return title;
+	}
 }
