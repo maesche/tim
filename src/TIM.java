@@ -7,8 +7,7 @@ import tim.model.AppointmentModel;
 import tim.view.Application;
 
 import tim.application.Config;
-import tim.application.XmlApplicationConfig;
-import tim.application.ReadXmlFile;
+import tim.application.XmlReader;
 import tim.controller.ApplicationController;
 import tim.controller.AppointmentDialogController;
 
@@ -40,7 +39,7 @@ public class TIM {
 		
 
 			String xmlFilePath = System.getProperty("user.dir") + "/config/xml/application.xml";
-			ReadXmlFile xmlFile = new ReadXmlFile();
+			XmlReader xmlFile = new XmlReader();
 			xmlFile.readConfig(xmlFilePath);
 			System.out.println(Config.DATE_FORMAT_SHORT);
 			  

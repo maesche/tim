@@ -18,12 +18,11 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
-import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.ErrorHandler;
 
 import java.io.File;
 
-public class ReadXmlFile {
+public class XmlReader {
 
 	public void readConfig(String xmlFilePath) {
 		File fXmlFile = null;
@@ -94,8 +93,7 @@ public class ReadXmlFile {
 			// }
 			// }
 		} catch (Exception ex) {
-			ErrorHandler.getException(ex,
-					new CurrentClassGetter().getClassName(), "readConfig");
+			ErrorHandler.getException(ex, this.getClass().getName(), "readConfig");
 		}
 	}
 	private String getTagValue(String sTag, Element eElement) {
