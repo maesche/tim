@@ -29,19 +29,19 @@ public class TIM {
 		appointmentController.addModel(appointmentModel);*/
 		
 		
-		/*Application app = new Application();
+		Application app = new Application();
 
 		app.setVisible(true);
 		app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
 
 		app.pack();
-		app.setLocationRelativeTo(null);*/
+		app.setLocationRelativeTo(null);
 		
 
-			String xmlFilePath = System.getProperty("user.dir") + "/config/xml/application.xml";
+			/*String xmlFilePath = System.getProperty("user.dir") + "/config/xml/application.xml";
 			XmlReader xmlFile = new XmlReader();
 			xmlFile.readConfig(xmlFilePath);
-			System.out.println(Config.DATE_FORMAT_SHORT);
+			System.out.println(Config.DATE_FORMAT_SHORT);*/
 			  
 	}
 }
