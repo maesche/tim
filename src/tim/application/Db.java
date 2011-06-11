@@ -12,7 +12,7 @@ public class Db {
 
 	public static Connection open() {
 		try {
-			Class.forName(Config.DB_DRIVER).newInstance();
+			Class.forName(Config.DB_DRIVER);
 			if (conn == null) {
 				conn = DriverManager.getConnection(Config.DB_URL, Config.DB_USER, Config.DB_PWD);
 			}
