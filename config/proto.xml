@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+FICHIER 1 config specifique
+<configuration>
+	<system>
+		<date-format>dd.mm.yyyy<date-format>
+		<default-language>fr<default-language>
+	</system>
+	<calendar>
+		<min-date>31.12.2010<min-date>
+		<max-date>31.12.2015</max-date>
+		<start-time>9:00</start-time>
+		<end-time>18:00</end-time>
+		<interval>15</interval>
+	</calendar>
+</configuration>
+
+FICHIER 2 language
+
+<application lang='fr'>
+	<view>
+		<title>TIM (Time Is Money))</title>
+	</view>
+</application>
