@@ -52,9 +52,11 @@ public class UserCalendarController extends AbstractController {
 		}
 		
 		if (begin != null && end != null) {
-			appointments = models.get("AppointmentModel").get(employee, begin, end);
+			appointments = models.get("AppointmentModel").get();
 			
 			for (Element element : appointments) {
+				Appointment test = (Appointment) element;
+				System.out.println(test.getTitle());
 				
 				EventButton eventButton = new EventButton((Appointment) element);
 				eventButton.toString();
