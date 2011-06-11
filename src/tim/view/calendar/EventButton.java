@@ -18,12 +18,13 @@ public class EventButton extends JButton {
 	private String title;
 	private int duration;
 
-	public EventButton(Appointment a, Color userColor) {
+	public EventButton(Appointment a) {
 
 		this.duration = DateHelper.DateDiff(a.getBegin(), a.getEnd());
 
 		super.setText(toString(a));
-		this.color = userColor;
+		//this.color = a.getEmployee().getColor();
+		this.color = new Color(255,0,0,200);
 
 		this.setMargin(new Insets(0, 2, 0, 2));
 		this.setOpaque(true);

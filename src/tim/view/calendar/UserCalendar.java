@@ -47,27 +47,12 @@ public class UserCalendar extends JPanel{
 		//Initialisation du controller
 		UserCalendarController controller = new UserCalendarController();
 		controller.addModel(new AppointmentModel());
-
+		//this.eventButtons = controller.getEventButtons();
 		
-		Date begin = null, end = null;
-		try {
-			begin = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
-			end = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
-		} catch (ParseException ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "constructor");
-		}
-		if (begin != null && end != null) {
-			ArrayList<Element> appointments = controller.getEmployeeEvents(employee, begin, end);
-
-			for (Element element : appointments) {
-				EventButton eventButton = new EventButton((Appointment) element, userColor);
-
-				this.eventButtons.add(eventButton);
-			}
-			
-			for (EventButton btn : eventButtons) {
-				add(btn);
-			}
+		
+		this.eventButtons = controller.getEventButtons(employee, "2010-06-06", "2011-10-02");
+		for (EventButton btn : this.eventButtons) {
+			add(btn);
 		}
         
         /*
