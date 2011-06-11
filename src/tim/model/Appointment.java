@@ -1,7 +1,9 @@
 package tim.model;
 
 import java.util.Date;
-import tim.application.DateHelper;
+
+import tim.application.Config;
+import tim.application.utils.DateHelper;
 
 public class Appointment extends Element {
 
@@ -79,8 +81,8 @@ public class Appointment extends Element {
 		ret += "id:\t\t" + String.valueOf(super.getId()) + "\n";
 		ret += "titre:\t\t" + title + "\n";
 		ret += "description:\t" + description + "\n";
-		ret += "begin:\t\t" + DateHelper.DateToString(begin) + "\n"; 
-		ret += "end:\t\t" + DateHelper.DateToString(end) + "\n"; 
+		ret += "begin:\t\t" + DateHelper.DateToString(begin, Config.DATE_FORMAT_LONG) + "\n"; 
+		ret += "end:\t\t" + DateHelper.DateToString(end, Config.DATE_FORMAT_LONG) + "\n"; 
 		ret += "employee:\t" + employee.toString() + "\n"; 
 		ret += "client:\t\t" + client.toString() + "\n"; 
 		

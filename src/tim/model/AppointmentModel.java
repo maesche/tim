@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
-import tim.application.ErrorHandler;
-import tim.application.DateHelper;
+import tim.application.utils.DateHelper;
+import tim.application.utils.ErrorHandler;
 
 public class AppointmentModel extends AbstractModel{
 
@@ -59,12 +59,12 @@ public class AppointmentModel extends AbstractModel{
 		}
 		
 		if (fEmployee != null) {
-			filter.add("A.employee = " + fEmployee.getId());
+			filter.add("A.employee_id = " + fEmployee.getId());
 		}
 		
 		for (int i = 0; i < filter.size(); i++) {
 			if (i > 0) {
-				sql += "AND";
+				sql += " AND";
 			}else {
 				sql += " WHERE";
 			}
@@ -72,7 +72,6 @@ public class AppointmentModel extends AbstractModel{
 		}
 		
 		sql +=  " ORDER BY begin";
-		
 
 		try {
 			conn = Db.open();
@@ -143,7 +142,7 @@ public class AppointmentModel extends AbstractModel{
 	}
 	
 	public ArrayList<Element> get(Employee employee, Date begin, Date end) {
-		return this.get(null, employee, begin, null, 0);
+		return this.get(null, employee, begin, end, 0);
 	}
 	
 	public ArrayList<Element> get(Client client, Employee employee) {

@@ -9,24 +9,28 @@ import java.util.Date;
 import tim.application.Db;
 import tim.application.utils.ErrorHandler;
 
-public class EmployeeModel extends PersonModel {
-	public ArrayList<Element> get(long fId) {
+public class ClientModel extends PersonModel {
 
+	@Override
+	public ArrayList<Element> get(long fId) {
 		Connection conn;
 		Statement stmt = null;
 		ResultSet rs;
 
 		ArrayList<String> filter = new ArrayList<String>();
 
-		ArrayList<Element> employees = new ArrayList<Element>();
+		ArrayList<Element> clients = new ArrayList<Element>();
 
 		String sql = "SELECT" + 
-		"	employee_id, " 
-		+ "	firstName, "
-		+ "	lastName " + "FROM employees";
+				"	client_id, " 
+				+ "	firstName, "
+				+ "	lastName, " 
+				+ "	phone, "
+				+ "	address, "
+				+ "	description " + "FROM clients";
 
 		if (fId > 0) {
-			filter.add("employee_id=" + fId);
+			filter.add("client_id=" + fId);
 		}
 
 		for (int i = 0; i < filter.size(); i++) {
@@ -38,7 +42,7 @@ public class EmployeeModel extends PersonModel {
 			sql += " " + filter.get(i);
 		}
 
-		sql += " ORDER BY employee_id";
+		sql += " ORDER BY client_id";
 
 		try {
 			conn = Db.open();
@@ -47,10 +51,12 @@ public class EmployeeModel extends PersonModel {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				Person employee = new Employee(rs.getInt("employee_id"),
+				
+				Person client = new Client(rs.getInt("client_id"),
 						rs.getString("firstName"), rs.getString("lastName"));
 
-				employees.add(employee);
+
+				clients.add(client);
 			}
 			stmt.close();
 		} catch (Exception ex) {
@@ -60,9 +66,8 @@ public class EmployeeModel extends PersonModel {
 
 			Db.close();
 		}
-		return employees;
+		return clients;
 	}
-
 
 	@Override
 	public void add(Element element) throws ClassCastException {

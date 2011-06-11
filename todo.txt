@@ -1,0 +1,10 @@
+TO DO
+------
+
+Stefan
+fusion classes appointmentdialog
+tim.controller.Appointment (save) vraiment gérer les exceptions dans la vue?
+transmettre employee au dialogue
+
+
+adsf
