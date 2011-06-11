@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<system>
+		<date-format>dd.mm.yyyy</date-format>
+		<default-language>fr</default-language>
+		<db-user>tim</db-user>
+		<db-pwd>tim</db-pwd>
+		<db-url>jdbc:mysql://localhost:3306/tim?autoReconnect=true</db-url>
+	</system>
+	<calendar>
+		<min-date>31.12.2010</min-date>
+		<max-date>31.12.2020</max-date>
+		<start-time-hour>09</start-time-hour>
+		<start-time-minute>00</start-time-minute>
+		<end-time-hour>19</end-time-hour>
+		<end-time-minute>00</end-time-minute>
+		<interval>15</interval>
+	</calendar>
+</configuration>
+
+<!--
+public static String APPLICATION_MENU_FILE;
+	public static String RESSOURCE_BUNDLE = "";
+	
+	public static String DB_USER = "tim";
+	public static String DB_PWD = "tim";
+	public static String DB_URL = "jdbc:mysql://localhost:3306/tim?autoReconnect=true";
+	public static String DB_DRIVER = "com.mysql.jdbc.Driver";
+	
+	public static String DATE_FORMAT_SHORT = "yyyy-MM-dd";
+	public static String DATE_FORMAT_LONG = DATE_FORMAT_SHORT + " " + "HH:mm";
+	public static String DATE_FORMAT_EVENT_HOUR = "HH:mm";
+	
+	public static int CALENDAR_DAY_START = 9;
+	public static int CALENDAR_DAY_END = 19;
+	public static int CALENDAR_DAY_INTERVAL = 15; //in minutes
+	-->

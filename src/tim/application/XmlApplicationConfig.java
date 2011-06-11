@@ -1,3 +1,4 @@
+package tim.application;
 //__________________________________________________________________________________
 //
 //	Project: 		TIM (Time Is Money)
@@ -176,5 +177,10 @@ public class XmlApplicationConfig
 	public void setInterval(Integer pInterval)
 	{
 		interval = pInterval;
+	}
+
+	public void readConfig(String xmlFilePath) {
+		// TODO Auto-generated method stub
+		
 	}
 }
