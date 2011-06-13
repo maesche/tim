@@ -29,7 +29,7 @@ public class UserCalendarController extends AbstractController {
 			eventButtons = new ArrayList<EventButton>();
 			for (Element element : appointments) {
 				Appointment a = (Appointment) element;
-				eventButtons.add(new EventButton(this.getEventTitle(a), a.getBegin(), a.getEnd(), this.getEventDuration(a.getBegin(),a.getEnd()), new Color(255,0,0,100)));
+				eventButtons.add(new EventButton(this.getEventTitle(a), a.getBegin(), a.getEnd(), this.getEventDuration(a.getBegin(),a.getEnd()), new Color(1,1,1,1)));
 				//eventButtons.add(new EventButton(180));
 			}
 		}
@@ -87,10 +87,10 @@ public class UserCalendarController extends AbstractController {
 		String title;
 		title = "<html>";
 		title += DateHelper.DateToString(a.getBegin(),
-				Config.DATE_FORMAT_EVENT_HOUR)
+				Config.TIME_FORMAT)
 				+ " - "
 				+ DateHelper.DateToString(a.getEnd(),
-						Config.DATE_FORMAT_EVENT_HOUR) + "<br />";
+						Config.TIME_FORMAT) + "<br />";
 		title += a.getTitle() + "<br />";
 		title += "with " + a.getClient().getFirstName() + " "
 				+ a.getClient().getLastName() + "<br />";
