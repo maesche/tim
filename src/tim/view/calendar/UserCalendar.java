@@ -60,16 +60,11 @@ public class UserCalendar extends JPanel{
 		}
 		
 		eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
+		//eventButtons = controller.getAllButtons(controller.getEventButtons(employee, beginFindDate, endFindDate));
 		
 		for (EventButton btn : eventButtons) {
 			add(btn);
 		}
-        
-        /*
-        btn2.setBorderPainted(false);
-        btn2.setBackground(new Color(1f,1f,1f,0));
-        btn2.setOpaque(false);
-        */
 		
 	}
 	
@@ -77,7 +72,7 @@ public class UserCalendar extends JPanel{
 
 		for(EventButton btn : eventButtons){
 			
-			Dimension btnDimension = new Dimension((int) (btn.getDuration()*d.getWidth()/minutesInDay), (int) d.getHeight());
+			Dimension btnDimension = new Dimension((int) (-33+(btn.getDuration()*d.getWidth())/minutesInDay), (int) d.getHeight());
 			
 			//il faut faire les deux op√©ration pour qu'il n'y ait pas de bug d'affichage
 			btn.setSize(btnDimension);

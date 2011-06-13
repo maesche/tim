@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
+import java.util.Date;
 
 import javax.swing.JButton;
 
@@ -13,16 +14,19 @@ import tim.application.utils.DateHelper;
 import tim.model.Appointment;
 
 public class EventButton extends JButton {
-
+	
 	Color color = null;
 	private String title;
 	private int duration;
+	private Date begin, end;
 
-	public EventButton(String title, int duration, Color color) {
+	public EventButton(String title, Date begin, Date end, int duration, Color color) {
 
 		this.duration = duration;
 		this.title = title;
 		this.color = color;
+		this.begin = begin;
+		this.end = end;
 
 		this.setMargin(new Insets(0, 2, 0, 2));
 		this.setOpaque(true);
@@ -31,8 +35,17 @@ public class EventButton extends JButton {
 		this.setBackground(color);
 		this.setText(title);
 
-		// System.out.println(a.toString());
+	}
+	
+	public EventButton(int duration){
+		this.duration = duration;
 
+		//this.setRolloverEnabled(false);
+		//this.setFocusPainted(false);
+		
+		this.setBorderPainted(false);
+        this.setBackground(new Color(1f,1f,1f,0));
+        this.setOpaque(false);
 	}
 	
 	public String getTitle() {
@@ -54,6 +67,13 @@ public class EventButton extends JButton {
 	}
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	public Date getBegin() {
+		return begin;
+	}
+	public Date getEnd() {
+		return end;
 	}
 
 	
