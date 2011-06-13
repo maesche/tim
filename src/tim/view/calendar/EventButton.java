@@ -85,6 +85,7 @@ public class EventButton extends JButton {
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 	}
 
 }

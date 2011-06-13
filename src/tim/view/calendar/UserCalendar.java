@@ -72,7 +72,7 @@ public class UserCalendar extends JPanel{
 
 		for(EventButton btn : eventButtons){
 			
-			Dimension btnDimension = new Dimension((int) (-33+(btn.getDuration()*d.getWidth())/minutesInDay), (int) d.getHeight());
+			Dimension btnDimension = new Dimension((int) (/*-33+*/(btn.getDuration()*d.getWidth())/minutesInDay), (int) d.getHeight());
 			
 			//il faut faire les deux op√©ration pour qu'il n'y ait pas de bug d'affichage
 			btn.setSize(btnDimension);
@@ -86,5 +86,6 @@ public class UserCalendar extends JPanel{
 	    super.paintComponent(g);
 	    
 	    eventSizing(new Dimension(this.getWidth(),this.getHeight()));
+	    //System.out.println("Event: " + this.getWidth() + "x" + this.getHeight());
 	}	
 }
