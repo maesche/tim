@@ -99,7 +99,6 @@ public class AppointmentModel extends AbstractModel{
 			ErrorHandler.getException(ex, this.getClass().getName(), "getElements");
 		}
 		finally {
-	
 			Db.close();
 		}
 		return appointments;

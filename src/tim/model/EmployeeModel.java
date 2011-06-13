@@ -1,11 +1,12 @@
 package tim.model;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 
+import tim.application.Config;
 import tim.application.Db;
 import tim.application.utils.ErrorHandler;
 
@@ -23,7 +24,13 @@ public class EmployeeModel extends PersonModel {
 		String sql = "SELECT" + 
 		"	employee_id, " 
 		+ "	firstName, "
-		+ "	lastName " + "FROM employees";
+		+ "	lastName, " 
+		+ " C.r AS color_r, "
+		+ " C.g AS color_g, "
+		+ " C.b AS color_b "
+		+ "FROM employees E "
+		+ "LEFT JOIN colors C " +
+              "	ON E.color_id = C.color_id ";
 
 		if (fId > 0) {
 			filter.add("employee_id=" + fId);
@@ -47,8 +54,9 @@ public class EmployeeModel extends PersonModel {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
+				Color color = new Color(rs.getInt("color_r"), rs.getInt("color_g"), rs.getInt("color_b"), Config.CALENDAR_EVENT_ALPHA);
 				Person employee = new Employee(rs.getInt("employee_id"),
-						rs.getString("firstName"), rs.getString("lastName"));
+						rs.getString("firstName"), rs.getString("lastName"), color);
 
 				employees.add(employee);
 			}
