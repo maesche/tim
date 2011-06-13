@@ -6,17 +6,14 @@
 		<db-pwd>tim</db-pwd>
 		<db-url>jdbc:mysql://localhost:3306/tim?autoReconnect=true</db-url>
 		<db-driver>com.mysql.jdbc.Driver</db-driver>
-		<default-language>fr</default-language>
+		<default-lang>fr</default-lang>
 		<date-format>yyyy-MM-dd</date-format>
+		<time-format>HH:mm</time-format>
 	</system>
 	<calendar>
-		<min-date>31.12.2010</min-date>
-		<max-date>31.12.2020</max-date>
-		<start-time-hour>09</start-time-hour>
-		<start-time-minute>00</start-time-minute>
-		<end-time-hour>19</end-time-hour>
-		<end-time-minute>00</end-time-minute>
-		<interval>15</interval>
+		<day-start>9</day-start>
+		<day-end>19</day-end>
+		<day-interval>15</day-interval>
 	</calendar>
 </configuration>
 

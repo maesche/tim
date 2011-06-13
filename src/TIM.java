@@ -28,6 +28,9 @@ public class TIM {
 		AppointmentController appointmentController = new AppointmentController();
 		appointmentController.addModel(appointmentModel);*/
 		
+		String xmlFilePath = Config.CONFIG_PATH + "xml/application.xml";
+		XmlReader xmlFile = new XmlReader();
+		xmlFile.readConfig(xmlFilePath);
 		
 		Application app = new Application();
 
@@ -38,11 +41,7 @@ public class TIM {
 		app.setLocationRelativeTo(null);
 		
 
-			/*String xmlFilePath = System.getProperty("user.dir") + "/config/xml/application.xml";
-			XmlReader xmlFile = new XmlReader();
-			xmlFile.readConfig(xmlFilePath);
-			System.out.println(Config.DATE_FORMAT_SHORT);
-			System.out.println(Config.DB_URL);*/
+
 			  
 	}
 }

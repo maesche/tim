@@ -30,6 +30,7 @@ public class XmlReader {
 
 		DocumentBuilder dBuilder = null;
 		Document doc = null;
+		Node nNode;
 
 		try {
 
@@ -39,7 +40,7 @@ public class XmlReader {
 			dBuilder = dbFactory.newDocumentBuilder();
 			doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
-			Node nNode;
+
 
 			NodeList nList = doc.getElementsByTagName("system");
 
@@ -50,48 +51,27 @@ public class XmlReader {
 					Element eElement = (Element) nNode;
 
 					Config.DATE_FORMAT_SHORT = getTagValue("date-format", eElement);
+					Config.TIME_FORMAT = getTagValue("time-format", eElement);
 					Config.DB_URL = getTagValue("db-url", eElement);
+					Config.DB_DRIVER = getTagValue("db-driver", eElement);
+					Config.DB_USER = getTagValue("db-user", eElement);
+					Config.DB_PWD = getTagValue("db-pwd", eElement);
+					Config.DEFAULT_LANG = getTagValue("default-lang", eElement);
 				}
 			}
+			
+			nList = doc.getElementsByTagName("calendar");
+			if (nList.getLength() > 0) {
+				nNode = nList.item(0);
 
-			/*
-			 * nList = doc.getElementsByTagName("calendar");
-			 * 
-			 * if(nList.getLength() > 0 && expectedPattern != "") { nNode =
-			 * nList.item(0);
-			 * 
-			 * if (nNode.getNodeType() == Node.ELEMENT_NODE) { Element eElement
-			 * = (Element) nNode;
-			 * 
-			 * 
-			 * 
-			 * /* //---min-date
-			 * appConfig.setMinDate(formatter.parse(getTagValue("min-date",
-			 * eElement)));
-			 * 
-			 * //---max-date
-			 * appConfig.setMaxDate(formatter.parse(getTagValue("max-date",
-			 * eElement)));
-			 * 
-			 * //---start-time-hour
-			 * appConfig.setStartTimeHour(Integer.parseInt(getTagValue
-			 * ("start-time-hour", eElement))); //---start-time-minute
-			 * appConfig.
-			 * setStartTimeMinute(Integer.parseInt(getTagValue("start-time-minute"
-			 * , eElement)));
-			 * 
-			 * //---end-time-hour
-			 * appConfig.setEndTimeHour(Integer.parseInt(getTagValue
-			 * ("end-time-hour", eElement))); //---end-time-minute
-			 * appConfig.setEndTimeMinute
-			 * (Integer.parseInt(getTagValue("end-time-minute", eElement)));
-			 * 
-			 * //---Interval
-			 * appConfig.setInterval(Integer.parseInt(getTagValue("interval",
-			 * eElement)));
-			 */
-			// }
-			// }
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+
+					Config.CALENDAR_DAY_START = Integer.parseInt(getTagValue("day-start", eElement));
+					Config.CALENDAR_DAY_END = Integer.parseInt(getTagValue("day-end", eElement));
+					Config.CALENDAR_DAY_INTERVAL = Integer.parseInt(getTagValue("day-interval", eElement));
+				}
+			}
 		} catch (Exception ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(), "readConfig");
 		}

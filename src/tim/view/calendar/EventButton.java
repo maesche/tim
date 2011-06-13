@@ -47,10 +47,10 @@ public class EventButton extends JButton {
 		String title;
 		title = "<html>";
 		title += DateHelper.DateToString(a.getBegin(),
-				Config.DATE_FORMAT_TIME)
+				Config.TIME_FORMAT)
 				+ " - "
 				+ DateHelper.DateToString(a.getEnd(),
-						Config.DATE_FORMAT_TIME) + "<br />";
+						Config.TIME_FORMAT) + "<br />";
 		title += a.getTitle() + "<br />";
 		title += "with " + a.getClient().getFirstName() + " "
 				+ a.getClient().getLastName() + "<br />";
