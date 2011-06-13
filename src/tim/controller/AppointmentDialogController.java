@@ -20,7 +20,7 @@ public class AppointmentDialogController extends AbstractController {
 	public boolean save(Employee employee, Client client, String date, int beginH, int beginM, int endH, int endM, String description) throws ParseException {
 		
 		if (employee == null) {
-			employee = new Employee(1, "test", "test");
+			employee = new Employee(1, "test", "test", null);
 		}
 		
 		Date begin = DateHelper.StringToDate(date + " " + String.valueOf(beginH) + ":" + String.valueOf(beginM), Config.DATE_FORMAT_LONG);

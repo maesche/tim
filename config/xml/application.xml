@@ -2,11 +2,12 @@
 
 <configuration>
 	<system>
-		<date-format>dd.mm.yyyy</date-format>
-		<default-language>fr</default-language>
 		<db-user>tim</db-user>
 		<db-pwd>tim</db-pwd>
 		<db-url>jdbc:mysql://localhost:3306/tim?autoReconnect=true</db-url>
+		<db-driver>com.mysql.jdbc.Driver</db-driver>
+		<default-language>fr</default-language>
+		<date-format>yyyy-MM-dd</date-format>
 	</system>
 	<calendar>
 		<min-date>31.12.2010</min-date>

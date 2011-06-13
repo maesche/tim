@@ -39,8 +39,9 @@ public class DayViewContainer extends JPanel {
 		setLayout(new GridLayout(employees.size(),1));
 		this.setBounds(0, 0, 800, 600);
 		
-		for(Element employee : employees){
-			add(new UserCalendar((Employee)employee, Config.COLOR_USER[i]));
+		for(Element element : employees){
+			Employee employee = (Employee) element;
+			add(new UserCalendar(employee, employee.getColor()));
 			i++;
 		}
 	}

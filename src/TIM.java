@@ -41,7 +41,8 @@ public class TIM {
 			/*String xmlFilePath = System.getProperty("user.dir") + "/config/xml/application.xml";
 			XmlReader xmlFile = new XmlReader();
 			xmlFile.readConfig(xmlFilePath);
-			System.out.println(Config.DATE_FORMAT_SHORT);*/
+			System.out.println(Config.DATE_FORMAT_SHORT);
+			System.out.println(Config.DB_URL);*/
 			  
 	}
 }

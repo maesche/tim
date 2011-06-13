@@ -21,7 +21,7 @@ public class ApplicationController extends AbstractController {
 		 */
 		Date begin = null, end = null;
 		try {
-			begin = DateHelper.StringToDate("2011-06-13 8:45", Config.DATE_FORMAT_LONG);
+			begin = DateHelper.StringToDate("2011-05-13 8:45", Config.DATE_FORMAT_LONG);
 			end = DateHelper.StringToDate("2011-07-17 11:45", Config.DATE_FORMAT_LONG);
 		} catch (ParseException ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(), "getTest");
