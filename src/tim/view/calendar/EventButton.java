@@ -1,17 +1,11 @@
 package tim.view.calendar;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.util.Date;
 
 import javax.swing.JButton;
-
-import tim.application.Config;
-import tim.application.utils.DateHelper;
-import tim.model.Appointment;
 
 public class EventButton extends JButton {
 	
