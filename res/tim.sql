@@ -17,20 +17,7 @@ DROP DATABASE IF EXISTS tim;
 CREATE DATABASE tim DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE tim;
 
-DROP TABLE IF EXISTS clients;
-CREATE TABLE IF NOT EXISTS clients (
-  client_id INTEGER(9) NOT NULL AUTO_INCREMENT,
-  firstName VARCHAR(30) NOT NULL,
-  lastName VARCHAR(30) NOT NULL,
-  phone VARCHAR(30) NOT NULL,
-  address VARCHAR(30) NOT NULL,
-  description TEXT DEFAULT '',
-  PRIMARY KEY (client_id)
-) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO clients VALUES 
-	(1, 'Mireille', 'Goud', '021 333 33 33', 'rue du c', ''),
-	(2, 'Patrick', 'Lachaize', '021 444 44 44', 'rue du java', '');
 
 DROP TABLE IF EXISTS colors;
 CREATE TABLE IF NOT EXISTS colors (
@@ -48,14 +35,44 @@ INSERT INTO colors VALUES
 	(3, 0, 0, 255),
 	(4, 255, 6, 200);
 
+DROP TABLE IF EXISTS calendars;
+CREATE TABLE IF NOT EXISTS calendars (
+  calendar_id INTEGER(9) NOT NULL AUTO_INCREMENT,
+  color_id INTEGER(9) NOT NULL,
+  PRIMARY KEY (calendar_id),
+  FOREIGN KEY (color_id) REFERENCES colors(color_id)
+  	ON DELETE cascade
+) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO calendars VALUES 
+	(1, 1),
+	(2, 2),
+	(3, 3),
+	(4, 4);
+
+DROP TABLE IF EXISTS clients;
+CREATE TABLE IF NOT EXISTS clients (
+  client_id INTEGER(9) NOT NULL AUTO_INCREMENT,
+  firstName VARCHAR(30) NOT NULL,
+  lastName VARCHAR(30) NOT NULL,
+  phone VARCHAR(30) NOT NULL,
+  address VARCHAR(30) NOT NULL,
+  description TEXT DEFAULT '',
+  PRIMARY KEY (client_id)
+) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+INSERT INTO clients VALUES 
+	(1, 'Mireille', 'Goud', '021 333 33 33', 'rue du c', ''),
+	(2, 'Patrick', 'Lachaize', '021 444 44 44', 'rue du java', '');
+
 DROP TABLE IF EXISTS employees;
 CREATE TABLE IF NOT EXISTS employees (
   employee_id INTEGER(9) NOT NULL AUTO_INCREMENT,
   firstName VARCHAR(30) NOT NULL,
   lastName VARCHAR(30) NOT NULL,
-  color_id INTEGER(9) NOT NULL,
+  calendar_id INTEGER(9) NOT NULL,
   PRIMARY KEY (employee_id),
-  FOREIGN KEY (color_id) REFERENCES colors(color_id)
+  FOREIGN KEY (calendar_id) REFERENCES calendars(calendar_id)
   	ON DELETE cascade
 ) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

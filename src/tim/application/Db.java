@@ -9,6 +9,7 @@ import tim.application.utils.ErrorHandler;
 
 public class Db {
 	private static Connection conn = null;
+	private static int connectionID = 0;
 
 	public static Connection open() {
 		try {

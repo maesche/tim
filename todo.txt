@@ -5,6 +5,4 @@ Stefan
 fusion classes appointmentdialog
 tim.controller.Appointment (save) vraiment gérer les exceptions dans la vue?
 transmettre employee au dialogue
-
-
-adsf
+Ne pas rechargre l'employé ou le client s'il est indiqué dans le filtre dans AppointmentModel

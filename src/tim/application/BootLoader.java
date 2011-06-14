@@ -28,11 +28,11 @@ public final class BootLoader {
 		calendarConfig.put("day-end", null);
 		calendarConfig.put("day-interval", null);
 		
-
 	}
 	
 	public void loadConfig() {
 		XmlReader xmlFile = new XmlReader();
+		//xmlFile.read(xmlPath, configMap);
 		xmlFile.readConfig(xmlPath);
 	}
 	

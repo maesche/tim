@@ -24,13 +24,17 @@ public class EmployeeModel extends PersonModel {
 		String sql = "SELECT" + 
 		"	employee_id, " 
 		+ "	firstName, "
-		+ "	lastName, " 
-		+ " C.r AS color_r, "
-		+ " C.g AS color_g, "
-		+ " C.b AS color_b "
+		+ "	lastName, "
+		+ " Cal.calendar_id, "
+		+ " Cal.calendar_id, "
+		+ " Col.R As color_r, "
+		+ " Col.G As color_g, "
+		+ " Col.B As color_b "
 		+ "FROM employees E "
-		+ "LEFT JOIN colors C " +
-              "	ON E.color_id = C.color_id ";
+		+ "LEFT JOIN calendars Cal " +
+              "	ON E.calendar_id = Cal.calendar_id " +
+              "LEFT JOIN Colors Col " +
+              "	ON Cal.color_id = Col.color_id";
 
 		if (fId > 0) {
 			filter.add("employee_id=" + fId);
@@ -46,7 +50,7 @@ public class EmployeeModel extends PersonModel {
 		}
 
 		sql += " ORDER BY employee_id";
-
+		
 		try {
 			conn = Db.open();
 
@@ -55,9 +59,10 @@ public class EmployeeModel extends PersonModel {
 
 			while (rs.next()) {
 				Color color = new Color(rs.getInt("color_r"), rs.getInt("color_g"), rs.getInt("color_b"), Config.CALENDAR_EVENT_ALPHA);
-				Person employee = new Employee(rs.getInt("employee_id"),
-						rs.getString("firstName"), rs.getString("lastName"), color);
-
+				Calendar calendar = new Calendar(rs.getLong("Cal.calendar_id"), color);
+				Employee employee = new Employee(rs.getInt("employee_id"),
+						rs.getString("firstName"), rs.getString("lastName"));
+				employee.setCalendar(calendar);
 				employees.add(employee);
 			}
 			stmt.close();
