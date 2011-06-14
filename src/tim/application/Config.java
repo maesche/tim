@@ -16,7 +16,7 @@ public class Config {
 	public static String TIME_FORMAT = "HH:mm";
 	public static final String DATE_FORMAT_LONG = DATE_FORMAT_SHORT + " " + TIME_FORMAT;
 	
-	public static int CALENDAR_DAY_START = 7;
+	public static int CALENDAR_DAY_START = 8;
 	public static int CALENDAR_DAY_END = 19;
 	public static int CALENDAR_DAY_INTERVAL = 15;
 	

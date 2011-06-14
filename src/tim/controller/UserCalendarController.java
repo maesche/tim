@@ -29,7 +29,9 @@ public class UserCalendarController extends AbstractController {
 			eventButtons = new ArrayList<EventButton>();
 			for (Element element : appointments) {
 				Appointment a = (Appointment) element;
-				eventButtons.add(new EventButton(this.getEventTitle(a), a.getBegin(), a.getEnd(), this.getEventDuration(a.getBegin(),a.getEnd()), new Color(255,0,0,100)));
+				Employee test = (Employee) a.getEmployee();
+				test.getColor();
+				eventButtons.add(new EventButton(this.getEventTitle(a), a.getBegin(), a.getEnd(), this.getEventDuration(a.getBegin(),a.getEnd()), test.getColor()));
 				//eventButtons.add(new EventButton(180));
 			}
 		}
