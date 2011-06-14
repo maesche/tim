@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import tim.application.BootLoader;
 import tim.application.Config;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
@@ -13,6 +14,12 @@ import tim.model.AppointmentModel;
 import tim.model.Element;
 
 public class ApplicationController extends AbstractController {
+	
+	public void init() {
+		String xmlFilePath = Config.CONFIG_PATH + "xml/application.xml";
+		BootLoader bootLoader = new BootLoader(xmlFilePath);
+		bootLoader.loadConfig();
+	}
 
 	public void getTest() {
 		AppointmentModel appointmentModel = (AppointmentModel) this.models.get("AppointmentModel");

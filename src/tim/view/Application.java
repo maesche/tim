@@ -21,6 +21,8 @@ import javax.swing.UIManager;
 
 import tim.application.Config;
 import tim.application.utils.ErrorHandler;
+import tim.controller.AbstractController;
+import tim.controller.ApplicationController;
 import tim.lib.dialog.Form;
 import tim.lib.dialog.FormComponent;
 import tim.lib.dialog.FormEntry;
@@ -36,6 +38,7 @@ public class Application extends JFrame implements Observer{
 	AppointmentDialog eventDialog;
 	Menu menu;
 	CalendarContainer calendarContainer;
+	ApplicationController controller;
 	
 
 	
@@ -43,7 +46,20 @@ public class Application extends JFrame implements Observer{
 	TestDialog tstDialog;
 	JButton btnTstDialog;
 	
-	public Application() {
+	public Application(AbstractController controller) {
+		/*AbstractModel appointmentModel = new AppointmentModel();
+		
+		ApplicationController applicationController = new ApplicationController();
+		applicationController.addModel(appointmentModel);
+		
+		
+		applicationController.getTest();*/
+		
+		/*AbstractModel appointmentModel = new AppointmentModel();
+		
+		AppointmentController appointmentController = new AppointmentController();
+		appointmentController.addModel(appointmentModel);*/
+		this.controller = (ApplicationController) controller;
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Exception ex) {

@@ -7,26 +7,18 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import tim.application.Config;
-
 public class Menu extends JMenuBar {
 	
 	private Application application;
 	
-	private JMenu file, edit, help;
-	private JMenuItem quit;
+	private JMenu file, edit, help, language;
+	private JMenuItem quit, english, french, german, japanese;
 
 	public Menu(Application app) {
 		this.application = app;
-		file = new JMenu(Config.APPLICATION_MENU_FILE);
-		edit = new JMenu("Edit");
-		help = new JMenu("?");
-		add(file);
-		add(edit);
-		add(help);
-		
+		file = new JMenu("File");
 		quit = new JMenuItem("Quit");
-	
+
 		quit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -36,7 +28,25 @@ public class Menu extends JMenuBar {
 			}
 		});
 		file.add(quit);
-
+		add(file);
 		
+		edit = new JMenu("Edit");
+		
+		language = new JMenu("Language");
+		
+		english = new JMenuItem("English");
+		french = new JMenuItem("French");
+		german = new JMenuItem("German");
+		japanese = new JMenuItem("Japanese");
+		edit.add(language);
+		language.add(english);
+		language.add(french);
+		language.add(german);
+		language.add(japanese);
+		add(edit);
+		
+
+		help = new JMenu("?");
+		add(help);
 	}
 }

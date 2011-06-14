@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import tim.application.Config;
 import tim.application.Db;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
@@ -201,5 +202,48 @@ public class AppointmentModel extends AbstractModel{
 	public void remove(Element element) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public boolean checkAvailability(Appointment appointment) {
+		/*
+		 *  $nbEvents = 0;
+        $canInsert = true;
+
+
+        for ($i = 0; $i < count($currentEvents) && $canInsert; $i++) {
+            $start = strtotime($currentEvents[$i]['start']);
+            $end = strtotime($currentEvents[$i]['end']);
+            $id = $currentEvents[$i]['id'];
+
+            $e_start = strtotime($newEvent['start']);
+            $e_end = strtotime($newEvent['end']);
+            $e_id = $newEvent['id'];
+
+            $canInsert = ($e_end <= $start || $e_start >= $end);
+
+
+//if (!$canInsert && $id != $e_id) {
+            if (!$canInsert) {
+                $nbEvents++;
+                $canInsert = $nbEvents < $maxEvents;
+            }
+        }
+
+
+        return $canInsert;
+		 */
+		boolean canInsert = true;
+
+		Date begin = appointment.getBegin();
+	//	Date end = DateHelper.StringToDate(DateHelper.DateToString(appointment.getEnd(), Config.DATE_FORMAT_SHORT));
+		
+		ArrayList<Element> appointments = this.get(appointment.getBegin(), appointment.getEnd());
+		
+		for (Element element : appointments) {
+			Appointment app = (Appointment) element;
+			
+		}
+		
+		return true;
 	}
 }

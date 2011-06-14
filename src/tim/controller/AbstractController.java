@@ -3,7 +3,6 @@ package tim.controller;
 import java.util.HashMap;
 
 import tim.model.AbstractModel;
-import tim.model.ModelClassLoader;
 
 public abstract class AbstractController {
 	protected HashMap<String, AbstractModel> models = null;
@@ -23,14 +22,6 @@ public abstract class AbstractController {
 	
 	public void removeModel(AbstractModel model) {
 		models.remove(model.toString());
-	}
-	
-	public AbstractModel getModel(String name) throws ClassNotFoundException {
-		//AbstractModel model = Class.forName("tim.model." + "AppointmentModel");
-		ModelClassLoader classLoader = new ModelClassLoader();
-		Object model = classLoader.loadClass("tim.model." + "AppointmentModel", true);
-
-		return (AbstractModel) model;
 	}
 
 }
