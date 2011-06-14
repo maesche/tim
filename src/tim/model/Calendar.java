@@ -24,6 +24,10 @@ public class Calendar extends Element {
 		return appointments;
 	}
 	
+	public void setAppointments(ArrayList<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+	
 	public Color getColor() {
 		return color;
 	}

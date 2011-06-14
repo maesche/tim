@@ -23,7 +23,7 @@ public class CalendarTest {
 		
 		Date begin = null;
 		try {
-			begin = DateHelper.StringToDate("2011-06-14");
+			begin = DateHelper.StringToDate("2011-05-14");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class CalendarTest {
 		ArrayList<Employee> employees = calendarController.getCalendars(begin, end);
 		
 		for (Employee employee : employees) {
-			System.out.println(employee.getCalendar().getId());
+			System.out.println(employee.getCalendar().getAppointments().get(0));
 		}
 	}
 
