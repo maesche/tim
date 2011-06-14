@@ -34,6 +34,7 @@ public class CalendarController extends AbstractController {
 				Appointment appointment = (Appointment) el;
 				appointments.add(appointment);
 			}
+
 			calendar.setAppointments(appointments);
 
 			employee.setCalendar(calendar);
