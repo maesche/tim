@@ -34,6 +34,10 @@ public class Employee extends Person {
 		return calendar;
 	}
 	
+	/**
+	 * 
+	 * @deprecated use Calendar.getColor instead
+	 */
 	public Color getColor() {
 		return color;
 	}
