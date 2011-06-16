@@ -7,6 +7,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.JTableHeader;
 
 import tim.application.Config;
 
@@ -23,19 +24,37 @@ public class DayTableView extends JPanel {
 		int hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		
 		
-		
-		
-		
+		Object[][] donnees = {  
+				   {"Swing", "Astral", "standard", 
+				      Color.red, Boolean.TRUE}, 
+				   {"Swing", "Mistral", "standard", 
+				      Color.yellow, Boolean.FALSE}, 
+				   {"Gin", "Oasis", "standard", 
+				      Color.blue, Boolean.FALSE},
+				   {"Gin", "boomerang", "compétition", 
+				      Color.green, Boolean.TRUE},
+				   {"Advance", "Omega", "performance", 
+				      Color.cyan, Boolean.TRUE}, 
+				} ;
+				String[] titreColonnes = { 
+				   "marque","modèle", "homologation",
+				   "couleur", "vérifiée ?"}; 
+				JTable t = new JTable(
+				      donnees, titreColonnes);
+				
+				t.setAutoResizeMode(3);
+				t.setBounds(100,100, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
+		add(t);
 		
 	
 		
 		
-		this. jTable1 = new JTable(3,hourInDay);
+		/*this. jTable1 = new JTable(3,hourInDay);
 		jTable1.setAutoResizeMode(3);
 		jTable1.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
 		add(jTable1);
 		jTable1.setDragEnabled(false);
-		jTable1.setEnabled(false);
+		jTable1.setEnabled(false);*/
 		
 	}
 	
