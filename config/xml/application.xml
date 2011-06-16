@@ -13,6 +13,6 @@
 	<calendar>
 		<day-start>7</day-start>
 		<day-end>19</day-end>
-		<day-interval>15</day-interval>
+		<day-interval>30</day-interval>
 	</calendar>
 </configuration>

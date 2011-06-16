@@ -22,6 +22,14 @@ public class DayTableView extends JPanel {
 		
 		int hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		
+		
+		
+		
+		
+		
+	
+		
+		
 		this. jTable1 = new JTable(3,hourInDay);
 		jTable1.setAutoResizeMode(3);
 		jTable1.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());

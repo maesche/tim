@@ -75,37 +75,6 @@ public class UserCalendarController extends AbstractController {
 				}
 			}			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*System.out.println("NOUVEAU");
-		for(EventButton btn : visibleButtons){
-			startOfButton = getEventButtonStartAt(btn);
-			System.out.println(startOfButton + " " + btn.getDuration() + " = " + (startOfButton+btn.getDuration()) );
-			
-			if(actualMinuteOfDay < startOfButton){
-				allButtons.add(new EventButton(startOfButton - actualMinuteOfDay));
-				System.out.println("ajoute vide");
-				actualMinuteOfDay += startOfButton - actualMinuteOfDay;
-			}else if(actualMinuteOfDay == startOfButton){
-				allButtons.add(btn);
-				actualMinuteOfDay += btn.getDuration();
-				System.out.println("ajoute event");
-			}else{
-				System.out.println("erreur");
-			}			
-		}*/
-		
-		//allButtons.add(new EventButton(60));
-		//allButtons.add(visibleButtons.get(0));
-		//allButtons.add(new EventButton(60));
-		//allButtons.add(visibleButtons.get(1));
 
 		return allButtons;
 	}
