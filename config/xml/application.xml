@@ -11,7 +11,7 @@
 		<time-format>HH:mm</time-format>
 	</system>
 	<calendar>
-		<day-start>9</day-start>
+		<day-start>7</day-start>
 		<day-end>19</day-end>
 		<day-interval>15</day-interval>
 	</calendar>

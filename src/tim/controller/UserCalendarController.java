@@ -39,15 +39,55 @@ public class UserCalendarController extends AbstractController {
 	
 	public ArrayList<EventButton> getAllButtons(ArrayList<EventButton> visibleButtons){
 		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
-		
-		/*int actualMinuteOfDay = Config.CALENDAR_DAY_START*60;
-		
+		EventButton actualButton;
+		boolean exit = false;
+		int i = 0;
 		int startOfButton = 0;
+		int nbrVisibleButtons = visibleButtons.size();
 		
-		System.out.println("NOUVEAU");
+		int actualMinuteOfDay = Config.CALENDAR_DAY_START*60;
+		int endOfDay = Config.CALENDAR_DAY_END*60;
+		
+		while(i < nbrVisibleButtons+1 && exit == false){
+			if(i == nbrVisibleButtons){
+				actualButton = null;
+			}else{
+				actualButton = visibleButtons.get(i);
+				startOfButton = Integer.parseInt(DateHelper.DateToString(actualButton.getBegin(), "H"))*60;
+			}
+			
+			
+			if(actualButton != null){//encore des evenements pour l'utilisateur
+				if(actualMinuteOfDay < startOfButton){
+					allButtons.add(new EventButton(startOfButton - actualMinuteOfDay));
+					actualMinuteOfDay += startOfButton - actualMinuteOfDay;
+				}else if(actualMinuteOfDay == startOfButton){
+					allButtons.add(visibleButtons.get(i));
+					actualMinuteOfDay += visibleButtons.get(i).getDuration();
+					i++;
+				}
+			}else{//Plus d'événements pour l'utilisateur
+				if(actualMinuteOfDay < endOfDay){
+					allButtons.add(new EventButton(endOfDay - actualMinuteOfDay));
+					exit = true;
+				}else{
+					
+				}
+			}			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/*System.out.println("NOUVEAU");
 		for(EventButton btn : visibleButtons){
 			startOfButton = getEventButtonStartAt(btn);
-			//startOfButton = 600;
+			System.out.println(startOfButton + " " + btn.getDuration() + " = " + (startOfButton+btn.getDuration()) );
 			
 			if(actualMinuteOfDay < startOfButton){
 				allButtons.add(new EventButton(startOfButton - actualMinuteOfDay));
@@ -59,23 +99,15 @@ public class UserCalendarController extends AbstractController {
 				System.out.println("ajoute event");
 			}else{
 				System.out.println("erreur");
-			}
-			
+			}			
 		}*/
 		
-		allButtons.add(new EventButton(60));
-		allButtons.add(visibleButtons.get(0));
-		allButtons.add(new EventButton(60));
-		allButtons.add(visibleButtons.get(1));
+		//allButtons.add(new EventButton(60));
+		//allButtons.add(visibleButtons.get(0));
+		//allButtons.add(new EventButton(60));
+		//allButtons.add(visibleButtons.get(1));
 
 		return allButtons;
-	}
-	
-	private int getEventButtonStartAt(EventButton btn){
-		//String hourString = DateHelper.DateToString(btn.getBegin(), "HH");
-		//return (btn.getBegin().getHours()*60) + (btn.getBegin().getMinutes());
-		return 540;
-		//return Integer.parseInt(hourString)*60;
 	}
 	
 	

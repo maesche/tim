@@ -59,8 +59,8 @@ public class UserCalendar extends JPanel{
 			ErrorHandler.getException(ex, this.getClass().getName(), "constructor");
 		}
 		
-		eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
-		//eventButtons = controller.getAllButtons(controller.getEventButtons(employee, beginFindDate, endFindDate));
+		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
+		eventButtons = controller.getAllButtons(controller.getEventButtons(employee, beginFindDate, endFindDate));
 		
 		for (EventButton btn : eventButtons) {
 			add(btn);
