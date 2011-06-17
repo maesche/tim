@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<calendar lang="en">
+    <application>
+    	<error>
+    		<system>The following error occurred.</system>
+    	</error>
+    	<menu>
+    		<file>File</file>
+    		<quit>Quit</quit>
+    		<language>Language</language>
+    		<german>German</german>
+    		<english>English</english>
+    		<french>French</french>
+    		<japanese>Japanese</japanese>
+    		<edit>Edit</edit>
+			<about>About</about>
+    	</menu>
+    </application>
+	<dialog>
+	    <messages>
+	        <error>Please check the following errors:</error>
+	    </messages>
+	    <save>Save</save>
+	    <delete>Delete</delete>
+	    <cancel>Cancel</cancel>
+	    <client>Client</client>
+	    <date>Date</date>
+	    <begin>Begin</begin>
+	    <end>End</end>
+	    <description>Description</description>
+	</dialog>
+</calendar>
