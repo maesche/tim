@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"> 
+
+<properties>  
+	<comment>This is a Java Property file (en language)</comment>  
+	<entry key="applicationErrorSystem">The following error occurred.</entry>  
+	
+	<entry key="applicationMenuAbout">About</entry>
+	<entry key="applicationMenuEdit">Edit</entry>
+	<entry key="applicationMenuFile">File</entry> 
+	<entry key="applicationMenuQuit">Quit</entry>
+	<entry key="applicationMenuLanguage">Language</entry> 
+	
+	<entry key="dialogMessages">Please check the following errors:</entry>
+	<entry key="dialogBegin">Begin</entry>
+	<entry key="dialogCancel">Cancel</entry>
+	<entry key="dialogClient">Client</entry>
+	<entry key="dialogDate">Date</entry>
+	<entry key="dialogDescription">Description</entry>
+	<entry key="dialogEnd">End</entry>
+	<entry key="dialogSave">Save</entry>
+</properties> 
