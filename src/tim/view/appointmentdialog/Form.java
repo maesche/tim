@@ -58,7 +58,7 @@ public class Form extends JPanel {
 		
 
 		
-		lblClient = new JLabel("Client :");
+		lblClient = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogClient") + " :");
 		cbClient = new JComboBox();
 		
 		for (Element element : controller.getClients()) {
@@ -66,24 +66,24 @@ public class Form extends JPanel {
 		}
 		
 
-		lblDate = new JLabel("Date :");
+		lblDate = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogDate") + " :");
 		txtDate = new JTextField(10);
 
-		lblBegin = new JLabel("Begin :");
+		lblBegin = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin") + " :");
 		cbBeginH = new JComboBox();
 		cbBeginM = new JComboBox();
 
-		lblEnd = new JLabel("End :");
+		lblEnd = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin") + " :");
 		cbEndH = new JComboBox();
 		cbEndM = new JComboBox();
 
-		lblDescription = new JLabel("Description :");
+		lblDescription = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogDescription") + " :");
 		txtDescription = new JTextArea(10, 20);
 		//txtDescription.setBorder(BorderFactory.createCompoundBorder());
 		
 		buttonPanel = new JPanel();
-		btnCancel = new JButton("Cancel");
-		btnSave = new JButton("Save");
+		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
+		btnSave = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogSave"));
 		
 		btnSave.addActionListener(new ActionListener() {
 			@Override
@@ -92,7 +92,7 @@ public class Form extends JPanel {
 			}
 		});
 		
-		btnDelete = new JButton("Delete");
+		btnDelete = new JButton("Delete :");
 		
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		buttonPanel.add(btnCancel);

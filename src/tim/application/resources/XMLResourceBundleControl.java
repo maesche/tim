@@ -79,7 +79,7 @@ public class XMLResourceBundleControl extends ResourceBundle.Control
 		}
 
 		String bundleName = toBundleName("tim.res.lang.lang", locale);
-		System.out.println(bundleName);
+
 		String resourceName = toResourceName(bundleName, format);
 		URL url = loader.getResource(resourceName);
 		

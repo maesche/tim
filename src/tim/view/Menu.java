@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import tim.application.Config;
+
 public class Menu extends JMenuBar {
 	
 	private Application application;
@@ -16,8 +18,8 @@ public class Menu extends JMenuBar {
 
 	public Menu(Application app) {
 		this.application = app;
-		file = new JMenu("File");
-		quit = new JMenuItem("Quit");
+		file = new JMenu(Config.RESSOURCE_BUNDLE.getString("applicationMenuFile"));
+		quit = new JMenuItem(Config.RESSOURCE_BUNDLE.getString("applicationMenuQuit"));
 
 		quit.addActionListener(new ActionListener() {
 			
@@ -30,9 +32,9 @@ public class Menu extends JMenuBar {
 		file.add(quit);
 		add(file);
 		
-		edit = new JMenu("Edit");
+		edit = new JMenu(Config.RESSOURCE_BUNDLE.getString("applicationMenuEdit"));
 		
-		language = new JMenu("Language");
+		language = new JMenu(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguage"));
 		
 		english = new JMenuItem("English");
 		french = new JMenuItem("French");
