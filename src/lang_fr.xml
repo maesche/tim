@@ -3,7 +3,7 @@
 
 <properties>  
 	<comment>This is a Java Property file (fr language)</comment>  
-	<entry key="applicationErrorSystem">L'erreur suivante est survenue.</entry>  
+	<entry key="applicationErrorSystem">L'erreur suivante est survenu: </entry>  
 	
 	<entry key="applicationMenuAbout">A propos de</entry>
 	<entry key="applicationMenuEdit">Edition</entry>

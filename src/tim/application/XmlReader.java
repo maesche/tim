@@ -27,7 +27,9 @@ import java.util.HashMap;
 
 public class XmlReader {
 	
-	private void afficher(Node n) {
+	/*
+	 * Recursive XML walk trough
+	 * private void afficher(Node n) {
 	    if (n.getNodeType() == org.w3c.dom.Node.TEXT_NODE) {
 	    	if (n.getTextContent().isEmpty())
 		        System.out.println(n.getNodeName() + " " + n.getNodeValue() + " " + n.getNodeValue().length());
@@ -44,8 +46,11 @@ public class XmlReader {
 	            afficher(fils.item(i));
 	            }
 	        }
-	    }
+	    }*/
 	
+	/*
+	 * Fill HashMap with elements in XML corresponding to a key
+	 */
 	public HashMap<String, Object> read(String xmlFilePath, HashMap<String, Object> values) {
 		File fXmlFile = null;
 		DocumentBuilderFactory dbFactory = null;
@@ -62,15 +67,15 @@ public class XmlReader {
 			doc = dBuilder.parse(fXmlFile);
 			doc.getDocumentElement().normalize();
 
-			NodeList nList = doc.getElementsByTagName("configuration");
-			this.afficher(doc);
+			//NodeList nList = doc.getElementsByTagName("configuration");
+			//this.afficher(doc);
 			/*for(int i=0; i<nList.getLength(); i++){
 				System.out.println(nList.getLength());
 				NodeList n = (NodeList)nList.item(i);
 				//e.getChildNodes();
 				System.out.println(n.item(0).getNodeName());
 			}*/
-			/*if (values != null) {
+			if (values != null) {
 				for (String configName: values.keySet()) {
 					NodeList nList = doc.getElementsByTagName(configName);
 					if (values.get(configName) instanceof HashMap && nList.getLength() > 0) {
@@ -87,7 +92,7 @@ public class XmlReader {
 					}
 
 				}
-			}*/
+			}
 		} catch (Exception ex) {
 			ErrorHandler.getException(ex, this.getClass().getName(), "read");
 		}

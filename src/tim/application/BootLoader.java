@@ -2,8 +2,9 @@ package tim.application;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Observable;
 
-public final class BootLoader {
+public final class BootLoader extends Observable{
 	
 	private String xmlPath;
 	private HashMap<String, Object> configMap, systemConfig, calendarConfig;
@@ -34,6 +35,13 @@ public final class BootLoader {
 		XmlReader xmlFile = new XmlReader();
 		//xmlFile.read(xmlPath, configMap);
 		xmlFile.readConfig(xmlPath);
+		
+		
+	}
+	
+	public void reload() {
+		
+		//pattern observateur
 	}
 	
 }
