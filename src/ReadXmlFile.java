@@ -66,7 +66,7 @@ public class ReadXmlFile
 	
 	//______________________________________________________________________________
 	//
-	//		Methode: getTagValue ; return: String
+	//		Method: getTagValue ; return: String
 	//______________________________________________________________________________
 	private static String getTagValue(String sTag, Element eElement)
 	{
@@ -78,7 +78,7 @@ public class ReadXmlFile
 	
 	//______________________________________________________________________________
 	//
-	//		Methode: readConfig ; return: XmlApplicationConfig
+	//		Method: readConfig ; return: XmlApplicationConfig
 	//______________________________________________________________________________
 	private static XmlApplicationConfig readConfig(String xmlFilePath)
 	{
