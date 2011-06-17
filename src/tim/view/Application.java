@@ -77,7 +77,8 @@ public class Application extends JFrame implements Observer{
 		menu = new Menu(this);
 		setJMenuBar(menu);
 		
-		btnDialog = new JButton("Dialogue");
+		btnDialog = new JButton("日本語のテスト");
+
 		btnTstDialog = new JButton("Dialogue de test");
 		calendarContainer = new CalendarContainer();
 
