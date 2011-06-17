@@ -3,20 +3,20 @@
 
 <properties>  
 	<comment>This is a Java Property file (jp language)</comment>  
-	<entry key="applicationErrorSystem">The following error occurred.</entry>  
+	<entry key="applicationErrorSystem">エラーが発生しました。</entry>  
 	
-	<entry key="applicationMenuAbout">About</entry>
-	<entry key="applicationMenuEdit">Edit</entry>
-	<entry key="applicationMenuFile">File</entry> 
-	<entry key="applicationMenuQuit">Quit</entry>
-	<entry key="applicationMenuLanguage">Language</entry> 
+	<entry key="applicationMenuAbout">TIMについて</entry>
+	<entry key="applicationMenuEdit">編集</entry>
+	<entry key="applicationMenuFile">ファイル</entry> 
+	<entry key="applicationMenuQuit">終了</entry>
+	<entry key="applicationMenuLanguage">言語</entry> 
 	
-	<entry key="dialogMessages">Please check the following errors:</entry>
-	<entry key="dialogBegin">Begin</entry>
-	<entry key="dialogCancel">Cancel</entry>
-	<entry key="dialogClient">Client</entry>
-	<entry key="dialogDate">Date</entry>
-	<entry key="dialogDescription">Description</entry>
-	<entry key="dialogEnd">End</entry>
-	<entry key="dialogSave">Save</entry>
+	<entry key="dialogMessages">赤い部分の情報を確かめてください。</entry>
+	<entry key="dialogBegin">開始</entry>
+	<entry key="dialogCancel">取り消す</entry>
+	<entry key="dialogClient">お客様</entry>
+	<entry key="dialogDate">日付</entry>
+	<entry key="dialogDescription">メモ</entry>
+	<entry key="dialogEnd">終了</entry>
+	<entry key="dialogSave">保存</entry>
 </properties> 

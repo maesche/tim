@@ -5,18 +5,18 @@
 	<comment>This is a Java Property file (de language)</comment>  
 	<entry key="applicationErrorSystem">Folgender Fehler ist aufgetreten.</entry>  
 
-	<entry key="applicationMenuAbout">Über</entry>
-	<entry key="applicationMenuEdit">Auflage</entry>
-	<entry key="applicationMenuFile">Datei</entry> 
-	<entry key="applicationMenuQuit">Verlassen</entry>
+	<entry key="applicationMenuAbout">Über TIM</entry>
+	<entry key="applicationMenuEdit">Bearbeiten</entry>
+	<entry key="applicationMenuFile">Ablage</entry> 
+	<entry key="applicationMenuQuit">Beenden</entry>
 	<entry key="applicationMenuLanguage">Sprache</entry> 
 	
 	<entry key="dialogMessages">Überprüfen Sie bitte die folgende Fehlermeldung:</entry>
-	<entry key="dialogBegin">Anfang</entry>
-	<entry key="dialogCancel">Abgebrochen</entry>
+	<entry key="dialogBegin">Beginn</entry>
+	<entry key="dialogCancel">Abbrechen</entry>
 	<entry key="dialogClient">Kunde</entry>
 	<entry key="dialogDate">Datum</entry>
-	<entry key="dialogDescription">Bezeichnung</entry>
+	<entry key="dialogDescription">Beschreibung</entry>
 	<entry key="dialogEnd">Ende</entry>
 	<entry key="dialogSave">Speichern</entry>
 </properties> 
