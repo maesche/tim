@@ -1,8 +1,12 @@
 package tim.application;
 
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Map.Entry;
 import java.util.Observable;
+
+import tim.application.resources.XMLResourceBundleControl;
 
 public final class BootLoader extends Observable{
 	
@@ -35,7 +39,8 @@ public final class BootLoader extends Observable{
 		XmlReader xmlFile = new XmlReader();
 		//xmlFile.read(xmlPath, configMap);
 		xmlFile.readConfig(xmlPath);
-		
+		Config.RESSOURCE_BUNDLE = ResourceBundle.getBundle("lang", new Locale(Config.DEFAULT_LANG), 
+				 new XMLResourceBundleControl());
 		
 	}
 	

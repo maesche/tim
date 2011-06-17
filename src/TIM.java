@@ -45,6 +45,6 @@ public class TIM {
 		app.pack();
 		app.setLocationRelativeTo(null);
 
-
+		System.out.println("System Error: " + Config.RESSOURCE_BUNDLE.getString("applicationErrorSystem"));
 	}
 }

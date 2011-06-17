@@ -19,6 +19,7 @@ public class ApplicationController extends AbstractController {
 		String xmlFilePath = Config.CONFIG_PATH + "xml/application.xml";
 		BootLoader bootLoader = new BootLoader(xmlFilePath);
 		bootLoader.loadConfig();
+		
 	}
 
 	public void getTest() {

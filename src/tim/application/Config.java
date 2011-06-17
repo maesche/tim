@@ -1,9 +1,8 @@
 package tim.application;
 
+import java.util.ResourceBundle;
+
 public class Config {
-	public static String APPLICATION_MENU_FILE;
-	public static String RESSOURCE_BUNDLE = "";
-	
 	public static String DB_USER = null;
 	public static String DB_PWD = null;
 	public static String DB_URL = null;
@@ -19,6 +18,9 @@ public class Config {
 	public static int CALENDAR_DAY_START = 9;
 	public static int CALENDAR_DAY_END = 19;
 	public static int CALENDAR_DAY_INTERVAL = 15;
+	
+	
+	public static ResourceBundle RESSOURCE_BUNDLE = null;
 	
 	public static final int CALENDAR_EVENT_ALPHA = 150;
 	public static final int APPLICATION_DEFAULT_FRAME_WIDTH = 1024;
