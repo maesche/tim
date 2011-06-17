@@ -64,14 +64,16 @@ public class XMLResourceBundleControl extends ResourceBundle.Control
 													InstantiationException,
 													IOException 
 	{
-
-		if ((baseName == null) || (locale == null) || (format == null) || (loader == null)) 
+		//---Check if every parameters are set
+		if ((baseName == null) || (locale == null) || 
+			  (format == null) || (loader == null)) 
 		{
 			throw new NullPointerException();
 		}
     
 		ResourceBundle bundle = null;
-    
+		
+		//---Check if the format is a xml file
 		if (!format.equals(XML)) 
 		{
 			return null;
@@ -80,14 +82,16 @@ public class XMLResourceBundleControl extends ResourceBundle.Control
 		String bundleName = toBundleName(baseName, locale);
 		String resourceName = toResourceName(bundleName, format);
 		URL url = loader.getResource(resourceName);
-    
+		
+		//---Check the path file
 		if (url == null) 
 		{
 			return null;
 		}
     
 		URLConnection connection = url.openConnection();
-    
+		
+		//---Check the connection
 		if (connection == null) 
 		{
 			return null;
