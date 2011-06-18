@@ -1,20 +1,13 @@
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Enumeration;
 
-import javax.swing.JFrame;
 import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 
 import tim.view.Application;
 
-import tim.application.BootLoader;
 import tim.application.Config;
-import tim.application.GlobalRegistry;
-import tim.application.MVCLinker;
-import tim.application.exception.ResourceNotFoundException;
 import tim.controller.ApplicationController;
 
 
@@ -31,10 +24,6 @@ public class TIM {
 	        {
 	            UIManager.put(key, f);
 	        }
-	        
-	        if (value instanceof ColorUIResource && !((String) key).toLowerCase().endsWith("background")) {
-	        	//UIManager.put(key, new ColorUIResource(Color.black));
-	        }
 	    }
 	}
 	
@@ -45,19 +34,7 @@ public class TIM {
 		applicationController.init();
 		
 		Application app = new Application(applicationController);
-		
-		GlobalRegistry.bootLoader.loadConfig();
-		
-		/*try {
-			GlobalRegistry.mvcLinker.addObserverToModel("tim.model.Bootloader", app);
-		} catch (ResourceNotFoundException e) {
-			e.printStackTrace();
-		}*/
-		
-
-		
-		
-
+	
 		app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
 		app.setVisible(true);
 		app.pack();
