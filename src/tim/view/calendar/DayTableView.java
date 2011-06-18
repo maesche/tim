@@ -24,13 +24,21 @@ public class DayTableView extends JPanel {
 		
 		int hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		int nbrPerson = 3;
+		String h;
 		
 		Object[][] donnees = new Object[nbrPerson][hourInDay+1];
-		String[] titreColonnes = new String[hourInDay+1]; 
+		String[] titreColonnes = new String[hourInDay+1];
+		
+		titreColonnes[0] = "Collaborateur";
+		for(int i=1; i<hourInDay+1; i++){
+			h = Integer.toString(i + Config.CALENDAR_DAY_START);
+			titreColonnes[i] = h + ":00";
+		}
 				
-		/*for(){
+		/*for(int pers = 0; pers<nbrPerson; pers++){
 			
-		}/*
+			donnees[pers][j]  =
+		}*/
 		
 		
 		JTable t = new JTable(
