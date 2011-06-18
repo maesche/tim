@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS colors (
   g INTEGER(3) NOT NULL,
   b INTEGER(3) NOT NULL,
   PRIMARY KEY (color_id)
-) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
 INSERT INTO colors VALUES 
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS calendars (
   PRIMARY KEY (calendar_id),
   FOREIGN KEY (color_id) REFERENCES colors(color_id)
   	ON DELETE cascade
-) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO calendars VALUES 
 	(1, 1),
@@ -57,9 +57,9 @@ CREATE TABLE IF NOT EXISTS clients (
   lastName VARCHAR(30) NOT NULL,
   phone VARCHAR(30) NOT NULL,
   address VARCHAR(30) NOT NULL,
-  description TEXT DEFAULT '',
+  description TEXT,
   PRIMARY KEY (client_id)
-) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO clients VALUES 
 	(1, 'Mireille', 'Goud', '021 333 33 33', 'rue du c', ''),
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS employees (
   PRIMARY KEY (employee_id),
   FOREIGN KEY (calendar_id) REFERENCES calendars(calendar_id)
   	ON DELETE cascade
-) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO employees VALUES 
 	(1, 'Alain', 'Bellatalla', 1), 
@@ -87,19 +87,18 @@ CREATE TABLE IF NOT EXISTS appointments (
   appointment_id VARCHAR(255) NOT NULL,
   client_id INTEGER(9) NOT NULL,
   employee_id INTEGER(9) NOT NULL,
-  title VARCHAR(50) NOT NULL DEFAULT '',
-  description TEXT NOT NULL DEFAULT '',
+  description TEXT NOT NULL,
   PRIMARY KEY (appointment_id),
   FOREIGN KEY (client_id) REFERENCES clients(client_id)
     ON DELETE cascade,
   FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
     ON DELETE cascade
- ) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+ ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
  
 INSERT INTO appointments VALUES
-	(1, 1, 1, 'test1', 'description 1'),
-	(2, 2, 2, 'test2', 'description 2'),
-	(3, 2, 3, 'test3', 'description 3');
+	(1, 1, 1, 'description 1'),
+	(2, 2, 2, 'description 2'),
+	(3, 2, 3, 'description 3');
 
 DROP TABLE IF EXISTS appointment_dates;
 CREATE TABLE IF NOT EXISTS appointment_dates (
@@ -110,7 +109,7 @@ CREATE TABLE IF NOT EXISTS appointment_dates (
   PRIMARY KEY (appointment_date_id),
   FOREIGN KEY (appointment_id) REFERENCES appointments(appointment_id)
     ON DELETE cascade
-) TYPE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO appointment_dates VALUES
 	(1, 1, '2011-05-14 09:00', '2011-05-14 10:00'),

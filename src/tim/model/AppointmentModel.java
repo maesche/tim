@@ -81,6 +81,7 @@ public class AppointmentModel extends AbstractModel{
 			rs = stmt.executeQuery(sql);
 			
 			while (rs.next()) {
+				
 				long id = rs.getLong("A_id");
 				
 				Date begin = rs.getTimestamp("begin");
@@ -89,6 +90,7 @@ public class AppointmentModel extends AbstractModel{
 				String description = rs.getString("description");
 	
 				Person employee = new Employee(rs.getInt("E_id"), rs.getString("E_firstName"), rs.getString("E_lastName"));
+				//Employee employe = new EmployeeModel().get(rs.getInt("E_id"),)
 				Person client = new Client(rs.getInt("C_id"), rs.getString("C_firstName"), rs.getString("C_lastName"));
 
 				Appointment appointment = new Appointment(id, begin, end, title, description, employee, client);
@@ -153,6 +155,7 @@ public class AppointmentModel extends AbstractModel{
 		return this.get(client, employee, begin, null, 0);
 	}
 
+	//public void add(ArrayList<Element> elements
 	public void add(Element element) {
 		Appointment appointment = (Appointment) element;
 		long id = appointment.getId();
