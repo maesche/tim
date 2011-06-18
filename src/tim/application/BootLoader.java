@@ -3,7 +3,6 @@ package tim.application;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Map.Entry;
 import java.util.Observable;
 
 import tim.application.resources.XMLResourceBundleControl;

@@ -9,7 +9,7 @@ import tim.application.utils.ErrorHandler;
 
 public class Db {
 	private static Connection conn = null;
-	private static int connectionID = 0;
+	private static int nbConnRequest = 0;
 
 	public static Connection open() {
 		try {
@@ -17,6 +17,7 @@ public class Db {
 			if (conn == null) {
 				conn = DriverManager.getConnection(Config.DB_URL, Config.DB_USER, Config.DB_PWD);
 			}
+			nbConnRequest++;
 		} catch(Exception ex) {
 			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
 		}
@@ -25,7 +26,8 @@ public class Db {
 	}
 	
 	public static void close() {
-		if (conn != null) {
+		nbConnRequest--;
+		if (conn != null && nbConnRequest <= 0) {
 			try {
 			conn.close();
 			conn = null;

@@ -3,6 +3,7 @@ package tim.controller;
 import java.util.ArrayList;
 import java.util.Date;
 
+import tim.application.Config;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Calendar;
@@ -12,6 +13,17 @@ import tim.model.EmployeeModel;
 
 public class CalendarController extends AbstractController {
 
+	public ArrayList<Employee> today() {
+		int Hstart = Config.CALENDAR_DAY_START;
+		int Hend = Config.CALENDAR_DAY_END;
+		
+		Date today = null;
+		
+		Date begin = null; //today + heure début
+		Date end = null; //today + heure fin
+		
+		return getCalendars(begin, end);
+	}
 	
 	public ArrayList<Employee> getCalendars(Date begin, Date end) {
 		ArrayList<Employee> employees = new ArrayList<Employee>();
