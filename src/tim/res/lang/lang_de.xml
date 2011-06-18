@@ -10,6 +10,10 @@
 	<entry key="applicationMenuFile">Ablage</entry> 
 	<entry key="applicationMenuQuit">Beenden</entry>
 	<entry key="applicationMenuLanguage">Sprache</entry> 
+	<entry key="applicationMenuLanguageEnglish">English</entry>	
+	<entry key="applicationMenuLanguageFrench">Französisch</entry>
+	<entry key="applicationMenuLanguageGerman">Deutsch</entry>
+	<entry key="applicationMenuLanguageJapanese">Japanisch</entry>
 	
 	<entry key="dialogMessages">Überprüfen Sie bitte die folgende Fehlermeldung:</entry>
 	<entry key="dialogBegin">Beginn</entry>

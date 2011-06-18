@@ -39,9 +39,6 @@ public final class BootLoader extends Observable{
 		XmlReader xmlFile = new XmlReader();
 		//xmlFile.read(xmlPath, configMap);
 		xmlFile.readConfig(xmlPath);
-		Config.RESSOURCE_BUNDLE = ResourceBundle.getBundle("lang", new Locale(Config.DEFAULT_LANG), 
-				 new XMLResourceBundleControl());
-		
 	}
 	
 	public void reload() {

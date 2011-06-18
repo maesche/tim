@@ -15,7 +15,7 @@ public class CalendarTest {
 
 	public static void main(String[] args) {
 		ApplicationController applicationController = new ApplicationController();
-		applicationController.init();
+		//applicationController.init();
 		
 		CalendarController calendarController = new CalendarController();
 		calendarController.addModel(new AppointmentModel());

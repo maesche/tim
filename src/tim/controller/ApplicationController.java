@@ -6,6 +6,9 @@ import java.util.Date;
 
 import tim.application.BootLoader;
 import tim.application.Config;
+import tim.application.GlobalRegistry;
+import tim.application.LanguageLinker;
+import tim.application.MVCLinker;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 import tim.model.AbstractModel;
@@ -15,13 +18,16 @@ import tim.model.Element;
 
 public class ApplicationController extends AbstractController {
 	
-	private BootLoader bootLoader = null;
 	
 	public void init() {
-
+		GlobalRegistry.bootLoader = new BootLoader(System.getProperty("user.dir") + "/config/xml/application.xml");
+		GlobalRegistry.mvcLinker = new MVCLinker();
+		GlobalRegistry.languageLinker = new LanguageLinker();
 		
+		GlobalRegistry.bootLoader.loadConfig();
+		GlobalRegistry.languageLinker.setLanguageDefault();
 	}
-
+	
 	public void getTest() {
 		AppointmentModel appointmentModel = (AppointmentModel) this.models.get("AppointmentModel");
 		/*

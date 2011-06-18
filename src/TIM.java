@@ -14,6 +14,7 @@ import tim.application.BootLoader;
 import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.MVCLinker;
+import tim.application.exception.ResourceNotFoundException;
 import tim.controller.ApplicationController;
 
 
@@ -39,15 +40,21 @@ public class TIM {
 	
 	public static void main(String[] args) {
 		setUIFont (new FontUIResource(new Font("Arial Unicode MS", Font.BOLD, 14)));
+
 		ApplicationController applicationController = new ApplicationController();
+		applicationController.init();
+		
 		Application app = new Application(applicationController);
 		
-
-		GlobalRegistry.bootLoader.addObserver(app);
 		GlobalRegistry.bootLoader.loadConfig();
 		
+		/*try {
+			GlobalRegistry.mvcLinker.addObserverToModel("tim.model.Bootloader", app);
+		} catch (ResourceNotFoundException e) {
+			e.printStackTrace();
+		}*/
 		
-		applicationController.init();
+
 		
 		
 

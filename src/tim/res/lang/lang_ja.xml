@@ -10,6 +10,10 @@
 	<entry key="applicationMenuFile">ファイル</entry> 
 	<entry key="applicationMenuQuit">終了</entry>
 	<entry key="applicationMenuLanguage">言語</entry> 
+	<entry key="applicationMenuLanguageEnglish">英語</entry>	
+	<entry key="applicationMenuLanguageFrench">フランス語</entry>
+	<entry key="applicationMenuLanguageGerman">ドイツ語</entry>
+	<entry key="applicationMenuLanguageJapanese">日本語</entry>
 	
 	<entry key="dialogMessages">赤い部分の情報を確かめてください。</entry>
 	<entry key="dialogBegin">開始</entry>

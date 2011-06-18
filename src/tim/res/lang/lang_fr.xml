@@ -5,11 +5,18 @@
 	<comment>This is a Java Property file (fr language)</comment>  
 	<entry key="applicationErrorSystem">L'erreur suivante est survenu: </entry>  
 	
-	<entry key="applicationMenuAbout">A propos de</entry>
+
+
+	
+	<entry key="applicationMenuAbout">A propos de TIM</entry>
 	<entry key="applicationMenuEdit">Edition</entry>
 	<entry key="applicationMenuFile">Fichier</entry> 
 	<entry key="applicationMenuQuit">Quitter</entry>
-	<entry key="applicationMenuLanguage">Language</entry> 
+	<entry key="applicationMenuLanguage">Langue</entry> 
+	<entry key="applicationMenuLanguageEnglish">Anglais</entry>	
+	<entry key="applicationMenuLanguageFrench">Français</entry>
+	<entry key="applicationMenuLanguageGerman">Allemand</entry>
+	<entry key="applicationMenuLanguageJapanese">Japonais</entry>
 	
 	<entry key="dialogMessages">Veuillez vérifier l'erreur suivante:</entry>
 	<entry key="dialogBegin">Début</entry>
