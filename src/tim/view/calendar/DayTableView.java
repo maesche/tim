@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
@@ -44,7 +45,7 @@ public class DayTableView extends JPanel {
 				
 				t.setAutoResizeMode(3);
 				t.setBounds(100,100, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
-		add(t);
+		add(new JScrollPane(t));
 		
 	
 		
