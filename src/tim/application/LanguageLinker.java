@@ -3,7 +3,6 @@ package tim.application;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import tim.application.resources.XMLResourceBundleControl;
 
 public class LanguageLinker extends CustomObservable {
 	

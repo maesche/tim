@@ -10,7 +10,7 @@
 //	Comments:		These classes are used to translate the label's component
 //					in different languages (fr, en, jp)
 //__________________________________________________________________________________
-package tim.application.resources;
+package tim.application;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import tim.application.Config;
 
 //__________________________________________________________________________________
 //
@@ -78,7 +77,7 @@ public class XMLResourceBundleControl extends ResourceBundle.Control
 			return null;
 		}
 
-		String bundleName = toBundleName("tim.res.lang.lang", locale);
+		String bundleName = toBundleName("tim.res.lang", locale);
 
 		String resourceName = toResourceName(bundleName, format);
 		URL url = loader.getResource(resourceName);

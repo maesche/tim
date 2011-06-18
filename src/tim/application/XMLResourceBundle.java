@@ -1,4 +1,4 @@
-package tim.application.resources;
+package tim.application;
 
 import java.io.IOException;
 import java.io.InputStream;

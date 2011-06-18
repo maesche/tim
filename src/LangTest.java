@@ -1,7 +1,7 @@
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import tim.application.resources.XMLResourceBundleControl;
+import tim.application.XMLResourceBundleControl;
 
 
 public class LangTest {

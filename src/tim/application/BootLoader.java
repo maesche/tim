@@ -6,7 +6,6 @@ import java.util.Observer;
 import java.util.ResourceBundle;
 import java.util.Observable;
 
-import tim.application.resources.XMLResourceBundleControl;
 
 public final class BootLoader extends Observable{
 	
