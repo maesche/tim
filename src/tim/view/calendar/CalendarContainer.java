@@ -48,6 +48,13 @@ public class CalendarContainer extends JPanel {
 	    //this.setSize(this.JLayerPaneDimension);
 	    //System.out.println(this.getWidth() + "x" + this.getHeight());
 	}
+	
+	public void validate(){
+		this.getJLayerPaneDimension().setSize(this.getWidth(), this.getHeight());
+	    
+	    this.setPreferredSize(this.getJLayerPaneDimension());
+	    this.setSize(this.getJLayerPaneDimension());
+	}
 
 	public static void setJLayerPaneDimension(Dimension jLayerPaneDimension) {
 		JLayerPaneDimension = jLayerPaneDimension;

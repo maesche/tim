@@ -7,20 +7,47 @@ import java.util.Date;
 
 import javax.swing.JButton;
 
+import tim.application.utils.DateHelper;
+import tim.controller.CalendarController;
+import tim.model.Appointment;
+import tim.model.AppointmentModel;
+import tim.model.Employee;
+import tim.model.EmployeeModel;
+
 public class EventButton extends JButton {
 	
-	Color color = null;
+	private Color color = null;
 	private String title;
 	private int duration;
 	private Date begin, end;
+	private Appointment appointment;
 
 	public EventButton(String title, Date begin, Date end, int duration, Color color) {
-
+		
 		this.duration = duration;
 		this.title = title;
 		this.color = color;
 		this.begin = begin;
 		this.end = end;
+
+		this.setMargin(new Insets(0, 2, 0, 2));
+		this.setOpaque(true);
+		this.setRolloverEnabled(false);
+		this.setFocusPainted(false);
+		this.setBackground(color);
+		this.setText(title);
+
+	}
+	
+	public EventButton(Appointment appointment) {
+		
+		this.appointment = appointment;
+		this.duration = DateHelper.DateDiff(appointment.getBegin(), appointment.getEnd());
+		this.title = appointment.getDescription();
+		Employee e = (Employee) appointment.getEmployee();
+		this.color = e.getColor();
+		this.begin = appointment.getBegin();
+		this.end = appointment.getEnd();
 
 		this.setMargin(new Insets(0, 2, 0, 2));
 		this.setOpaque(true);
@@ -45,10 +72,6 @@ public class EventButton extends JButton {
 	public String getTitle() {
 		return title;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
 	public int getDuration() {
 		return duration;
 	}
@@ -69,11 +92,9 @@ public class EventButton extends JButton {
 	public Date getEnd() {
 		return end;
 	}
-
-	
-
-	
-	
+	public Appointment getAppointment() {
+		return appointment;
+	}
 	
 
 	/*
