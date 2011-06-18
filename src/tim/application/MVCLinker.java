@@ -92,7 +92,7 @@ public class MVCLinker {
 		systemObservables.put(observable.toString(), observable);
 	}
 	
-	public void unregisterSystemObservabel(Observable observable) {
+	public void unregisterSystemObservable(Observable observable) {
 		controllers.remove(observable.toString());
 	}
 	
