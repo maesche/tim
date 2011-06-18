@@ -15,11 +15,11 @@ public class Config {
 	public static String TIME_FORMAT = "HH:mm";
 	public static final String DATE_FORMAT_LONG = DATE_FORMAT_SHORT + " " + TIME_FORMAT;
 	
-	public static int CALENDAR_DAY_START = 9;
+	public static int CALENDAR_DAY_START = 8;
 	public static int CALENDAR_DAY_END = 19;
 	public static int CALENDAR_DAY_INTERVAL = 15;
 	
-	
+	public static final int CALENDAR_EVENT_ALPHA = 150;
 	public static ResourceBundle RESSOURCE_BUNDLE = null;
 	
 	public static final int CALENDAR_EVENT_ALPHA = 150;

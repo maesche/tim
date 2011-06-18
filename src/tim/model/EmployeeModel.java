@@ -33,7 +33,7 @@ public class EmployeeModel extends PersonModel {
 		+ "FROM employees E "
 		+ "LEFT JOIN calendars Cal " +
               "	ON E.calendar_id = Cal.calendar_id " +
-              "LEFT JOIN Colors Col " +
+              "LEFT JOIN colors Col " +
               "	ON Cal.color_id = Col.color_id";
 
 		if (fId > 0) {
