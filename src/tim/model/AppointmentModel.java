@@ -25,7 +25,6 @@ public class AppointmentModel extends AbstractModel{
 
 		String sql = "SELECT" +
 					 "	A.appointment_id AS A_id, " +
-					 "	A.title, " +
 					 "	A.description, " +
 					 "  D.begin, " +
 					 "  D.end, " +
@@ -86,14 +85,13 @@ public class AppointmentModel extends AbstractModel{
 				
 				Date begin = rs.getTimestamp("begin");
 				Date end = rs.getTimestamp("end");
-				String title = rs.getString("title");
 				String description = rs.getString("description");
 	
 				Person employee = new Employee(rs.getInt("E_id"), rs.getString("E_firstName"), rs.getString("E_lastName"));
 				//Employee employe = new EmployeeModel().get(rs.getInt("E_id"),)
 				Person client = new Client(rs.getInt("C_id"), rs.getString("C_firstName"), rs.getString("C_lastName"));
 
-				Appointment appointment = new Appointment(id, begin, end, title, description, employee, client);
+				Appointment appointment = new Appointment(id, begin, end, description, employee, client);
 				
 				appointments.add(appointment);
 			}
@@ -161,7 +159,6 @@ public class AppointmentModel extends AbstractModel{
 		long id = appointment.getId();
 		long client_id = appointment.getClient().getId();
 		long employee_id = appointment.getEmployee().getId();
-		String title = appointment.getTitle();
 		String description = appointment.getDescription();
 		
 		String begin = DateHelper.DateToString(appointment.getBegin());
@@ -171,7 +168,6 @@ public class AppointmentModel extends AbstractModel{
 				id + ", " +
 				client_id + ", " +
 				employee_id + ", " +
-				"'" + title + "', " +
 				"'" + description + "')";
 		
 		String sql_dates = "INSERT INTO appointment_dates (appointment_id, begin, end) VALUES(" +

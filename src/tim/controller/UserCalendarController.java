@@ -92,7 +92,6 @@ public class UserCalendarController extends AbstractController {
 				+ " - "
 				+ DateHelper.DateToString(a.getEnd(),
 						Config.TIME_FORMAT) + "<br />";
-		title += a.getTitle() + "<br />";
 		title += "with " + a.getClient().getFirstName() + " "
 				+ a.getClient().getLastName() + "<br />";
 		title += a.getDescription() + "<br />";

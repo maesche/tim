@@ -26,7 +26,7 @@ public class AppointmentDialogController extends AbstractController {
 		Date begin = DateHelper.StringToDate(date + " " + String.valueOf(beginH) + ":" + String.valueOf(beginM), Config.DATE_FORMAT_LONG);
 		Date end = DateHelper.StringToDate(date + " " + String.valueOf(endH) + ":" + String.valueOf(endM), Config.DATE_FORMAT_LONG);
 		
-		Appointment appointment = new Appointment(begin, end, "", description, employee, client);
+		Appointment appointment = new Appointment(begin, end, description, employee, client);
 		
 		models.get("AppointmentModel").add(appointment);
 
