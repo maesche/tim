@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Observable;
-import java.util.Observer;
+
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import tim.application.BootLoader;
 import tim.application.Config;
 import tim.application.utils.ErrorHandler;
 import tim.controller.AbstractController;
@@ -33,7 +34,7 @@ import tim.view.appointmentdialog.AppointmentDialog;
 import tim.view.calendar.CalendarContainer;
 import tim.view.calendar.DayNavigation;
 
-public class Application extends JFrame implements Observer{
+public class Application extends JFrame implements AbstractView{
 	
 	JButton btnDialog;
 	AppointmentDialog eventDialog;
@@ -110,14 +111,16 @@ public class Application extends JFrame implements Observer{
 		
 		JPanel navBar = new DayNavigation();
 		
-		//container.add(testBar, BorderLayout.NORTH);
-		container.add(navBar, BorderLayout.NORTH);
+		container.add(testBar, BorderLayout.NORTH);
+		container.add(navBar, BorderLayout.CENTER);
 		container.add(calendarContainer, BorderLayout.SOUTH);
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	public void update(Observable observable, Object object) {
+		if (observable instanceof BootLoader) {
+			repaint();
+		}
 		
 	}
 	

@@ -2,6 +2,7 @@ package tim.application;
 
 import java.util.ResourceBundle;
 
+
 public class Config {
 	public static String DB_USER = null;
 	public static String DB_PWD = null;

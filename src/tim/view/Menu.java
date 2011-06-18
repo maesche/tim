@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 
 public class Menu extends JMenuBar {
 	
@@ -38,10 +39,23 @@ public class Menu extends JMenuBar {
 		
 		english = new JMenuItem("English");
 		french = new JMenuItem("French");
+		
+		french.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				Config.DEFAULT_LANG = "fr";
+				GlobalRegistry.bootLoader.reload();
+			}
+			
+		});
+		
 		german = new JMenuItem("German");
 		japanese = new JMenuItem("Japanese");
 		edit.add(language);
 		language.add(english);
+
+		
 		language.add(french);
 		language.add(german);
 		language.add(japanese);

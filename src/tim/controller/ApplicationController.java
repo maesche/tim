@@ -15,10 +15,10 @@ import tim.model.Element;
 
 public class ApplicationController extends AbstractController {
 	
+	private BootLoader bootLoader = null;
+	
 	public void init() {
-		String xmlFilePath = Config.CONFIG_PATH + "xml/application.xml";
-		BootLoader bootLoader = new BootLoader(xmlFilePath);
-		bootLoader.loadConfig();
+
 		
 	}
 

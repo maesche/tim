@@ -21,7 +21,6 @@ public class Db {
 		} catch(Exception ex) {
 			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
 		}
-
 		return conn;
 	}
 	

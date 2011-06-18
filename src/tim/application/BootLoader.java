@@ -2,6 +2,7 @@ package tim.application;
 
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import java.util.Observable;
 
@@ -44,7 +45,9 @@ public final class BootLoader extends Observable{
 	}
 	
 	public void reload() {
-		
+		loadConfig();
+		setChanged();
+		notifyObservers();
 		//pattern observateur
 	}
 	

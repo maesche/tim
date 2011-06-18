@@ -3,13 +3,17 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Enumeration;
 
+import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.FontUIResource;
 
 import tim.view.Application;
 
+import tim.application.BootLoader;
 import tim.application.Config;
+import tim.application.GlobalRegistry;
+import tim.application.MVCLinker;
 import tim.controller.ApplicationController;
 
 
@@ -36,9 +40,16 @@ public class TIM {
 	public static void main(String[] args) {
 		setUIFont (new FontUIResource(new Font("Arial Unicode MS", Font.BOLD, 14)));
 		ApplicationController applicationController = new ApplicationController();
+		Application app = new Application(applicationController);
+		
+
+		GlobalRegistry.bootLoader.addObserver(app);
+		GlobalRegistry.bootLoader.loadConfig();
+		
+		
 		applicationController.init();
 		
-		Application app = new Application(applicationController);
+		
 
 		app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
 		app.setVisible(true);

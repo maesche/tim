@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
-import tim.application.Config;
 import tim.application.Db;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
@@ -28,19 +27,11 @@ public class AppointmentModel extends AbstractModel{
 					 "	A.description, " +
 					 "  D.begin, " +
 					 "  D.end, " +
-					 "	C.client_id AS C_id, " +
-					 "	C.firstName AS C_firstName, " +
-					 "	C.lastName AS C_lastName, " +
-					 "	E.employee_id AS E_id, " +
-					 "	E.firstName AS E_firstName, " +
-					 "	E.lastName AS E_lastName " +
+					 "	A.client_id AS C_id, " +
+					 "	A.employee_id AS E_id " +
 					 "FROM appointments A " +
                      "LEFT OUTER JOIN appointment_dates D " +
-                     "  ON A.appointment_id = D.appointment_id " +
-                     "LEFT JOIN clients C " +
-                     "	ON A.client_id = C.client_id " +
-                     "LEFT JOIN employees E" +
-                     "	ON A.employee_id = E.employee_id";
+                     "  ON A.appointment_id = D.appointment_id ";
 		
 		if (fId > 0) {
 			filter.add("A.appointment_id=" + fId);
@@ -79,6 +70,9 @@ public class AppointmentModel extends AbstractModel{
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
+			EmployeeModel employeeModel = new EmployeeModel();
+			ClientModel clientModel = new ClientModel();
+			
 			while (rs.next()) {
 				
 				long id = rs.getLong("A_id");
@@ -87,9 +81,8 @@ public class AppointmentModel extends AbstractModel{
 				Date end = rs.getTimestamp("end");
 				String description = rs.getString("description");
 	
-				Person employee = new Employee(rs.getInt("E_id"), rs.getString("E_firstName"), rs.getString("E_lastName"));
-				//Employee employe = new EmployeeModel().get(rs.getInt("E_id"),)
-				Person client = new Client(rs.getInt("C_id"), rs.getString("C_firstName"), rs.getString("C_lastName"));
+				Person employee = (Employee) employeeModel.get(rs.getInt("E_id")).get(0);
+				Person client = (Client) clientModel.get(rs.getInt("C_id")).get(0);
 
 				Appointment appointment = new Appointment(id, begin, end, description, employee, client);
 				
@@ -155,14 +148,25 @@ public class AppointmentModel extends AbstractModel{
 
 	//public void add(ArrayList<Element> elements
 	public void add(Element element) {
-		Appointment appointment = (Appointment) element;
-		long id = appointment.getId();
-		long client_id = appointment.getClient().getId();
-		long employee_id = appointment.getEmployee().getId();
-		String description = appointment.getDescription();
 		
-		String begin = DateHelper.DateToString(appointment.getBegin());
-		String end = DateHelper.DateToString(appointment.getEnd());
+		long id = 0;
+		long client_id = 0;
+		long employee_id = 0;
+		String description = null;
+		String begin = null;
+		String end = null;
+		
+		Appointment appointment =
+			
+			
+			(Appointment) element;
+		id = appointment.getId();
+		client_id = appointment.getClient().getId();
+		employee_id = appointment.getEmployee().getId();
+		description = appointment.getDescription();
+		
+		begin = DateHelper.DateToString(appointment.getBegin());
+		end = DateHelper.DateToString(appointment.getEnd());
 		
 		String sql_appointment = "INSERT INTO appointments VALUES(" +
 				id + ", " +
