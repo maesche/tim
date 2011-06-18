@@ -19,7 +19,7 @@ public class Config {
 	public static int CALENDAR_DAY_END = 19;
 	public static int CALENDAR_DAY_INTERVAL = 15;
 	
-	public static final int CALENDAR_EVENT_ALPHA = 150;
+
 	public static ResourceBundle RESSOURCE_BUNDLE = null;
 	
 	public static final int CALENDAR_EVENT_ALPHA = 150;
