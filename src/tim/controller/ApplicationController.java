@@ -20,8 +20,12 @@ public class ApplicationController extends AbstractController {
 	
 	
 	public void init() {
-		GlobalRegistry.bootLoader = new BootLoader(System.getProperty("user.dir") + "/config/xml/application.xml");
+		/*
+		 * Register global system resources
+		 * Order is important due to dependencies
+		 */
 		GlobalRegistry.mvcLinker = new MVCLinker();
+		GlobalRegistry.bootLoader = new BootLoader(System.getProperty("user.dir") + "/config/xml/application.xml");
 		GlobalRegistry.languageLinker = new LanguageLinker();
 		
 		GlobalRegistry.bootLoader.loadConfig();

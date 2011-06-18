@@ -1,20 +1,18 @@
 package tim.application;
 
 import java.util.Locale;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 import tim.application.resources.XMLResourceBundleControl;
 
-public class LanguageLinker extends Observable {
+public class LanguageLinker extends CustomObservable {
 	
 	public LanguageLinker() {
 		GlobalRegistry.mvcLinker.registerSystemObservable(this);
 	}
 	
 	public void setLanguageDefault() {
-		Config.RESSOURCE_BUNDLE = ResourceBundle.getBundle("lang", new Locale(Config.DEFAULT_LANG), 
-				 new XMLResourceBundleControl());
+		setLanguage(Config.DEFAULT_LANG);
 	}
 
 	public void setLanguage(String lang) {
@@ -25,7 +23,5 @@ public class LanguageLinker extends Observable {
 			this.notifyObservers();
 	}
 	
-	public String toString() {
-		return this.getClass().getSimpleName();
-	}
+
 }
