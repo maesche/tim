@@ -1,5 +1,6 @@
 package tim.view.calendar;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -21,7 +22,8 @@ public class CalendarView extends JPanel {
 		super();
 		this.JLayerPaneDimension = new Dimension(800,600);
 
-		this.setPreferredSize(JLayerPaneDimension);
+		//this.setPreferredSize(JLayerPaneDimension);
+		
 		
 		
 		this.layeredPane = layer;

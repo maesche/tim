@@ -31,6 +31,7 @@ import tim.model.Client;
 import tim.model.Element;
 import tim.view.appointmentdialog.AppointmentDialog;
 import tim.view.calendar.CalendarContainer;
+import tim.view.calendar.DayNavigation;
 
 public class Application extends JFrame implements Observer{
 	
@@ -106,7 +107,11 @@ public class Application extends JFrame implements Observer{
 		JPanel testBar = new JPanel(new FlowLayout());
 		testBar.add(btnDialog);
 		testBar.add(btnTstDialog);
-		container.add(testBar, BorderLayout.NORTH);
+		
+		JPanel navBar = new DayNavigation();
+		
+		//container.add(testBar, BorderLayout.NORTH);
+		container.add(navBar, BorderLayout.NORTH);
 		container.add(calendarContainer, BorderLayout.SOUTH);
 	}
 
