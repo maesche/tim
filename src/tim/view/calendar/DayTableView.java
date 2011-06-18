@@ -23,24 +23,17 @@ public class DayTableView extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		int hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
+		int nbrPerson = 3;
+		
+		Object[][] donnees = new Object[nbrPerson][hourInDay+1];
+		String[] titreColonnes = new String[hourInDay+1]; 
+				
+		/*for(){
+			
+		}*/
 		
 		
-		Object[][] donnees = {  
-				   {"Swing", "Astral", "standard", 
-				      Color.red, Boolean.TRUE}, 
-				   {"Swing", "Mistral", "standard", 
-				      Color.yellow, Boolean.FALSE}, 
-				   {"Gin", "Oasis", "standard", 
-				      Color.blue, Boolean.FALSE},
-				   {"Gin", "boomerang", "compétition", 
-				      Color.green, Boolean.TRUE},
-				   {"Advance", "Omega", "performance", 
-				      Color.cyan, Boolean.TRUE}, 
-				} ;
-				String[] titreColonnes = { 
-				   "marque","modèle", "homologation",
-				   "couleur", "vérifiée ?"}; 
-				JTable t = new JTable(
+		JTable t = new JTable(
 				      donnees, titreColonnes);
 				
 				t.setAutoResizeMode(3);
