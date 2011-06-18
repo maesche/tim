@@ -35,7 +35,7 @@ public class DayViewContainer extends JPanel {
 		//Aspect visuel
 		this.setOpaque(false);
 		setLayout(new GridLayout(employees.size(),1));
-		this.setBounds(0, 50, 1000, 600);
+		this.setBounds(0, 19, 1000, 600);
 		
 		for(Element employee : employees){
 			add(new UserCalendar((Employee)employee));
