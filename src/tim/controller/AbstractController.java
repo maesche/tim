@@ -12,18 +12,6 @@ public abstract class AbstractController {
 	public AbstractController() {
 		models = GlobalRegistry.mvcLinker.getModels();
 	}
-
-
-	/*public void addModel(String modelKey) throws ResourceNotFoundException {
-		AbstractModel model = GlobalRegistry.mvcLinker.getModel(modelKey);
-		models.put(modelKey, model);
-	}
-
-
-	public void removeModel(AbstractModel model) {
-		models.remove(model.toString());
-	}
-	*/
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}

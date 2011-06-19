@@ -20,26 +20,6 @@ import tim.model.PersonModel;
 
 public class ApplicationController extends AbstractController {
 	
-	
-	public void init() {
-		/*
-		 * Register global system resources
-		 * Order is important due to dependencies
-		 */
-		GlobalRegistry.mvcLinker = new MVCLinker();
-		GlobalRegistry.bootLoader = new BootLoader(System.getProperty("user.dir") + "/config/application.xml");
-		GlobalRegistry.languageLinker = new LanguageLinker();
-		
-		GlobalRegistry.bootLoader.loadConfig();
-		GlobalRegistry.languageLinker.setLanguageDefault();		
-		GlobalRegistry.mvcLinker.registerController(this);
-		
-		GlobalRegistry.mvcLinker.registerModel(new EmployeeModel());
-		GlobalRegistry.mvcLinker.registerModel(new AppointmentModel());
-		GlobalRegistry.mvcLinker.registerModel(new ClientModel());
-
-	}
-	
 	public void getTest() {
 		AppointmentModel appointmentModel = (AppointmentModel) this.models.get("AppointmentModel");
 		/*

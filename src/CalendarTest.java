@@ -2,6 +2,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import tim.application.BootLoader;
 import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.controller.ApplicationController;
@@ -12,9 +13,7 @@ import tim.model.Employee;
 public class CalendarTest {
 
 	public static void main(String[] args) {
-		ApplicationController applicationController = new ApplicationController();
-		applicationController.init();
-		
+		BootLoader.init(System.getProperty("user.dir") + "/config/application.xml");
 			
 		CalendarController calendarController = new CalendarController();
 
