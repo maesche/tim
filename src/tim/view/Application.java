@@ -19,16 +19,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import tim.application.BootLoader;
 import tim.application.Config;
 import tim.application.utils.ErrorHandler;
-import tim.controller.AbstractController;
 import tim.lib.dialog.Form;
 import tim.lib.dialog.FormComponent;
 import tim.lib.dialog.FormEntry;
 import tim.lib.dialog.TestDialog;
-import tim.model.Client;
-import tim.model.Element;
 import tim.view.appointmentdialog.AppointmentDialog;
 import tim.view.calendar.CalendarContainer;
 import tim.view.calendar.DayNavigation;
@@ -59,7 +55,7 @@ public class Application extends JFrame implements AbstractView{
 			}
 		});
 		
-		menu = new Menu(this);
+		menu = new Menu();
 		setJMenuBar(menu);
 		
 		btnDialog = new JButton("Dialogue");

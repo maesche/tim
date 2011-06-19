@@ -15,13 +15,12 @@ import tim.application.exception.ResourceNotFoundException;
 
 public class Menu extends JMenuBar implements AbstractView {
 	
-	private Application application;
+
 	
 	private JMenu file, edit, help, language;
 	private JMenuItem quit, english, french, german, japanese;
 
-	public Menu(Application app) {
-		this.application = app;
+	public Menu() {
 		try {
 			GlobalRegistry.mvcLinker.addObserverToSystemResource("LanguageLinker", this);
 		} catch (ResourceNotFoundException e1) {
@@ -29,8 +28,8 @@ public class Menu extends JMenuBar implements AbstractView {
 			e1.printStackTrace();
 		}
 
-		file = new JMenu(Config.RESSOURCE_BUNDLE.getString("applicationMenuFile"));
-		quit = new JMenuItem(Config.RESSOURCE_BUNDLE.getString("applicationMenuQuit"));
+		file = new JMenu();
+		quit = new JMenuItem();
 
 		quit.addActionListener(new ActionListener() {
 			
@@ -43,11 +42,11 @@ public class Menu extends JMenuBar implements AbstractView {
 		file.add(quit);
 		add(file);
 		
-		edit = new JMenu(Config.RESSOURCE_BUNDLE.getString("applicationMenuEdit"));
+		edit = new JMenu();
 		
-		language = new JMenu(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguage"));
+		language = new JMenu();
 		
-		english = new JMenuItem(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageEnglish"));
+		english = new JMenuItem();
 		
 		english.addActionListener(new ActionListener() {
 
@@ -59,7 +58,7 @@ public class Menu extends JMenuBar implements AbstractView {
 			
 		});
 		
-		french = new JMenuItem(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageFrench"));
+		french = new JMenuItem();
 		
 		french.addActionListener(new ActionListener() {
 
@@ -71,7 +70,7 @@ public class Menu extends JMenuBar implements AbstractView {
 			
 		});
 		
-		german = new JMenuItem(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageGerman"));
+		german = new JMenuItem();
 		
 		german.addActionListener(new ActionListener() {
 
@@ -83,7 +82,7 @@ public class Menu extends JMenuBar implements AbstractView {
 			
 		});
 		
-		japanese = new JMenuItem(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageJapanese"));
+		japanese = new JMenuItem();
 		
 		japanese.addActionListener(new ActionListener() {
 
@@ -107,6 +106,7 @@ public class Menu extends JMenuBar implements AbstractView {
 
 		help = new JMenu("?");
 		add(help);
+		update();
 	}
 	
 	public void update() {
