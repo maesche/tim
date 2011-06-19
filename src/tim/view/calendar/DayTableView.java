@@ -16,8 +16,9 @@ import tim.application.Config;
 
 public class DayTableView extends JPanel {
 	
-	static JTable table;
+	private static JTable table;
 	public JScrollPane scroll;
+	private static int hourInDay;
 	
 	public DayTableView(){
 		this.setOpaque(false);
@@ -25,7 +26,7 @@ public class DayTableView extends JPanel {
 		this.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
 		this.setLayout(new BorderLayout());
 		
-		int hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
+		this.hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		int nbrPerson = 3;
 		String h;
 		
@@ -76,8 +77,8 @@ public class DayTableView extends JPanel {
 		
 	}
 	
-	public static int getPersonColumnWidth(){
-		return table.getColumnModel().getColumn(0).getWidth();
+	public static int test(){
+		return table.getColumnModel().getColumn(1).getWidth() * hourInDay;
 	}
 	
 	public void validate(){
@@ -91,6 +92,13 @@ public class DayTableView extends JPanel {
 		table.setSize((int)CalendarContainer.getJLayerPaneDimension().getWidth(), (int)CalendarContainer.getJLayerPaneDimension().getHeight());
 		table.setPreferredSize(d);
 		table.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
+		
+		
+		table.setRowHeight((int) (table.getSize().getHeight()/3));
+		
+		CalendarContainer.setCalendarGridWidth(test());
+		CalendarContainer.setCalendarGridPersonWidth(table.getColumnModel().getColumn(0).getWidth());
+		System.out.println("1.2 = " + this.getWidth() + "x" + this.getHeight());
 	}
 	
 	public void paintComponent(Graphics g){

@@ -45,12 +45,20 @@ public class DayViewContainer extends JPanel {
 	
 	public void validate(){
 		int x = 200;
+		int width=0;
 		int y = 19;
-		this.setBounds(x, y, (int)CalendarContainer.getJLayerPaneDimension().getWidth()-x, (int)CalendarContainer.getJLayerPaneDimension().getHeight()-y);
-	}
-	
-	public void Validate(){
-		//this.setBounds(DayTableView.getPersonColumnWidth(), 19, 600, 600);
+		
+		if(CalendarContainer.getCalendarGridWidth() > 0){
+			width = CalendarContainer.getCalendarGridWidth();
+			System.out.println(x);
+		}
+		if(CalendarContainer.getCalendarGridPersonWidth() > 0){
+			x = CalendarContainer.getCalendarGridPersonWidth();
+		}
+		
+		//this.setBounds(x, y, (int)CalendarContainer.getJLayerPaneDimension().getWidth()-x, (int)CalendarContainer.getJLayerPaneDimension().getHeight()-y);
+		this.setBounds(x, y, width, (int)CalendarContainer.getJLayerPaneDimension().getHeight()-y);
+		System.out.println("1.1 = " + this.getWidth() + "x" + this.getHeight());
 	}
 	
 

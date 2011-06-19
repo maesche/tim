@@ -87,5 +87,12 @@ public class UserCalendar extends JPanel{
 	    
 	    eventSizing(new Dimension(this.getWidth(),this.getHeight()));
 	    //System.out.println("Event: " + this.getWidth() + "x" + this.getHeight());
-	}	
+	}
+	
+	public void validate(){
+		
+		
+		this.setSize(CalendarContainer.getJLayerPaneDimension());
+		System.out.println("1.1.1= " + this.getWidth() + "x" + this.getHeight());
+	}
 }
