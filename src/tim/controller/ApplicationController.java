@@ -11,7 +11,6 @@ import tim.application.LanguageLinker;
 import tim.application.MVCLinker;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
-import tim.model.AbstractModel;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;
@@ -29,7 +28,7 @@ public class ApplicationController extends AbstractController {
 		GlobalRegistry.languageLinker = new LanguageLinker();
 		
 		GlobalRegistry.bootLoader.loadConfig();
-		GlobalRegistry.languageLinker.setLanguageDefault();
+		GlobalRegistry.languageLinker.setLanguageDefault();		
 	}
 	
 	public void getTest() {

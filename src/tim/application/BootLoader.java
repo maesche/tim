@@ -1,20 +1,17 @@
 package tim.application;
 
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.Observer;
-import java.util.ResourceBundle;
-import java.util.Observable;
 
 
-public final class BootLoader extends Observable{
+
+public final class BootLoader {
 	
 	private String xmlPath;
-	private HashMap<String, Object> configMap, systemConfig, calendarConfig;
+	//private HashMap<String, Object> configMap, systemConfig, calendarConfig;
 	
 	public BootLoader(String xmlPath) {
 		this.xmlPath = xmlPath;
-		configMap = new HashMap<String, Object>();
+		/*configMap = new HashMap<String, Object>();
 		systemConfig = new HashMap<String, Object>();
 		calendarConfig = new HashMap<String, Object>();
 		configMap.put("system", systemConfig);
@@ -30,7 +27,7 @@ public final class BootLoader extends Observable{
 		
 		calendarConfig.put("day-start", null);
 		calendarConfig.put("day-end", null);
-		calendarConfig.put("day-interval", null);
+		calendarConfig.put("day-interval", null);*/
 		
 	}
 	
@@ -39,12 +36,6 @@ public final class BootLoader extends Observable{
 		//xmlFile.read(xmlPath, configMap);
 		xmlFile.readConfig(xmlPath);
 	}
-	
-	public void reload() {
-		loadConfig();
-		setChanged();
-		notifyObservers();
-		//pattern observateur
-	}
+
 	
 }

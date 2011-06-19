@@ -116,13 +116,6 @@ public class Application extends JFrame implements AbstractView{
 		container.add(calendarContainer, BorderLayout.SOUTH);
 	}
 
-	@Override
-	public void update(Observable observable, Object object) {
-		if (observable instanceof BootLoader) {
-			repaint();
-		}
-		
-	}
 	
 	public void showDialog() {
 
@@ -192,5 +185,12 @@ public class Application extends JFrame implements AbstractView{
 		tstDialog.pack();
 		tstDialog.setLocationRelativeTo(Application.this);
 		tstDialog.setVisible(true);
+	}
+
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

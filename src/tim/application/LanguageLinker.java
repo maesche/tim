@@ -21,6 +21,4 @@ public class LanguageLinker extends CustomObservable {
 			this.setChanged();
 			this.notifyObservers();
 	}
-	
-
 }
