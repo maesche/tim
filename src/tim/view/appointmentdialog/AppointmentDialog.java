@@ -6,9 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JDialog;
 
-import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AppointmentDialogController;
-import tim.model.AppointmentModel;
 import tim.view.Application;
 
 public class AppointmentDialog extends JDialog implements ActionListener {
