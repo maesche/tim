@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 import tim.application.utils.DateHelper;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
@@ -15,7 +16,7 @@ import tim.view.calendar.EventButton;
 public class UserCalendarController extends AbstractController {
 	
 	public ArrayList<Element> getEmployeeEvents(Employee employee, Date begin, Date end){
-		return ((AppointmentModel) models.get("AppointmentModel")).get(employee, begin, end);
+		return ((AppointmentModel) this.models.get("AppointmentModel")).get(employee, begin, end);
 	}
 	
 	
@@ -23,7 +24,7 @@ public class UserCalendarController extends AbstractController {
 		ArrayList<EventButton> eventButtons = null;
 		
 		if (begin != null && end != null) {
-			ArrayList<Element> appointments = ((AppointmentModel) models.get("AppointmentModel")).get(employee, begin, end);
+			ArrayList<Element> appointments = ((AppointmentModel) this.models.get("AppointmentModel")).get(employee, begin, end);
 			
 			
 			eventButtons = new ArrayList<EventButton>();

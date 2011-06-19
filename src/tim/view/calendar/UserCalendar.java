@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 import sun.security.jca.GetInstance.Instance;
 import tim.application.Config;
+import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 import tim.controller.UserCalendarController;
@@ -48,7 +49,6 @@ public class UserCalendar extends JPanel{
 		
 		//Initialisation du controller
 		UserCalendarController controller = new UserCalendarController();
-		controller.addModel(new AppointmentModel());
 
 		
 		Date begin = null, end = null;

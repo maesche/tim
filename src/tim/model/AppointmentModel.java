@@ -70,6 +70,7 @@ public class AppointmentModel extends AbstractModel{
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
+			
 			EmployeeModel employeeModel = new EmployeeModel();
 			ClientModel clientModel = new ClientModel();
 			
@@ -146,7 +147,6 @@ public class AppointmentModel extends AbstractModel{
 		return this.get(client, employee, begin, null, 0);
 	}
 
-	//public void add(ArrayList<Element> elements
 	public void add(Element element) {
 		
 		long id = 0;

@@ -6,6 +6,10 @@ import java.util.Observable;
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
 import tim.model.AbstractModel;
+import tim.model.AppointmentModel;
+import tim.model.ClientModel;
+import tim.model.EmployeeModel;
+import tim.model.PersonModel;
 import tim.view.AbstractView;
 
 public class MVCLinker {
@@ -26,6 +30,30 @@ public class MVCLinker {
 	public HashMap<String, AbstractModel> getModels() {
 		return models;
 	}
+		
+	public AbstractModel getModel(String modelKey) {
+		AbstractModel model = models.get(modelKey);	
+		/*
+		 * if there is already an existing model of this type, we don't need to
+		 * create a new instance. instead the old one is used.
+		 */
+		/*if (model == null) {	
+			if (modelKey == "EmployeeModel") {
+				model = new EmployeeModel();
+			}
+			else if (modelKey == "AppointmentModel") {
+				model = new AppointmentModel();
+			}
+			else if (modelKey == "ClientModel") {
+				model = new ClientModel();
+			}
+			else {
+				throw new ResourceNotFoundException("The model '" + modelKey + "' doesn't exist.");
+			}
+			registerModel(model);
+		}*/
+		return model;
+	}
 
 	/**
 	 * Register model to global register
@@ -33,6 +61,7 @@ public class MVCLinker {
 	 * @param model
 	 */
 	public void registerModel(AbstractModel model) {
+
 		models.put(model.toString(), model);
 	}
 	

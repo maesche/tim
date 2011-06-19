@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 import tim.application.utils.DateHelper;
 import tim.model.AbstractModel;
 import tim.model.Appointment;
@@ -28,7 +29,7 @@ public class AppointmentDialogController extends AbstractController {
 		
 		Appointment appointment = new Appointment(begin, end, description, employee, client);
 		
-		models.get("AppointmentModel").add(appointment);
+		this.models.get("AppointmentModel").add(appointment);
 
 		return true;
 	}

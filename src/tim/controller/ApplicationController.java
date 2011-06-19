@@ -13,7 +13,10 @@ import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
+import tim.model.ClientModel;
 import tim.model.Element;
+import tim.model.EmployeeModel;
+import tim.model.PersonModel;
 
 public class ApplicationController extends AbstractController {
 	
@@ -29,6 +32,12 @@ public class ApplicationController extends AbstractController {
 		
 		GlobalRegistry.bootLoader.loadConfig();
 		GlobalRegistry.languageLinker.setLanguageDefault();		
+		GlobalRegistry.mvcLinker.registerController(this);
+		
+		GlobalRegistry.mvcLinker.registerModel(new EmployeeModel());
+		GlobalRegistry.mvcLinker.registerModel(new AppointmentModel());
+		GlobalRegistry.mvcLinker.registerModel(new ClientModel());
+
 	}
 	
 	public void getTest() {

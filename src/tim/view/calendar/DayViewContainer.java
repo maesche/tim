@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tim.application.Config;
+import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AppointmentDialogController;
 import tim.controller.DayViewController;
 import tim.model.AppointmentModel;
@@ -28,10 +29,9 @@ public class DayViewContainer extends JPanel {
 		
 		//Initialisation du controller
 		DayViewController controller = new DayViewController();
-		controller.addModel(new EmployeeModel());
+		
 		
 		ArrayList<Element> employees = controller.getEmployees();
-		
 		
 		//Aspect visuel
 		this.setOpaque(false);
