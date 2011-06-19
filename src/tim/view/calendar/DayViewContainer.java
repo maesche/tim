@@ -45,7 +45,6 @@ public class DayViewContainer extends JPanel {
 		//Aspect visuel
 		this.setOpaque(false);
 		setLayout(new GridLayout(employees.size(),1));
-		this.setBounds(5, 19, 1000-86, 600);
 		
 		for(Element employee : employees){
 			add(new UserCalendar((Employee)employee));
@@ -57,17 +56,19 @@ public class DayViewContainer extends JPanel {
 		int width=0;
 		int y = 19;
 		
-		if(CalendarContainer.getCalendarGridWidth() > 0){
-			width = CalendarContainer.getCalendarGridWidth();
-			System.out.println(x);
+		if(CalendarContainer.getCalendarHourWidth() > 0){
+			width = CalendarContainer.getCalendarHourWidth();
 		}
-		if(CalendarContainer.getCalendarGridPersonWidth() > 0){
-			x = CalendarContainer.getCalendarGridPersonWidth();
+		if(CalendarContainer.getCalendarPersonColWidth() > 0){
+			x = CalendarContainer.getCalendarPersonColWidth();
 		}
 		
-		//this.setBounds(x, y, (int)CalendarContainer.getJLayerPaneDimension().getWidth()-x, (int)CalendarContainer.getJLayerPaneDimension().getHeight()-y);
-		this.setBounds(x, y, width, (int)CalendarContainer.getJLayerPaneDimension().getHeight()-y);
-		System.out.println("1.1 = " + this.getWidth() + "x" + this.getHeight());
+		this.setBounds(x, y, width, (int)CalendarContainer.getCalendarDimension().getHeight()-y);
+	}
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		validate();
 	}
 	
 
