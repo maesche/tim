@@ -10,14 +10,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tim.application.Config;
+import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
+import tim.application.utils.CurrentClassGetter;
 import tim.controller.AppointmentDialogController;
 import tim.controller.DayViewController;
 import tim.model.AppointmentModel;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.model.EmployeeModel;
+import tim.view.ExceptionView;
 
 
 public class DayViewContainer extends JPanel {
@@ -36,8 +39,7 @@ public class DayViewContainer extends JPanel {
 		try {
 			employees = controller.getEmployees();
 		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new ExceptionView (e.toString());
 		}
 		
 		//Aspect visuel

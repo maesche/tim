@@ -22,6 +22,7 @@ import javax.swing.UIManager;
 import tim.application.Config;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
+import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.ErrorHandler;
 import tim.lib.dialog.Form;
 import tim.lib.dialog.FormComponent;
@@ -46,7 +47,7 @@ public class Application extends JFrame implements AbstractView{
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			new ExceptionView (ExceptionFormatter.format(ex, new CurrentClassGetter().getClassName(), "constructor"));
 		}
 
 		setTitle("TIM - Time Is Money");
