@@ -16,7 +16,6 @@ public class CalendarContainer extends JPanel {
 	
 	private static Dimension JLayerPaneDimension;
 	
-	private CalendarView calendarView;
 	private JLayeredPane layer;
 	
 	public CalendarContainer() {
