@@ -14,9 +14,6 @@ import tim.application.GlobalRegistry;
 import tim.application.exception.ResourceNotFoundException;
 
 public class Menu extends JMenuBar implements AbstractView {
-	
-
-	
 	private JMenu file, edit, help, language;
 	private JMenuItem quit, english, french, german, japanese;
 
@@ -118,14 +115,11 @@ public class Menu extends JMenuBar implements AbstractView {
 		french.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageFrench"));
 		german.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageGerman"));
 		japanese.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageJapanese"));
-		
-		
 		repaint();
-
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
+	public void update(Observable observable, Object arg) {
 		update();
 	}
 	

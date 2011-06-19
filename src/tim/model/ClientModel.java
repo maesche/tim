@@ -2,11 +2,13 @@ package tim.model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
+import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 
 public class ClientModel extends PersonModel {
@@ -71,7 +73,48 @@ public class ClientModel extends PersonModel {
 
 	@Override
 	public void add(Element element) throws ClassCastException {
-		// TODO Auto-generated method stub
+		Connection conn;
+		Statement stmt;
+		Client client = (Client) element;
+		
+		long id = 0;
+		String firstName = null;
+		String lastName = null;
+		String phone = null;
+		String address = null;
+		String comment = null;
+		
+		
+		id = client.getId();
+		firstName = client.getFirstName();
+		lastName = client.getLastName();
+		phone = client.getPhone();
+		address = client.getAddress();
+		comment = client.getComment();
+		
+
+		
+		String sql = "INSERT INTO appointments VALUES(" +
+				+ id + ", "
+				+ "'" + firstName + "', "
+				+ "'" + lastName + "', "
+				+ "'" + phone + "', "
+				+ "'" + address + "', "
+				+ "'" + comment + "'"
+				+		")";
+		
+		try {
+			conn = Db.open();
+			
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			stmt.close();
+		} catch (SQLException ex) {
+			ErrorHandler.getException(ex, this.getClass().getName(), "add");
+		}
+		finally {
+			Db.close();
+		}
 
 	}
 

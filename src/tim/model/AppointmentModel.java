@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
+import tim.application.GlobalRegistry;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 
@@ -71,8 +72,8 @@ public class AppointmentModel extends AbstractModel{
 			rs = stmt.executeQuery(sql);
 			
 			
-			EmployeeModel employeeModel = new EmployeeModel();
-			ClientModel clientModel = new ClientModel();
+			EmployeeModel employeeModel = (EmployeeModel) GlobalRegistry.mvcLinker.getModels().get("EmployeeModel");
+			ClientModel clientModel = (ClientModel) GlobalRegistry.mvcLinker.getModels().get("ClientModel");
 			
 			while (rs.next()) {
 				
@@ -148,7 +149,6 @@ public class AppointmentModel extends AbstractModel{
 	}
 
 	public void add(Element element) {
-		
 		long id = 0;
 		long client_id = 0;
 		long employee_id = 0;
@@ -156,10 +156,7 @@ public class AppointmentModel extends AbstractModel{
 		String begin = null;
 		String end = null;
 		
-		Appointment appointment =
-			
-			
-			(Appointment) element;
+		Appointment appointment = (Appointment) element;
 		id = appointment.getId();
 		client_id = appointment.getClient().getId();
 		employee_id = appointment.getEmployee().getId();
