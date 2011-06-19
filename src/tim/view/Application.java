@@ -46,7 +46,7 @@ public class Application extends JFrame implements AbstractView{
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Exception ex) {
-			ExceptionFormatter.format(ex, this.getClass().getName(), "constructor");
+			ex.printStackTrace();
 		}
 
 		setTitle("TIM - Time Is Money");

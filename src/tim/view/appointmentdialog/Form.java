@@ -244,12 +244,7 @@ public class Form extends JPanel {
 					//close dialog
 				}
 			} catch (ParseException ex) {
-				try {
-					throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "validate"));
-				} catch (PersistanceException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				ex.printStackTrace();
 			} catch (ClassCastException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

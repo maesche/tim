@@ -58,7 +58,7 @@ public class UserCalendar extends JPanel{
 			this.beginFindDate = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
 			this.endFindDate = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
 		} catch (ParseException ex) {
-			ExceptionFormatter.format(ex, this.getClass().getName(), "constructor");
+			ex.printStackTrace();
 		}
 		
 		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
