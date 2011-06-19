@@ -6,6 +6,7 @@ import java.util.Date;
 
 import tim.application.Config;
 import tim.application.GlobalRegistry;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
 import tim.model.AbstractModel;
 import tim.model.Appointment;
@@ -18,7 +19,7 @@ import tim.model.EmployeeModel;
 
 public class AppointmentDialogController extends AbstractController {
 
-	public boolean save(Employee employee, Client client, String date, int beginH, int beginM, int endH, int endM, String description) throws ParseException {
+	public boolean save(Employee employee, Client client, String date, int beginH, int beginM, int endH, int endM, String description) throws ParseException, ClassCastException, PersistanceException {
 		
 		if (employee == null) {
 			employee = new Employee(1, "test", "test", null);
@@ -42,7 +43,7 @@ public class AppointmentDialogController extends AbstractController {
 		
 	}
 	
-	public ArrayList<Element> getClients() {		
+	public ArrayList<Element> getClients() throws PersistanceException {		
 		return new ClientModel().get();
 	}
 }

@@ -3,15 +3,16 @@ package tim.application;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
-import tim.application.utils.ErrorHandler;
 
 
 public class Db {
 	private static Connection conn = null;
 	private static int nbConnRequest = 0;
 
-	public static Connection open() {
+	public static Connection open() throws PersistanceException {
 		try {
 			Class.forName(Config.DB_DRIVER);
 			if (conn == null) {
@@ -19,12 +20,12 @@ public class Db {
 			}
 			nbConnRequest++;
 		} catch(Exception ex) {
-			ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "open");
+			throw new PersistanceException(ExceptionFormatter.format(ex, new CurrentClassGetter().getClassName(), "close"));
 		}
 		return conn;
 	}
 	
-	public static void close() {
+	public static void close() throws PersistanceException {
 		nbConnRequest--;
 		if (conn != null && nbConnRequest <= 0) {
 			try {
@@ -32,7 +33,7 @@ public class Db {
 			conn = null;
 			}
 			catch (Exception ex) {
-				ErrorHandler.getException(ex, new CurrentClassGetter().getClassName(), "close");
+				throw new PersistanceException(ExceptionFormatter.format(ex, new CurrentClassGetter().getClassName(), "close"));
 			}
 		}
 	}

@@ -8,13 +8,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Db;
+import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 
 public class ClientModel extends PersonModel {
 
 	@Override
-	public ArrayList<Element> get(long fId) {
+	public ArrayList<Element> get(long fId) throws PersistanceException {
 		Connection conn;
 		Statement stmt = null;
 		ResultSet rs;
@@ -62,8 +64,7 @@ public class ClientModel extends PersonModel {
 			}
 			stmt.close();
 		} catch (Exception ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(),
-					"get");
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "getElements"));
 		} finally {
 
 			Db.close();
@@ -72,10 +73,11 @@ public class ClientModel extends PersonModel {
 	}
 
 	@Override
-	public void add(Element element) throws ClassCastException {
+	public void add(Element element) throws ClassCastException, PersistanceException {
 		Connection conn;
 		Statement stmt;
 		Client client = (Client) element;
+		String sql;
 		
 		long id = 0;
 		String firstName = null;
@@ -84,7 +86,6 @@ public class ClientModel extends PersonModel {
 		String address = null;
 		String comment = null;
 		
-		
 		id = client.getId();
 		firstName = client.getFirstName();
 		lastName = client.getLastName();
@@ -92,9 +93,7 @@ public class ClientModel extends PersonModel {
 		address = client.getAddress();
 		comment = client.getComment();
 		
-
-		
-		String sql = "INSERT INTO appointments VALUES(" +
+		sql = "INSERT INTO appointments VALUES(" +
 				+ id + ", "
 				+ "'" + firstName + "', "
 				+ "'" + lastName + "', "
@@ -110,18 +109,55 @@ public class ClientModel extends PersonModel {
 			stmt.executeUpdate(sql);
 			stmt.close();
 		} catch (SQLException ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "add");
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "add"));
 		}
 		finally {
 			Db.close();
 		}
-
 	}
 
 	@Override
-	public void remove(Element element) throws ClassCastException {
-		// TODO Auto-generated method stub
-
+	public void remove(Element element) throws ClassCastException, PersistanceException {
+		Connection conn;
+		Statement stmt;
+		Client client = (Client) element;
+		String sql;
+		
+		long id = 0;
+		String firstName = null;
+		String lastName = null;
+		String phone = null;
+		String address = null;
+		String comment = null;
+		
+		id = client.getId();
+		firstName = client.getFirstName();
+		lastName = client.getLastName();
+		phone = client.getPhone();
+		address = client.getAddress();
+		comment = client.getComment();
+		
+		sql = "INSERT INTO appointments VALUES(" +
+				+ id + ", "
+				+ "'" + firstName + "', "
+				+ "'" + lastName + "', "
+				+ "'" + phone + "', "
+				+ "'" + address + "', "
+				+ "'" + comment + "'"
+				+		")";
+		
+		try {
+			conn = Db.open();
+			
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			stmt.close();
+		} catch (SQLException ex) {
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "delete"));
+		}
+		finally {
+			Db.close();
+		}
 	}
 
 	@Override

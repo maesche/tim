@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 import tim.application.Config;
 import tim.application.Db;
+import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.ErrorHandler;
 
 public class EmployeeModel extends PersonModel {
-	public ArrayList<Element> get(long fId) {
+	public ArrayList<Element> get(long fId) throws PersistanceException {
 
 		Connection conn;
 		Statement stmt = null;
@@ -67,8 +69,7 @@ public class EmployeeModel extends PersonModel {
 			}
 			stmt.close();
 		} catch (Exception ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(),
-					"get");
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "get"));
 		} finally {
 
 			Db.close();

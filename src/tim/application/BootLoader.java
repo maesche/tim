@@ -1,11 +1,12 @@
 package tim.application;
 
+import tim.application.exception.PersistanceException;
 import tim.model.AppointmentModel;
 import tim.model.ClientModel;
 import tim.model.EmployeeModel;
 
 public class BootLoader {		
-	public static void init(String configFile) {
+	public static void init(String configFile) throws PersistanceException {
 		/*
 		 * Register global system resources
 		 * Order is important due to dependencies

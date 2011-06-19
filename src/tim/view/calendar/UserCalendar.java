@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 
 import sun.security.jca.GetInstance.Instance;
 import tim.application.Config;
+import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
@@ -56,11 +58,16 @@ public class UserCalendar extends JPanel{
 			this.beginFindDate = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
 			this.endFindDate = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
 		} catch (ParseException ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "constructor");
+			ExceptionFormatter.format(ex, this.getClass().getName(), "constructor");
 		}
 		
 		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
-		eventButtons = controller.getAllButtons(controller.getEventButtons(employee, beginFindDate, endFindDate));
+		try {
+			eventButtons = controller.getAllButtons(controller.getEventButtons(employee, beginFindDate, endFindDate));
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		for (EventButton btn : eventButtons) {
 			add(btn);

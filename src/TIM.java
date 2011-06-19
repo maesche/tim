@@ -9,6 +9,7 @@ import tim.view.Application;
 
 import tim.application.BootLoader;
 import tim.application.Config;
+import tim.application.exception.PersistanceException;
 
 public class TIM {
 	
@@ -29,7 +30,12 @@ public class TIM {
 	public static void main(String[] args) {
 		setUIFont (new FontUIResource(new Font("Arial Unicode MS", Font.BOLD, 14)));
 
-		BootLoader.init(System.getProperty("user.dir") + "/config/application.xml");
+		try {
+			BootLoader.init(System.getProperty("user.dir") + "/config/application.xml");
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		Application app = new Application();
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.BootLoader;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
 import tim.model.Employee;
@@ -12,7 +13,12 @@ import tim.model.Employee;
 public class CalendarTest {
 
 	public static void main(String[] args) {
-		BootLoader.init(System.getProperty("user.dir") + "/config/application.xml");
+		try {
+			BootLoader.init(System.getProperty("user.dir") + "/config/application.xml");
+		} catch (PersistanceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 			
 		CalendarController calendarController = new CalendarController();
 
@@ -32,7 +38,13 @@ public class CalendarTest {
 			e.printStackTrace();
 		}
 		
-		ArrayList<Employee> employees = calendarController.getCalendars(begin, end);
+		ArrayList<Employee> employees = null;
+		try {
+			employees = calendarController.getCalendars(begin, end);
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		for (Employee employee : employees) {
 			System.out.println(employee.getCalendar().getAppointments().get(0));

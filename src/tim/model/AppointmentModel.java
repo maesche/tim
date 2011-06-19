@@ -9,12 +9,15 @@ import java.util.Date;
 
 import tim.application.Db;
 import tim.application.GlobalRegistry;
+import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
+import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 
 public class AppointmentModel extends AbstractModel{
 
-	public ArrayList<Element> get(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) {
+	public ArrayList<Element> get(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) throws PersistanceException {
 		Connection conn;
 		Statement stmt = null;
 		ResultSet rs;
@@ -92,7 +95,7 @@ public class AppointmentModel extends AbstractModel{
 			}
 			stmt.close();
 		} catch (Exception ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "getElements");
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "getElements"));
 		}
 		finally {
 			Db.close();
@@ -100,55 +103,55 @@ public class AppointmentModel extends AbstractModel{
 		return appointments;
 	}
 	
-	public ArrayList<Element> get() {
+	public ArrayList<Element> get() throws PersistanceException {
 		return this.get(null, null, null, null, 0);
 	}
 	
-	public ArrayList<Element> get(long id) {
+	public ArrayList<Element> get(long id) throws PersistanceException {
 		return this.get(null, null, null, null, id);
 	}
 	
-	public ArrayList<Element> get(Date begin) {
+	public ArrayList<Element> get(Date begin) throws PersistanceException {
 		return this.get(null, null, begin, null, 0);
 	}
 	
-	public ArrayList<Element> get(Date begin, Date end) {
+	public ArrayList<Element> get(Date begin, Date end) throws PersistanceException {
 		return this.get(null, null, begin, end, 0);
 	}
 	
-	public ArrayList<Element> get(Client client) {
+	public ArrayList<Element> get(Client client) throws PersistanceException {
 		return this.get(client, null, null, null, 0);
 	}
 
-	public ArrayList<Element> get(Client client, Date begin) {
+	public ArrayList<Element> get(Client client, Date begin) throws PersistanceException {
 		return this.get(client, null, begin, null, 0);
 	}
 	
-	public ArrayList<Element> get(Client client, Date begin, Date end) {
+	public ArrayList<Element> get(Client client, Date begin, Date end) throws PersistanceException {
 		return this.get(client, null, begin, end, 0);
 	}
 	
-	public ArrayList<Element> get(Employee employee) {
+	public ArrayList<Element> get(Employee employee) throws PersistanceException {
 		return this.get(null, employee, null, null, 0);
 	}
 	
-	public ArrayList<Element> get(Employee employee, Date begin) {
+	public ArrayList<Element> get(Employee employee, Date begin) throws PersistanceException {
 		return this.get(null, employee, begin, null, 0);
 	}
 	
-	public ArrayList<Element> get(Employee employee, Date begin, Date end) {
+	public ArrayList<Element> get(Employee employee, Date begin, Date end) throws PersistanceException {
 		return this.get(null, employee, begin, end, 0);
 	}
 	
-	public ArrayList<Element> get(Client client, Employee employee) {
+	public ArrayList<Element> get(Client client, Employee employee) throws PersistanceException {
 		return this.get(client, employee, null, null, 0);
 	}
 	
-	public ArrayList<Element> get(Client client, Employee employee, Date begin) {
+	public ArrayList<Element> get(Client client, Employee employee, Date begin) throws PersistanceException {
 		return this.get(client, employee, begin, null, 0);
 	}
 
-	public void add(Element element) {
+	public void add(Element element) throws PersistanceException {
 		long id = 0;
 		long client_id = 0;
 		long employee_id = 0;
@@ -187,7 +190,7 @@ public class AppointmentModel extends AbstractModel{
 			stmt.executeUpdate(sql_dates);
 			stmt.close();
 		} catch (SQLException ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "add");
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "add"));
 		}
 		finally {
 			Db.close();
@@ -204,7 +207,7 @@ public class AppointmentModel extends AbstractModel{
 
 	}
 	
-	public boolean checkAvailability(Appointment appointment) {
+	public boolean checkAvailability(Appointment appointment) throws PersistanceException {
 		/*
 		 *  $nbEvents = 0;
         $canInsert = true;

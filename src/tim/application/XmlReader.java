@@ -19,6 +19,9 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
+import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
+import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.ErrorHandler;
 
 import java.io.File;
@@ -27,7 +30,7 @@ public class XmlReader {
 	
 
 	
-	public void readConfig(String xmlFilePath) {
+	public void readConfig(String xmlFilePath) throws PersistanceException {
 		File fXmlFile = null;
 		DocumentBuilderFactory dbFactory = null;
 
@@ -76,7 +79,7 @@ public class XmlReader {
 				}
 			}
 		} catch (Exception ex) {
-			ErrorHandler.getException(ex, this.getClass().getName(), "readConfig");
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "readConfig"));
 		}
 	}
 	private String getTagValue(String sTag, Element eElement) {

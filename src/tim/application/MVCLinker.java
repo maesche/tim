@@ -68,7 +68,7 @@ public class MVCLinker {
 		AbstractModel model = models.get(modelKey);
 		
 		if (model == null) {
-			throw new ResourceNotFoundException("The model '" + modelKey + "' doesn't exist in global registry.");
+			throw new ResourceNotFoundException(modelKey, "global registry");
 		}
 		else {
 			model.addObserver(view);
@@ -79,7 +79,7 @@ public class MVCLinker {
 		AbstractModel model = models.get(modelKey);
 		
 		if (model == null) {
-			throw new ResourceNotFoundException("The model '" + modelKey + "' doesn't exist in global registry.");
+			throw new ResourceNotFoundException(modelKey, "global registry");
 		}
 		else {
 			model.deleteObserver(view);
@@ -102,7 +102,7 @@ public class MVCLinker {
 		Observable observable = systemObservables.get(resourceKey);
 		
 		if (observable == null) {
-			throw new ResourceNotFoundException("The system resource '" + resourceKey + "' doesn't exist in global registry.");
+			throw new ResourceNotFoundException(resourceKey, "global registry");
 		}
 		else {
 			observable.addObserver(view);
@@ -113,7 +113,7 @@ public class MVCLinker {
 		Observable observable = systemObservables.get(resourceKey);
 		
 		if (observable == null) {
-			throw new ResourceNotFoundException("The system resource '" + resourceKey + "' doesn't exist in global registry.");
+			throw new ResourceNotFoundException(resourceKey, "global registry");
 		}
 		else {
 			observable.deleteObserver(view);

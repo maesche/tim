@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import tim.application.Config;
+import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.ErrorHandler;
 import tim.controller.AppointmentDialogController;
 import tim.model.Client;
@@ -59,8 +61,13 @@ public class Form extends JPanel {
 		lblClient = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogClient") + " :");
 		cbClient = new JComboBox();
 		
-		for (Element element : controller.getClients()) {
-			cbClient.addItem((Client) element);
+		try {
+			for (Element element : controller.getClients()) {
+				cbClient.addItem((Client) element);
+			}
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 
@@ -237,7 +244,18 @@ public class Form extends JPanel {
 					//close dialog
 				}
 			} catch (ParseException ex) {
-				ErrorHandler.getException(ex, this.getClass().getName(), "validate");
+				try {
+					throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "validate"));
+				} catch (PersistanceException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (ClassCastException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (PersistanceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 

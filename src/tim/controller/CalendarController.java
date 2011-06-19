@@ -5,6 +5,7 @@ import java.util.Date;
 
 import tim.application.Config;
 import tim.application.GlobalRegistry;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
@@ -16,7 +17,7 @@ import tim.view.calendar.EventButton;
 
 public class CalendarController extends AbstractController {
 
-	public ArrayList<Employee> today() {
+	public ArrayList<Employee> today() throws PersistanceException {
 		int Hstart = Config.CALENDAR_DAY_START;
 		int Hend = Config.CALENDAR_DAY_END;
 		
@@ -28,7 +29,7 @@ public class CalendarController extends AbstractController {
 		return getCalendars(begin, end);
 	}
 	
-	public ArrayList<Employee> getCalendars(Date begin, Date end) {
+	public ArrayList<Employee> getCalendars(Date begin, Date end) throws PersistanceException {
 		ArrayList<Employee> employees = new ArrayList<Employee>();
 		ArrayList<Appointment> appointments;
 		EmployeeModel employeeModel = (EmployeeModel) this.models.get("EmployeeModel");
@@ -60,7 +61,7 @@ public class CalendarController extends AbstractController {
 		return employees;
 	}
 	
-	public ArrayList<EventButton> getEventButtons(Employee employee, Date begin, Date end){
+	public ArrayList<EventButton> getEventButtons(Employee employee, Date begin, Date end) throws PersistanceException{
 		ArrayList<EventButton> eventButtons = null;
 		
 		if (begin != null && end != null) {
