@@ -1,6 +1,7 @@
 package tim.view.calendar;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -15,11 +16,14 @@ import javax.swing.JPanel;
 public class CalendarContainer extends JPanel {
 	
 	private static Dimension JLayerPaneDimension;
+	private static int calendarGridWidth;
+	private static int calendarGridPersonWidth;
 	
-	private CalendarView calendarView;
 	private JLayeredPane layer;
 	
 	public CalendarContainer() {
+		
+		this.calendarGridWidth = 0;
 		
 		this.setLayout(new BorderLayout());
 		
@@ -48,6 +52,14 @@ public class CalendarContainer extends JPanel {
 	    //this.setSize(this.JLayerPaneDimension);
 	    //System.out.println(this.getWidth() + "x" + this.getHeight());
 	}
+	
+	public void validate(){
+		this.getJLayerPaneDimension().setSize(this.getWidth(), this.getHeight());
+	    
+	    this.setPreferredSize(this.getJLayerPaneDimension());
+	    this.setSize(this.getJLayerPaneDimension());
+	    System.out.println("1   = " + this.getWidth() + "x" + this.getHeight());
+	}
 
 	public static void setJLayerPaneDimension(Dimension jLayerPaneDimension) {
 		JLayerPaneDimension = jLayerPaneDimension;
@@ -55,5 +67,19 @@ public class CalendarContainer extends JPanel {
 
 	public static Dimension getJLayerPaneDimension() {
 		return JLayerPaneDimension;
+	}
+	
+	public static void setCalendarGridWidth(int width){
+		calendarGridWidth = width;
+	}
+	public static int getCalendarGridWidth(){
+		return calendarGridWidth;
+	}
+	
+	public static int getCalendarGridPersonWidth(){
+		return calendarGridPersonWidth;
+	}
+	public static void setCalendarGridPersonWidth(int width){
+		calendarGridPersonWidth = width;
 	}
 }

@@ -2,19 +2,23 @@ package tim.view.calendar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.table.JTableHeader;
 
 import tim.application.Config;
 
 public class DayTableView extends JPanel {
 	
-	JTable jTable1;
+	private static JTable table;
+	public JScrollPane scroll;
+	private static int hourInDay;
 	
 	public DayTableView(){
 		this.setOpaque(false);
@@ -22,7 +26,7 @@ public class DayTableView extends JPanel {
 		this.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
 		this.setLayout(new BorderLayout());
 		
-		int hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
+		this.hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		int nbrPerson = 3;
 		String h;
 		
@@ -31,22 +35,35 @@ public class DayTableView extends JPanel {
 		
 		titreColonnes[0] = "Collaborateur";
 		for(int i=1; i<hourInDay+1; i++){
-			h = Integer.toString(i + Config.CALENDAR_DAY_START);
+			h = Integer.toString(i-1 + Config.CALENDAR_DAY_START);
 			titreColonnes[i] = h + ":00";
 		}
 				
-		/*for(int pers = 0; pers<nbrPerson; pers++){
+		for(int pers = 0; pers<nbrPerson; pers++){
 			
-			donnees[pers][j]  =
-		}*/
+			donnees[pers][0]  = "Mathieu Noverraz-Belattalla";
+		}
 		
 		
-		JTable t = new JTable(
-				      donnees, titreColonnes);
-				
-				t.setAutoResizeMode(3);
-				t.setBounds(100,100, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
-		add(new JScrollPane(t));
+		this.table = new JTable(donnees, titreColonnes);
+		
+		
+		table.getColumnModel().getColumn(0).setWidth(200);
+		table.getColumnModel().getColumn(0).setMinWidth(200);
+		
+		table.setRowHeight(100);
+		
+		System.out.println(table.getColumnModel().getColumn(0).getWidth());
+		
+		table.setAutoResizeMode(0);
+		table.setEnabled(false);
+		table.setDragEnabled(false);
+		table.setFocusable(false);
+		this.scroll = new JScrollPane(table);
+		scroll.setAutoscrolls(true);
+		scroll.setEnabled(false);
+		//table.setBounds(100,100, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
+		add(scroll);
 		
 	
 		
@@ -58,6 +75,30 @@ public class DayTableView extends JPanel {
 		jTable1.setDragEnabled(false);
 		jTable1.setEnabled(false);*/
 		
+	}
+	
+	public static int test(){
+		return table.getColumnModel().getColumn(1).getWidth() * hourInDay;
+	}
+	
+	public void validate(){
+		this.setSize(CalendarContainer.getJLayerPaneDimension());
+		
+		scroll.setPreferredSize(CalendarContainer.getJLayerPaneDimension());
+		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		
+		Dimension d = new Dimension((int)CalendarContainer.getJLayerPaneDimension().getWidth()-2, (int)CalendarContainer.getJLayerPaneDimension().getHeight());
+		table.setSize((int)CalendarContainer.getJLayerPaneDimension().getWidth(), (int)CalendarContainer.getJLayerPaneDimension().getHeight());
+		table.setPreferredSize(d);
+		table.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
+		
+		
+		table.setRowHeight((int) (table.getSize().getHeight()/3));
+		
+		CalendarContainer.setCalendarGridWidth(test());
+		CalendarContainer.setCalendarGridPersonWidth(table.getColumnModel().getColumn(0).getWidth());
+		System.out.println("1.2 = " + this.getWidth() + "x" + this.getHeight());
 	}
 	
 	public void paintComponent(Graphics g){
