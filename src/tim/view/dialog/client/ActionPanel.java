@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
 import tim.model.Client;
@@ -23,7 +24,7 @@ public class ActionPanel extends JPanel {
 	public ActionPanel() {
 
 		this.setLayout(new FlowLayout());
-		btnSave = new JButton("Save");
+		btnSave = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogSave"));
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -32,7 +33,7 @@ public class ActionPanel extends JPanel {
 				}
 			}
 		});
-		btnDelete = new JButton("Delete");
+		btnDelete = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogDelete"));
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

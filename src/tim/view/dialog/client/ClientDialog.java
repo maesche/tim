@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
+import tim.application.Config;
 import tim.view.calendar.ClientDialogController;
 
 public class ClientDialog extends JDialog {
@@ -18,7 +19,7 @@ public class ClientDialog extends JDialog {
 		this.clientDialogController = clientDialogController;
 		form = new Form(clientDialogController);
 		
-		btnCancel = new JButton("Cancel");
+		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
 		
 		btnCancel.addActionListener(new ActionListener() {
 

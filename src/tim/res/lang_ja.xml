@@ -23,4 +23,12 @@
 	<entry key="dialogDescription">メモ</entry>
 	<entry key="dialogEnd">終了</entry>
 	<entry key="dialogSave">保存</entry>
+	<entry key="dialogDelete">消去</entry>
+	
+	
+	<entry key="personId">ID</entry>
+	<entry key="personFirstname">名前</entry>
+	<entry key="personLastname">名字</entry>
+	<entry key="personAddress">住所</entry>
+	<entry key="personPhone">電話番語</entry>
 </properties> 

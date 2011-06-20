@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+import tim.application.Config;
 import tim.application.exception.PersistanceException;
 import tim.model.Client;
 import tim.model.Element;
@@ -17,8 +18,11 @@ import tim.view.calendar.ClientDialogController;
 
 public class Form extends JPanel {
 	private Object[][] data;
-	private String[] columnNames = {"ID","First Name", "LastName",
-			   "Address", "Phone", "Action"}; 
+	private String[] columnNames = {Config.RESSOURCE_BUNDLE.getString("personId"),
+			Config.RESSOURCE_BUNDLE.getString("personFirstname"), 
+			Config.RESSOURCE_BUNDLE.getString("personLastname"),
+			Config.RESSOURCE_BUNDLE.getString("personAddress"), 
+			Config.RESSOURCE_BUNDLE.getString("personPhone"), "Action"}; 
 	private JTable table;
 	private ClientTableModel clientTableModel = null;
 	private ActionPanel actionPanel = null;
@@ -71,7 +75,7 @@ public class Form extends JPanel {
 		table.getColumnModel().getColumn(2).setMinWidth(100);
 		table.getColumnModel().getColumn(3).setMinWidth(200);
 		table.getColumnModel().getColumn(4).setMinWidth(100);
-		table.getColumnModel().getColumn(5).setMinWidth(200);
+		table.getColumnModel().getColumn(5).setMinWidth(280);
 
 		table.setRowHeight(rowHeight);
 		table.getTableHeader().setReorderingAllowed(false);
@@ -82,6 +86,6 @@ public class Form extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		add(scrollPane, BorderLayout.CENTER);
-		this.setPreferredSize(new Dimension(700, nb * rowHeight + 120));
+		this.setPreferredSize(new Dimension(780, nb * rowHeight + 120));
 	}             
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

@@ -23,4 +23,11 @@
 	<entry key="dialogDescription">Beschreibung</entry>
 	<entry key="dialogEnd">Ende</entry>
 	<entry key="dialogSave">Speichern</entry>
+	<entry key="dialogDelete">Löschen</entry>
+	
+	<entry key="personId">ID</entry>
+	<entry key="personFirstname">Vorname</entry>
+	<entry key="personLastname">Nachname</entry>
+	<entry key="personAddress">Adresse</entry>
+	<entry key="personPhone">Telefon</entry>
 </properties> 
