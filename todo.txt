@@ -9,5 +9,5 @@ transmettre employee au dialogue
 Ne pas rechargre l'employé ou le client s'il est indiqué dans le filtre dans AppointmentModel
 
 Résoudre l'ajout des appointments au calendar (setAppointments pas très propre)
-=======
->>>>>>> refs/remotes/origin/alain
+
+
