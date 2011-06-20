@@ -11,7 +11,9 @@ import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
+import tim.controller.AbstractController;
 import tim.model.Client;
 import tim.model.Element;
 import tim.view.calendar.ClientDialogController;
@@ -27,15 +29,14 @@ public class Form extends JPanel {
 	private ClientTableModel clientTableModel = null;
 	private ActionPanel actionPanel = null;
 	private int rowHeight = 40;
+	private ClientDialogController controller;
 	
-	
-	private ClientDialogController clientDialogController;
 
 	public Form(ClientDialogController clientDialogController) {
-		this.clientDialogController = clientDialogController;
+		controller = clientDialogController;
 		ArrayList<Element> elements = null;
 		try {
-			elements = clientDialogController.getClients();
+			elements = controller.getClients();
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,8 +82,6 @@ public class Form extends JPanel {
 		table.getTableHeader().setReorderingAllowed(false);
 
 		JScrollPane scrollPane = new JScrollPane(table);
-		
-
 		
 		this.setLayout(new BorderLayout());
 		add(scrollPane, BorderLayout.CENTER);

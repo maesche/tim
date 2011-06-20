@@ -17,7 +17,7 @@
 	
 	<entry key="dialogMessages">Veuillez vérifier l'erreur suivante:</entry>
 	<entry key="dialogBegin">Début</entry>
-	<entry key="dialogCancel">Annulé</entry>
+	<entry key="dialogCancel">Annuler</entry>
 	<entry key="dialogClient">Client</entry>
 	<entry key="dialogDate">Date</entry>
 	<entry key="dialogDescription">Description</entry>

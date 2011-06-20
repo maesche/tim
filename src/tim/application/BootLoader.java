@@ -16,6 +16,7 @@ public class BootLoader {
 		GlobalRegistry.mvcLinker.registerModel(new EmployeeModel());
 		GlobalRegistry.mvcLinker.registerModel(new AppointmentModel());
 		GlobalRegistry.mvcLinker.registerModel(new ClientModel());
+
 		
 		new XmlReader().readConfig(configFile);
 				

@@ -8,15 +8,17 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import tim.application.Config;
+import tim.controller.AbstractController;
 import tim.view.calendar.ClientDialogController;
 
 public class ClientDialog extends JDialog {
 	Form form;
 	ClientDialogController clientDialogController;
 	private JButton btnCancel;
+	private ClientDialogController controller;
 	
 	public ClientDialog(ClientDialogController clientDialogController) {
-		this.clientDialogController = clientDialogController;
+		this.controller = (ClientDialogController) controller;
 		form = new Form(clientDialogController);
 		
 		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
@@ -37,4 +39,6 @@ public class ClientDialog extends JDialog {
 	private void close() {
 		this.dispose();
 	}
+
+
 }
