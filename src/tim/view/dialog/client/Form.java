@@ -1,9 +1,12 @@
 package tim.view.dialog.client;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
@@ -13,18 +16,19 @@ import tim.model.Element;
 import tim.view.calendar.ClientDialogController;
 
 public class Form extends JPanel {
-	JTable table;
-	ClientTableModel clientTableModel = null;
-	JButton btnSave;
-	JButton btnDelete;
-	ActionPanel actionPanel = null;
+	private Object[][] data;
+	private String[] columnNames = {"ID","First Name", "LastName",
+			   "Address", "Phone", "Action"}; 
+	private JTable table;
+	private ClientTableModel clientTableModel = null;
+	private ActionPanel actionPanel = null;
+	private int rowHeight = 40;
 	
-	ClientDialogController clientDialogController;
 	
+	private ClientDialogController clientDialogController;
+
 	public Form(ClientDialogController clientDialogController) {
 		this.clientDialogController = clientDialogController;
-
-
 		ArrayList<Element> elements = null;
 		try {
 			elements = clientDialogController.getClients();
@@ -32,12 +36,8 @@ public class Form extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		actionPanel = new ActionPanel();
-
-		Object[][] data = new Object[elements.size() + 1][6];
-		String[] columnNames = { 		   "ID","First Name", "LastName",
-				   "Address", "Phone", "Action"}; 
+		data = new Object[elements.size() + 1][6];
 
 		int nb = 0;
 		
@@ -61,14 +61,26 @@ public class Form extends JPanel {
 
 		clientTableModel = new ClientTableModel(data, columnNames);
 		table = new JTable(clientTableModel);
+
 		TableColumn actionColumn = table.getColumn(columnNames[5]);
 		actionColumn.setCellRenderer(new ActionPanelRenderer());
 		table.getColumnModel().getColumn(5).setCellEditor(new ActionPanelEditor());
-		table.getColumnModel().getColumn(5).setWidth(200);
+		
+		table.getColumnModel().getColumn(1).setMinWidth(100);
+		table.getColumnModel().getColumn(2).setMinWidth(100);
+		table.getColumnModel().getColumn(3).setMinWidth(200);
+		table.getColumnModel().getColumn(4).setMinWidth(100);
 		table.getColumnModel().getColumn(5).setMinWidth(200);
+
+		table.setRowHeight(rowHeight);
+		table.getTableHeader().setReorderingAllowed(false);
+
+		JScrollPane scrollPane = new JScrollPane(table);
 		
-		table.setRowHeight(40);
+
 		
-		add(table);
-	}                     
+		this.setLayout(new BorderLayout());
+		add(scrollPane, BorderLayout.CENTER);
+		this.setPreferredSize(new Dimension(700, nb * rowHeight + 120));
+	}             
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
