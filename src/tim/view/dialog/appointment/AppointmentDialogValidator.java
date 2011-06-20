@@ -1,4 +1,4 @@
-package tim.view.appointmentdialog;
+package tim.view.dialog.appointment;
 
 import java.awt.Color;
 

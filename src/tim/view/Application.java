@@ -28,9 +28,9 @@ import tim.lib.dialog.Form;
 import tim.lib.dialog.FormComponent;
 import tim.lib.dialog.FormEntry;
 import tim.lib.dialog.TestDialog;
-import tim.view.appointmentdialog.AppointmentDialog;
 import tim.view.calendar.CalendarContainer;
 import tim.view.calendar.DayNavigation;
+import tim.view.dialog.appointment.AppointmentDialog;
 
 public class Application extends JFrame implements AbstractView{
 	

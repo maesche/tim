@@ -1,4 +1,4 @@
-package tim.view.appointmentdialog;
+package tim.view.dialog.appointment;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -23,7 +23,7 @@ import tim.application.utils.ErrorHandler;
 import tim.controller.AppointmentDialogController;
 import tim.model.Client;
 import tim.model.Element;
-import tim.view.appointmentdialog.AppointmentDialogValidator;
+import tim.view.dialog.appointment.AppointmentDialogValidator;
 
 public class Form extends JPanel {
 	AppointmentDialogController controller;

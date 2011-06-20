@@ -1,4 +1,4 @@
-package tim.view.appointmentdialog;
+package tim.view.dialog.appointment;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
