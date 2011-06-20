@@ -3,9 +3,12 @@ package tim.view.calendar;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Date;
 
 import javax.swing.JButton;
+import javax.swing.border.Border;
 
 import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
@@ -21,6 +24,8 @@ public class EventButton extends JButton {
 	private int duration;
 	private Date begin, end;
 	private Appointment appointment;
+	
+	private Employee employee;
 
 	public EventButton(String title, Date begin, Date end, int duration, Color color) {
 		
@@ -41,9 +46,11 @@ public class EventButton extends JButton {
 	
 	public EventButton(Appointment appointment) {
 		
+		CalendarController controller = new CalendarController();
+		
 		this.appointment = appointment;
 		this.duration = DateHelper.DateDiff(appointment.getBegin(), appointment.getEnd());
-		this.title = appointment.getDescription();
+		this.title = controller.getEventTitle(appointment);
 		Employee e = (Employee) appointment.getEmployee();
 		this.color = e.getColor();
 		this.begin = appointment.getBegin();
@@ -56,6 +63,12 @@ public class EventButton extends JButton {
 		this.setBackground(color);
 		this.setText(title);
 
+	}
+	
+	public EventButton(Employee employee, Date begin, Date end){
+		this.employee = employee;
+		this.begin = begin;
+		this.end = end;
 	}
 	
 	public EventButton(int duration){
@@ -95,7 +108,9 @@ public class EventButton extends JButton {
 	public Appointment getAppointment() {
 		return appointment;
 	}
-	
+	public Employee getEmployee() {
+		return employee;
+	}
 
 	/*
 	 * public void paintComponent(Graphics g) {
@@ -108,5 +123,8 @@ public class EventButton extends JButton {
 		super.paintComponent(g);
 		
 	}
+	
+	
+	
 
 }

@@ -21,11 +21,11 @@ public class UserCalendarController extends AbstractController {
 	}
 	
 	
-	public ArrayList<EventButton> getEventButtons(Employee employee, Date begin, Date end) throws PersistanceException{
+	/*public ArrayList<EventButton> getEventButtons(Element employee, Date begin, Date end) throws PersistanceException{
 		ArrayList<EventButton> eventButtons = null;
 		
 		if (begin != null && end != null) {
-			ArrayList<Element> appointments = ((AppointmentModel) this.models.get("AppointmentModel")).get(employee, begin, end);
+			ArrayList<Employee> appointments = ((AppointmentModel) this.models.get("AppointmentModel")).get(employee, begin, end);
 			
 			
 			eventButtons = new ArrayList<EventButton>();
@@ -37,7 +37,7 @@ public class UserCalendarController extends AbstractController {
 		}
 		
 		return eventButtons;
-	}
+	}*/
 	
 	public ArrayList<EventButton> getAllButtons(ArrayList<EventButton> visibleButtons){
 		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();

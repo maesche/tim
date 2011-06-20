@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.ParseException;
 import java.util.Enumeration;
 
 import javax.swing.UIManager;
@@ -30,7 +31,7 @@ public class TIM {
 	    }
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		setUIFont (new FontUIResource(new Font("Arial Unicode MS", Font.BOLD, 14)));
 
 		try {

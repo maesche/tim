@@ -1,10 +1,15 @@
 package tim.controller;
 
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Config;
-import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
 import tim.model.Appointment;
@@ -13,15 +18,28 @@ import tim.model.Calendar;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.model.EmployeeModel;
+import tim.view.Application;
 import tim.view.calendar.EventButton;
 
 public class CalendarController extends AbstractController {
+	
+	private int nbrPerson;
+	private int nbrHourPerDay;
+	private Date currentCalendarDate;
+
+	
+	public CalendarController(){
+		this.nbrPerson = 0;
+		this.nbrHourPerDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
+	}
 
 	public ArrayList<Employee> today() throws PersistanceException {
 		int Hstart = Config.CALENDAR_DAY_START;
 		int Hend = Config.CALENDAR_DAY_END;
 		
 		Date today = null;
+		
+		
 		
 		Date begin = null; //today + heure début
 		Date end = null; //today + heure fin
@@ -58,11 +76,15 @@ public class CalendarController extends AbstractController {
 			employees.add(employee);
 		}
 		
+		this.nbrPerson = employees.size();
+		
 		return employees;
 	}
 	
-	public ArrayList<EventButton> getEventButtons(Employee employee, Date begin, Date end) throws PersistanceException{
+	/*public ArrayList<EventButton> getEventButtons(Employee employee, Date begin, Date end) throws PersistanceException{
 		ArrayList<EventButton> eventButtons = null;
+		
+		
 		
 		if (begin != null && end != null) {
 			ArrayList<Element> appointments = ((AppointmentModel) this.models.get("AppointmentModel")).get(employee, begin, end);
@@ -77,10 +99,14 @@ public class CalendarController extends AbstractController {
 		}
 		
 		return eventButtons;
-	}
+	}*/
 	
-	public ArrayList<EventButton> getAllButtons(ArrayList<EventButton> visibleButtons){
+	/*public ArrayList<EventButton> getAllButtons(ArrayList<EventButton> visibleButtons){
 		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
+		
+		ArrayList<Employee> getCalendars(begin, end);
+		
+		
 		EventButton actualButton;
 		boolean exit = false;
 		int i = 0;
@@ -119,6 +145,79 @@ public class CalendarController extends AbstractController {
 		}
 
 		return allButtons;
+	}*/
+	
+	public ArrayList<EventButton> getAllButtonsX(Employee employee) throws PersistanceException, ParseException{
+		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
+		EventButton btn = null;
+		
+		ArrayList<Appointment> appointments = employee.getCalendar().getAppointments();
+		
+		
+		int actualMinuteOfDay = Config.CALENDAR_DAY_START*60;
+		int endOfDay = Config.CALENDAR_DAY_END*60;
+		int startOfButton = 0;
+		System.out.println("Deb-------------");
+		for (Appointment a : appointments) {
+			
+			btn = new EventButton(a);
+			
+			startOfButton = Integer.parseInt(DateHelper.DateToString(a.getBegin(), "H"))*60;
+			
+			//add invisible button
+			if(startOfButton >= actualMinuteOfDay){
+				String msg = "vide " + actualMinuteOfDay + " -> ";
+				String hour = String.valueOf(actualMinuteOfDay/60);
+				String minutes = String.valueOf(actualMinuteOfDay%60);
+				
+				if(hour.length() <= 1){
+					hour = "0" + hour;
+				}
+				if(minutes.length() <= 1){
+					minutes = "0" + minutes;
+				}
+				
+				//System.out.println(DateHelper.StringToDate(DateHelper.DateToString(a.getBegin(), Config.DATE_FORMAT_SHORT) + " " + hour + ":" + minutes));
+				
+				Date begin = DateHelper.StringToDate(
+						DateHelper.DateToString(a.getBegin(), Config.DATE_FORMAT_SHORT) +
+						" " +
+						hour +
+						":" +
+						minutes,
+						
+						"yyyy-MM-dd HH:mm"
+				);
+				
+				
+				Date end = a.getBegin();
+				
+				System.out.println(begin.toString() + " ----- "+ end.toString());
+				//System.out.println(DateHelper.DateDiff(a.getBegin(), a.getEnd()));
+				//System.out.println(DateHelper.DateDiff(begin, end));
+				
+				EventButton invisibleButton = new EventButton(employee, begin, end);
+				allButtons.add(invisibleButton);
+				actualMinuteOfDay += invisibleButton.getDuration();
+				msg += actualMinuteOfDay;
+				
+				//System.out.println(msg);
+				
+			}
+			
+			//add event button
+			allButtons.add(btn);
+			//System.out.println("Ajout bouton " + actualMinuteOfDay);
+			actualMinuteOfDay += btn.getDuration();
+		}
+		
+		//add last invisible button
+		if(actualMinuteOfDay < endOfDay){
+			//System.out.println("videFin " + actualMinuteOfDay + " et fin " + endOfDay);
+		}
+		
+		System.out.println("Fin-------------");
+		return allButtons;
 	}
 	
 	
@@ -129,19 +228,19 @@ public class CalendarController extends AbstractController {
 	public String getEventTitle(Appointment a){
 		String title;
 		title = "<html>";
-		title += DateHelper.DateToString(a.getBegin(),
-				Config.TIME_FORMAT)
+		title += DateHelper.DateToString(a.getBegin(),Config.TIME_FORMAT)
 				+ " - "
-				+ DateHelper.DateToString(a.getEnd(),
-						Config.TIME_FORMAT) + "<br />";
-		title += "with " + a.getClient().getFirstName() + " "
+				+ DateHelper.DateToString(a.getEnd(), Config.TIME_FORMAT) + "<br />";
+		title += a.getClient().getFirstName() + " "
 				+ a.getClient().getLastName() + "<br />";
-		title += a.getDescription() + "<br />";
-		title += "durée: " + String.valueOf(getEventDuration(a.getBegin(),a.getEnd())) + "<br />";
-
 		title += "</html>";
 
 		return title;
+	}
+	
+	
+	public int getNbrPerson(){
+		return this.nbrPerson;
 	}
 	
 }
