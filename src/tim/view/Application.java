@@ -29,8 +29,10 @@ import tim.lib.dialog.FormComponent;
 import tim.lib.dialog.FormEntry;
 import tim.lib.dialog.TestDialog;
 import tim.view.calendar.CalendarContainer;
+import tim.view.calendar.ClientDialogController;
 import tim.view.calendar.DayNavigation;
 import tim.view.dialog.appointment.AppointmentDialog;
+import tim.view.dialog.client.ClientDialog;
 
 public class Application extends JFrame implements AbstractView{
 	
@@ -41,7 +43,9 @@ public class Application extends JFrame implements AbstractView{
 	
 	//test
 	TestDialog tstDialog;
+	ClientDialog clientDialog;
 	JButton btnTstDialog;
+	private JButton btnClientDialog;
 	
 	public Application() {
 		try {
@@ -64,6 +68,8 @@ public class Application extends JFrame implements AbstractView{
 		btnDialog = new JButton("Dialogue");
 
 		btnTstDialog = new JButton("Dialogue de test");
+		
+		btnClientDialog = new JButton("Clientdialog");
 		calendarContainer = new CalendarContainer();
 
 		
@@ -85,11 +91,20 @@ public class Application extends JFrame implements AbstractView{
 			
 		});
 		
+		btnClientDialog.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				showClientDialog();
+			}
+			
+		});
+		
 		container.setLayout(new BorderLayout());
 		
 		JPanel testBar = new JPanel(new FlowLayout());
 		testBar.add(btnDialog);
 		testBar.add(btnTstDialog);
+		testBar.add(btnClientDialog);
 		
 		JPanel navBar = new DayNavigation();
 		
@@ -108,6 +123,17 @@ public class Application extends JFrame implements AbstractView{
 		eventDialog.pack();
 		eventDialog.setLocationRelativeTo(Application.this);
 		eventDialog.setVisible(true);
+	}
+	
+	public void showClientDialog() {
+
+		clientDialog = new ClientDialog(new ClientDialogController());
+		clientDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		clientDialog.setModal(true);
+		//clientDialog.setResizable(false);
+		clientDialog.pack();
+		clientDialog.setLocationRelativeTo(Application.this);
+		clientDialog.setVisible(true);
 	}
 	
 	public void showTstDialog() {
