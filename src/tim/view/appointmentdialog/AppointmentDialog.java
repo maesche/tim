@@ -3,17 +3,21 @@ package tim.view.appointmentdialog;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JDialog;
 
 import tim.controller.AppointmentDialogController;
+import tim.model.Appointment;
+import tim.model.Employee;
 import tim.view.Application;
 
 public class AppointmentDialog extends JDialog implements ActionListener {
-	Application application;
+	Appointment appointment = null;
 
-	public AppointmentDialog(Application app) {
-		this.application = app;
+	public AppointmentDialog(Appointment apointment) {
+		this.appointment = appointment;
+
 		/*
 		 * Only for testing we create the model at this place
 		 */
@@ -24,6 +28,10 @@ public class AppointmentDialog extends JDialog implements ActionListener {
 		Container cb = getContentPane();
 		cb.add(new Form(controller));
 
+	}
+	
+	public AppointmentDialog (Employee employee, Date begin, Date end) {
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {

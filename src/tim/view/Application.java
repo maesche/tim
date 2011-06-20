@@ -101,7 +101,7 @@ public class Application extends JFrame implements AbstractView{
 	
 	public void showDialog() {
 
-		eventDialog = new AppointmentDialog(Application.this);
+		eventDialog = new AppointmentDialog(null);
 		eventDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		eventDialog.setModal(true);
 		eventDialog.setResizable(false);
