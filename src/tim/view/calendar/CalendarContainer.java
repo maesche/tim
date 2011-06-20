@@ -11,75 +11,68 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import tim.application.Config;
+
 
 
 public class CalendarContainer extends JPanel {
 	
-	private static Dimension JLayerPaneDimension;
-	private static int calendarGridWidth;
-	private static int calendarGridPersonWidth;
+	private static Dimension calendarDimension;
+	private static int calendarHourWidth;
+	private static int calendarPersonColWidth;
 	
 	private JLayeredPane layer;
 	
 	public CalendarContainer() {
 		
-		this.calendarGridWidth = 0;
+		this.calendarHourWidth = 0;
 		
 		this.setLayout(new BorderLayout());
 		
-		setJLayerPaneDimension(new Dimension(1000,600));
-		this.setPreferredSize(getJLayerPaneDimension());
-		layer = new JLayeredPane();
-		layer.setPreferredSize(getJLayerPaneDimension());
 		
+		this.layer = new JLayeredPane();
+		
+		setJLayerPaneDimension(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,600));
+		this.setPreferredSize(getCalendarDimension());		
 
-		layer.add(new DayViewContainer(),new Integer(0));
-		layer.add(new DayTableView(),new Integer(-3));
+		this.layer.add(new DayViewContainer(),new Integer(0));
+		this.layer.add(new DayTableView(),new Integer(-3));
 
-		add(layer);
+		add(this.layer);
 	}
 	
 	public void paintComponent(Graphics g) {
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
-	    
-	    this.getJLayerPaneDimension().setSize(this.getWidth(), this.getHeight());
-	    
-	    this.setPreferredSize(this.getJLayerPaneDimension());
-	    this.setSize(this.getJLayerPaneDimension());
-	    //this.setBounds(0, 0, (int) this.getJLayerPaneDimension().getWidth(), (int) this.getJLayerPaneDimension().getHeight());
-	    //System.out.println(this.getJLayerPaneDimension());
-	    //this.setSize(this.JLayerPaneDimension);
-	    //System.out.println(this.getWidth() + "x" + this.getHeight());
+	    validate();
 	}
 	
 	public void validate(){
-		this.getJLayerPaneDimension().setSize(this.getWidth(), this.getHeight());
+		this.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
 	    
-	    this.setPreferredSize(this.getJLayerPaneDimension());
-	    this.setSize(this.getJLayerPaneDimension());
-	    System.out.println("1   = " + this.getWidth() + "x" + this.getHeight());
+	    this.setPreferredSize(this.getCalendarDimension());
+	    //this.setSize(this.getCalendarDimension());
 	}
 
 	public static void setJLayerPaneDimension(Dimension jLayerPaneDimension) {
-		JLayerPaneDimension = jLayerPaneDimension;
+		calendarDimension = jLayerPaneDimension;
 	}
 
-	public static Dimension getJLayerPaneDimension() {
-		return JLayerPaneDimension;
+	public static Dimension getCalendarDimension() {
+		return calendarDimension;
 	}
 	
-	public static void setCalendarGridWidth(int width){
-		calendarGridWidth = width;
+	public static void setCalendarHourWidth(int width){
+		calendarHourWidth = width;
 	}
-	public static int getCalendarGridWidth(){
-		return calendarGridWidth;
+	public static int getCalendarHourWidth(){
+		return calendarHourWidth;
 	}
 	
-	public static int getCalendarGridPersonWidth(){
-		return calendarGridPersonWidth;
+	public static int getCalendarPersonColWidth(){
+		return calendarPersonColWidth;
 	}
-	public static void setCalendarGridPersonWidth(int width){
-		calendarGridPersonWidth = width;
+	public static void setCalendarPersonColWidth(int width){
+		calendarPersonColWidth = width;
 	}
 }

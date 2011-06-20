@@ -23,7 +23,6 @@ public class DayTableView extends JPanel {
 	public DayTableView(){
 		this.setOpaque(false);
 		
-		this.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
 		this.setLayout(new BorderLayout());
 		
 		this.hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
@@ -55,25 +54,15 @@ public class DayTableView extends JPanel {
 		
 		System.out.println(table.getColumnModel().getColumn(0).getWidth());
 		
-		table.setAutoResizeMode(0);
+		table.getTableHeader().setReorderingAllowed(false); 
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.setEnabled(false);
 		table.setDragEnabled(false);
 		table.setFocusable(false);
+		
 		this.scroll = new JScrollPane(table);
-		scroll.setAutoscrolls(true);
-		scroll.setEnabled(false);
-		//table.setBounds(100,100, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
 		add(scroll);
-		
-	
-		
-		
-		/*this. jTable1 = new JTable(3,hourInDay);
-		jTable1.setAutoResizeMode(3);
-		jTable1.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
-		add(jTable1);
-		jTable1.setDragEnabled(false);
-		jTable1.setEnabled(false);*/
+
 		
 	}
 	
@@ -82,28 +71,25 @@ public class DayTableView extends JPanel {
 	}
 	
 	public void validate(){
-		this.setSize(CalendarContainer.getJLayerPaneDimension());
+		this.setSize(CalendarContainer.getCalendarDimension());
 		
-		scroll.setPreferredSize(CalendarContainer.getJLayerPaneDimension());
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		
-		Dimension d = new Dimension((int)CalendarContainer.getJLayerPaneDimension().getWidth()-2, (int)CalendarContainer.getJLayerPaneDimension().getHeight());
-		table.setSize((int)CalendarContainer.getJLayerPaneDimension().getWidth(), (int)CalendarContainer.getJLayerPaneDimension().getHeight());
+		Dimension d = new Dimension((int)CalendarContainer.getCalendarDimension().getWidth(), (int)CalendarContainer.getCalendarDimension().getHeight());
+		table.setSize(d);
 		table.setPreferredSize(d);
-		table.setBounds(0,0, (int) CalendarContainer.getJLayerPaneDimension().getWidth(), (int) CalendarContainer.getJLayerPaneDimension().getHeight());
+		table.setBounds(0,0, (int) CalendarContainer.getCalendarDimension().getWidth(), (int) CalendarContainer.getCalendarDimension().getHeight());
 		
 		
-		table.setRowHeight((int) (table.getSize().getHeight()/3));
+		table.setRowHeight((int) ((table.getSize().getHeight()-20)/3));
 		
-		CalendarContainer.setCalendarGridWidth(test());
-		CalendarContainer.setCalendarGridPersonWidth(table.getColumnModel().getColumn(0).getWidth());
-		System.out.println("1.2 = " + this.getWidth() + "x" + this.getHeight());
+		CalendarContainer.setCalendarHourWidth(test());
+		CalendarContainer.setCalendarPersonColWidth(table.getColumnModel().getColumn(0).getWidth());
 	}
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		//this.jTable1.setPreferredSize(CalendarContainer.getJLayerPaneDimension());
-		//this.jTable1.setBounds(0, 0, this.getWidth(), this.getHeight());
+		validate();
 	}
 }
