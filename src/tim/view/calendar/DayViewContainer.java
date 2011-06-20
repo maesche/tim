@@ -49,6 +49,7 @@ public class DayViewContainer extends JPanel {
 		for(Element employee : employees){
 			add(new UserCalendar((Employee)employee));
 		}
+		validate();
 	}
 	
 	public void validate(){

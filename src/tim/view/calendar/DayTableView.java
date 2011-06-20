@@ -62,6 +62,7 @@ public class DayTableView extends JPanel {
 		
 		this.scroll = new JScrollPane(table);
 		add(scroll);
+		validate();
 
 		
 	}
