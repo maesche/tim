@@ -6,10 +6,13 @@ import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
 import tim.view.Application;
+import tim.view.ExceptionView;
 
 import tim.application.BootLoader;
 import tim.application.Config;
+import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
+import tim.application.utils.CurrentClassGetter;
 
 public class TIM {
 	
@@ -32,16 +35,17 @@ public class TIM {
 
 		try {
 			BootLoader.init(System.getProperty("user.dir") + "/config/application.xml");
+			
+			Application app = new Application();
+			
+			app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
+			app.setVisible(true);
+			app.pack();
+			app.setLocationRelativeTo(null);
 		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			new ExceptionView (ExceptionFormatter.format(e, new CurrentClassGetter().getClassName(), "main"));
 		}
 		
-		Application app = new Application();
-	
-		app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
-		app.setVisible(true);
-		app.pack();
-		app.setLocationRelativeTo(null);
+
 	}
 }
