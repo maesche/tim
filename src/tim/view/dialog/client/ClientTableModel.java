@@ -37,9 +37,6 @@ public class ClientTableModel extends AbstractTableModel {
 	}
 	
 	public boolean isCellEditable(int row, int col) {
-		return col != 0 && col != 5;
+		return col != 0;
 	}
-	
-	
-
 }

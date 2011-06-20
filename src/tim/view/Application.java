@@ -130,7 +130,7 @@ public class Application extends JFrame implements AbstractView{
 		clientDialog = new ClientDialog(new ClientDialogController());
 		clientDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		clientDialog.setModal(true);
-		//clientDialog.setResizable(false);
+		clientDialog.setResizable(false);
 		clientDialog.pack();
 		clientDialog.setLocationRelativeTo(Application.this);
 		clientDialog.setVisible(true);
