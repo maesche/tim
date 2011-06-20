@@ -11,7 +11,7 @@ import javax.swing.table.TableCellEditor;
 import tim.model.Client;
 
 public class ActionPanelEditor extends ActionPanel implements TableCellEditor {
-
+	
 	@Override
 	public void addCellEditorListener(CellEditorListener cellEditorListener) {
 	}
@@ -68,7 +68,6 @@ public class ActionPanelEditor extends ActionPanel implements TableCellEditor {
 		}
 		else {
 			super.setPerformAction(true);
-
 		}
 
 		return this;
@@ -76,6 +75,6 @@ public class ActionPanelEditor extends ActionPanel implements TableCellEditor {
 
 	private void buttonPressed(JTable table, int row, int column) {
 		JOptionPane
-				.showMessageDialog(table, "Pressed at " + row + "x" + column);
+				.showMessageDialog(table, "Please fill in at least the first and lastname.");
 	}
 }

@@ -37,6 +37,7 @@ public class Form extends JPanel {
 			e.printStackTrace();
 		}
 		actionPanel = new ActionPanel();
+
 		data = new Object[elements.size() + 1][6];
 
 		int nb = 0;

@@ -7,7 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import tim.application.GlobalRegistry;
+import tim.application.exception.PersistanceException;
 import tim.model.Client;
+import tim.view.calendar.ClientDialogController;
 
 public class ActionPanel extends JPanel {
 	private JButton btnSave;
@@ -16,6 +19,7 @@ public class ActionPanel extends JPanel {
 	private Client client = null;
 	private boolean performAction = false;
 
+
 	public ActionPanel() {
 
 		this.setLayout(new FlowLayout());
@@ -23,14 +27,18 @@ public class ActionPanel extends JPanel {
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				save();
+				if (performAction) {
+					save();
+				}
 			}
 		});
 		btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				delete();
+				if (performAction) {
+					delete();
+				}
 			}
 		});
 		add(btnSave);
@@ -44,11 +52,20 @@ public class ActionPanel extends JPanel {
 	public void setPerformAction(boolean performAction) {
 		this.performAction = performAction;
 	}
+	
 		
 	private void save() {
-		System.out.println("----");
-		System.out.println("save " + client + " perform " + performAction);
-		System.out.println("----");
+
+		/*try {
+			this.clientDialogController.save(client);
+			
+		} catch (ClassCastException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 	
 	private void delete() {
