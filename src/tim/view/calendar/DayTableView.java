@@ -94,8 +94,7 @@ public class DayTableView extends JPanel {
 		table.getColumnModel().getColumn(0).setMinWidth(200);
 		
 		table.setRowHeight(100);
-		
-		System.out.println(table.getColumnModel().getColumn(0).getWidth());
+
 		
 		table.getTableHeader().setReorderingAllowed(false); 
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

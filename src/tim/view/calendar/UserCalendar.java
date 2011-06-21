@@ -105,6 +105,9 @@ public class UserCalendar extends JPanel{
 			//il faut faire les deux op√©ration pour qu'il n'y ait pas de bug d'affichage
 			btn.setSize(btnDimension);
 		    btn.setPreferredSize(btnDimension);
+		    //btn.setMinimumSize(btnDimension);
+		    //btn.setMaximumSize(btnDimension);
+		    //btn.setBounds((int)btnDimension.getWidth(), 0, (int)btnDimension.getWidth(), (int)btnDimension.getHeight());
 
 		}
 	}

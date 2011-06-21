@@ -70,13 +70,10 @@ public class EventButton extends JButton {
 		this.employee = employee;
 		this.begin = begin;
 		this.end = end;
-	}
-	
-	public EventButton(int duration){
-		this.duration = duration;
-
-		//this.setRolloverEnabled(false);
-		//this.setFocusPainted(false);
+		this.duration = DateHelper.DateDiff(begin, end);
+		this.title = "";
+		this.color = null;
+		this.appointment = null;
 		
 		this.setBorderPainted(false);
         this.setBackground(new Color(1f,1f,1f,0));
