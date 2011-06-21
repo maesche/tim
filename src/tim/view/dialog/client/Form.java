@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
@@ -67,6 +68,7 @@ public class Form extends JPanel {
 		data[nb][3] =  (String) null;
 		data[nb][4] =  (String) null;
 		data[nb][5] =  renderer;
+		
 
 		clientTableModel = new ClientTableModel(data, columnNames);
 		table = new JTable(clientTableModel);
@@ -93,6 +95,9 @@ public class Form extends JPanel {
 		this.setLayout(new BorderLayout());
 		add(scrollPane);
 		this.setPreferredSize(new Dimension(800, nb * rowHeight + 120));
+		
+
 	}
+
          
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
