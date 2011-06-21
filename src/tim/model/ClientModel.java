@@ -79,22 +79,22 @@ public class ClientModel extends PersonModel {
 		Client client = (Client) element;
 		String sql;
 		
-		long id = 0;
+
+		
 		String firstName = null;
 		String lastName = null;
 		String phone = null;
 		String address = null;
 		String comment = null;
 		
-		id = client.getId();
 		firstName = client.getFirstName();
 		lastName = client.getLastName();
 		phone = client.getPhone();
 		address = client.getAddress();
 		comment = client.getComment();
 		
-		sql = "INSERT INTO appointments VALUES(" +
-				+ id + ", "
+
+		sql = "INSERT INTO clients (firstName, lastName, phone, address, description) VALUES(" 
 				+ "'" + firstName + "', "
 				+ "'" + lastName + "', "
 				+ "'" + phone + "', "
@@ -102,12 +102,15 @@ public class ClientModel extends PersonModel {
 				+ "'" + comment + "'"
 				+		")";
 		
+
 		try {
 			conn = Db.open();
 			
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 			stmt.close();
+			setChanged();
+			notifyObservers();
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "add"));
 		}

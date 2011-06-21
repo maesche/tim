@@ -4,16 +4,18 @@ import java.awt.Component;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 
 import tim.model.Client;
 
 public class ActionPanelEditor extends AbstractCellEditor {
-	private ActionPanelRenderer renderer = new ActionPanelRenderer();
 
-	public ActionPanelEditor() {
-		
+	ActionPanelRenderer renderer = new ActionPanelRenderer();
+	
+	public ActionPanelEditor(ClientDialog main) {
+		 renderer.setMainView(main);
 	}
-
+	
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean hasFocus, int row, int col) {
@@ -26,18 +28,20 @@ public class ActionPanelEditor extends AbstractCellEditor {
 
 		String firstName = (String) table.getModel().getValueAt(row, 1);
 		String lastName = (String) table.getModel().getValueAt(row, 2);
-		String phone = (String) table.getModel().getValueAt(row, 2);
-		String address = (String) table.getModel().getValueAt(row, 2);
-		String comment = (String) table.getModel().getValueAt(row, 2);
-		Client client = new Client(id, firstName, lastName, phone, address,
-				comment);
-		renderer.setClient(client);
+		String phone = String.valueOf(table.getModel().getValueAt(row, 3));
+		String address = String.valueOf(table.getModel().getValueAt(row, 4));
+
+		
+
+		
+		Client client = new Client(id, firstName, lastName, phone, address, null);
+		 renderer.setClient(client);
 		if (firstName == null || "".equals(firstName)) {
 		buttonPressed(table, row, col);
-			renderer.setPerformAction(false);
+		 renderer.setPerformAction(false);
 		}
 		else {
-			renderer.setPerformAction(true);
+			 renderer.setPerformAction(true);
 		}
 
 		return renderer;

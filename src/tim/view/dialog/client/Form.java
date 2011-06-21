@@ -3,6 +3,7 @@ package tim.view.dialog.client;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,10 +16,12 @@ import javax.swing.table.TableColumn;
 import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
+import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
 import tim.controller.ClientDialogController;
 import tim.model.Client;
 import tim.model.Element;
+import tim.view.AbstractView;
 
 public class Form extends JPanel {
 	private Object[][] data;
@@ -31,19 +34,17 @@ public class Form extends JPanel {
 	private ClientTableModel clientTableModel = null;
 	private ActionPanel actionPanel = null;
 	private int rowHeight = 40;
-	private ClientDialogController controller;
-	
 
-	public Form(ClientDialogController clientDialogController) {
-		controller = clientDialogController;
-		ArrayList<Element> elements = null;
-		try {
-			elements = controller.getAll("clients");
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		actionPanel = new ActionPanel();
+	public Form(ArrayList<Element> elements, ClientDialog main) {
+		System.out.println(elements.size());
+		load(elements, main);
+		
+	}
+	
+	private void load(ArrayList<Element> elements, ClientDialog main) {
+		TableCellRenderer renderer = new ActionPanelRenderer();
+		TableCellEditor editor = new ActionPanelEditor(main);
+
 
 		data = new Object[elements.size() + 1][6];
 
@@ -53,31 +54,31 @@ public class Form extends JPanel {
 			Client client = (Client) element;
 
 			data[nb][0] = (int) client.getId();
-			data[nb][1] = client.getFirstName();
-			data[nb][2] = client.getLastName();
-			data[nb][3] = client.getAddress();
-			data[nb][4] = client.getPhone();
-			data[nb][5] = actionPanel;
+			data[nb][1] = (String) client.getFirstName();
+			data[nb][2] = (String) client.getLastName();
+			data[nb][3] = (String) client.getAddress();
+			data[nb][4] = (String) client.getPhone();
+			data[nb][5] = renderer;
 				nb++;
 		}
-		data[nb][0] =  null;
-		data[nb][1] =  null;
-		data[nb][2] =  null;
-		data[nb][3] =  null;
-		data[nb][4] =  null;
-		data[nb][5] =  actionPanel;
+		data[nb][0] =  (Integer) null;
+		data[nb][1] =  (String) null;
+		data[nb][2] =  (String) null;
+		data[nb][3] =  (String) null;
+		data[nb][4] =  (String) null;
+		data[nb][5] =  renderer;
 
 		clientTableModel = new ClientTableModel(data, columnNames);
 		table = new JTable(clientTableModel);
 
 		TableColumn actionColumn = table.getColumn(columnNames[5]);
-		TableCellEditor editor = new ActionPanelEditor();
-		TableCellRenderer renderer = new ActionPanelRenderer();
+
+		((ActionPanelRenderer) renderer).setMainView(main);
 		
 		actionColumn.setCellRenderer(renderer);
 		actionColumn.setCellEditor(editor);
 
-		
+		table.getColumnModel().getColumn(0).setMinWidth(40);
 		table.getColumnModel().getColumn(1).setMinWidth(100);
 		table.getColumnModel().getColumn(2).setMinWidth(100);
 		table.getColumnModel().getColumn(3).setMinWidth(200);
@@ -90,7 +91,8 @@ public class Form extends JPanel {
 		JScrollPane scrollPane = new JScrollPane(table);
 		
 		this.setLayout(new BorderLayout());
-		add(scrollPane, BorderLayout.CENTER);
-		this.setPreferredSize(new Dimension(780, nb * rowHeight + 120));
-	}             
+		add(scrollPane);
+		this.setPreferredSize(new Dimension(800, nb * rowHeight + 120));
+	}
+         
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              

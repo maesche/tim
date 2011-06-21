@@ -18,7 +18,7 @@ public abstract class AbstractController {
 	public abstract Element get(String action);
 	public abstract ArrayList<Element> getAll(String action) throws PersistanceException;
 	
-	public abstract void save(String action, Element element);
+	public abstract void save(String action, Element element) throws ClassCastException, PersistanceException;
 	public abstract void saveAll(String action, ArrayList<Element> element);
 	
 	public String toString() {

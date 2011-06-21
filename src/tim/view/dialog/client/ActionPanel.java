@@ -19,6 +19,8 @@ public class ActionPanel extends JPanel {
 	
 	private Client client = null;
 	private boolean performAction = false;
+	
+	private ClientDialog clientDialog;
 
 
 	public ActionPanel() {
@@ -56,24 +58,15 @@ public class ActionPanel extends JPanel {
 	
 		
 	private void save() {
-		System.out.println("----");
-		System.out.println("save " + client + " perform " + performAction);
-		System.out.println("----");
-		/*try {
-			this.clientDialogController.save(client);
-			
-		} catch (ClassCastException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		
+		clientDialog.save("add", client);
 	}
 	
 	private void delete() {
-		System.out.println("----");
-		System.out.println("delete " + client + " perform " + performAction);
-		System.out.println("----");
+		clientDialog.save("delete", client);
+	}
+	
+	public void setMainView(ClientDialog main) {
+		this.clientDialog = main;
 	}
 }
