@@ -13,8 +13,8 @@ class ActionPanelRenderer implements TableCellRenderer {
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 		Component component = null;
-		if (value instanceof JPanel) {
-			component = (JPanel) value;
+		if (value instanceof ActionPanel) {
+			component = (ActionPanel) value;
 
 		} 
 		return component;

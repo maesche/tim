@@ -70,7 +70,8 @@ public class Form extends JPanel {
 
 		TableColumn actionColumn = table.getColumn(columnNames[5]);
 		actionColumn.setCellRenderer(new ActionPanelRenderer());
-		table.getColumnModel().getColumn(5).setCellEditor(new ActionPanelEditor());
+		ActionPanelEditor actionPanelEditor = new ActionPanelEditor(actionPanel);
+		table.getColumnModel().getColumn(5).setCellEditor(actionPanelEditor);
 		
 		table.getColumnModel().getColumn(1).setMinWidth(100);
 		table.getColumnModel().getColumn(2).setMinWidth(100);

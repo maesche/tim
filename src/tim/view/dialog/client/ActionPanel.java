@@ -56,7 +56,9 @@ public class ActionPanel extends JPanel {
 	
 		
 	private void save() {
-
+		System.out.println("----");
+		System.out.println("save " + client + " perform " + performAction);
+		System.out.println("----");
 		/*try {
 			this.clientDialogController.save(client);
 			

@@ -11,7 +11,11 @@ import javax.swing.table.TableCellEditor;
 import tim.model.Client;
 
 public class ActionPanelEditor extends ActionPanel implements TableCellEditor {
-	
+	private ActionPanel actionPanel;
+
+	public ActionPanelEditor(ActionPanel actionPanel) {
+		this.actionPanel = actionPanel;
+	}
 	@Override
 	public void addCellEditorListener(CellEditorListener cellEditorListener) {
 	}
@@ -61,16 +65,16 @@ public class ActionPanelEditor extends ActionPanel implements TableCellEditor {
 		String comment = (String) table.getModel().getValueAt(row, 2);
 		Client client = new Client(id, firstName, lastName, phone, address,
 				comment);
-		super.setClient(client);
+		actionPanel.setClient(client);
 		if (firstName == null || "".equals(firstName)) {
 		buttonPressed(table, row, col);
-			super.setPerformAction(false);
+			actionPanel.setPerformAction(false);
 		}
 		else {
-			super.setPerformAction(true);
+			actionPanel.setPerformAction(true);
 		}
 
-		return this;
+		return actionPanel;
 	}
 
 	private void buttonPressed(JTable table, int row, int column) {
