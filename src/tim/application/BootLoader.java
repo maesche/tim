@@ -1,6 +1,7 @@
 package tim.application;
 
 import tim.application.exception.PersistanceException;
+import tim.controller.CalendarController;
 import tim.model.AppointmentModel;
 import tim.model.ClientModel;
 import tim.model.EmployeeModel;
@@ -16,7 +17,8 @@ public class BootLoader {
 		GlobalRegistry.mvcLinker.registerModel(new EmployeeModel());
 		GlobalRegistry.mvcLinker.registerModel(new AppointmentModel());
 		GlobalRegistry.mvcLinker.registerModel(new ClientModel());
-
+		
+		GlobalRegistry.mvcLinker.registerController(new CalendarController());
 		
 		new XmlReader().readConfig(configFile);
 				

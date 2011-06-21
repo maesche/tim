@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 
 import sun.security.jca.GetInstance.Instance;
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
@@ -58,8 +59,10 @@ public class UserCalendar extends JPanel{
 		
 		//Initialisation du controller
 		//UserCalendarController controller = new UserCalendarController();
-		CalendarController controller = new CalendarController();
-
+		CalendarController controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
+		
+		//CalendarController controller = (CalendarController) this.controllers.get("CalendarController").get("action");
+		
 		
 		Date begin = null, end = null;
 		try {
