@@ -51,6 +51,7 @@ public class ClientDialog extends JDialog implements AbstractView {
 		
 		add(form, BorderLayout.NORTH);
 		add(btnCancel, BorderLayout.CENTER);
+		this.pack();
 	}
 	
 	public void save(String action, Element element) {
@@ -73,7 +74,12 @@ public class ClientDialog extends JDialog implements AbstractView {
 	@Override
 	public void update(Observable o, Object arg) {
 		try {
+			this.remove(form);
+			this.remove(btnCancel);
 			form = new Form(controller.getAll("clients"), this);
+			add(form, BorderLayout.NORTH);
+			add(btnCancel, BorderLayout.CENTER);
+			this.pack();
 
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block

@@ -137,6 +137,8 @@ public class ClientModel extends PersonModel {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
 			stmt.close();
+			setChanged();
+			notifyObservers();
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "delete"));
 		}

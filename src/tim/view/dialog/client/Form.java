@@ -92,4 +92,8 @@ public class Form extends JPanel {
 		add(scrollPane);
 		this.setPreferredSize(new Dimension(800, data.size() * rowHeight + 120));
 	}
+	
+	public void setData() {
+		
+	}
 }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
