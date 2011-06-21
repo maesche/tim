@@ -20,6 +20,7 @@ import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
+import tim.controller.CalendarController;
 import tim.controller.UserCalendarController;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
@@ -35,7 +36,7 @@ public class UserCalendar extends JPanel{
 	private Date beginFindDate;
 	private Date endFindDate;
 		
-	public UserCalendar(Employee employee){
+	public UserCalendar(Employee employee) throws ParseException{
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.LEFT);
@@ -50,7 +51,8 @@ public class UserCalendar extends JPanel{
 		this.eventButtons = new ArrayList<EventButton>();
 		
 		//Initialisation du controller
-		UserCalendarController controller = new UserCalendarController();
+		//UserCalendarController controller = new UserCalendarController();
+		CalendarController controller = new CalendarController();
 
 		
 		Date begin = null, end = null;
@@ -63,7 +65,7 @@ public class UserCalendar extends JPanel{
 		
 		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
 		try {
-			eventButtons = controller.getAllButtons(controller.getEventButtons(employee, beginFindDate, endFindDate));
+			eventButtons = controller.getAllButtonsX(employee);
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

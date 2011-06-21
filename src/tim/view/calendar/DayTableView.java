@@ -13,6 +13,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.JTableHeader;
 
 import tim.application.Config;
+import tim.controller.CalendarController;
 
 public class DayTableView extends JPanel {
 	
@@ -25,7 +26,13 @@ public class DayTableView extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		
+		CalendarController controller = new CalendarController();
+		
+		
 		this.hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
+		//this.hourInDay = controller.;
+		
+		
 		int nbrPerson = 3;
 		String h;
 		

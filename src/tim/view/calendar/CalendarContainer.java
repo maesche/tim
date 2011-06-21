@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.text.ParseException;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -23,7 +24,7 @@ public class CalendarContainer extends JPanel {
 	
 	private JLayeredPane layer;
 	
-	public CalendarContainer() {
+	public CalendarContainer() throws ParseException {
 		
 		this.calendarHourWidth = 0;
 		
