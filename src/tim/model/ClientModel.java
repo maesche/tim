@@ -123,32 +123,14 @@ public class ClientModel extends PersonModel {
 	public void remove(Element element) throws ClassCastException, PersistanceException {
 		Connection conn;
 		Statement stmt;
-		Client client = (Client) element;
+
 		String sql;
 		
-		long id = 0;
-		String firstName = null;
-		String lastName = null;
-		String phone = null;
-		String address = null;
-		String comment = null;
+		long id = element.getId();
 		
-		id = client.getId();
-		firstName = client.getFirstName();
-		lastName = client.getLastName();
-		phone = client.getPhone();
-		address = client.getAddress();
-		comment = client.getComment();
 		
-		sql = "INSERT INTO appointments VALUES(" +
-				+ id + ", "
-				+ "'" + firstName + "', "
-				+ "'" + lastName + "', "
-				+ "'" + phone + "', "
-				+ "'" + address + "', "
-				+ "'" + comment + "'"
-				+		")";
-		
+		sql = "DELETE FROM clients WHERE client_id=" + id;
+
 		try {
 			conn = Db.open();
 			

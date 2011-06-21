@@ -1,38 +1,42 @@
 package tim.view.dialog.client;
 
+import java.util.Vector;
+
 import javax.swing.table.AbstractTableModel;
 
 public class ClientTableModel extends AbstractTableModel {
-	String[] columnNames = null; 
-	Object[][] data = null;
+	Vector<String> columnNames = null;
+	//String[] columnNames = null; 
+	Vector<Vector<Object>> data = null;
 	
-	public ClientTableModel(Object[][] data, String[] colunmNames) {
+	public ClientTableModel(Vector<Vector<Object>> data, Vector<String> colunmNames) {
 		this.columnNames = colunmNames;
 		this.data = data;
 	}
 	
 	@Override
 	public int getColumnCount() {
-		return columnNames.length;
+		return columnNames.size();
 	}
 
 	@Override
 	public int getRowCount() {
-		return data.length;
+		return data.size();
 	}
 
 	@Override
 	public Object getValueAt(int row, int col) {
-		return data[row][col];
+		return data.get(row).get(col);
 	}
 	
 	public String getColumnName(int col) { 
-		return columnNames[col].toString();
+		return columnNames.get(col).toString();
 	}
 	
 
 	public void setValueAt(Object value, int row, int col) {
-		data[row][col] = value;
+		Vector<Object> rowData = (Vector<Object>)data.get(row);
+        rowData.set(col, value);
 		fireTableCellUpdated(row, col);
 	}
 	

@@ -48,6 +48,9 @@ public class Controller extends AbstractController {
 			if ("add".equals(action)) {
 				model.add(element);
 			}
+			if ("delete".equals(action)) {
+				model.remove(element);
+			}
 		}
 		
 

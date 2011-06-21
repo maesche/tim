@@ -74,7 +74,7 @@ public class ClientDialog extends JDialog implements AbstractView {
 	public void update(Observable o, Object arg) {
 		try {
 			form = new Form(controller.getAll("clients"), this);
-			repaint();
+
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
