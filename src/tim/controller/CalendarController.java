@@ -23,9 +23,10 @@ import tim.view.calendar.EventButton;
 
 public class CalendarController extends AbstractController {
 	
-	private int nbrPerson;
+	private int nbrPerson = 3;
 	private int nbrHourPerDay;
 	private Date currentCalendarDate;
+	private ArrayList<Employee> employees;
 
 	
 	public CalendarController(){
@@ -77,6 +78,7 @@ public class CalendarController extends AbstractController {
 		}
 		
 		this.nbrPerson = employees.size();
+		this.employees = employees;
 		
 		return employees;
 	}
@@ -244,6 +246,9 @@ public class CalendarController extends AbstractController {
 	
 	public int getNbrPerson(){
 		return this.nbrPerson;
+	}
+	public ArrayList<Employee> getEmployees(){
+		return this.employees;
 	}
 	
 }

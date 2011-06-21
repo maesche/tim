@@ -5,6 +5,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,7 +18,12 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.table.JTableHeader;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
+import tim.application.XMLResourceBundleControl;
+import tim.application.exception.PersistanceException;
+import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
+import tim.model.Employee;
 
 public class DayTableView extends JPanel {
 	
@@ -26,14 +36,39 @@ public class DayTableView extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		
-		CalendarController controller = new CalendarController();
+		CalendarController controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
 		
 		this.hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		//this.hourInDay = controller.;
 		
 		
-		int nbrPerson = 3;
+		
+		
+		/*Date begin = null, end = null;
+		try {
+			begin = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
+			end = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
+		} catch (ParseException ex) {
+			ex.printStackTrace();
+		}
+		
+		
+		ArrayList<Employee> test = null;
+		try {
+			test = controller.getCalendars(begin, end);
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
+		
+	
+		
+		
+		int nbrPerson = controller.getNbrPerson();
+		
+		
+		//int nbrPerson = 3;
 		String h;
 		
 		Object[][] donnees = new Object[nbrPerson][hourInDay+1];
@@ -44,10 +79,11 @@ public class DayTableView extends JPanel {
 			h = Integer.toString(i-1 + Config.CALENDAR_DAY_START);
 			titreColonnes[i] = h + ":00";
 		}
-				
-		for(int pers = 0; pers<nbrPerson; pers++){
-			
-			donnees[pers][0]  = "Mathieu Noverraz-Belattalla";
+		
+		int i = 0;
+		for(Employee e : controller.getEmployees()){
+			donnees[i][0]  = e.getFirstName() + " " + e.getLastName();
+			i++;
 		}
 		
 		

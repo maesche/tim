@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
@@ -28,16 +29,10 @@ import tim.view.ExceptionView;
 
 
 public class DayViewContainer extends JPanel {
-	
-	int nbrPerson;
 
-	public DayViewContainer() throws ParseException{
-		
-		this.nbrPerson = 0;
-		
-		//Initialisation du controller
-		//DayViewController controller = new DayViewController();
-		CalendarController calendarController = new CalendarController();
+	public DayViewContainer() throws ParseException{		
+		//Init controller
+		CalendarController controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
 		
 		//Date selector
@@ -57,18 +52,15 @@ public class DayViewContainer extends JPanel {
 		}
 		
 		
-		
-		
-		//
+		//Connection to controller
 		ArrayList<Employee> employees = null;
 		try {
-			//employees = controller.getEmployees();
-			employees = calendarController.getCalendars(begin, end);
+			employees = controller.getCalendars(begin, end);
 		} catch (PersistanceException e) {
 			new ExceptionView (e.toString());
 		}
 		
-		//Aspect visuel
+		//Visual aspect
 		this.setOpaque(false);
 		setLayout(new GridLayout(employees.size(),1));
 		

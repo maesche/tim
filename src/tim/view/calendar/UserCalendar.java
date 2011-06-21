@@ -42,7 +42,7 @@ public class UserCalendar extends JPanel{
 	private Date endFindDate;
 	private AppointmentDialog eventDialog;
 		
-	public UserCalendar(Employee employee) throws ParseException{
+	public UserCalendar(Employee employee){
 
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
@@ -58,19 +58,10 @@ public class UserCalendar extends JPanel{
 		this.eventButtons = new ArrayList<EventButton>();
 		
 		//Initialisation du controller
-		//UserCalendarController controller = new UserCalendarController();
 		CalendarController controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
 		//CalendarController controller = (CalendarController) this.controllers.get("CalendarController").get("action");
-		
-		
-		Date begin = null, end = null;
-		try {
-			this.beginFindDate = DateHelper.StringToDate("2011-01-01", Config.DATE_FORMAT_SHORT);
-			this.endFindDate = DateHelper.StringToDate("2011-06-10", Config.DATE_FORMAT_SHORT);
-		} catch (ParseException ex) {
-			ex.printStackTrace();
-		}
+
 		
 		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
 		try {
@@ -78,14 +69,17 @@ public class UserCalendar extends JPanel{
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		for (EventButton btn : eventButtons) {
+		for (final EventButton btn : eventButtons) {
 			
 			btn.addActionListener(new ActionListener() {
 				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					showDialog();
+				public void actionPerformed(ActionEvent e) {
+					showDialog(btn.getAppointment());
 				}
 			});
 			add(btn);
@@ -93,8 +87,8 @@ public class UserCalendar extends JPanel{
 		
 	}
 	
-	public void showDialog() {
-		eventDialog = new AppointmentDialog(null);
+	public void showDialog(Appointment appointment) {
+		eventDialog = new AppointmentDialog(appointment);
 		eventDialog.setModal(true);
 		eventDialog.setResizable(false);
 		eventDialog.pack();
