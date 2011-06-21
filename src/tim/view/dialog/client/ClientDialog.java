@@ -9,7 +9,7 @@ import javax.swing.JDialog;
 
 import tim.application.Config;
 import tim.controller.AbstractController;
-import tim.view.calendar.ClientDialogController;
+import tim.controller.ClientDialogController;
 
 public class ClientDialog extends JDialog {
 	Form form;

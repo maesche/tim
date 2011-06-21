@@ -16,9 +16,9 @@ import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
 import tim.controller.AbstractController;
+import tim.controller.ClientDialogController;
 import tim.model.Client;
 import tim.model.Element;
-import tim.view.calendar.ClientDialogController;
 
 public class Form extends JPanel {
 	private Object[][] data;
@@ -38,7 +38,7 @@ public class Form extends JPanel {
 		controller = clientDialogController;
 		ArrayList<Element> elements = null;
 		try {
-			elements = controller.getClients();
+			elements = controller.getAll("clients");
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

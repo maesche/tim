@@ -2,17 +2,10 @@ package tim.controller;
 
 import java.util.ArrayList;
 
-import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
-import tim.model.AppointmentModel;
 import tim.model.Element;
-import tim.model.EmployeeModel;
 
-public class DayViewController extends AbstractController {
-	
-	public ArrayList<Element> getEmployees() throws PersistanceException {	
-		return this.models.get("EmployeeModel").get();
-	}
+public class Controller extends AbstractController {
 
 	@Override
 	public Element get(String action) {
@@ -22,19 +15,25 @@ public class DayViewController extends AbstractController {
 
 	@Override
 	public ArrayList<Element> getAll(String action) throws PersistanceException {
-		// TODO Auto-generated method stub
-		return null;
+		if ("clients".equals(action)) {
+			System.out.println("in");
+			return this.models.get("ClientModel").get();
+		}else {
+			System.out.println(action);
+			return null;
+		}
 	}
 
 	@Override
 	public void save(String action, Element element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void saveAll(String action, ArrayList<Element> element) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 }

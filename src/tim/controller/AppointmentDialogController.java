@@ -46,4 +46,28 @@ public class AppointmentDialogController extends AbstractController {
 	public ArrayList<Element> getClients() throws PersistanceException {		
 		return new ClientModel().get();
 	}
+
+	@Override
+	public Element get(String action) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Element> getAll(String action) throws PersistanceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void save(String action, Element element) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void saveAll(String action, ArrayList<Element> element) {
+		// TODO Auto-generated method stub
+		
+	}
 }
