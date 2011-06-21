@@ -177,7 +177,10 @@ public class CalendarController extends AbstractController {
 					minutes = "0" + minutes;
 				}
 				
-				//System.out.println(DateHelper.StringToDate(DateHelper.DateToString(a.getBegin(), Config.DATE_FORMAT_SHORT) + " " + hour + ":" + minutes));
+	
+
+				
+				//System.out.println(DateHelper.DateToString(DateHelper.StringToDate(temp + " " + hour + ":" + minutes, Config.DATE_FORMAT_LONG), Config.DATE_FORMAT_LONG));
 				
 				Date begin = DateHelper.StringToDate(
 						DateHelper.DateToString(a.getBegin(), Config.DATE_FORMAT_SHORT) +
@@ -186,15 +189,15 @@ public class CalendarController extends AbstractController {
 						":" +
 						minutes,
 						
-						"yyyy-MM-dd HH:mm"
+						Config.DATE_FORMAT_LONG
 				);
 				
-				
+
 				Date end = a.getBegin();
 				
-				System.out.println(begin.toString() + " ----- "+ end.toString());
+				//System.out.println(begin.toString() + " ----- "+ end.toString());
 				//System.out.println(DateHelper.DateDiff(a.getBegin(), a.getEnd()));
-				//System.out.println(DateHelper.DateDiff(begin, end));
+				System.out.println(DateHelper.DateDiff(begin, end));
 				
 				EventButton invisibleButton = new EventButton(employee, begin, end);
 				allButtons.add(invisibleButton);

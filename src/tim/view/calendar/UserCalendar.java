@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ import tim.model.AppointmentModel;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.model.EmployeeModel;
+import tim.view.Application;
+import tim.view.dialog.appointment.AppointmentDialog;
 
 
 public class UserCalendar extends JPanel{
@@ -35,8 +39,10 @@ public class UserCalendar extends JPanel{
 	private int minutesInDay;
 	private Date beginFindDate;
 	private Date endFindDate;
+	private AppointmentDialog eventDialog;
 		
 	public UserCalendar(Employee employee) throws ParseException{
+
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
 		layout.setAlignment(FlowLayout.LEFT);
@@ -72,9 +78,25 @@ public class UserCalendar extends JPanel{
 		}
 		
 		for (EventButton btn : eventButtons) {
+			
+			btn.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					showDialog();
+				}
+			});
 			add(btn);
 		}
 		
+	}
+	
+	public void showDialog() {
+		eventDialog = new AppointmentDialog(null);
+		eventDialog.setModal(true);
+		eventDialog.setResizable(false);
+		eventDialog.pack();
+		eventDialog.setLocationRelativeTo(this);
+		eventDialog.setVisible(true);
 	}
 	
 	public void eventSizing(Dimension d){

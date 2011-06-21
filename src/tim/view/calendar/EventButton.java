@@ -3,6 +3,7 @@ package tim.view.calendar;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
@@ -123,7 +124,6 @@ public class EventButton extends JButton {
 		super.paintComponent(g);
 		
 	}
-	
 	
 	
 
