@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
 import tim.application.Config;
@@ -69,9 +71,12 @@ public class Form extends JPanel {
 		table = new JTable(clientTableModel);
 
 		TableColumn actionColumn = table.getColumn(columnNames[5]);
-		actionColumn.setCellRenderer(new ActionPanelRenderer());
-		ActionPanelEditor actionPanelEditor = new ActionPanelEditor(actionPanel);
-		table.getColumnModel().getColumn(5).setCellEditor(actionPanelEditor);
+		TableCellEditor editor = new ActionPanelEditor();
+		TableCellRenderer renderer = new ActionPanelRenderer();
+		
+		actionColumn.setCellRenderer(renderer);
+		actionColumn.setCellEditor(editor);
+
 		
 		table.getColumnModel().getColumn(1).setMinWidth(100);
 		table.getColumnModel().getColumn(2).setMinWidth(100);
