@@ -129,7 +129,7 @@ public class ClientModel extends PersonModel {
 		long id = element.getId();
 		
 		
-		sql = "DELETE FROM clients WHERE client_id=" + id;
+		sql = "DELETE FROM clients WHERE client_id=" + id + " AND NOT EXISTS (SELECT client_id FROM appointments WHERE client_id= " + id + " )";
 
 		try {
 			conn = Db.open();
