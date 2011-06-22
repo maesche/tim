@@ -1,10 +1,13 @@
 package tim.controller;
 
+//import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+//import java.util.Calendar;
 
 import tim.application.Config;
+//import tim.application.utils.DateHelper;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Calendar;
@@ -18,26 +21,84 @@ public class CalendarController extends AbstractController {
 
 	//__________________________________________________________________________________
 	//
-	//		Can occur when the "Today" button is pressed
+	//		Method todayDay. Can occur when the "Today" button is pressed
 	//__________________________________________________________________________________
-	public ArrayList<Employee> today() 
+	public ArrayList<Employee> todayDay() 
 	{
-		
-		GregorianCalendar today = new GregorianCalendar();
-		
-		today.
+		//---Today date
+		Date dayToday = new Date();
 
-		int dayStart = Config.CALENDAR_DAY_START;
-		int dayEnd = Config.CALENDAR_DAY_END;
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		//Calendar cal = Calendar.getInstance();   
+		cal.setTime(dayToday);
 		
-		Date today = null;
-		
-		Date begin = null; 	//today + heure début
-		Date end = null; 	//today + heure fin
+		//---Put it back in the Date object   
+		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
+		Date end = setupDate(cal, Config.CALENDAR_DAY_END).getTime();
 		
 		return getCalendars(begin, end);
 	}
 	
+	//__________________________________________________________________________________
+	//
+	//		Method nextDay. Can occur when the "Next Day" button is pressed
+	//__________________________________________________________________________________
+	public ArrayList<Employee> nextDay(Date day) 
+	{
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		cal.setTime(day);
+		
+		//---Next day = day + 1
+		cal.add(GregorianCalendar.DATE, 1);
+
+		//---Put it back in the Date object   
+		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
+		Date end = setupDate(cal, Config.CALENDAR_DAY_END).getTime();
+		
+		return getCalendars(begin, end);
+	}
+	
+	//__________________________________________________________________________________
+	//
+	//	Method previousDay. Can occur when the "PreviousDay Day" button is pressed
+	//__________________________________________________________________________________
+	public ArrayList<Employee> previousDay(Date day) 
+	{
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		cal.setTime(day);
+		
+		//---Next day = day - 1
+		cal.add(GregorianCalendar.DATE, -1);
+
+		//---Put it back in the Date object   
+		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
+		Date end = setupDate(cal, Config.CALENDAR_DAY_END).getTime();
+		
+		return getCalendars(begin, end);
+	}
+	
+	//__________________________________________________________________________________
+	//
+	//		Method to setup the date (Hour, Minute, Second, Millisecond
+	//__________________________________________________________________________________
+	private GregorianCalendar setupDate(GregorianCalendar cal, int hour)
+	{
+		//---Set the start time of the day
+		cal.set(GregorianCalendar.HOUR, hour);   
+		cal.set(GregorianCalendar.MINUTE, 0);   
+		cal.set(GregorianCalendar.SECOND, 0);   
+		cal.set(GregorianCalendar.MILLISECOND, 0);
+		
+		return cal;
+	}
+	
+	//__________________________________________________________________________________
+	//
+	//		Method getCalendars ; Start and End date for each Employee
+	//__________________________________________________________________________________
 	public ArrayList<Employee> getCalendars(Date begin, Date end) {
 		ArrayList<Employee> employees = new ArrayList<Employee>();
 		ArrayList<Appointment> appointments;
@@ -49,9 +110,7 @@ public class CalendarController extends AbstractController {
 			Employee employee = (Employee) element;
 			Calendar calendar = employee.getCalendar();
 			
-			
 			appointments = new ArrayList<Appointment>();
-			
 			
 			ArrayList<Element> elements = appointmentModel.get(employee, begin, end);
 			
