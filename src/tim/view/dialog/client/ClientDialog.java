@@ -31,12 +31,7 @@ public class ClientDialog extends JDialog implements AbstractView {
 			e.printStackTrace();
 		}
 		
-		try {
-			GlobalRegistry.mvcLinker.addObserverToModel("ClientModel", this);
-		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		
 		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
 		

@@ -6,7 +6,6 @@ import javax.swing.table.AbstractTableModel;
 
 public class ClientTableModel extends AbstractTableModel {
 	Vector<String> columnNames = null;
-	//String[] columnNames = null; 
 	Vector<Vector<Object>> data = null;
 	
 	public ClientTableModel(Vector<Vector<Object>> data, Vector<String> colunmNames) {
@@ -42,5 +41,15 @@ public class ClientTableModel extends AbstractTableModel {
 	
 	public boolean isCellEditable(int row, int col) {
 		return col != 0;
+	}
+	
+	public void addRow(Vector<Object> rowData) {
+		data.add(rowData);
+		fireTableDataChanged();
+	}
+	
+	public void removeRow(int row) {
+		data.remove(row);
+		fireTableDataChanged();
 	}
 }
