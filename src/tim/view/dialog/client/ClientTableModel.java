@@ -7,6 +7,7 @@ import javax.swing.table.AbstractTableModel;
 public class ClientTableModel extends AbstractTableModel {
 	Vector<String> columnNames = null;
 	Vector<Vector<Object>> data = null;
+
 	
 	public ClientTableModel(Vector<Vector<Object>> data, Vector<String> colunmNames) {
 		this.columnNames = colunmNames;
