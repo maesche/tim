@@ -41,6 +41,8 @@ public class UserCalendar extends JPanel{
 	private Date beginFindDate;
 	private Date endFindDate;
 	private AppointmentDialog eventDialog;
+	
+	CalendarController controller;
 		
 	public UserCalendar(Employee employee){
 
@@ -65,7 +67,7 @@ public class UserCalendar extends JPanel{
 		
 		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
 		try {
-			eventButtons = controller.getAllButtonsX(employee);
+			eventButtons = controller.getButtonsCalendar(employee);
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,13 +104,9 @@ public class UserCalendar extends JPanel{
 			
 			Dimension btnDimension = new Dimension((int) ((btn.getDuration()*d.getWidth())/minutesInDay), (int) d.getHeight());
 			
-			//il faut faire les deux op√©ration pour qu'il n'y ait pas de bug d'affichage
+			//It must be setSize and setPreferredSize for this button, Otherwise the button is misplaced
 			btn.setSize(btnDimension);
 		    btn.setPreferredSize(btnDimension);
-		    //btn.setMinimumSize(btnDimension);
-		    //btn.setMaximumSize(btnDimension);
-		    //btn.setBounds((int)btnDimension.getWidth(), 0, (int)btnDimension.getWidth(), (int)btnDimension.getHeight());
-
 		}
 	}
 
