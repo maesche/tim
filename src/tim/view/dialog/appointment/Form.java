@@ -94,7 +94,7 @@ public class Form extends JPanel {
 			}
 		});
 		
-		btnDelete = new JButton("Delete :");
+		btnDelete = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogDelete"));
 		
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		buttonPanel.add(btnCancel);
