@@ -197,7 +197,6 @@ public class AppointmentModel extends AbstractModel{
 		finally {
 			Db.close();
 		}
-
 	}
 
 	public void edit(Element element) {

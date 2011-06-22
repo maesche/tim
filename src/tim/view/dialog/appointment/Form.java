@@ -215,9 +215,8 @@ public class Form extends JPanel implements ChildView {
 
 
 		Appointment appointment = new Appointment(begin, end,
-				txtDescription.getText(), new Employee(1, "test", "test"),
+				txtDescription.getText(), new Employee(2, "test", "test"),
 				client);
-		view.save("add", appointment);
 		return appointment;
 	}
 

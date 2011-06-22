@@ -75,7 +75,9 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
 				save("add", form.getData());
+
 			}
 		});
 		
