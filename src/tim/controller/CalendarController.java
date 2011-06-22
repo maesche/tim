@@ -2,6 +2,7 @@ package tim.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import tim.application.Config;
 import tim.model.Appointment;
@@ -11,16 +12,28 @@ import tim.model.Element;
 import tim.model.Employee;
 import tim.model.EmployeeModel;
 
+//import tim.application.Config;
+
 public class CalendarController extends AbstractController {
 
-	public ArrayList<Employee> today() {
-		int Hstart = Config.CALENDAR_DAY_START;
-		int Hend = Config.CALENDAR_DAY_END;
+	//__________________________________________________________________________________
+	//
+	//		Can occur when the "Today" button is pressed
+	//__________________________________________________________________________________
+	public ArrayList<Employee> today() 
+	{
+		
+		GregorianCalendar today = new GregorianCalendar();
+		
+		today.
+
+		int dayStart = Config.CALENDAR_DAY_START;
+		int dayEnd = Config.CALENDAR_DAY_END;
 		
 		Date today = null;
 		
-		Date begin = null; //today + heure début
-		Date end = null; //today + heure fin
+		Date begin = null; 	//today + heure début
+		Date end = null; 	//today + heure fin
 		
 		return getCalendars(begin, end);
 	}
