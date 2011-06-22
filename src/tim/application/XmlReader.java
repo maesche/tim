@@ -6,13 +6,21 @@ package tim.application;
 //	class:			ReadXmlFile
 //	Authors: 		Stefan Meier ; Mathieu Noverraz ; Alain Bellatalla
 //	School team: 	IGL3
-//	Creation Date: 	02.06.2010
-//	Last update:
-//	Comments:		This class is used to read the application config file (xml)
+//	Creation Date: 	02.06.2011
+//	Last update:	22.06.2011
+//	Comments:		This class is used to read and update 
+//					the application config file (xml)
+//	To test the updateConfig method:
+//	String xmlFilePath = "..\\tim\\config\\application.xml";
+//	new XmlReader().updateConfig(xmlFilePath, "default-lang", "fr");
 //__________________________________________________________________________________
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -21,15 +29,21 @@ import org.w3c.dom.Element;
 
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.utils.CurrentClassGetter;
-import tim.application.utils.ErrorHandler;
+//import tim.application.utils.CurrentClassGetter;
+//import tim.application.utils.ErrorHandler;
 
 import java.io.File;
 
+//__________________________________________________________________________________
+//
+//	XmlReader class
+//__________________________________________________________________________________
 public class XmlReader {
 	
-
-	
+	//______________________________________________________________________________
+	//
+	//	readConfig method. Read the application configuration from a XML file
+	//______________________________________________________________________________
 	public void readConfig(String xmlFilePath) throws PersistanceException {
 		File fXmlFile = null;
 		DocumentBuilderFactory dbFactory = null;
@@ -82,13 +96,54 @@ public class XmlReader {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "readConfig"));
 		}
 	}
+	//______________________________________________________________________________
+	//
+	//	getTagValue method. Get the desired node value of the XML file
+	//______________________________________________________________________________
 	private String getTagValue(String sTag, Element eElement) {
-		NodeList nlList = eElement.getElementsByTagName(sTag).item(0)
-				.getChildNodes();
+		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
 		Node nValue = (Node) nlList.item(0);
 
 		return nValue.getNodeValue();
 	}
+	
+	//______________________________________________________________________________
+	//
+	//	updateConfig method. Update the XML file of configuration's application 
+	//______________________________________________________________________________
+	public void updateConfig(String xmlFilePath, 
+							 String xmlElement, 
+							 String tagValue) throws PersistanceException 
+	{
+		try
+		{
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.parse(xmlFilePath);
 
+	        //---Get the element by tag name directly. Ex.: "default-lang"
+	        Node nodeToUpdate = doc.getElementsByTagName(xmlElement).item(0);
+	        
+	        //nodeToUpdate.setNodeValue("en"); 	 <== not the good method
+	        //nodeToUpdate.setTextContent("en"); <== the good method
+	        nodeToUpdate.setTextContent(tagValue);
+	        
+		    //---Write the content into xml file
+		    TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		    Transformer transformer = transformerFactory.newTransformer();
+		    
+		    DOMSource source = new DOMSource(doc);
+		    StreamResult result =  new StreamResult(new File(xmlFilePath));
+		    
+		    transformer.transform(source, result);
+	 
+		}
+		catch (Exception ex)
+	    {
+			throw new PersistanceException(ExceptionFormatter.format(ex, 
+																	 this.getClass().getName(), 
+																	 "readConfig"));
+	    }
+	}
 	
 }

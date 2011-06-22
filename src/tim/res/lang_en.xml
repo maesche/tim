@@ -11,8 +11,8 @@
 	<entry key="applicationMenuQuit">Quit</entry>
 	<entry key="applicationMenuLanguage">Language</entry> 
 	<entry key="applicationMenuLanguageEnglish">English</entry>	
-	<entry key="applicationMenuLanguageFrench">German</entry>
-	<entry key="applicationMenuLanguageGerman">French</entry>
+	<entry key="applicationMenuLanguageFrench">Deutsch</entry>
+	<entry key="applicationMenuLanguageGerman">Français</entry>
 	<entry key="applicationMenuLanguageJapanese">Japanese</entry>
 	
 	<entry key="dialogMessages">Please check the following errors:</entry>

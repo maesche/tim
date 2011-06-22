@@ -10,9 +10,9 @@
 	<entry key="applicationMenuFile">Fichier</entry> 
 	<entry key="applicationMenuQuit">Quitter</entry>
 	<entry key="applicationMenuLanguage">Langue</entry> 
-	<entry key="applicationMenuLanguageEnglish">Anglais</entry>	
+	<entry key="applicationMenuLanguageEnglish">English</entry>	
 	<entry key="applicationMenuLanguageFrench">Français</entry>
-	<entry key="applicationMenuLanguageGerman">Allemand</entry>
+	<entry key="applicationMenuLanguageGerman">Deutsch</entry>
 	<entry key="applicationMenuLanguageJapanese">Japonais</entry>
 	
 	<entry key="dialogMessages">Veuillez vérifier l'erreur suivante:</entry>
