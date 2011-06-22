@@ -47,16 +47,10 @@ public class Form extends JPanel implements ChildView {
 	private JComboBox cbEndH;
 	private JLabel lblDescription;
 	private JTextArea txtDescription;
-	private JPanel errorPanel;
 	private ParentView view;
 
 	public Form() {
-		errorPanel = new JPanel();
-		lblErrorMsg = new JLabel(" ");
-		lblErrorMsg.setForeground(Color.RED);
 
-		errorPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		errorPanel.add(lblErrorMsg);
 
 		lblClient = new JLabel(
 				Config.RESSOURCE_BUNDLE.getString("dialogClient") + " :");
@@ -162,12 +156,6 @@ public class Form extends JPanel implements ChildView {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(txtDate, gbc);
 
-		gbc.gridy = 0;
-		gbc.gridx = 0;
-		gbc.anchor = GridBagConstraints.NORTH;
-		gbc.insets = new Insets(15, 0, 0, 0);
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		add(errorPanel, gbc);
 
 		init();
 	}
@@ -225,14 +213,7 @@ public class Form extends JPanel implements ChildView {
 			e.printStackTrace();
 		}
 
-		lblErrorMsg.setText(" ");
-		if (!(AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator
-				.startEnd(lblBegin, lblEnd, beginH, beginM, endH, endM))) {
-			lblErrorMsg.setText("Please check the following errors: ");
 
-		} else {
-
-		}
 		Appointment appointment = new Appointment(begin, end,
 				txtDescription.getText(), new Employee(1, "test", "test"),
 				client);

@@ -1,6 +1,7 @@
 package tim.view.dialog.appointment;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -10,6 +11,7 @@ import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tim.application.Config;
@@ -33,6 +35,8 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	private JButton btnCancel;
 	private JButton btnSave;
 	private JButton btnDelete;
+	private JPanel errorPanel;
+	private JLabel lblErrorMsg;
 
 	public AppointmentDialog(Appointment appointment) {
 		System.out.println(appointment);
@@ -48,6 +52,13 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		errorPanel = new JPanel();
+		lblErrorMsg = new JLabel(" ");
+		lblErrorMsg.setForeground(Color.RED);
+
+		errorPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		errorPanel.add(lblErrorMsg);
+		
 		buttonPanel = new JPanel();
 		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
 		
@@ -85,7 +96,8 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 
 		setTitle("TIM - Appointment");
 
-		add(form, BorderLayout.NORTH);
+		add(errorPanel, BorderLayout.NORTH);
+		add(form, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
@@ -106,6 +118,14 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 
 	@Override
 	public void save(String action, Object value) {
+		lblErrorMsg.setText(" ");
+		/*if (!(AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator
+				.startEnd(lblBegin, lblEnd, beginH, beginM, endH, endM))) {
+			lblErrorMsg.setText("Please check the following errors: ");
+
+		} else {
+
+		}*/
 		try {
 			controller.save(action, (Appointment) value);
 		} catch (ClassCastException e) {

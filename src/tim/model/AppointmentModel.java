@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import tim.application.Config;
 import tim.application.Db;
@@ -153,7 +154,8 @@ public class AppointmentModel extends AbstractModel{
 	}
 
 	public void add(Element element) throws PersistanceException {
-		long id = 0;
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		long id = cal.getTimeInMillis();;
 		long client_id = 0;
 		long employee_id = 0;
 		String description = null;
@@ -161,7 +163,6 @@ public class AppointmentModel extends AbstractModel{
 		String end = null;
 		
 		Appointment appointment = (Appointment) element;
-		id = appointment.getId();
 		client_id = appointment.getClient().getId();
 		employee_id = appointment.getEmployee().getId();
 		description = appointment.getDescription();
