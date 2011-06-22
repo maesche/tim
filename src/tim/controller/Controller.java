@@ -10,29 +10,10 @@ import tim.model.Element;
 import tim.model.Employee;
 
 public class Controller extends AbstractController {
-
-	@Override
-	public Element get(String action) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Element> getAll(String action) throws PersistanceException {
-		if ("clients".equals(action)) {
-			System.out.println("in");
-			return this.models.get("ClientModel").get();
-		}else {
-			System.out.println(action);
-			return null;
-		}
-	}
-
-	@Override
-	public void save(String action, Element element) throws ClassCastException, PersistanceException {
+	
+	private AbstractModel getModel(Element element) {
 		String modelKey = null;
 		AbstractModel  model = null;
-		
 		if (element instanceof Client) {
 			modelKey = "ClientModel";
 		}
@@ -42,25 +23,55 @@ public class Controller extends AbstractController {
 		else if (element instanceof Employee) {
 			modelKey = "EmployeeModel";
 		}
-		
 		model = this.models.get(modelKey);
+		
+		return model;
+	}
+
+	@Override
+	public Element get(String action) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Element> getAll(String action) throws PersistanceException {
+		ArrayList<Element> ret = null;
+		if ("clients".equals(action)) {
+			System.out.println("in");
+			ret = this.models.get("ClientModel").get();
+		}else {
+			System.out.println(action);
+			ret = null;
+		}
+		return ret;
+	}
+
+	@Override
+	public void save(String action, Element element) throws ClassCastException, PersistanceException {
+		AbstractModel model = getModel(element);
+
 		if (model != null) {
 			if ("add".equals(action)) {
 				model.add(element);
 			}
-			if ("delete".equals(action)) {
+			else if ("delete".equals(action)) {
 				model.remove(element);
 			}
+			else if (("edit").equals(action)) {
+				model.edit(element);
+			}
+			else {
+				System.out.println("Your action is not valid. Use add, delete or edit");
+			}
 		}
-		
-
-
-
 	}
 
 	@Override
-	public void saveAll(String action, ArrayList<Element> element) {
-		// TODO Auto-generated method stub
+	public void saveAll(String action, ArrayList<Element> elements) throws ClassCastException, PersistanceException {
+		for (Element element : elements) {
+			save(action, element);
+		}
 
 	}
 

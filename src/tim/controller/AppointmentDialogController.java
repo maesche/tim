@@ -17,7 +17,7 @@ import tim.model.Employee;
 import tim.model.EmployeeModel;
 
 
-public class AppointmentDialogController extends AbstractController {
+public class AppointmentDialogController extends Controller {
 
 	public boolean save(Employee employee, Client client, String date, int beginH, int beginM, int endH, int endM, String description) throws ParseException, ClassCastException, PersistanceException {
 		
@@ -45,29 +45,5 @@ public class AppointmentDialogController extends AbstractController {
 	
 	public ArrayList<Element> getClients() throws PersistanceException {		
 		return new ClientModel().get();
-	}
-
-	@Override
-	public Element get(String action) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Element> getAll(String action) throws PersistanceException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(String action, Element element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void saveAll(String action, ArrayList<Element> element) {
-		// TODO Auto-generated method stub
-		
 	}
 }

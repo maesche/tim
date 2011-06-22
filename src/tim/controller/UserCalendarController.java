@@ -14,7 +14,7 @@ import tim.model.Element;
 import tim.model.Employee;
 import tim.view.calendar.EventButton;
 
-public class UserCalendarController extends AbstractController {
+public class UserCalendarController extends Controller {
 	
 	public ArrayList<Element> getEmployeeEvents(Employee employee, Date begin, Date end) throws PersistanceException{
 		return ((AppointmentModel) this.models.get("AppointmentModel")).get(employee, begin, end);
@@ -102,33 +102,5 @@ public class UserCalendarController extends AbstractController {
 		title += "</html>";
 
 		return title;
-	}
-
-
-	@Override
-	public Element get(String action) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public ArrayList<Element> getAll(String action) throws PersistanceException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public void save(String action, Element element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void saveAll(String action, ArrayList<Element> element) {
-		// TODO Auto-generated method stub
-		
 	}
 }
