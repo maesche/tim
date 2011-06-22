@@ -116,5 +116,3 @@ public class XMLResourceBundleControl extends ResourceBundle.Control
 		return bundle;
 	}
 }
-
-
