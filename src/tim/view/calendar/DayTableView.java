@@ -28,8 +28,7 @@ import tim.model.Employee;
 
 public class DayTableView extends JPanel {
 	
-	private static JTable table;
-	private static int hourInDay;
+	private /*static*/ JTable table;
 	int nbrPerson = 0;
 	
 	CalendarController controller;
@@ -41,7 +40,6 @@ public class DayTableView extends JPanel {
 		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
 		
-		this.hourInDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		//this.hourInDay = controller.getHoursPerDay();
 		
 	
@@ -70,10 +68,6 @@ public class DayTableView extends JPanel {
 
 	}
 	
-	public static int test(){
-		return table.getColumnModel().getColumn(1).getWidth() * hourInDay;
-	}
-	
 	public void validate(){
 		this.setSize(CalendarContainer.getCalendarDimension());
 		
@@ -87,7 +81,8 @@ public class DayTableView extends JPanel {
 		
 		table.setRowHeight((int) ((table.getSize().getHeight()-20)/nbrPerson));
 		
-		CalendarContainer.setCalendarHourWidth(test());
+		int calHourWidth = table.getColumnModel().getColumn(1).getWidth() * this.controller.getHoursPerDay();
+		CalendarContainer.setCalendarHourWidth(calHourWidth);
 		CalendarContainer.setCalendarPersonColWidth(table.getColumnModel().getColumn(0).getWidth());
 	}
 	

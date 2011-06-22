@@ -37,10 +37,8 @@ import tim.view.dialog.appointment.AppointmentDialog;
 public class UserCalendar extends JPanel{
 	
 	private ArrayList<EventButton> eventButtons;
-	private int minutesInDay;
-	private Date beginFindDate;
-	private Date endFindDate;
 	private AppointmentDialog eventDialog;
+	
 	
 	CalendarController controller;
 		
@@ -54,18 +52,13 @@ public class UserCalendar extends JPanel{
 		setLayout(layout);
 		this.setOpaque(false);
 		
-		this.minutesInDay = (Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60;
-		
 		//Initialisation des collections
 		this.eventButtons = new ArrayList<EventButton>();
 		
 		//Initialisation du controller
-		CalendarController controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
+		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
-		//CalendarController controller = (CalendarController) this.controllers.get("CalendarController").get("action");
 
-		
-		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
 		try {
 			eventButtons = controller.getButtonsCalendar(employee);
 		} catch (PersistanceException e) {
@@ -98,11 +91,13 @@ public class UserCalendar extends JPanel{
 		eventDialog.setVisible(true);
 	}
 	
-	public void eventSizing(Dimension d){
+	public void eventSizing(Dimension calendarDimension){
 
 		for(EventButton btn : eventButtons){
-			
-			Dimension btnDimension = new Dimension((int) ((btn.getDuration()*d.getWidth())/minutesInDay), (int) d.getHeight());
+			int x,y;
+			x = (int) ((btn.getDuration()*calendarDimension.getWidth())/this.controller.getMinutesPerDay());
+			y = (int) calendarDimension.getHeight();
+			Dimension btnDimension = new Dimension(x , y);
 			
 			//It must be setSize and setPreferredSize for this button, Otherwise the button is misplaced
 			btn.setSize(btnDimension);

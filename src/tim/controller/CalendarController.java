@@ -1,6 +1,7 @@
 package tim.controller;
 
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -38,6 +39,7 @@ public class CalendarController extends Controller {
 		this.nbrPerson = 0;
 		this.nbrHoursPerDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		this.nbrMinutesPerDay = (Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60;
+		System.out.println("controller " + Config.CALENDAR_DAY_END +" - "+ Config.CALENDAR_DAY_START +" * "+ 60);
 	}
 	
 	//__________________________________________________________________________________
@@ -283,6 +285,9 @@ public class CalendarController extends Controller {
 
 	public ArrayList<Employee> getEmployees(){
 		return this.employees;
+	}
+	public int getMinutesPerDay(){
+		return this.nbrMinutesPerDay;
 	}
 	
 
