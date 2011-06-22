@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -30,6 +31,7 @@ public class DayTableView extends JPanel {
 	private static JTable table;
 	public JScrollPane scroll;
 	private static int hourInDay;
+	int nbrPerson = 0;
 	
 	public DayTableView(){
 		this.setOpaque(false);
@@ -65,29 +67,36 @@ public class DayTableView extends JPanel {
 	
 		
 		
-		int nbrPerson = controller.getNbrPerson();
+		nbrPerson = controller.getNbrPerson();
 		
 		
 		//int nbrPerson = 3;
 		String h;
 		
-		Object[][] donnees = new Object[nbrPerson][hourInDay+1];
-		String[] titreColonnes = new String[hourInDay+1];
+
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		Vector<String> columnNames = new Vector<String>();
 		
-		titreColonnes[0] = "Collaborateur";
+		columnNames.add("Collaborateur");
+
 		for(int i=1; i<hourInDay+1; i++){
 			h = Integer.toString(i-1 + Config.CALENDAR_DAY_START);
-			titreColonnes[i] = h + ":00";
+			
+			columnNames.add(h + ":00");
 		}
-		
+		Vector<Object> rowData;
 		int i = 0;
 		for(Employee e : controller.getEmployees()){
-			donnees[i][0]  = e.getFirstName() + " " + e.getLastName();
+			rowData = new Vector<Object>();
+			rowData.add(e);
+			data.add(rowData);
 			i++;
 		}
+
 		
 		
-		this.table = new JTable(donnees, titreColonnes);
+		table = new JTable(data, columnNames);
+		
 		
 		
 		table.getColumnModel().getColumn(0).setWidth(200);
@@ -124,7 +133,7 @@ public class DayTableView extends JPanel {
 		table.setBounds(0,0, (int) CalendarContainer.getCalendarDimension().getWidth(), (int) CalendarContainer.getCalendarDimension().getHeight());
 		
 		
-		table.setRowHeight((int) ((table.getSize().getHeight()-20)/3));
+		table.setRowHeight((int) ((table.getSize().getHeight()-20)/nbrPerson));
 		
 		CalendarContainer.setCalendarHourWidth(test());
 		CalendarContainer.setCalendarPersonColWidth(table.getColumnModel().getColumn(0).getWidth());
