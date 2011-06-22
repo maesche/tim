@@ -34,16 +34,4 @@ public class AppointmentDialogController extends Controller {
 
 		return true;
 	}
-	
-	public void remove() {
-		
-	}
-	
-	public void edit() {
-		
-	}
-	
-	public ArrayList<Element> getClients() throws PersistanceException {		
-		return new ClientModel().get();
-	}
 }

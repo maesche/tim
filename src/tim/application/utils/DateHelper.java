@@ -27,6 +27,17 @@ public class DateHelper {
 		return sdf.format(date);
 	}
 	
+	public static int getHour(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("h");
+		return Integer.parseInt(sdf.format(date));
+	}
+	
+	public static int getMinutes(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("mm");
+		return Integer.parseInt(sdf.format(date));
+	}
+	
+	
 	public static int DateDiff(Date date1, Date date2){
 		return (int) (date2.getTime()-date1.getTime())/60000;
 		
