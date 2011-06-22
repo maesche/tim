@@ -39,7 +39,7 @@ public class UserCalendarController extends AbstractController {
 		return eventButtons;
 	}*/
 	
-	public ArrayList<EventButton> getAllButtons(ArrayList<EventButton> visibleButtons){
+	/*public ArrayList<EventButton> getAllButtons(ArrayList<EventButton> visibleButtons){
 		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
 		EventButton actualButton;
 		boolean exit = false;
@@ -79,7 +79,7 @@ public class UserCalendarController extends AbstractController {
 		}
 
 		return allButtons;
-	}
+	}*/
 	
 	
 	public int getEventDuration(Date begin, Date end){

@@ -23,9 +23,10 @@ import tim.view.calendar.EventButton;
 
 public class CalendarController extends AbstractController {
 	
-	private int nbrPerson;
+	private int nbrPerson = 3;
 	private int nbrHourPerDay;
 	private Date currentCalendarDate;
+	private ArrayList<Employee> employees;
 
 	
 	public CalendarController(){
@@ -77,6 +78,7 @@ public class CalendarController extends AbstractController {
 		}
 		
 		this.nbrPerson = employees.size();
+		this.employees = employees;
 		
 		return employees;
 	}
@@ -157,7 +159,8 @@ public class CalendarController extends AbstractController {
 		int actualMinuteOfDay = Config.CALENDAR_DAY_START*60;
 		int endOfDay = Config.CALENDAR_DAY_END*60;
 		int startOfButton = 0;
-		System.out.println("Deb-------------");
+		int i=1;
+		
 		for (Appointment a : appointments) {
 			
 			btn = new EventButton(a);
@@ -166,7 +169,6 @@ public class CalendarController extends AbstractController {
 			
 			//add invisible button
 			if(startOfButton >= actualMinuteOfDay){
-				String msg = "vide " + actualMinuteOfDay + " -> ";
 				String hour = String.valueOf(actualMinuteOfDay/60);
 				String minutes = String.valueOf(actualMinuteOfDay%60);
 				
@@ -176,11 +178,6 @@ public class CalendarController extends AbstractController {
 				if(minutes.length() <= 1){
 					minutes = "0" + minutes;
 				}
-				
-	
-
-				
-				//System.out.println(DateHelper.DateToString(DateHelper.StringToDate(temp + " " + hour + ":" + minutes, Config.DATE_FORMAT_LONG), Config.DATE_FORMAT_LONG));
 				
 				Date begin = DateHelper.StringToDate(
 						DateHelper.DateToString(a.getBegin(), Config.DATE_FORMAT_SHORT) +
@@ -194,33 +191,60 @@ public class CalendarController extends AbstractController {
 				
 
 				Date end = a.getBegin();
-				
-				//System.out.println(begin.toString() + " ----- "+ end.toString());
-				//System.out.println(DateHelper.DateDiff(a.getBegin(), a.getEnd()));
-				System.out.println(DateHelper.DateDiff(begin, end));
-				
+						
 				EventButton invisibleButton = new EventButton(employee, begin, end);
 				allButtons.add(invisibleButton);
 				actualMinuteOfDay += invisibleButton.getDuration();
-				msg += actualMinuteOfDay;
-				
-				//System.out.println(msg);
 				
 			}
 			
 			//add event button
 			allButtons.add(btn);
-			//System.out.println("Ajout bouton " + actualMinuteOfDay);
 			actualMinuteOfDay += btn.getDuration();
+			
+			if(i == appointments.size()){
+				Date end = actualMinutesOfDayToDate(a.getBegin(),endOfDay);
+				allButtons.add(new EventButton(employee, a.getEnd(), end));
+			}
+			i++;
+			
 		}
 		
-		//add last invisible button
-		if(actualMinuteOfDay < endOfDay){
-			//System.out.println("videFin " + actualMinuteOfDay + " et fin " + endOfDay);
-		}
-		
-		System.out.println("Fin-------------");
+		//System.out.println("Fin-------------");
 		return allButtons;
+	}
+	
+	/*
+	 * Convert
+	 */
+	private Date actualMinutesOfDayToDate(Date day, int minutes){
+		String hour = String.valueOf(minutes/60);
+		String min = String.valueOf(minutes%60);
+		
+		if(hour.length() <= 1){
+			hour = "0" + hour;
+		}
+		if(min.length() <= 1){
+			min = "0" + min;
+		}
+		
+		try {
+			Date date = DateHelper.StringToDate(
+					DateHelper.DateToString(day, Config.DATE_FORMAT_SHORT) +
+					" " +
+					hour +
+					":" +
+					min,
+					
+					Config.DATE_FORMAT_LONG
+			);
+			return date;
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		return null;
 	}
 	
 	
@@ -246,6 +270,7 @@ public class CalendarController extends AbstractController {
 		return this.nbrPerson;
 	}
 
+
 	@Override
 	public Element get(String action) {
 		// TODO Auto-generated method stub
@@ -267,7 +292,11 @@ public class CalendarController extends AbstractController {
 	@Override
 	public void saveAll(String action, ArrayList<Element> element) {
 		// TODO Auto-generated method stub
-		
+	}
+
+	public ArrayList<Employee> getEmployees(){
+		return this.employees;
+
 	}
 	
 }

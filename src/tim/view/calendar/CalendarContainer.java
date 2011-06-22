@@ -35,9 +35,11 @@ public class CalendarContainer extends JPanel {
 		
 		setJLayerPaneDimension(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,600));
 		this.setPreferredSize(getCalendarDimension());		
-
+		
+		
 		this.layer.add(new DayViewContainer(),new Integer(0));
 		this.layer.add(new DayTableView(),new Integer(-3));
+		
 
 		add(this.layer);
 	}
