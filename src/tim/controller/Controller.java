@@ -2,7 +2,9 @@ package tim.controller;
 
 import java.util.ArrayList;
 
+import tim.application.exception.OperationNotPossibleException;
 import tim.application.exception.PersistanceException;
+import tim.application.exception.ResourceNotFoundException;
 import tim.model.AbstractModel;
 import tim.model.Appointment;
 import tim.model.Client;
@@ -11,45 +13,52 @@ import tim.model.Employee;
 
 public class Controller extends AbstractController {
 	
-	private AbstractModel getModel(Element element) {
+	private AbstractModel getModel(Element element, String elementKey) throws ResourceNotFoundException {
 		String modelKey = null;
 		AbstractModel  model = null;
-		if (element instanceof Client) {
+		if (element instanceof Client || "client".equals(elementKey)) {
 			modelKey = "ClientModel";
 		}
-		else if (element instanceof Appointment) {
+		else if (element instanceof Appointment || "appointment".equals(elementKey)) {
 			modelKey = "AppointmentModel";
 		}
-		else if (element instanceof Employee) {
+		else if (element instanceof Employee || "employee".equals(elementKey)) {
 			modelKey = "EmployeeModel";
+		}
+		else {
+			throw new ResourceNotFoundException("The model doesn't exist for Element '" + element + "' or elementKey '" + elementKey +"'", "global registry");
 		}
 		model = this.models.get(modelKey);
 		
 		return model;
 	}
 
+
 	@Override
-	public Element get(String action) {
+	public Element get(String action, Object params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Element> getAll(String action) throws PersistanceException {
+	public ArrayList<Element> getAll(String action) throws PersistanceException, ResourceNotFoundException {
+		AbstractModel model = null;
 		ArrayList<Element> ret = null;
-		if ("clients".equals(action)) {
-			System.out.println("in");
-			ret = this.models.get("ClientModel").get();
-		}else {
-			System.out.println(action);
+		
+		model = getModel(null, action);
+		
+		if (model != null) {
+			ret = model.get();
+		}
+		else {
 			ret = null;
 		}
 		return ret;
 	}
 
 	@Override
-	public void save(String action, Element element) throws ClassCastException, PersistanceException {
-		AbstractModel model = getModel(element);
+	public void save(String action, Element element) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException {
+		AbstractModel model = getModel(element, null);
 
 		if (model != null) {
 			if ("add".equals(action)) {
@@ -62,13 +71,13 @@ public class Controller extends AbstractController {
 				model.edit(element);
 			}
 			else {
-				System.out.println("Your action is not valid. Use add, delete or edit");
+				throw new OperationNotPossibleException(action, "add, delete or edit");
 			}
 		}
 	}
 
 	@Override
-	public void saveAll(String action, ArrayList<Element> elements) throws ClassCastException, PersistanceException {
+	public void saveAll(String action, ArrayList<Element> elements) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException {
 		for (Element element : elements) {
 			save(action, element);
 		}

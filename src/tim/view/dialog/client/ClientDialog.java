@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 
 import tim.application.Config;
 import tim.application.GlobalRegistry;
+import tim.application.exception.OperationNotPossibleException;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
@@ -28,6 +29,9 @@ public class ClientDialog extends JDialog implements AbstractView {
 		try {
 			form = new Form(controller.getAll("clients"), this);
 		} catch (PersistanceException e) {
+			e.printStackTrace();
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -58,6 +62,12 @@ public class ClientDialog extends JDialog implements AbstractView {
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (OperationNotPossibleException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}	
@@ -77,6 +87,9 @@ public class ClientDialog extends JDialog implements AbstractView {
 			this.pack();
 
 		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ResourceNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
