@@ -52,11 +52,8 @@ public class Form extends JPanel {
 		lblErrorMsg = new JLabel (" ");
 		lblErrorMsg.setForeground(Color.RED);
 
-		
 		errorPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		errorPanel.add(lblErrorMsg);
-		
-
 		
 		lblClient = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogClient") + " :");
 		cbClient = new JComboBox();
@@ -253,7 +250,27 @@ public class Form extends JPanel {
 				e.printStackTrace();
 			}
 		}
-
-
+	}
+	
+	protected void setClient(Client client) {
+		cbClient.setSelectedItem(client);
+	}
+	
+	protected void setDate(String date) {
+		txtDate.setText(date);
+	}
+	
+	protected void setBegin(int hour, int min) {
+		cbBeginH.setSelectedItem(hour);
+		cbBeginM.setSelectedItem(min);
+	}
+	
+	protected void setEnd(int hour, int min) {
+		cbEndH.setSelectedItem(hour);
+		cbEndM.setSelectedItem(min);
+	}
+	
+	protected void setDescription(String description) {
+		txtDescription.setText(description);
 	}
 }

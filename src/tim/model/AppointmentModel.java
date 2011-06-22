@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import tim.application.Config;
 import tim.application.Db;
 import tim.application.GlobalRegistry;
 import tim.application.exception.ExceptionFormatter;
@@ -165,8 +166,8 @@ public class AppointmentModel extends AbstractModel{
 		employee_id = appointment.getEmployee().getId();
 		description = appointment.getDescription();
 		
-		begin = DateHelper.DateToString(appointment.getBegin());
-		end = DateHelper.DateToString(appointment.getEnd());
+		begin = DateHelper.DateToString(appointment.getBegin(), Config.DATE_FORMAT_LONG);
+		end = DateHelper.DateToString(appointment.getEnd(), Config.DATE_FORMAT_LONG);
 		
 		String sql_appointment = "INSERT INTO appointments VALUES(" +
 				id + ", " +
