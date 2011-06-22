@@ -27,7 +27,7 @@ public class ClientDialog extends JDialog implements AbstractView {
 	public ClientDialog(ClientDialogController controller) {
 		this.controller = (ClientDialogController) controller;
 		try {
-			form = new Form(controller.getAll("clients"), this);
+			form = new Form(controller.getAll("client"), this);
 		} catch (PersistanceException e) {
 			e.printStackTrace();
 		} catch (ResourceNotFoundException e) {
