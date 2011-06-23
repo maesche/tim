@@ -41,8 +41,6 @@ public class CustomTable extends JPanel implements ChildView {
 		setPreferredSize(new Dimension(800, data.size() * rowHeight + 150));
 	}
 	
-	
-
 	public void load() {
 		int preferredSize = 0;
 		model.setData(data);
@@ -66,18 +64,20 @@ public class CustomTable extends JPanel implements ChildView {
 		table.getTableHeader().setReorderingAllowed(false);
 		
 		setLayout(new BorderLayout());
-		add(new JScrollPane(table), BorderLayout.NORTH);
+		add(new JScrollPane(table), BorderLayout.CENTER);
 		setPreferredSize(new Dimension(preferredSize, data.size() * rowHeight + 150));
 	}
 
-	public void addBlankRow() {
-		Vector<Object> rowData = new Vector<Object>();
-		rowData.add((Integer) null);
-		rowData.add((String) null);
-		rowData.add((String) null);
-		rowData.add((String) null);
-		rowData.add((String) null);
-		rowData.add(renderer);
+	public void addRow(Vector<Object> rowData) {
+		if (rowData == null) {
+			rowData = new Vector<Object>();
+			rowData.add((Integer) null);
+			rowData.add((String) null);
+			rowData.add((String) null);
+			rowData.add((String) null);
+			rowData.add((String) null);
+			rowData.add(renderer);
+		}
 
 		model.addRow(rowData);
 	}

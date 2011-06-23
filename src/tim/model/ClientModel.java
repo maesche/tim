@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JButton;
+
 import tim.application.Db;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
@@ -110,7 +112,7 @@ public class ClientModel extends PersonModel {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
-			notifyObservers();
+			notifyObservers(element);
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "add"));
 		}
@@ -138,7 +140,7 @@ public class ClientModel extends PersonModel {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
-			notifyObservers();
+			notifyObservers(element);
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "delete"));
 		}

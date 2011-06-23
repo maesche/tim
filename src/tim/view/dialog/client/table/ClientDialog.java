@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 
 import tim.application.Config;
 import tim.application.GlobalRegistry;
+import tim.application.exception.OperationNotPossibleException;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
@@ -23,6 +24,7 @@ public class ClientDialog extends JDialog implements ParentView {
 	CustomTable table;
 	private JButton btnCancel;
 	private AbstractController controller;
+	private JButton addRow;
 	
 	public ClientDialog(AbstractController controller) {
 		try {
@@ -71,6 +73,14 @@ public class ClientDialog extends JDialog implements ParentView {
 		table.setData(elements);
 		table.load();
 		
+		addRow = new JButton("Add blank row");
+		addRow.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				table.addRow(null);
+			}
+		});
+		
 		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
 		
 		btnCancel.addActionListener(new ActionListener() {
@@ -80,6 +90,7 @@ public class ClientDialog extends JDialog implements ParentView {
 			}
 		});
 
+		add(addRow, BorderLayout.NORTH);
 		add(table, BorderLayout.CENTER);
 		add(btnCancel, BorderLayout.SOUTH);
 		this.pack();
@@ -92,12 +103,30 @@ public class ClientDialog extends JDialog implements ParentView {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		table.addRow(null);
 	}
 
 	@Override
 	public void save(String action, Object value) {
-		System.out.println("save");
-		
+		try {
+			if ("add".equals(action)) {
+				controller.save(action, (Element)value);
+			}
+			else if ("delete".equals(action)) {
+				controller.save(action, (Element)value);
+			}
+		} catch (ClassCastException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (OperationNotPossibleException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

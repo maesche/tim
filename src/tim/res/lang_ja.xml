@@ -13,9 +13,9 @@
 	<entry key="applicationMenuManage">管理</entry>
 	<entry key="applicationMenuClients">顧客管理</entry>
 	<entry key="applicationMenuLanguage">言語</entry> 
-	<entry key="applicationMenuLanguageEnglish">英語</entry>	
-	<entry key="applicationMenuLanguageFrench">フランス語</entry>
-	<entry key="applicationMenuLanguageGerman">ドイツ語</entry>
+	<entry key="applicationMenuLanguageEnglish">English</entry>	
+	<entry key="applicationMenuLanguageFrench">Français</entry>
+	<entry key="applicationMenuLanguageGerman">Deutsch</entry>
 	<entry key="applicationMenuLanguageJapanese">日本語</entry>
 	
 	<entry key="dialogMessages">赤い部分の情報を確かめてください。</entry>
