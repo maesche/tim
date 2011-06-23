@@ -17,6 +17,7 @@
 	<entry key="applicationMenuLanguageFrench">Français</entry>
 	<entry key="applicationMenuLanguageGerman">Deutsch</entry>
 	<entry key="applicationMenuLanguageJapanese">日本語</entry>
+	<entry key="applicationNavigationToday">Aujourd'hui</entry>
 	
 	<entry key="dialogMessages">Veuillez vérifier l'erreur suivante:</entry>
 	<entry key="dialogBegin">Début</entry>
@@ -27,6 +28,8 @@
 	<entry key="dialogEnd">Fin</entry>
 	<entry key="dialogSave">Sauvegarder</entry>
 	<entry key="dialogDelete">Supprimer</entry>
+	<entry key="dialogAddBlankRow">Ajouter une nouvelle ligne</entry>
+	<entry key="dialogAction">Action</entry>
 	
 	<entry key="personId">ID</entry>
 	<entry key="personFirstname">Prénom</entry>

@@ -17,6 +17,8 @@
 	<entry key="applicationMenuLanguageFrench">Français</entry>
 	<entry key="applicationMenuLanguageGerman">Deutsch</entry>
 	<entry key="applicationMenuLanguageJapanese">日本語</entry>
+	<entry key="applicationNavigationToday">今日</entry>
+	<entry key="dialogAddBlankRow">新しいラインに追加</entry>
 	
 	<entry key="dialogMessages">赤い部分の情報を確かめてください。</entry>
 	<entry key="dialogBegin">開始</entry>
@@ -27,7 +29,7 @@
 	<entry key="dialogEnd">終了</entry>
 	<entry key="dialogSave">保存</entry>
 	<entry key="dialogDelete">消去</entry>
-	
+	<entry key="dialogAction">アクション</entry>
 	
 	<entry key="personId">ID</entry>
 	<entry key="personFirstname">名前</entry>

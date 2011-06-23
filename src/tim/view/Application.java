@@ -53,18 +53,6 @@ public class Application extends JFrame {
 		add(navBar, BorderLayout.NORTH);
 		add(calendarContainer, BorderLayout.CENTER);
 	}
-
-	/*
-	 * Fonctionnel avec l'ancienne version
-	 */
-	/*public void showClientDialog() {
-		clientDialog = new ClientDialog(new Controller());
-		clientDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		clientDialog.setModal(true);
-		clientDialog.setResizable(false);
-		clientDialog.setLocationRelativeTo(Application.this);
-		clientDialog.setVisible(true);
-	}*/
 	
 	public void showClientDialog() {
 		clientDialog = new ClientDialog(new Controller());

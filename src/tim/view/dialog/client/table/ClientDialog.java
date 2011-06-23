@@ -56,7 +56,7 @@ public class ClientDialog extends JDialog implements ParentView {
 		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personLastname"));
 		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personAddress"));
 		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personPhone"));
-		columnNames.add("Action");
+		columnNames.add(Config.RESSOURCE_BUNDLE.getString("dialogAction"));
 		
 		Vector<Integer> columnWidth = new Vector<Integer>();
 		columnWidth.add(40);
@@ -73,7 +73,7 @@ public class ClientDialog extends JDialog implements ParentView {
 		table.setData(elements);
 		table.load();
 		
-		addRow = new JButton("Add blank row");
+		addRow = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogAddBlankRow"));
 		addRow.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
