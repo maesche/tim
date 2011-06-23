@@ -17,6 +17,7 @@ import tim.application.exception.OperationNotPossibleException;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
+import tim.model.Client;
 import tim.model.Element;
 import tim.view.ParentView;
 
@@ -25,6 +26,7 @@ public class ClientDialog extends JDialog implements ParentView {
 	private JButton btnCancel;
 	private AbstractController controller;
 	private JButton addRow;
+	private CustomRenderer renderer;
 	
 	public ClientDialog(AbstractController controller) {
 		try {
@@ -33,10 +35,11 @@ public class ClientDialog extends JDialog implements ParentView {
 			e.printStackTrace();
 		}
 		this.controller = controller;
+		renderer = new CustomRenderer();
 		table = new CustomTable();
 		table.setEditor(new CustomEditor(this));
 		table.setModel(new CustomTableModel());
-		table.setRenderer(new CustomRenderer());
+		table.setRenderer(renderer);
 		
 
 		
@@ -103,7 +106,7 @@ public class ClientDialog extends JDialog implements ParentView {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		table.addRow(null);
+		table.update(arg);
 	}
 
 	@Override

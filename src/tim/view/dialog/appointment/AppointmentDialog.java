@@ -39,12 +39,16 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	private JLabel lblErrorMsg;
 
 	public AppointmentDialog(Appointment appointment) {
-		System.out.println(appointment);
+
 		
 		form = new Form();
 		form.setParentView(this);
+		
 		try {
 			form.setClients(controller.getAll("client"), null);
+			if (appointment != null) {
+				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
+			}
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,6 +56,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		form.setData(appointment);
 		errorPanel = new JPanel();
 		lblErrorMsg = new JLabel(" ");
 		lblErrorMsg.setForeground(Color.RED);
@@ -85,7 +90,8 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					
+				save("delete", form.getData());
+				close();	
 			}
 		});
 		
@@ -113,7 +119,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -128,7 +134,13 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 
 		}*/
 		try {
-			controller.save(action, (Appointment) value);
+			if ("add".equals(action)) {
+				controller.save(action, (Appointment) value);
+			}
+			else if("delete".equals(action)) {
+				controller.save(action, (Appointment) value);
+			}
+			
 		} catch (ClassCastException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

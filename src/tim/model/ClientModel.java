@@ -95,6 +95,7 @@ public class ClientModel extends PersonModel {
 		address = client.getAddress();
 		comment = client.getComment();
 		
+		
 
 		sql = "INSERT INTO clients (firstName, lastName, phone, address, description) VALUES(" 
 				+ "'" + firstName + "', "
@@ -103,7 +104,6 @@ public class ClientModel extends PersonModel {
 				+ "'" + address + "', "
 				+ "'" + comment + "'"
 				+		")";
-		
 
 		try {
 			conn = Db.open();
@@ -112,7 +112,7 @@ public class ClientModel extends PersonModel {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
-			notifyObservers(element);
+			notifyObservers(get());
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "add"));
 		}
@@ -140,7 +140,7 @@ public class ClientModel extends PersonModel {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
-			notifyObservers(element);
+			notifyObservers(get());
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "delete"));
 		}

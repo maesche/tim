@@ -1,6 +1,5 @@
 package tim.view;
 
 public interface ParentView extends AbstractView {
-
-	public void save (String action, Object value);
+	public void save(String action, Object value);
 }

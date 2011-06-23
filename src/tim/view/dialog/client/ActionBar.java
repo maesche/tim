@@ -46,6 +46,7 @@ public class ActionBar extends JPanel {
 		add(btnDelete);
 	}
 	
+
 	public void setClient(Client client) {
 		this.client = client;
 	}

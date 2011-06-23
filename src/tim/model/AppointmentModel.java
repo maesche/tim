@@ -203,8 +203,32 @@ public class AppointmentModel extends AbstractModel{
 		// TODO Auto-generated method stub
 
 	}
-	public void remove(Element element) {
-		// TODO Auto-generated method stub
+	public void remove(Element element) throws PersistanceException {
+		Connection conn;
+		Statement stmt;
+
+		String sql;
+		
+		long id = element.getId();
+		
+		
+		sql = "DELETE FROM appointments WHERE appointment_id=" + id;
+		System.out.println(sql);
+
+		try {
+			conn = Db.open();
+			
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			stmt.close();
+			setChanged();
+			notifyObservers(element);
+		} catch (SQLException ex) {
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "delete"));
+		}
+		finally {
+			Db.close();
+		}
 
 	}
 	

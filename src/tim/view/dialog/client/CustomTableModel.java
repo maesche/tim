@@ -15,6 +15,11 @@ public class CustomTableModel extends AbstractTableModel {
 		this.data = data;
 	}
 	
+	public void updateData(Vector<Vector<Object>> data) {
+		setData(data);
+		fireTableDataChanged();
+	}
+	
 	public void setColumnNames(Vector<String> colunmNames) {
 		this.columnNames = colunmNames;
 	}
@@ -59,5 +64,7 @@ public class CustomTableModel extends AbstractTableModel {
 		data.remove(row);
 		fireTableDataChanged();
 	}
+	
+
 
 }

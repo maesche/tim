@@ -59,7 +59,7 @@ public class Form extends JPanel implements ChildView {
 		lblDate = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogDate")
 				+ " :");
 		txtDate = new JTextField(10);
-
+		txtDate.setToolTipText(Config.DATE_FORMAT_SHORT);
 		lblBegin = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin")
 				+ " :");
 		cbBeginH = new JComboBox();
@@ -224,7 +224,7 @@ public class Form extends JPanel implements ChildView {
 		for (Element element : elements) {
 			cbClient.addItem((Client) element);
 			if (selectedId != null && element.getId() == selectedId) {
-				cbClient.setSelectedItem(this);
+				cbClient.setSelectedItem(element);
 			}
 		}
 	}
@@ -261,6 +261,8 @@ public class Form extends JPanel implements ChildView {
 			if (appointment.getDescription() != null) {
 				description = appointment.getDescription();
 			}
+			
+
 
 			txtDate.setText(date);
 

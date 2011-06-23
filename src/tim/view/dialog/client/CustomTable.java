@@ -36,9 +36,7 @@ public class CustomTable extends JPanel implements ChildView {
 	private ParentView view;
 
 	public CustomTable() {
-		data = new Vector<Vector<Object>>();
 		columnNames = new Vector<String>();
-		setPreferredSize(new Dimension(800, data.size() * rowHeight + 150));
 	}
 	
 	public void load() {
@@ -55,9 +53,14 @@ public class CustomTable extends JPanel implements ChildView {
 		actionColumn.setCellRenderer(renderer);
 		actionColumn.setCellEditor(editor);
 		
-		for (int i = 0; i < columnWidth.size(); i++) {
-			table.getColumnModel().getColumn(i).setMinWidth(columnWidth.get(i));
-			preferredSize += columnWidth.get(i);
+		if (columnWidth.size() == columnNames.size()) {
+			for (int i = 0; i < columnWidth.size(); i++) {
+				table.getColumnModel().getColumn(i).setMinWidth(columnWidth.get(i));
+				preferredSize += columnWidth.get(i);
+			}
+		}
+		else {
+			preferredSize = 800;
 		}
 
 		table.setRowHeight(rowHeight);
@@ -102,22 +105,7 @@ public class CustomTable extends JPanel implements ChildView {
 
 	@Override
 	public void setData(Object value) {
-		@SuppressWarnings("unchecked")
-		ArrayList<Element> elements = (ArrayList<Element>) value;
-		
-		Vector<Object> rowData;
-
-		for (Element element : elements) {
-			Client client = (Client) element;
-			rowData = new Vector<Object>();
-			rowData.add((int) client.getId());
-			rowData.add((String) client.getFirstName());
-			rowData.add((String) client.getLastName());
-			rowData.add((String) client.getAddress());
-			rowData.add((String) client.getPhone());
-			rowData.add(renderer);
-			data.add(rowData);
-		}
+		createData(value);
 	}
 	
 	public void setColumnNames(Vector<String> columnNames) {
@@ -142,5 +130,35 @@ public class CustomTable extends JPanel implements ChildView {
 	
 	public void setRowHeight(int rowHeight) {
 		this.rowHeight = rowHeight;
+	}
+	
+	public void removeRow(int row) {
+		System.out.println(row);
+		model.removeRow(row);
+	}
+	
+	public void createData(Object value) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Element> elements = (ArrayList<Element>) value;
+		data = new Vector<Vector<Object>>();
+		Vector<Object> rowData;
+
+		for (Element element : elements) {
+			Client client = (Client) element;
+			rowData = new Vector<Object>();
+			rowData.add((int) client.getId());
+			rowData.add((String) client.getFirstName());
+			rowData.add((String) client.getLastName());
+			rowData.add((String) client.getAddress());
+			rowData.add((String) client.getPhone());
+			rowData.add(renderer);
+			data.add(rowData);
+		}
+	}
+	
+
+	public void update(Object value) {
+		createData(value);
+		model.updateData(data);
 	}
 }
