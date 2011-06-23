@@ -16,7 +16,7 @@ import tim.application.utils.CurrentClassGetter;
 import tim.controller.Controller;
 import tim.view.calendar.CalendarContainer;
 import tim.view.calendar.DayNavigation;
-import tim.view.dialog.client.table.ClientDialog;
+import tim.view.dialog.client.ClientDialog;
 
 public class Application extends JFrame {
 	

@@ -1,4 +1,4 @@
-package tim.view.dialog.client.table;
+package tim.view.dialog.client;
 
 import java.util.Vector;
 
