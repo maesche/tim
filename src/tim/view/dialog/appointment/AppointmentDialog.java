@@ -65,7 +65,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					
+				close();
 			}
 		});
 		
@@ -75,9 +75,8 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-
 				save("add", form.getData());
-
+				close();
 			}
 		});
 		
@@ -107,7 +106,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		System.out.println(employee + " " + begin + " " + end);
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	private void close() {
 		setVisible(false);
 		dispose();
 	}
@@ -146,5 +145,11 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			
 		
 		//close dialog
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		close();
+		
 	}
 }

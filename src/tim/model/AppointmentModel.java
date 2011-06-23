@@ -241,11 +241,16 @@ public class AppointmentModel extends AbstractModel{
 		Date begin = appointment.getBegin();
 	//	Date end = DateHelper.StringToDate(DateHelper.DateToString(appointment.getEnd(), Config.DATE_FORMAT_SHORT));
 		
+		
 		ArrayList<Element> appointments = this.get(appointment.getBegin(), appointment.getEnd());
 		
 		for (Element element : appointments) {
 			Appointment app = (Appointment) element;
 			
+			Date a_begin = app.getBegin();
+			Date a_end = app.getEnd();
+			
+			//canInsert = (a_end < begin || a_begin >= end);
 		}
 		
 		return true;
