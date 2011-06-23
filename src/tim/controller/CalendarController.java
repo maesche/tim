@@ -1,6 +1,7 @@
 package tim.controller;
 
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -9,6 +10,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Vector;
+
+import javax.swing.JTable;
 
 import tim.application.Config;
 import tim.application.exception.PersistanceException;
@@ -24,15 +28,18 @@ import tim.view.calendar.EventButton;
 
 public class CalendarController extends Controller {
 
-	private int nbrPerson = 3;
-	private int nbrHourPerDay;
+	private int nbrPerson;
+	private int nbrHoursPerDay;
 	private Date currentCalendarDate;
+	private int nbrMinutesPerDay;
 	private ArrayList<Employee> employees;
 
 
 	public CalendarController(){
 		this.nbrPerson = 0;
-		this.nbrHourPerDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
+		this.nbrHoursPerDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
+		this.nbrMinutesPerDay = (Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60;
+		System.out.println("controller " + Config.CALENDAR_DAY_END +" - "+ Config.CALENDAR_DAY_START +" * "+ 60);
 	}
 	
 	//__________________________________________________________________________________
@@ -151,73 +158,7 @@ public class CalendarController extends Controller {
 		return employees;
 	}
 
-	/*public ArrayList<EventButton> getEventButtons(Employee employee, Date begin, Date end) throws PersistanceException{
-		ArrayList<EventButton> eventButtons = null;
-		
-		
-		
-		if (begin != null && end != null) {
-			ArrayList<Element> appointments = ((AppointmentModel) this.models.get("AppointmentModel")).get(employee, begin, end);
-			
-			
-			eventButtons = new ArrayList<EventButton>();
-			for (Element element : appointments) {
-				Appointment a = (Appointment) element;
-				eventButtons.add(new EventButton(this.getEventTitle(a), a.getBegin(), a.getEnd(), this.getEventDuration(a.getBegin(),a.getEnd()), employee.getColor()));
-				//eventButtons.add(new EventButton(180));
-			}
-		}
-		
-		return eventButtons;
-	}*/
-
-	/*public ArrayList<EventButton> getAllButtons(ArrayList<EventButton> visibleButtons){
-		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
-		
-		ArrayList<Employee> getCalendars(begin, end);
-		
-		
-		EventButton actualButton;
-		boolean exit = false;
-		int i = 0;
-		int startOfButton = 0;
-		int nbrVisibleButtons = visibleButtons.size();
-		
-		int actualMinuteOfDay = Config.CALENDAR_DAY_START*60;
-		int endOfDay = Config.CALENDAR_DAY_END*60;
-		
-		while(i < nbrVisibleButtons+1 && exit == false){
-			if(i == nbrVisibleButtons){
-				actualButton = null;
-			}else{
-				actualButton = visibleButtons.get(i);
-				startOfButton = Integer.parseInt(DateHelper.DateToString(actualButton.getBegin(), "H"))*60;
-			}
-			
-			
-			if(actualButton != null){//encore des evenements pour l'utilisateur
-				if(actualMinuteOfDay < startOfButton){
-					allButtons.add(new EventButton(startOfButton - actualMinuteOfDay));
-					actualMinuteOfDay += startOfButton - actualMinuteOfDay;
-				}else if(actualMinuteOfDay == startOfButton){
-					allButtons.add(visibleButtons.get(i));
-					actualMinuteOfDay += visibleButtons.get(i).getDuration();
-					i++;
-				}
-			}else{//Plus d'événements pour l'utilisateur
-				if(actualMinuteOfDay < endOfDay){
-					allButtons.add(new EventButton(endOfDay - actualMinuteOfDay));
-					exit = true;
-				}else{
-					
-				}
-			}			
-		}
-
-		return allButtons;
-	}*/
-
-	public ArrayList<EventButton> getAllButtonsX(Employee employee) throws PersistanceException, ParseException{
+	public ArrayList<EventButton> getButtonsCalendar(Employee employee) throws PersistanceException, ParseException{
 		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
 		EventButton btn = null;
 
@@ -278,7 +219,6 @@ public class CalendarController extends Controller {
 
 		}
 
-		//System.out.println("Fin-------------");
 		return allButtons;
 	}
 
@@ -338,12 +278,43 @@ public class CalendarController extends Controller {
 		return this.nbrPerson;
 	}
 
-
+	public int getHoursPerDay(){
+		return this.nbrHoursPerDay;
+	}
 
 
 	public ArrayList<Employee> getEmployees(){
 		return this.employees;
+	}
+	public int getMinutesPerDay(){
+		return this.nbrMinutesPerDay;
+	}
+	
 
+	public JTable getFormatedTable(){
+		String h;
+		
+
+		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+		Vector<String> columnNames = new Vector<String>();
+		
+		columnNames.add("Collaborateur");
+
+		for(int i=1; i<getHoursPerDay()+1; i++){
+			h = Integer.toString(i-1 + Config.CALENDAR_DAY_START);
+			
+			columnNames.add(h + ":00");
+		}
+		Vector<Object> rowData;
+		int i = 0;
+		for(Employee e : getEmployees()){
+			rowData = new Vector<Object>();
+			rowData.add(e);
+			data.add(rowData);
+			i++;
+		}
+		
+		return new JTable(data, columnNames);
 	}
 
 }

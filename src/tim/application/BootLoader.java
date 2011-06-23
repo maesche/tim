@@ -19,10 +19,13 @@ public class BootLoader {
 		GlobalRegistry.mvcLinker.registerModel(new AppointmentModel());
 		GlobalRegistry.mvcLinker.registerModel(new ClientModel());
 		
-		GlobalRegistry.mvcLinker.registerController(new CalendarController());
+		
 		
 		new XmlReader().readConfig(configFile);
 				
-		GlobalRegistry.languageLinker.setLanguageDefault();		
+		GlobalRegistry.languageLinker.setLanguageDefault();
+		
+		
+		GlobalRegistry.mvcLinker.registerController(new CalendarController());
 	}
 }
