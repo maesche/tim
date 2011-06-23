@@ -7,8 +7,11 @@
 	
 	<entry key="applicationMenuAbout">TIMについて</entry>
 	<entry key="applicationMenuEdit">編集</entry>
+	<entry key="applicationMenuTools">ツッル</entry>
 	<entry key="applicationMenuFile">ファイル</entry> 
 	<entry key="applicationMenuQuit">終了</entry>
+	<entry key="applicationMenuManage">経営</entry>
+	<entry key="applicationMenuClients">お客様</entry>
 	<entry key="applicationMenuLanguage">言語</entry> 
 	<entry key="applicationMenuLanguageEnglish">英語</entry>	
 	<entry key="applicationMenuLanguageFrench">フランス語</entry>

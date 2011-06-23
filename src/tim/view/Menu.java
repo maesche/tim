@@ -14,10 +14,12 @@ import tim.application.GlobalRegistry;
 import tim.application.exception.ResourceNotFoundException;
 
 public class Menu extends JMenuBar implements AbstractView {
-	private JMenu file, edit, help, language;
-	private JMenuItem quit, english, french, german, japanese;
+	private JMenu file, tools, help, language, manage ;
+	private JMenuItem quit, english, french, german, japanese, clients;
+	private Application application;
 
-	public Menu() {
+	public Menu(Application application) {
+		this.application = application;
 		try {
 			GlobalRegistry.mvcLinker.addObserverToSystemResource("LanguageLinker", this);
 		} catch (ResourceNotFoundException e1) {
@@ -39,7 +41,19 @@ public class Menu extends JMenuBar implements AbstractView {
 		file.add(quit);
 		add(file);
 		
-		edit = new JMenu();
+		tools = new JMenu();
+		
+		manage = new JMenu();
+		clients = new JMenuItem();
+		
+		clients.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				showClientDialog();
+			}
+			
+		});
 		
 		language = new JMenu();
 		
@@ -50,7 +64,6 @@ public class Menu extends JMenuBar implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				GlobalRegistry.languageLinker.setLanguage("en");
-				update();
 			}
 			
 		});
@@ -62,7 +75,6 @@ public class Menu extends JMenuBar implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				GlobalRegistry.languageLinker.setLanguage("fr");
-				//update();
 			}
 			
 		});
@@ -74,7 +86,6 @@ public class Menu extends JMenuBar implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				GlobalRegistry.languageLinker.setLanguage("de");
-				//update();
 			}
 			
 		});
@@ -86,20 +97,20 @@ public class Menu extends JMenuBar implements AbstractView {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				GlobalRegistry.languageLinker.setLanguage("ja");
-				//update();
 			}
 			
 		});
 		
-		edit.add(language);
+		manage.add(clients);
+		tools.add(manage);
+		tools.add(language);
+	
 		language.add(english);
-
 		
 		language.add(french);
 		language.add(german);
 		language.add(japanese);
-		add(edit);
-		
+		add(tools);
 
 		help = new JMenu("?");
 		add(help);
@@ -109,7 +120,9 @@ public class Menu extends JMenuBar implements AbstractView {
 	public void update() {
 		file.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuFile"));
 		quit.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuQuit"));
-		edit.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuEdit"));
+		tools.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuTools"));
+		manage.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuManage"));
+		clients.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuClients"));
 		language.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguage"));
 		english.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageEnglish"));
 		french.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageFrench"));
@@ -121,6 +134,10 @@ public class Menu extends JMenuBar implements AbstractView {
 	@Override
 	public void update(Observable observable, Object arg) {
 		update();
+	}
+	
+	public void showClientDialog() {
+		application.showClientDialog();
 	}
 	
 

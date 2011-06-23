@@ -7,8 +7,11 @@
 		
 	<entry key="applicationMenuAbout">A propos de TIM</entry>
 	<entry key="applicationMenuEdit">Edition</entry>
+	<entry key="applicationMenuTools">Outils</entry>
 	<entry key="applicationMenuFile">Fichier</entry> 
 	<entry key="applicationMenuQuit">Quitter</entry>
+	<entry key="applicationMenuManage">Gérer</entry>
+	<entry key="applicationMenuClients">Clients</entry>
 	<entry key="applicationMenuLanguage">Langue</entry> 
 	<entry key="applicationMenuLanguageEnglish">English</entry>	
 	<entry key="applicationMenuLanguageFrench">Français</entry>

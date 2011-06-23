@@ -73,6 +73,8 @@ public class Form extends JPanel {
 
 		TableColumn actionColumn = table.getColumn(columnNames.get(5));
 
+
+		
 		((ActionPanelRenderer) renderer).setMainView(main);
 
 		actionColumn.setCellRenderer(renderer);
