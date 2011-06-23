@@ -1,4 +1,4 @@
-package tim.view.dialog.client;
+package tim.view.dialog.client.table;
 
 import java.util.EventObject;
 

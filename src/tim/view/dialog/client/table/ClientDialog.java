@@ -28,7 +28,6 @@ public class ClientDialog extends JDialog implements ParentView {
 		try {
 			GlobalRegistry.mvcLinker.addObserverToModel("ClientModel", this);
 		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.controller = controller;

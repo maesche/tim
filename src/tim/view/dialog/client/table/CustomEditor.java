@@ -7,7 +7,6 @@ import javax.swing.JTable;
 
 import tim.model.Client;
 import tim.view.ParentView;
-import tim.view.dialog.client.AbstractCellEditor;
 
 public class CustomEditor extends AbstractCellEditor {
 

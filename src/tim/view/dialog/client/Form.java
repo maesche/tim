@@ -33,7 +33,6 @@ public class Form extends JPanel {
 	TableCellRenderer renderer;
 
 	public Form(ArrayList<Element> elements, ClientDialog main) {
-		System.out.println(elements.size());
 		load(elements, main);
 
 	}

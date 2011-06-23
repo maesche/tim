@@ -7,6 +7,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 
 import tim.model.Client;
+import tim.view.dialog.client.table.AbstractCellEditor;
 
 public class ActionPanelEditor extends AbstractCellEditor {
 

@@ -1,17 +1,17 @@
 package tim.view.dialog.client.table;
 
 import java.awt.FlowLayout;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import tim.application.Config;
 import tim.model.Client;
 import tim.view.ParentView;
 
-public class ActionBar extends Panel {
+public class ActionBar extends JPanel {
 	private JButton btnSave;
 	private JButton btnDelete;
 	
@@ -23,7 +23,7 @@ public class ActionBar extends Panel {
 
 	public ActionBar() {
 
-		this.setLayout(new FlowLayout());
+		setLayout(new FlowLayout());
 		btnSave = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogSave"));
 		btnSave.addActionListener(new ActionListener() {
 			@Override
