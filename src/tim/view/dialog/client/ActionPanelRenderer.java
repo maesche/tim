@@ -9,7 +9,6 @@ public class ActionPanelRenderer extends ActionPanel implements TableCellRendere
 
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
-		System.out.println("renderer");
 		return this;
 	}
 	

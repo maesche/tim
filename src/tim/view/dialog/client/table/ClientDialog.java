@@ -32,6 +32,8 @@ public class ClientDialog extends JDialog implements ParentView {
 		}
 		this.controller = controller;
 		table = new CustomTable();
+		table.test(this, controller);
+		/*table = new CustomTable();
 		table.setEditor(new CustomEditor(this));
 		table.setModel(new CustomTableModel());
 		table.setRenderer(new CustomRenderer());
@@ -69,7 +71,7 @@ public class ClientDialog extends JDialog implements ParentView {
 		
 		table.setColumnNames(columnNames);
 		table.setData(elements);
-		table.load();
+		table.load();*/
 		
 		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
 		
