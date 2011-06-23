@@ -10,8 +10,8 @@
 	<entry key="applicationMenuTools">ツッル</entry>
 	<entry key="applicationMenuFile">ファイル</entry> 
 	<entry key="applicationMenuQuit">終了</entry>
-	<entry key="applicationMenuManage">経営</entry>
-	<entry key="applicationMenuClients">お客様</entry>
+	<entry key="applicationMenuManage">管理</entry>
+	<entry key="applicationMenuClients">顧客管理</entry>
 	<entry key="applicationMenuLanguage">言語</entry> 
 	<entry key="applicationMenuLanguageEnglish">英語</entry>	
 	<entry key="applicationMenuLanguageFrench">フランス語</entry>
@@ -21,7 +21,7 @@
 	<entry key="dialogMessages">赤い部分の情報を確かめてください。</entry>
 	<entry key="dialogBegin">開始</entry>
 	<entry key="dialogCancel">取り消す</entry>
-	<entry key="dialogClient">お客様</entry>
+	<entry key="dialogClient">顧客</entry>
 	<entry key="dialogDate">日付</entry>
 	<entry key="dialogDescription">メモ</entry>
 	<entry key="dialogEnd">終了</entry>

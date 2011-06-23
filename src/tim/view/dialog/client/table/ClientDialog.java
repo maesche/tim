@@ -1,6 +1,7 @@
 package tim.view.dialog.client.table;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -32,8 +33,6 @@ public class ClientDialog extends JDialog implements ParentView {
 		}
 		this.controller = controller;
 		table = new CustomTable();
-		table.test(this, controller);
-		/*table = new CustomTable();
 		table.setEditor(new CustomEditor(this));
 		table.setModel(new CustomTableModel());
 		table.setRenderer(new CustomRenderer());
@@ -64,14 +63,14 @@ public class ClientDialog extends JDialog implements ParentView {
 		columnWidth.add(100);
 		columnWidth.add(200);
 		columnWidth.add(100);
-		columnWidth.add(200);
+		columnWidth.add(300);
 		
 		table.setColumnWidth(columnWidth);
 		table.setRowHeight(40);
 		
 		table.setColumnNames(columnNames);
 		table.setData(elements);
-		table.load();*/
+		table.load();
 		
 		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
 		
@@ -88,6 +87,7 @@ public class ClientDialog extends JDialog implements ParentView {
 	}
 	
 	private void close() {
+		this.setVisible(false);
 		this.dispose();
 	}
 
@@ -98,9 +98,7 @@ public class ClientDialog extends JDialog implements ParentView {
 
 	@Override
 	public void save(String action, Object value) {
-		
+		System.out.println("save");
 		
 	}
-
-
 }

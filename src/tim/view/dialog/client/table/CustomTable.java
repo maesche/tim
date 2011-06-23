@@ -16,10 +16,6 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
-import tim.application.Config;
-import tim.application.exception.PersistanceException;
-import tim.application.exception.ResourceNotFoundException;
-import tim.controller.AbstractController;
 import tim.model.Client;
 import tim.model.Element;
 import tim.view.ChildView;
@@ -42,47 +38,10 @@ public class CustomTable extends JPanel implements ChildView {
 	public CustomTable() {
 		data = new Vector<Vector<Object>>();
 		columnNames = new Vector<String>();
+		setPreferredSize(new Dimension(800, data.size() * rowHeight + 150));
 	}
 	
-	public void test(ParentView view, AbstractController controller) {
-
-		setEditor(new CustomEditor(view));
-		setModel(new CustomTableModel());
-		setRenderer(new CustomRenderer());
-		
-		ArrayList<Element> elements = null;
-		
-		try {
-			elements = controller.getAll("client");
-		} catch (PersistanceException e) {
-			e.printStackTrace();
-		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Vector<String> columnNames = new Vector<String>();
-		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personId"));
-		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personFirstname"));
-		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personLastname"));
-		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personAddress"));
-		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personPhone"));
-		columnNames.add("Action");
-		
-		Vector<Integer> columnWidth = new Vector<Integer>();
-		columnWidth.add(40);
-		columnWidth.add(100);
-		columnWidth.add(100);
-		columnWidth.add(200);
-		columnWidth.add(100);
-		columnWidth.add(200);
-		
-		setColumnWidth(columnWidth);
-		setRowHeight(40);
-		
-		setColumnNames(columnNames);
-		setData(elements);
-		load();
-	}
+	
 
 	public void load() {
 		int preferredSize = 0;
