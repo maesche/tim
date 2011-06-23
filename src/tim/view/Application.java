@@ -26,7 +26,7 @@ import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.ErrorHandler;
-import tim.controller.ClientDialogController;
+import tim.controller.Controller;
 import tim.lib.dialog.Form;
 import tim.lib.dialog.FormComponent;
 import tim.lib.dialog.FormEntry;
@@ -128,7 +128,7 @@ public class Application extends JFrame implements AbstractView{
 	}
 	
 	public void showClientDialog() {
-		clientDialog = new ClientDialog(new ClientDialogController());
+		clientDialog = new ClientDialog(new Controller());
 		clientDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		clientDialog.setModal(true);
 		clientDialog.setResizable(false);

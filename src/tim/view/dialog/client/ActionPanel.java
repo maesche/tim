@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
-import tim.controller.ClientDialogController;
 import tim.model.Client;
 
 public class ActionPanel extends JPanel {

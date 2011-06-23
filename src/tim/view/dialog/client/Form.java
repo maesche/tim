@@ -24,7 +24,7 @@ import tim.model.Client;
 import tim.model.Element;
 import tim.view.AbstractView;
 
-public class Form extends JPanel implements AbstractView {
+public class Form extends JPanel {
 	private Vector<Vector<Object>> data;
 	private Vector<String> columnNames;
 	private JTable table;
@@ -39,12 +39,7 @@ public class Form extends JPanel implements AbstractView {
 	}
 
 	private void load(ArrayList<Element> elements, ClientDialog main) {
-		try {
-			GlobalRegistry.mvcLinker.addObserverToModel("ClientModel", this);
-		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		renderer = new ActionPanelRenderer();
 		TableCellEditor editor = new ActionPanelEditor(main);
 
@@ -119,11 +114,5 @@ public class Form extends JPanel implements AbstractView {
 		rowData.add(renderer);
 
 		clientTableModel.addRow(rowData);
-	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		System.out.println("c'est encore moi");
-
 	}
 }

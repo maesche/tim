@@ -14,18 +14,22 @@ import tim.application.exception.OperationNotPossibleException;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
-import tim.controller.ClientDialogController;
 import tim.model.Element;
-import tim.view.AbstractView;
+import tim.view.ParentView;
 
-public class ClientDialog extends JDialog implements AbstractView {
+public class ClientDialog extends JDialog implements ParentView {
 	Form form;
-	ClientDialogController clientDialogController;
 	private JButton btnCancel;
-	private ClientDialogController controller;
+	private AbstractController controller;
 	
-	public ClientDialog(ClientDialogController controller) {
-		this.controller = (ClientDialogController) controller;
+	public ClientDialog(AbstractController controller) {
+		try {
+			GlobalRegistry.mvcLinker.addObserverToModel("ClientModel", this);
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.controller = controller;
 		try {
 			form = new Form(controller.getAll("client"), this);
 		} catch (PersistanceException e) {
@@ -53,9 +57,33 @@ public class ClientDialog extends JDialog implements AbstractView {
 		this.pack();
 	}
 	
-	public void save(String action, Element element) {
+	private void close() {
+		this.dispose();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
 		try {
-			controller.save(action, element);
+			this.remove(form);
+			this.remove(btnCancel);
+			form = new Form(controller.getAll("client"), this);
+			add(form, BorderLayout.NORTH);
+			add(btnCancel, BorderLayout.CENTER);
+			this.pack();
+
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void save(String action, Object value) {
+		try {
+			controller.save(action, (Element)value);
 		} catch (ClassCastException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,31 +97,7 @@ public class ClientDialog extends JDialog implements AbstractView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-	}	
-	
-	private void close() {
-		this.dispose();
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		try {
-			this.remove(form);
-			this.remove(btnCancel);
-			form = new Form(controller.getAll("clients"), this);
-			add(form, BorderLayout.NORTH);
-			add(btnCancel, BorderLayout.CENTER);
-			this.pack();
-
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("reload");
+		
 	}
 
 
