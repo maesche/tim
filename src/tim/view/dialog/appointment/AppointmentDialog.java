@@ -154,9 +154,6 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
-		
-		//close dialog
 	}
 
 	@Override
