@@ -24,7 +24,6 @@ import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 import tim.controller.CalendarController;
-import tim.controller.UserCalendarController;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;

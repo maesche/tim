@@ -20,7 +20,6 @@ import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.DateHelper;
 import tim.controller.AppointmentDialogController;
 import tim.controller.CalendarController;
-import tim.controller.DayViewController;
 import tim.model.AppointmentModel;
 import tim.model.Element;
 import tim.model.Employee;
