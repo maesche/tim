@@ -24,7 +24,6 @@ import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 import tim.controller.CalendarController;
-import tim.controller.UserCalendarController;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;
@@ -114,5 +113,10 @@ public class UserCalendar extends JPanel{
 	public void validate(){
 		this.setSize(CalendarContainer.getCalendarDimension());
 		eventSizing(new Dimension(this.getWidth(),this.getHeight()));
+		
+		
+		
+		
+		this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
 	}
 }

@@ -13,6 +13,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
+import tim.controller.CalendarController;
 
 
 
@@ -24,16 +26,22 @@ public class CalendarContainer extends JPanel {
 	
 	private JLayeredPane layer;
 	
+	
+	CalendarController controller;
+	
 	public CalendarContainer() throws ParseException {
+		
+		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
 		this.calendarHourWidth = 0;
 		
 		this.setLayout(new BorderLayout());
 		
 		
+		
 		this.layer = new JLayeredPane();
 		
-		setJLayerPaneDimension(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,600));
+		setJLayerPaneDimension(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,1000));
 		this.setPreferredSize(getCalendarDimension());		
 		
 		
@@ -42,20 +50,34 @@ public class CalendarContainer extends JPanel {
 		
 
 		add(this.layer);
+		repaint();
 	}
 	
 	public void paintComponent(Graphics g) {
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
-	    validate();
+	    this.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
+	    
+	    this.setPreferredSize(this.getCalendarDimension());
+	    
+	    this.calendarDimension.setSize(this.getWidth(), this.getHeight());
+	    
+	    
+	    
+	   
+	    this.controller.setCalendarSize(this.getWidth(), this.getHeight());
+	    
+	    
+	    
+	    //validate();
 	}
 	
-	public void validate(){
+	/*public void validate(){
 		this.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
 	    
 	    this.setPreferredSize(this.getCalendarDimension());
 	    //this.setSize(this.getCalendarDimension());
-	}
+	}*/
 
 	public static void setJLayerPaneDimension(Dimension jLayerPaneDimension) {
 		calendarDimension = jLayerPaneDimension;
