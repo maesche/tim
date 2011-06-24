@@ -62,4 +62,5 @@ public class Application extends JFrame {
 		clientDialog.setLocationRelativeTo(Application.this);
 		clientDialog.setVisible(true);
 	}
+
 }

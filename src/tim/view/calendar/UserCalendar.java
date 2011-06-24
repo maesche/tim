@@ -113,5 +113,10 @@ public class UserCalendar extends JPanel{
 	public void validate(){
 		this.setSize(CalendarContainer.getCalendarDimension());
 		eventSizing(new Dimension(this.getWidth(),this.getHeight()));
+		
+		
+		
+		
+		this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
 	}
 }

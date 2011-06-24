@@ -33,13 +33,25 @@ public class CalendarController extends Controller {
 	private Date currentCalendarDate;
 	private int nbrMinutesPerDay;
 	private ArrayList<Employee> employees;
+	
+	private JTable table;
+	
+	private Dimension calendarSize;
+	private Dimension userCalendarSize;
+	private Dimension DayViewContainerPlacement;
+	private Dimension DayViewContainerSize;
 
 
 	public CalendarController(){
 		this.nbrPerson = 0;
 		this.nbrHoursPerDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		this.nbrMinutesPerDay = (Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60;
-		System.out.println("controller " + Config.CALENDAR_DAY_END +" - "+ Config.CALENDAR_DAY_START +" * "+ 60);
+		
+		
+		this.calendarSize = new Dimension();
+		this.userCalendarSize = new Dimension();
+		this.DayViewContainerPlacement = new Dimension();
+		this.DayViewContainerSize = new Dimension();
 	}
 	
 	//__________________________________________________________________________________
@@ -157,7 +169,14 @@ public class CalendarController extends Controller {
 
 		return employees;
 	}
-
+	
+	/**
+	 * 
+	 * @param employee
+	 * @return return the whole buttons of an employee appointments
+	 * @throws PersistanceException
+	 * @throws ParseException
+	 */
 	public ArrayList<EventButton> getButtonsCalendar(Employee employee) throws PersistanceException, ParseException{
 		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
 		EventButton btn = null;
@@ -218,6 +237,14 @@ public class CalendarController extends Controller {
 			i++;
 
 		}
+		
+		
+		// ici on ne connait pas la date actuelle du calendrier, il faut la mettre
+		/*if(allButtons.size() == 0){
+			Date begin = actualMinutesOfDayToDate(, actualMinuteOfDay);
+			Date end = actualMinutesOfDayToDate(a.getBegin(),endOfDay);
+			allButtons.add(new EventButton(employee, a.getEnd(), end));
+		}*/
 
 		return allButtons;
 	}
@@ -313,8 +340,46 @@ public class CalendarController extends Controller {
 			data.add(rowData);
 			i++;
 		}
-		
-		return new JTable(data, columnNames);
+		this.table = new JTable(data, columnNames);
+		return table;
 	}
+
+	public Dimension getCalendarSize(){return calendarSize;}
+	public void setCalendarSize(int width, int height) {
+		this.calendarSize.setSize(width, height);
+	}
+
+	public Dimension getUserCalendarSize(){return userCalendarSize;}
+	public void setUserCalendarSize(int width, int height) {
+		this.userCalendarSize.setSize(width, height);
+	}
+
+	public Dimension getDayViewContainerPlacement(){return DayViewContainerPlacement;}
+	public void setDayViewContainerPlacement() {
+		int width,height;
+		width = table.getColumnModel().getColumn(1).getWidth();
+		height = 20;
+		
+		this.DayViewContainerPlacement.setSize(width, height);
+	}
+	
+	public void setTest(int t){
+		this.DayViewContainerPlacement.setSize(t, t);
+	}
+	
+	public Dimension getDayViewContainerSize(){return this.DayViewContainerSize;}
+	public void setDayViewContainerSize(int width, int height) {
+		this.DayViewContainerSize.setSize(width, height);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

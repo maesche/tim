@@ -84,6 +84,16 @@ public class DayTableView extends JPanel {
 		int calHourWidth = table.getColumnModel().getColumn(1).getWidth() * this.controller.getHoursPerDay();
 		CalendarContainer.setCalendarHourWidth(calHourWidth);
 		CalendarContainer.setCalendarPersonColWidth(table.getColumnModel().getColumn(0).getWidth());
+		
+		
+		
+		//this.controller.setUserCalendarSize(table.getColumnModel().getColumn(1).getWidth(), 20);
+		//System.out.println(controller.getCalendarSize().getWidth());
+		this.controller.setDayViewContainerSize((int)table.getPreferredSize().getWidth()-table.getColumnModel().getColumn(1).getWidth(), (int) controller.getCalendarSize().getHeight()-20);
+		//this.controller.setDayViewContainerPlacement(table.getColumnModel().getColumn(1).getWidth(), 20);
+		this.controller.setDayViewContainerPlacement();
+		
+		
 	}
 	
 	public void paintComponent(Graphics g){
