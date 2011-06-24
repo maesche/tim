@@ -117,6 +117,6 @@ public class UserCalendar extends JPanel{
 		
 		
 		
-		this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
+		//this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
 	}
 }

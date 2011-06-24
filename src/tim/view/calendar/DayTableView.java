@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.JTableHeader;
 
+import sun.tools.tree.ThisExpression;
 import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.XMLResourceBundleControl;
@@ -28,7 +29,7 @@ import tim.model.Employee;
 
 public class DayTableView extends JPanel {
 	
-	private /*static*/ JTable table;
+	public /*static*/ JTable table;
 	int nbrPerson = 0;
 	
 	CalendarController controller;
@@ -88,10 +89,10 @@ public class DayTableView extends JPanel {
 		
 		
 		//this.controller.setUserCalendarSize(table.getColumnModel().getColumn(1).getWidth(), 20);
-		//System.out.println(controller.getCalendarSize().getWidth());
-		this.controller.setDayViewContainerSize((int)table.getPreferredSize().getWidth()-table.getColumnModel().getColumn(1).getWidth(), (int) controller.getCalendarSize().getHeight()-20);
+		//System.out.println(this.getWidth());
+		//this.controller.setDayViewContainerSize((int)table.getPreferredSize().getWidth()-table.getColumnModel().getColumn(1).getWidth(), (int) controller.getCalendarSize().getHeight()-20);
 		//this.controller.setDayViewContainerPlacement(table.getColumnModel().getColumn(1).getWidth(), 20);
-		this.controller.setDayViewContainerPlacement();
+		//this.controller.setDayViewContainerPlacement();
 		
 		
 	}

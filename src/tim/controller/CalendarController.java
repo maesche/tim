@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.JTable;
@@ -24,6 +25,8 @@ import tim.model.Element;
 import tim.model.Employee;
 import tim.model.EmployeeModel;
 import tim.view.Application;
+import tim.view.calendar.DayTableView;
+import tim.view.calendar.DayViewContainer;
 import tim.view.calendar.EventButton;
 
 public class CalendarController extends Controller {
@@ -40,9 +43,12 @@ public class CalendarController extends Controller {
 	private Dimension userCalendarSize;
 	private Dimension DayViewContainerPlacement;
 	private Dimension DayViewContainerSize;
+	
+	private HashMap<String, Object> views;
 
 
 	public CalendarController(){
+		this.views = new HashMap<String, Object>();
 		this.nbrPerson = 0;
 		this.nbrHoursPerDay = Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START;
 		this.nbrMinutesPerDay = (Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60;
@@ -343,34 +349,51 @@ public class CalendarController extends Controller {
 		this.table = new JTable(data, columnNames);
 		return table;
 	}
-
-	public Dimension getCalendarSize(){return calendarSize;}
-	public void setCalendarSize(int width, int height) {
-		this.calendarSize.setSize(width, height);
+	
+	
+	
+	
+	
+	public void addView(String viewName,Object view){
+		this.views.put(viewName, view);
+	}
+	public Object getViews(String viewName){
+		return this.views.get(viewName);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Dimension getCalendarSize() {
+		return calendarSize;
+	}
+	public Dimension getDayViewContainerPlacement() {
+		return DayViewContainerPlacement;
+	}
+	public Dimension getDayViewContainerSize() {
+		return DayViewContainerSize;
 	}
 
-	public Dimension getUserCalendarSize(){return userCalendarSize;}
-	public void setUserCalendarSize(int width, int height) {
-		this.userCalendarSize.setSize(width, height);
-	}
-
-	public Dimension getDayViewContainerPlacement(){return DayViewContainerPlacement;}
-	public void setDayViewContainerPlacement() {
-		int width,height;
-		width = table.getColumnModel().getColumn(1).getWidth();
-		height = 20;
+	public void updateCalendarDimension(){
+		DayViewContainer dayViewContainer = (DayViewContainer) this.getViews("DayViewContainer");
+		DayTableView dayTableView = (DayTableView) this.getViews("DayTableView");
 		
-		this.DayViewContainerPlacement.setSize(width, height);
+		this.calendarSize.setSize(dayViewContainer.getWidth(),dayViewContainer.getHeight());
+		
+		this.DayViewContainerPlacement.setSize((int)dayTableView.table.getColumnModel().getColumn(0).getWidth(), 20);
+		
+		this.DayViewContainerSize.setSize((int)dayTableView.getWidth()-(int)dayTableView.table.getColumnModel().getColumn(0).getWidth(), (int)dayTableView.getHeight()-20);
 	}
+
+
+
 	
-	public void setTest(int t){
-		this.DayViewContainerPlacement.setSize(t, t);
-	}
 	
-	public Dimension getDayViewContainerSize(){return this.DayViewContainerSize;}
-	public void setDayViewContainerSize(int width, int height) {
-		this.DayViewContainerSize.setSize(width, height);
-	}
 	
 	
 	

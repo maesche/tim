@@ -78,7 +78,7 @@ public class DayViewContainer extends JPanel {
 		//this.controller.setCalendarSize(this.getWidth(), this.getHeight());
 		
 		//System.out.println(this.getWidth() +" "+ this.getHeight());
-		
+		this.controller.updateCalendarDimension();
 		x = (int) this.controller.getDayViewContainerPlacement().getWidth();
 		y = (int) this.controller.getDayViewContainerPlacement().getHeight();
 		width = (int) this.controller.getDayViewContainerSize().getWidth();
@@ -86,6 +86,7 @@ public class DayViewContainer extends JPanel {
 		
 		System.out.println(x +" "+ y  +" "+ width  +" "+ height);
 		this.setBounds(x, y, width, height);
+		
 	}
 	
 	public void paintComponent(Graphics g){
