@@ -186,7 +186,8 @@ public class CalendarController extends Controller {
 	public ArrayList<EventButton> getButtonsCalendar(Employee employee) throws PersistanceException, ParseException{
 		ArrayList<EventButton> allButtons = new ArrayList<EventButton>();
 		EventButton btn = null;
-
+		
+		//ne faut-il pas faire avec equals???
 		ArrayList<Appointment> appointments = employee.getCalendar().getAppointments();
 
 
