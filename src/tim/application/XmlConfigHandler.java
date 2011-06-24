@@ -38,7 +38,7 @@ import java.io.File;
 //
 //	XmlReader class
 //__________________________________________________________________________________
-public class XmlReader {
+public class XmlConfigHandler {
 	
 	//______________________________________________________________________________
 	//
@@ -107,13 +107,15 @@ public class XmlReader {
 		return nValue.getNodeValue();
 	}
 	
+	public void writeConfig(String xmlFilePath) throws PersistanceException {
+		updateConfig(xmlFilePath);
+	}
+	
 	//______________________________________________________________________________
 	//
 	//	updateConfig method. Update the XML file of configuration's application 
 	//______________________________________________________________________________
-	public void updateConfig(String xmlFilePath, 
-							 String xmlElement, 
-							 String tagValue) throws PersistanceException 
+	public void updateConfig(String xmlFilePath) throws PersistanceException 
 	{
 		try
 		{
@@ -122,7 +124,21 @@ public class XmlReader {
 			Document doc = docBuilder.parse(xmlFilePath);
 
 	        //---Get the element by tag name directly. Ex.: "default-lang"
+			
+			String xmlElement = "default-lang";
+			String tagValue = Config.DEFAULT_LANG;
 	        Node nodeToUpdate = doc.getElementsByTagName(xmlElement).item(0);
+	        
+	        
+	        /*
+	         * Config.DATE_FORMAT_SHORT = getTagValue("date-format", eElement);
+					Config.TIME_FORMAT = getTagValue("time-format", eElement);
+					Config.DB_URL = getTagValue("db-url", eElement);
+					Config.DB_DRIVER = getTagValue("db-driver", eElement);
+					Config.DB_USER = getTagValue("db-user", eElement);
+					Config.DB_PWD = getTagValue("db-pwd", eElement);
+					Config.DEFAULT_LANG = getTagValue("default-lang", eElement);
+	         */
 	        
 	        //nodeToUpdate.setNodeValue("en"); 	 <== not the good method
 	        //nodeToUpdate.setTextContent("en"); <== the good method
@@ -142,7 +158,7 @@ public class XmlReader {
 	    {
 			throw new PersistanceException(ExceptionFormatter.format(ex, 
 																	 this.getClass().getName(), 
-																	 "readConfig"));
+																	 "updateConfig"));
 	    }
 	}
 	
