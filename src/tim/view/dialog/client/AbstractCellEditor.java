@@ -9,19 +9,23 @@ abstract public class AbstractCellEditor implements TableCellEditor {
 
 	@Override
 	public void addCellEditorListener(CellEditorListener cellEditorListener) {
+		System.out.println("addCellEditorListener");
 	}
 
 	@Override
 	public void cancelCellEditing() {
+		System.out.println("cancel");
 	}
 
 	@Override
 	public Object getCellEditorValue() {
+		System.out.println("getCellEditorValue");
 		return null;
 	}
 
 	@Override
 	public boolean isCellEditable(EventObject eventObject) {
+		System.out.println("editable");
 		return true;
 	}
 
@@ -31,11 +35,13 @@ abstract public class AbstractCellEditor implements TableCellEditor {
 
 	@Override
 	public boolean shouldSelectCell(EventObject eventObject) {
-		return false;
+		System.out.println("should select");
+		return true;
 	}
 
 	@Override
 	public boolean stopCellEditing() {
+		System.out.println("stop editing");
 		return true;
 	}
 }
