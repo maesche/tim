@@ -23,6 +23,7 @@ public class CustomEditor extends AbstractCellEditor {
 		new String();
 		if (table.getModel().getValueAt(row, 0) != null) {
 			id = (Integer) table.getModel().getValueAt(row, 0);
+			System.out.println("action on " + id);
 		}
 
 		String firstName = (String) table.getModel().getValueAt(row, 1);

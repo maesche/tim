@@ -104,7 +104,6 @@ public class ClientModel extends PersonModel {
 				+ "'" + address + "', "
 				+ "'" + comment + "'"
 				+		")";
-
 		try {
 			conn = Db.open();
 			
@@ -132,7 +131,6 @@ public class ClientModel extends PersonModel {
 		
 		
 		sql = "DELETE FROM clients WHERE client_id=" + id + " AND NOT EXISTS (SELECT client_id FROM appointments WHERE client_id= " + id + " )";
-
 		try {
 			conn = Db.open();
 			
