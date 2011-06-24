@@ -64,6 +64,7 @@ public class Application extends JFrame {
 	
 		add(navBar, BorderLayout.NORTH);
 		add(calendarContainer, BorderLayout.CENTER);
+
 	}
 	
 	public void showClientDialog() {
