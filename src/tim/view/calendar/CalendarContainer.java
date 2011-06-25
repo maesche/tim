@@ -44,6 +44,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		try {
 			employees = controller.getCalendars(begin, end);
@@ -52,6 +53,9 @@ public class CalendarContainer extends JPanel implements ParentView {
 			e.printStackTrace();
 		}
 		
+=======
+		CalendarContainer.calendarHourWidth = 0;
+>>>>>>> refs/remotes/origin/mnoverraz
 =======
 		CalendarContainer.calendarHourWidth = 0;
 >>>>>>> refs/remotes/origin/mnoverraz
@@ -108,20 +112,32 @@ public class CalendarContainer extends JPanel implements ParentView {
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	    CalendarContainer.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
+>>>>>>> refs/remotes/origin/mnoverraz
 =======
 	    CalendarContainer.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
 >>>>>>> refs/remotes/origin/mnoverraz
 	    
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    setPreferredSize(this.getSize());
+=======
+	    this.setPreferredSize(CalendarContainer.getCalendarDimension());
+>>>>>>> refs/remotes/origin/mnoverraz
 =======
 	    this.setPreferredSize(CalendarContainer.getCalendarDimension());
 >>>>>>> refs/remotes/origin/mnoverraz
 	    
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    //this.controller.updateCalendarDimension(this.calendarSize,this.dayViewContainer.getSize());
 	    
 	    //this.calendarDimension.setSize(this.getWidth(), this.getHeight());
+=======
+	    CalendarContainer.calendarDimension.setSize(this.getWidth(), this.getHeight());
+>>>>>>> refs/remotes/origin/mnoverraz
 =======
 	    CalendarContainer.calendarDimension.setSize(this.getWidth(), this.getHeight());
 >>>>>>> refs/remotes/origin/mnoverraz

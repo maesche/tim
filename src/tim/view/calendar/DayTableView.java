@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +16,8 @@ import java.util.Vector;
 import javax.swing.JButton;
 =======
 >>>>>>> refs/remotes/origin/mnoverraz
+=======
+>>>>>>> refs/remotes/origin/mnoverraz
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,11 +25,14 @@ import javax.swing.ScrollPaneConstants;
 import tim.application.GlobalRegistry;
 import tim.controller.CalendarController;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import tim.model.Client;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.view.ChildView;
 import tim.view.ParentView;
+=======
+>>>>>>> refs/remotes/origin/mnoverraz
 =======
 >>>>>>> refs/remotes/origin/mnoverraz
 
@@ -102,12 +108,16 @@ public class DayTableView extends JPanel implements ChildView {
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void setDimension(Dimension dimension) {
 		this.dimension = dimension;
 	}
 	
 	
 	
+=======
+	@Override
+>>>>>>> refs/remotes/origin/mnoverraz
 =======
 	@Override
 >>>>>>> refs/remotes/origin/mnoverraz
