@@ -93,14 +93,18 @@ public class DayViewContainer extends JPanel implements ChildView {
 		//System.out.println(x +" "+ y  +" "+ width  +" "+ height);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		this.setBounds(x, y, width, height);
 =======
+=======
+>>>>>>> origin/mnoverraz
 		
 		
 		
 		
 		
 		//this.setBounds(x, y, width, height);
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/mnoverraz
 =======
 		
@@ -110,6 +114,8 @@ public class DayViewContainer extends JPanel implements ChildView {
 		
 		//this.setBounds(x, y, width, height);
 >>>>>>> refs/remotes/origin/mnoverraz
+=======
+>>>>>>> origin/mnoverraz
 		
 	}
 	
