@@ -1,6 +1,5 @@
 package tim.view.calendar;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.util.Observable;

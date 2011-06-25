@@ -35,6 +35,7 @@ public class Application extends JFrame {
 		setTitle("TIM - Time Is Money");
 		setPreferredSize(new Dimension(600, 600));
 		addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}

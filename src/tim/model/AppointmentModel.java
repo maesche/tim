@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -13,9 +14,7 @@ import tim.application.Db;
 import tim.application.GlobalRegistry;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
 
 public class AppointmentModel extends AbstractModel{
 
@@ -105,6 +104,7 @@ public class AppointmentModel extends AbstractModel{
 		return appointments;
 	}
 	
+	@Override
 	public ArrayList<Element> get() throws PersistanceException {
 		return this.get(null, null, null, null, 0);
 	}
@@ -153,8 +153,9 @@ public class AppointmentModel extends AbstractModel{
 		return this.get(client, employee, begin, null, 0);
 	}
 
+	@Override
 	public void add(Element element) throws PersistanceException {
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		GregorianCalendar cal = (GregorianCalendar) Calendar.getInstance();
 		long id = cal.getTimeInMillis();;
 		long client_id = 0;
 		long employee_id = 0;
@@ -199,10 +200,12 @@ public class AppointmentModel extends AbstractModel{
 		}
 	}
 
+	@Override
 	public void edit(Element element) {
 		// TODO Auto-generated method stub
 
 	}
+	@Override
 	public void remove(Element element) throws PersistanceException {
 		Connection conn;
 		Statement stmt;

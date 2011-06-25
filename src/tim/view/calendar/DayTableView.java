@@ -1,31 +1,14 @@
 package tim.view.calendar;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import java.util.Vector;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.JTableHeader;
-
-import sun.tools.tree.ThisExpression;
-import tim.application.Config;
 import tim.application.GlobalRegistry;
-import tim.application.XMLResourceBundleControl;
-import tim.application.exception.PersistanceException;
-import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
-import tim.model.Employee;
 
 public class DayTableView extends JPanel {
 	
@@ -69,6 +52,7 @@ public class DayTableView extends JPanel {
 
 	}
 	
+	@Override
 	public void validate(){
 		this.setSize(CalendarContainer.getCalendarDimension());
 		
@@ -97,6 +81,7 @@ public class DayTableView extends JPanel {
 		
 	}
 	
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		validate();

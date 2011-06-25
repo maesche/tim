@@ -1,35 +1,19 @@
 package tim.view.calendar;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.Box;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import sun.security.jca.GetInstance.Instance;
-import tim.application.Config;
 import tim.application.GlobalRegistry;
-import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.exception.ResourceNotFoundException;
-import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
 import tim.controller.CalendarController;
 import tim.model.Appointment;
-import tim.model.AppointmentModel;
-import tim.model.Element;
 import tim.model.Employee;
-import tim.model.EmployeeModel;
-import tim.view.Application;
 import tim.view.dialog.appointment.AppointmentDialog;
 
 
@@ -108,6 +92,7 @@ public class UserCalendar extends JPanel{
 		}
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 	    // Appel de la m√©thode de la classe JPanel
 	    super.paintComponent(g);
@@ -115,6 +100,7 @@ public class UserCalendar extends JPanel{
 	    System.out.println("        " + this.getWidth() + " " + this.getHeight());
 	}
 	
+	@Override
 	public void validate(){
 		//this.setSize(this.controller.getDayViewContainerSize());
 		this.controller.updateCalendarDimension();

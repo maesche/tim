@@ -1,15 +1,10 @@
 package tim.view.calendar;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.text.ParseException;
 
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -34,7 +29,7 @@ public class CalendarContainer extends JPanel {
 		
 		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
-		this.calendarHourWidth = 0;
+		CalendarContainer.calendarHourWidth = 0;
 		
 		this.setLayout(new BorderLayout());
 		
@@ -56,14 +51,15 @@ public class CalendarContainer extends JPanel {
 		repaint();
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
-	    this.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
+	    CalendarContainer.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
 	    
-	    this.setPreferredSize(this.getCalendarDimension());
+	    this.setPreferredSize(CalendarContainer.getCalendarDimension());
 	    
-	    this.calendarDimension.setSize(this.getWidth(), this.getHeight());
+	    CalendarContainer.calendarDimension.setSize(this.getWidth(), this.getHeight());
 	    
 	    
 	    

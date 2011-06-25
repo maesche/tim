@@ -2,7 +2,6 @@ package tim.application;
 
 import tim.application.exception.PersistanceException;
 import tim.controller.CalendarController;
-import tim.controller.Controller;
 import tim.model.AppointmentModel;
 import tim.model.ClientModel;
 import tim.model.EmployeeModel;

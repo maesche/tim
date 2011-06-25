@@ -60,6 +60,7 @@ public class DayViewContainer extends JPanel {
 		
 	}
 	
+	@Override
 	public void validate(){
 		int x = 200;
 		int width=0;
@@ -90,6 +91,7 @@ public class DayViewContainer extends JPanel {
 		
 	}
 	
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		validate();
