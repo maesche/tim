@@ -11,6 +11,7 @@ import java.util.Observable;
 
 import javax.swing.JPanel;
 
+import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.Resizer;
 import tim.application.exception.PersistanceException;
@@ -37,7 +38,6 @@ public class UserCalendar extends JPanel implements ChildView {
 		flowLayout.setVgap(0);
 		setLayout(flowLayout);
 		setOpaque(false);
-		dimension = getSize();
 	}
 	
 	public void load() {
@@ -56,6 +56,22 @@ public class UserCalendar extends JPanel implements ChildView {
 		}
 	}
 	
+	public void eventSizing(){
+
+		Dimension btnDimension;
+		for(EventButton eventButton : eventButtons){
+			int x, y;
+
+			x = (int) ((eventButton.getDuration()*dimension.getWidth())/((Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60));
+			y = getHeight();
+			
+			btnDimension = new Dimension(x, y);
+			
+			eventButton.setSize(btnDimension);
+		    eventButton.setPreferredSize(btnDimension);
+		}
+	}
+	
 	public void showDialog(Appointment appointment) {
 		appointmentDialog = new AppointmentDialog(appointment);
 		appointmentDialog.setModal(true);
@@ -69,6 +85,7 @@ public class UserCalendar extends JPanel implements ChildView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
+			System.out.println("Taille obtenue par le Resizer: " + dimension);
 			repaint();
 		}
 
@@ -93,8 +110,11 @@ public class UserCalendar extends JPanel implements ChildView {
 	}
 	
 	public void validate(){
+		dimension = getSize();
 	    setSize(dimension);
 	    setPreferredSize(dimension);
+	    eventSizing();
+	    System.out.println("Taille vue par validate: " + dimension);
 	}
 	public void paintComponent(Graphics g) {
 	    super.paintComponent(g);

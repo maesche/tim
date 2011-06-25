@@ -27,14 +27,13 @@ public class DayViewContainer extends JPanel implements ChildView {
 	}
 	
 	public void load() {
-		dimension = getSize();
 		setLayout(new GridLayout(elements.size(),1));
 		
 		for (Element element : elements) {
 			userCalendar = new UserCalendar();
 			userCalendar.setData(element);
 			userCalendar.setParentView(parentView);
-			userCalendar.load();;
+			userCalendar.load();
 			add(userCalendar);
 		}
 
@@ -69,6 +68,7 @@ public class DayViewContainer extends JPanel implements ChildView {
 	}
 	
 	public void validate(){
+		dimension = getSize();
 	    setSize(dimension);
 	    setPreferredSize(dimension);
 	}
