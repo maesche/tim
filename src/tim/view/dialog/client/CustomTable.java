@@ -50,6 +50,7 @@ public class CustomTable extends JPanel implements ChildView {
 	
 		((CustomRenderer) renderer).setParentView(view);
 
+		editor.addCellEditorListener(table);
 		actionColumn.setCellRenderer(renderer);
 		actionColumn.setCellEditor(editor);
 		

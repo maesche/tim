@@ -25,6 +25,7 @@ import tim.model.Appointment;
 import tim.model.Client;
 import tim.model.Element;
 import tim.model.Employee;
+import tim.model.Person;
 import tim.view.Application;
 import tim.view.ParentView;
 
@@ -39,8 +40,16 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	private JLabel lblErrorMsg;
 
 	public AppointmentDialog(Appointment appointment) {
-
-		
+		init(appointment);
+	}
+	
+	public AppointmentDialog (Employee employee, Date begin, Date end) {
+		Appointment appointment = new Appointment(begin, end, null, employee, null);
+		System.out.println(appointment);
+		init(appointment);
+	}
+	
+	private void init(Appointment appointment) {
 		form = new Form();
 		form.setParentView(this);
 		
@@ -106,10 +115,6 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		add(errorPanel, BorderLayout.NORTH);
 		add(form, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
-	}
-	
-	public AppointmentDialog (Employee employee, Date begin, Date end) {
-		System.out.println(employee + " " + begin + " " + end);
 	}
 
 	private void close() {

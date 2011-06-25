@@ -7,4 +7,5 @@ public class GlobalRegistry {
 	 */
 	public static MVCLinker mvcLinker =  null;
 	public static LanguageLinker languageLinker = null;
+	public static XmlConfigHandler xmlConfigHandler = null;
 }

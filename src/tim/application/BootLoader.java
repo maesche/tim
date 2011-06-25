@@ -8,7 +8,16 @@ import tim.model.ClientModel;
 import tim.model.EmployeeModel;
 
 public class BootLoader {		
-	public static void init(String configFile) throws PersistanceException {
+	
+	private static String configFile = null;
+	
+	/**
+	 * 
+	 * @param configFile 
+	 * @throws PersistanceException
+	 */
+	public static void init(String configFilePath) throws PersistanceException {
+		configFile = configFilePath;
 		/*
 		 * Register global system resources
 		 * Order is important due to dependencies
@@ -20,12 +29,16 @@ public class BootLoader {
 		GlobalRegistry.mvcLinker.registerModel(new ClientModel());
 		
 		
-		
-		new XmlReader().readConfig(configFile);
+		GlobalRegistry.xmlConfigHandler = new XmlConfigHandler();
+		GlobalRegistry.xmlConfigHandler.readConfig(configFile);
 				
 		GlobalRegistry.languageLinker.setLanguageDefault();
 		
 		
 		GlobalRegistry.mvcLinker.registerController(new CalendarController());
+	}
+	
+	public static void dispose() throws PersistanceException {
+		GlobalRegistry.xmlConfigHandler.writeConfig(configFile);
 	}
 }
