@@ -78,7 +78,7 @@ public class UserCalendar extends JPanel{
 			});
 			add(btn);
 		}
-		
+
 	}
 	
 	public void showDialog(Appointment appointment) {
@@ -90,12 +90,16 @@ public class UserCalendar extends JPanel{
 		eventDialog.setVisible(true);
 	}
 	
-	public void eventSizing(Dimension calendarDimension){
+	public void eventSizing(){
 
 		for(EventButton btn : eventButtons){
 			int x,y;
-			x = (int) ((btn.getDuration()*calendarDimension.getWidth())/this.controller.getMinutesPerDay());
-			y = (int) calendarDimension.getHeight();
+			this.controller.updateCalendarDimension();
+			/*x = (int) ((btn.getDuration()*calendarDimension.getWidth())/this.controller.getMinutesPerDay());
+			y = (int) calendarDimension.getHeight();*/
+			x = (int) ((btn.getDuration()*controller.getCalendarSize().getWidth())/this.controller.getMinutesPerDay());
+			y = this.getHeight();
+			
 			Dimension btnDimension = new Dimension(x , y);
 			
 			//It must be setSize and setPreferredSize for this button, Otherwise the button is misplaced
@@ -107,16 +111,19 @@ public class UserCalendar extends JPanel{
 	public void paintComponent(Graphics g) {
 	    // Appel de la m√©thode de la classe JPanel
 	    super.paintComponent(g);
-	    eventSizing(new Dimension(this.getWidth(),this.getHeight()));
+	    eventSizing();
+	    System.out.println("        " + this.getWidth() + " " + this.getHeight());
 	}
 	
 	public void validate(){
-		this.setSize(CalendarContainer.getCalendarDimension());
-		eventSizing(new Dimension(this.getWidth(),this.getHeight()));
+		//this.setSize(this.controller.getDayViewContainerSize());
+		this.controller.updateCalendarDimension();
+		System.out.println("        " + this.getWidth() + " " + this.getHeight());
+		eventSizing();
 		
 		
 		
 		
-		this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
+		//this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
 	}
 }
