@@ -2,6 +2,7 @@ package tim.view.calendar;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -44,9 +45,11 @@ public class CalendarContainer extends JPanel {
 		setJLayerPaneDimension(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,1000));
 		this.setPreferredSize(getCalendarDimension());		
 		
+		controller.addView("DayViewContainer", new DayViewContainer());
+		controller.addView("DayTableView", new DayTableView());
 		
-		this.layer.add(new DayViewContainer(),new Integer(0));
-		this.layer.add(new DayTableView(),new Integer(-3));
+		this.layer.add((DayViewContainer) controller.getViews("DayViewContainer"),new Integer(0));
+		this.layer.add((DayTableView) controller.getViews("DayTableView"),new Integer(-3));
 		
 
 		add(this.layer);
@@ -65,7 +68,7 @@ public class CalendarContainer extends JPanel {
 	    
 	    
 	   
-	    this.controller.setCalendarSize(this.getWidth(), this.getHeight());
+	    //this.controller.setCalendarSize(this.getWidth(), this.getHeight());
 	    
 	    
 	    

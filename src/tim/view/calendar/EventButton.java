@@ -51,7 +51,7 @@ public class EventButton extends JButton {
 		
 		this.appointment = appointment;
 		this.duration = DateHelper.DateDiff(appointment.getBegin(), appointment.getEnd());
-		this.title = controller.getEventTitle(appointment);
+		this.title = "<html>" + appointment.getClient().getFirstName() + " " + appointment.getClient().getLastName() + "</html>";
 		Employee e = (Employee) appointment.getEmployee();
 		this.color = e.getColor();
 		this.begin = appointment.getBegin();
@@ -63,6 +63,7 @@ public class EventButton extends JButton {
 		this.setFocusPainted(false);
 		this.setBackground(color);
 		this.setText(title);
+		this.setToolTipText(controller.getEventTitle(appointment));
 
 	}
 	
