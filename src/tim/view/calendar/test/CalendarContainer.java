@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Vector;
 
+import tim.model.Appointment;
 import tim.model.Element;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -30,7 +31,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		controller = new CalendarController();
 		dimension = new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT-88);
 		
-		dayViewContainer = new DayViewContainer();
+
 		
 		Date begin = null;
 		try {
@@ -49,17 +50,14 @@ public class CalendarContainer extends JPanel implements ParentView {
 		
 		
 		try {
-			elements = controller.getAll("employee");
-			
+			elements = controller.getCalendars(begin, end);
 		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ResourceNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		initDayTableView(elements);
+		initDayViewContainer(elements);
 		
 		setLayout(new BorderLayout());
 		
@@ -95,6 +93,28 @@ public class CalendarContainer extends JPanel implements ParentView {
 		dayTableView.setData(elements);
 		dayTableView.load();
 		dayTableView.setSize(dimension);
+	}
+	
+	public ArrayList<EventButton> getButtonsForCalendar(ArrayList<Appointment> appointments) {
+		ArrayList<EventButton> eventButtons = new ArrayList<EventButton>();
+		try {
+			eventButtons = new CalendarController().getButtonsCalendar(appointments);
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return eventButtons;
+	}
+	
+	private void initDayViewContainer(ArrayList<Element> elements) {
+		dayViewContainer = new DayViewContainer();
+		dayViewContainer.setData(elements);
+		dayViewContainer.setParentView(this);
+		dayViewContainer.load();
+		//dayViewContainer.setSize(dimension);
 	}
 
 	@Override

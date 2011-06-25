@@ -13,6 +13,7 @@ public class DayViewContainer extends JPanel implements ChildView {
 	
 	private ArrayList<Element> elements;
 	private UserCalendar userCalendar;
+	private ParentView parentView;
 	
 	public void load() {
 		setLayout(new GridLayout(elements.size(),1));
@@ -20,6 +21,8 @@ public class DayViewContainer extends JPanel implements ChildView {
 		for (Element element : elements) {
 			userCalendar = new UserCalendar();
 			userCalendar.setData(element);
+			userCalendar.setParentView(parentView);
+			userCalendar.load();
 			add(userCalendar);
 		}
 	}
@@ -32,7 +35,7 @@ public class DayViewContainer extends JPanel implements ChildView {
 
 	@Override
 	public void setParentView(ParentView view) {
-		// TODO Auto-generated method stub
+		this.parentView = view;
 
 	}
 
