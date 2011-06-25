@@ -24,7 +24,6 @@ import tim.view.ChildView;
 import tim.view.ParentView;
 
 public class Form extends JPanel implements ChildView {
-	private JLabel lblErrorMsg;
 	private JLabel lblClient;
 	private JComboBox cbClient;
 	private JLabel lblDate;
@@ -40,8 +39,6 @@ public class Form extends JPanel implements ChildView {
 	private ParentView view;
 
 	public Form() {
-
-
 		lblClient = new JLabel(
 				Config.RESSOURCE_BUNDLE.getString("dialogClient") + " :");
 		cbClient = new JComboBox();
@@ -55,7 +52,7 @@ public class Form extends JPanel implements ChildView {
 		cbBeginH = new JComboBox();
 		cbBeginM = new JComboBox();
 
-		lblEnd = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin")
+		lblEnd = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogEnd")
 				+ " :");
 		cbEndH = new JComboBox();
 		cbEndM = new JComboBox();

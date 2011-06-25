@@ -35,6 +35,7 @@ public class BootLoader {
 		
 		
 		GlobalRegistry.mvcLinker.registerController(new CalendarController());
+
 	}
 	
 	public static void dispose() throws PersistanceException {

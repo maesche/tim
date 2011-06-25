@@ -11,7 +11,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import tim.application.BootLoader;
 import tim.application.exception.ExceptionFormatter;
+import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
 import tim.controller.Controller;
 import tim.view.calendar.CalendarContainer;
@@ -20,6 +22,10 @@ import tim.view.dialog.client.ClientDialog;
 
 public class Application extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Menu menu;
 	CalendarContainer calendarContainer;
 	JPanel navBar;
@@ -37,6 +43,12 @@ public class Application extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				try {
+					BootLoader.dispose();
+				} catch (PersistanceException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				System.exit(0);
 			}
 		});
@@ -50,9 +62,10 @@ public class Application extends JFrame {
 		
 		
 		navBar = new DayNavigation();
-		
+	
 		add(navBar, BorderLayout.NORTH);
 		add(calendarContainer, BorderLayout.CENTER);
+
 	}
 	
 	public void showClientDialog() {
@@ -63,5 +76,4 @@ public class Application extends JFrame {
 		clientDialog.setLocationRelativeTo(Application.this);
 		clientDialog.setVisible(true);
 	}
-
 }
