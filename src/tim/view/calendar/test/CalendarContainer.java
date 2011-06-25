@@ -2,6 +2,7 @@ package tim.view.calendar.test;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,8 +15,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import tim.application.Config;
+import tim.application.GlobalRegistry;
+import tim.application.Resizer;
 import tim.application.exception.PersistanceException;
-import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.view.ParentView;
 
@@ -31,7 +33,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		controller = new CalendarController();
 		dimension = new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT-88);
 		
-
+		GlobalRegistry.resizer.addObserver(this);
 		
 		Date begin = null;
 		try {
@@ -66,8 +68,8 @@ public class CalendarContainer extends JPanel implements ParentView {
 
 		setPreferredSize(dimension);		
 		
-		layeredPane.add(dayTableView, new Integer(-3));
-		layeredPane.add(dayViewContainer, new Integer(0));
+		layeredPane.add(dayTableView, new Integer(5));
+		layeredPane.add(dayViewContainer, new Integer(20));
 	
 		add(layeredPane, BorderLayout.NORTH);
 	}
@@ -114,12 +116,15 @@ public class CalendarContainer extends JPanel implements ParentView {
 		dayViewContainer.setData(elements);
 		dayViewContainer.setParentView(this);
 		dayViewContainer.load();
-		//dayViewContainer.setSize(dimension);
+		dayViewContainer.setSize(new Dimension(((int) dimension.getWidth()), (int) dimension.getHeight()-20));
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	public void update(Observable o, Object arg) {
+		if (o instanceof Resizer) {
+			this.dimension = (Dimension) arg;
+			repaint();
+		}
 
 	}
 
@@ -127,6 +132,15 @@ public class CalendarContainer extends JPanel implements ParentView {
 	public void save(String action, Object value) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void validate(){
+	    setSize(dimension);
+	    setPreferredSize(dimension);
+	}
+	public void paintComponent(Graphics g) {
+	    super.paintComponent(g);
+	    validate();
 	}
 
 }

@@ -3,6 +3,7 @@ package tim.view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
@@ -13,6 +14,7 @@ import javax.swing.UIManager;
 
 import tim.application.BootLoader;
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
@@ -22,7 +24,7 @@ import tim.view.calendar.DayNavigation;
 import tim.view.dialog.client.ClientDialog;
 
 public class Application extends JFrame {
-	
+
 	/**
 	 * 
 	 */
@@ -31,17 +33,19 @@ public class Application extends JFrame {
 	CalendarContainer calendarContainer;
 	JPanel navBar;
 	ClientDialog clientDialog;
-	
+
 	public Application() throws ParseException {
 		try {
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Exception ex) {
-			new ExceptionView (ExceptionFormatter.format(ex, new CurrentClassGetter().getClassName(), "constructor"));
+			new ExceptionView(ExceptionFormatter.format(ex,
+					new CurrentClassGetter().getClassName(), "constructor"));
 		}
 
 		setTitle("TIM - Time Is Money");
-		setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
-		setResizable(false);
+		setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,
+				Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
+
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				try {
@@ -53,23 +57,27 @@ public class Application extends JFrame {
 				System.exit(0);
 			}
 		});
-		
+
+		this.addComponentListener(new java.awt.event.ComponentAdapter() {
+			public void componentResized(ComponentEvent e) {
+				GlobalRegistry.resizer.setDimension(getSize());
+			}
+		});
+
 		menu = new Menu(this);
 		setJMenuBar(menu);
 
 		calendarContainer = new CalendarContainer();
 
 		setLayout(new BorderLayout());
-		
-		
+
 		navBar = new DayNavigation();
-	
+
 		add(navBar, BorderLayout.NORTH);
 		add(calendarContainer, BorderLayout.CENTER);
-		
 
 	}
-	
+
 	public void showClientDialog() {
 		clientDialog = new ClientDialog(new Controller());
 		clientDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

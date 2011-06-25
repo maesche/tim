@@ -1,6 +1,8 @@
 package tim.view.calendar.test;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -9,6 +11,8 @@ import java.util.Observable;
 
 import javax.swing.JPanel;
 
+import tim.application.GlobalRegistry;
+import tim.application.Resizer;
 import tim.application.exception.PersistanceException;
 import tim.model.Appointment;
 import tim.model.Employee;
@@ -23,14 +27,17 @@ public class UserCalendar extends JPanel implements ChildView {
 	private ArrayList<Appointment> appointments;
 	private AppointmentDialog appointmentDialog;
 	private ParentView parentView;
+	private Dimension dimension;
 	
 	public UserCalendar() {
-		FlowLayout layout = new FlowLayout();
-		layout.setAlignment(FlowLayout.LEFT);
-		layout.setHgap(0);
-		layout.setVgap(0);
-		setLayout(layout);
+		GlobalRegistry.resizer.addObserver(this);
+		FlowLayout flowLayout = new FlowLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		flowLayout.setHgap(0);
+		flowLayout.setVgap(0);
+		setLayout(flowLayout);
 		setOpaque(false);
+		dimension = getSize();
 	}
 	
 	public void load() {
@@ -60,7 +67,10 @@ public class UserCalendar extends JPanel implements ChildView {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		if (o instanceof Resizer) {
+			this.dimension = (Dimension) arg;
+			repaint();
+		}
 
 	}
 
@@ -80,6 +90,15 @@ public class UserCalendar extends JPanel implements ChildView {
 		Employee employee = (Employee) value;
 		appointments = employee.getCalendar().getAppointments();
 
+	}
+	
+	public void validate(){
+	    setSize(dimension);
+	    setPreferredSize(dimension);
+	}
+	public void paintComponent(Graphics g) {
+	    super.paintComponent(g);
+	    validate();
 	}
 
 }

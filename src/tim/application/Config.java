@@ -24,8 +24,8 @@ public class Config {
 	public static ResourceBundle RESSOURCE_BUNDLE = null;
 	
 	public static final int CALENDAR_EVENT_ALPHA = 150;
-	public static final int APPLICATION_DEFAULT_FRAME_WIDTH = 1024;
-	public static final int APPLICATION_DEFAULT_FRAME_HEIGHT = 768;
+	public static int APPLICATION_DEFAULT_FRAME_WIDTH = 1024;
+	public static int APPLICATION_DEFAULT_FRAME_HEIGHT = 768;
 	public static final String APPLICATION_PATH =  System.getProperty("user.dir") + "/";
 	public static final String CONFIG_PATH = APPLICATION_PATH + "config/";
 }
