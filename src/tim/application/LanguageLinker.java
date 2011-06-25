@@ -17,7 +17,8 @@ public class LanguageLinker extends CustomObservable {
 	public void setLanguage(String lang) {
 		Config.RESSOURCE_BUNDLE = ResourceBundle.getBundle("lang", new Locale(lang), 
 				 new XMLResourceBundleControl());
-
+		Config.DEFAULT_LANG = lang;
+		
 			this.setChanged();
 			this.notifyObservers();
 	}

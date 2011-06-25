@@ -24,7 +24,6 @@ import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 import tim.controller.CalendarController;
-import tim.controller.UserCalendarController;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;
@@ -37,10 +36,10 @@ import tim.view.dialog.appointment.AppointmentDialog;
 public class UserCalendar extends JPanel{
 	
 	private ArrayList<EventButton> eventButtons;
-	private int minutesInDay;
-	private Date beginFindDate;
-	private Date endFindDate;
 	private AppointmentDialog eventDialog;
+	
+	
+	CalendarController controller;
 		
 	public UserCalendar(Employee employee){
 
@@ -52,20 +51,15 @@ public class UserCalendar extends JPanel{
 		setLayout(layout);
 		this.setOpaque(false);
 		
-		this.minutesInDay = (Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60;
-		
 		//Initialisation des collections
 		this.eventButtons = new ArrayList<EventButton>();
 		
 		//Initialisation du controller
-		CalendarController controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
+		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
-		//CalendarController controller = (CalendarController) this.controllers.get("CalendarController").get("action");
 
-		
-		//eventButtons = controller.getEventButtons(employee, beginFindDate, endFindDate);
 		try {
-			eventButtons = controller.getAllButtonsX(employee);
+			eventButtons = controller.getButtonsCalendar(employee);
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,19 +90,17 @@ public class UserCalendar extends JPanel{
 		eventDialog.setVisible(true);
 	}
 	
-	public void eventSizing(Dimension d){
+	public void eventSizing(Dimension calendarDimension){
 
 		for(EventButton btn : eventButtons){
+			int x,y;
+			x = (int) ((btn.getDuration()*calendarDimension.getWidth())/this.controller.getMinutesPerDay());
+			y = (int) calendarDimension.getHeight();
+			Dimension btnDimension = new Dimension(x , y);
 			
-			Dimension btnDimension = new Dimension((int) ((btn.getDuration()*d.getWidth())/minutesInDay), (int) d.getHeight());
-			
-			//il faut faire les deux op√©ration pour qu'il n'y ait pas de bug d'affichage
+			//It must be setSize and setPreferredSize for this button, Otherwise the button is misplaced
 			btn.setSize(btnDimension);
 		    btn.setPreferredSize(btnDimension);
-		    //btn.setMinimumSize(btnDimension);
-		    //btn.setMaximumSize(btnDimension);
-		    //btn.setBounds((int)btnDimension.getWidth(), 0, (int)btnDimension.getWidth(), (int)btnDimension.getHeight());
-
 		}
 	}
 
@@ -121,5 +113,10 @@ public class UserCalendar extends JPanel{
 	public void validate(){
 		this.setSize(CalendarContainer.getCalendarDimension());
 		eventSizing(new Dimension(this.getWidth(),this.getHeight()));
+		
+		
+		
+		
+		this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
 	}
 }

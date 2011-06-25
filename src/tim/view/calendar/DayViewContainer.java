@@ -1,38 +1,27 @@
 package tim.view.calendar;
 
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import tim.application.Config;
 import tim.application.GlobalRegistry;
-import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.exception.ResourceNotFoundException;
-import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.DateHelper;
-import tim.controller.AppointmentDialogController;
 import tim.controller.CalendarController;
-import tim.controller.DayViewController;
-import tim.model.AppointmentModel;
-import tim.model.Element;
 import tim.model.Employee;
-import tim.model.EmployeeModel;
 import tim.view.ExceptionView;
 
 
 public class DayViewContainer extends JPanel {
+	
+	CalendarController controller;
 
 	public DayViewContainer() throws ParseException{		
 		//Init controller
-		CalendarController controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
+		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
 		
 		//Date selector
@@ -67,26 +56,43 @@ public class DayViewContainer extends JPanel {
 		for(Employee employee : employees){
 			add(new UserCalendar(employee));
 		}
+		
+		
 	}
 	
 	public void validate(){
 		int x = 200;
 		int width=0;
+		int height;
 		int y = 19;
 		
-		if(CalendarContainer.getCalendarHourWidth() > 0){
+		/*if(CalendarContainer.getCalendarHourWidth() > 0){
 			width = CalendarContainer.getCalendarHourWidth();
 		}
 		if(CalendarContainer.getCalendarPersonColWidth() > 0){
 			x = CalendarContainer.getCalendarPersonColWidth();
 		}
 		
-		this.setBounds(x, y, width, (int)CalendarContainer.getCalendarDimension().getHeight()-y);
+		this.setBounds(x, y, width, (int)CalendarContainer.getCalendarDimension().getHeight()-y);*/
+		
+		//this.controller.setCalendarSize(this.getWidth(), this.getHeight());
+		
+		//System.out.println(this.getWidth() +" "+ this.getHeight());
+		
+		x = (int) this.controller.getDayViewContainerPlacement().getWidth();
+		y = (int) this.controller.getDayViewContainerPlacement().getHeight();
+		width = (int) this.controller.getDayViewContainerSize().getWidth();
+		height = (int) this.controller.getDayViewContainerSize().getHeight();
+		
+		System.out.println(x +" "+ y  +" "+ width  +" "+ height);
+		this.setBounds(x, y, width, height);
 	}
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		validate();
+		
+		
 	}
 	
 

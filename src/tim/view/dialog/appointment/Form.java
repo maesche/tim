@@ -8,6 +8,9 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Observable;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,14 +22,18 @@ import javax.swing.JTextField;
 import tim.application.Config;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
+import tim.application.utils.DateHelper;
 import tim.application.utils.ErrorHandler;
 import tim.controller.AppointmentDialogController;
+import tim.model.Appointment;
 import tim.model.Client;
 import tim.model.Element;
+import tim.model.Employee;
+import tim.view.ChildView;
+import tim.view.ParentView;
 import tim.view.dialog.appointment.AppointmentDialogValidator;
 
-public class Form extends JPanel {
-	AppointmentDialogController controller;
+public class Form extends JPanel implements ChildView {
 	private JLabel lblErrorMsg;
 	private JLabel lblClient;
 	private JComboBox cbClient;
@@ -40,67 +47,32 @@ public class Form extends JPanel {
 	private JComboBox cbEndH;
 	private JLabel lblDescription;
 	private JTextArea txtDescription;
-	private JButton btnSave;
-	private JButton btnDelete;
-	private JButton btnCancel;
-	private JPanel buttonPanel;
-	private JPanel errorPanel;
+	private ParentView view;
 
-	public Form(AppointmentDialogController controller) {
-		this.controller = controller;
-		errorPanel = new JPanel();
-		lblErrorMsg = new JLabel (" ");
-		lblErrorMsg.setForeground(Color.RED);
+	public Form() {
 
-		errorPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		errorPanel.add(lblErrorMsg);
-		
-		lblClient = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogClient") + " :");
+
+		lblClient = new JLabel(
+				Config.RESSOURCE_BUNDLE.getString("dialogClient") + " :");
 		cbClient = new JComboBox();
-		
-		try {
-			for (Element element : controller.getClients()) {
-				cbClient.addItem((Client) element);
-			}
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 
-		lblDate = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogDate") + " :");
+		lblDate = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogDate")
+				+ " :");
 		txtDate = new JTextField(10);
-
-		lblBegin = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin") + " :");
+		txtDate.setToolTipText(Config.DATE_FORMAT_SHORT);
+		lblBegin = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin")
+				+ " :");
 		cbBeginH = new JComboBox();
 		cbBeginM = new JComboBox();
 
-		lblEnd = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin") + " :");
+		lblEnd = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogBegin")
+				+ " :");
 		cbEndH = new JComboBox();
 		cbEndM = new JComboBox();
 
-		lblDescription = new JLabel(Config.RESSOURCE_BUNDLE.getString("dialogDescription") + " :");
+		lblDescription = new JLabel(
+				Config.RESSOURCE_BUNDLE.getString("dialogDescription") + " :");
 		txtDescription = new JTextArea(10, 20);
-		//txtDescription.setBorder(BorderFactory.createCompoundBorder());
-		
-		buttonPanel = new JPanel();
-		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
-		btnSave = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogSave"));
-		
-		btnSave.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				validate();	
-			}
-		});
-		
-		btnDelete = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogDelete"));
-		
-		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		buttonPanel.add(btnCancel);
-		buttonPanel.add(btnDelete);
-		buttonPanel.add(btnSave);
-	
 
 		setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -112,8 +84,7 @@ public class Form extends JPanel {
 		 * Labels
 		 */
 		gbc.anchor = GridBagConstraints.EAST;
-		
-		
+
 		gbc.gridy = 5;
 		gbc.gridx = 0;
 		add(lblDescription, gbc);
@@ -173,7 +144,7 @@ public class Form extends JPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(txtDescription, gbc);
-		
+
 		gbc.gridy = 1;
 		gbc.gridx = 1;
 		gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -185,24 +156,7 @@ public class Form extends JPanel {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(txtDate, gbc);
 
-		/*
-		 * Buttonpanel
-		 */
-		gbc.gridy = 6;
-		gbc.gridx = 0;
-		gbc.anchor = GridBagConstraints.SOUTH;
-		gbc.insets = new Insets(15, 0, 0, 0);
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		add(buttonPanel, gbc);
-		
-		gbc.gridy = 0;
-		gbc.gridx = 0;
-		gbc.anchor = GridBagConstraints.NORTH;
-		gbc.insets = new Insets(15, 0, 0, 0);
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		add(errorPanel, gbc);
-		
-		
+
 		init();
 	}
 
@@ -218,59 +172,107 @@ public class Form extends JPanel {
 			cbEndM.addItem(i);
 		}
 	}
-	
-	public void validate() {
+
+	public void setParentView(ParentView view) {
+		this.view = view;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Object getData() {
+
+		Date begin = null;
 		int beginH = 0, endH = 0, beginM = 0, endM = 0;
-		
-		beginH = (Integer)cbBeginH.getSelectedItem();
+
+		beginH = (Integer) cbBeginH.getSelectedItem();
 		endH = (Integer) cbEndH.getSelectedItem();
 		beginM = (Integer) cbBeginM.getSelectedItem();
 		endM = (Integer) cbEndM.getSelectedItem();
-		
+
 		Client client = (Client) cbClient.getSelectedItem();
-		
-		
-		
-		lblErrorMsg.setText(" ");
-		if (!(AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator.startEnd(lblBegin, lblEnd, beginH, beginM, endH, endM))) {
-			lblErrorMsg.setText("Please check the following errors: ");
+		try {
+			begin = DateHelper.StringToDate(
+					txtDate.getText() + " " + String.valueOf(beginH) + ":"
+							+ String.valueOf(beginM), Config.DATE_FORMAT_LONG);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else {
-			try {
-				if (controller.save(null, client, txtDate.getText(), beginH, beginM, endH, endM, txtDescription.getText())) {
-					//close dialog
-				}
-			} catch (ParseException ex) {
-				ex.printStackTrace();
-			} catch (ClassCastException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (PersistanceException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		Date end = null;
+		try {
+			end = DateHelper.StringToDate(
+					txtDate.getText() + " " + String.valueOf(endH) + ":"
+							+ String.valueOf(endM), Config.DATE_FORMAT_LONG);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		Appointment appointment = new Appointment(begin, end,
+				txtDescription.getText(), new Employee(2, "test", "test"),
+				client);
+		return appointment;
+	}
+
+	protected void setClients(ArrayList<Element> elements, Integer selectedId) {
+		for (Element element : elements) {
+			cbClient.addItem((Client) element);
+			if (selectedId != null && element.getId() == selectedId) {
+				cbClient.setSelectedItem(element);
 			}
 		}
 	}
-	
-	protected void setClient(Client client) {
-		cbClient.setSelectedItem(client);
-	}
-	
-	protected void setDate(String date) {
-		txtDate.setText(date);
-	}
-	
-	protected void setBegin(int hour, int min) {
-		cbBeginH.setSelectedItem(hour);
-		cbBeginM.setSelectedItem(min);
-	}
-	
-	protected void setEnd(int hour, int min) {
-		cbEndH.setSelectedItem(hour);
-		cbEndM.setSelectedItem(min);
-	}
-	
-	protected void setDescription(String description) {
-		txtDescription.setText(description);
+
+	@Override
+	public void setData(Object value) {
+		if (value != null) {
+
+			Appointment appointment = (Appointment) value;
+
+			Date begin = appointment.getBegin();
+			Date end = appointment.getEnd();
+
+			String date = "";
+			String description = "";
+			int beginH = 0;
+			int beginM = 0;
+
+			int endH = 0;
+			int endM = 0;
+
+			if (begin != null) {
+				date = DateHelper.DateToString(appointment.getBegin());
+
+				beginH = DateHelper.getHour(appointment.getBegin());
+				beginM = DateHelper.getHour(appointment.getBegin());
+
+				if (end != null) {
+					endH = DateHelper.getHour(appointment.getEnd());
+					endM = DateHelper.getMinutes(appointment.getEnd());
+				}
+			}
+
+			if (appointment.getDescription() != null) {
+				description = appointment.getDescription();
+			}
+			
+
+
+			txtDate.setText(date);
+
+			cbBeginH.setSelectedItem(beginH);
+			cbBeginM.setSelectedItem(beginM);
+
+			cbEndH.setSelectedItem(endH);
+			cbEndM.setSelectedItem(endM);
+
+			txtDescription.setText(description);
+		}
 	}
 }

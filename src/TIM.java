@@ -11,6 +11,7 @@ import tim.view.ExceptionView;
 
 import tim.application.BootLoader;
 import tim.application.Config;
+import tim.application.GlobalRegistry;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
@@ -36,7 +37,7 @@ public class TIM {
 
 		try {
 			BootLoader.init(System.getProperty("user.dir") + "/config/application.xml");
-			
+
 			Application app = new Application();
 			
 			app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));

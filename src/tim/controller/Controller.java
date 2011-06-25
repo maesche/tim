@@ -60,6 +60,7 @@ public class Controller extends AbstractController {
 	public void save(String action, Element element) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException {
 		AbstractModel model = getModel(element, null);
 
+
 		if (model != null) {
 			if ("add".equals(action)) {
 				model.add(element);
@@ -72,6 +73,7 @@ public class Controller extends AbstractController {
 			}
 			else {
 				throw new OperationNotPossibleException(action, "add, delete or edit");
+
 			}
 		}
 	}

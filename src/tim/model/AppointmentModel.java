@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import tim.application.Config;
 import tim.application.Db;
@@ -153,7 +154,8 @@ public class AppointmentModel extends AbstractModel{
 	}
 
 	public void add(Element element) throws PersistanceException {
-		long id = 0;
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		long id = cal.getTimeInMillis();;
 		long client_id = 0;
 		long employee_id = 0;
 		String description = null;
@@ -161,7 +163,6 @@ public class AppointmentModel extends AbstractModel{
 		String end = null;
 		
 		Appointment appointment = (Appointment) element;
-		id = appointment.getId();
 		client_id = appointment.getClient().getId();
 		employee_id = appointment.getEmployee().getId();
 		description = appointment.getDescription();
@@ -196,15 +197,38 @@ public class AppointmentModel extends AbstractModel{
 		finally {
 			Db.close();
 		}
-
 	}
 
 	public void edit(Element element) {
 		// TODO Auto-generated method stub
 
 	}
-	public void remove(Element element) {
-		// TODO Auto-generated method stub
+	public void remove(Element element) throws PersistanceException {
+		Connection conn;
+		Statement stmt;
+
+		String sql;
+		
+		long id = element.getId();
+		
+		
+		sql = "DELETE FROM appointments WHERE appointment_id=" + id;
+		System.out.println(sql);
+
+		try {
+			conn = Db.open();
+			
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			stmt.close();
+			setChanged();
+			notifyObservers(element);
+		} catch (SQLException ex) {
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "delete"));
+		}
+		finally {
+			Db.close();
+		}
 
 	}
 	
@@ -241,11 +265,16 @@ public class AppointmentModel extends AbstractModel{
 		Date begin = appointment.getBegin();
 	//	Date end = DateHelper.StringToDate(DateHelper.DateToString(appointment.getEnd(), Config.DATE_FORMAT_SHORT));
 		
+		
 		ArrayList<Element> appointments = this.get(appointment.getBegin(), appointment.getEnd());
 		
 		for (Element element : appointments) {
 			Appointment app = (Appointment) element;
 			
+			Date a_begin = app.getBegin();
+			Date a_end = app.getEnd();
+			
+			//canInsert = (a_end < begin || a_begin >= end);
 		}
 		
 		return true;

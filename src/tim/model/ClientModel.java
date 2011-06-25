@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JButton;
+
 import tim.application.Db;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
@@ -93,6 +95,7 @@ public class ClientModel extends PersonModel {
 		address = client.getAddress();
 		comment = client.getComment();
 		
+		
 
 		sql = "INSERT INTO clients (firstName, lastName, phone, address, description) VALUES(" 
 				+ "'" + firstName + "', "
@@ -101,8 +104,6 @@ public class ClientModel extends PersonModel {
 				+ "'" + address + "', "
 				+ "'" + comment + "'"
 				+		")";
-		
-
 		try {
 			conn = Db.open();
 			
@@ -110,7 +111,7 @@ public class ClientModel extends PersonModel {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
-			notifyObservers();
+			notifyObservers(get());
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "add"));
 		}
@@ -130,7 +131,6 @@ public class ClientModel extends PersonModel {
 		
 		
 		sql = "DELETE FROM clients WHERE client_id=" + id + " AND NOT EXISTS (SELECT client_id FROM appointments WHERE client_id= " + id + " )";
-
 		try {
 			conn = Db.open();
 			
@@ -138,7 +138,7 @@ public class ClientModel extends PersonModel {
 			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
-			notifyObservers();
+			notifyObservers(get());
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "delete"));
 		}
