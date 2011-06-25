@@ -1,7 +1,6 @@
 package tim.view.dialog.client;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import tim.application.exception.OperationNotPossibleException;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
-import tim.model.Client;
 import tim.model.Element;
 import tim.view.ParentView;
 

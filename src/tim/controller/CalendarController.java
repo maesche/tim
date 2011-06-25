@@ -7,10 +7,6 @@ package tim.controller;
 
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,7 +25,6 @@ import tim.model.Calendar;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.model.EmployeeModel;
-import tim.view.Application;
 import tim.view.calendar.DayTableView;
 import tim.view.calendar.DayViewContainer;
 import tim.view.calendar.EventButton;
@@ -75,7 +70,7 @@ public class CalendarController extends Controller {
 		Date dayToday = new Date();
 
 		//---Get Calendar object set to the date and time of the given Date object 
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		GregorianCalendar cal = (GregorianCalendar) java.util.Calendar.getInstance();
 		//Calendar cal = Calendar.getInstance();   
 		cal.setTime(dayToday);
 
@@ -93,11 +88,11 @@ public class CalendarController extends Controller {
 	public ArrayList<Employee> nextDay(Date day) throws PersistanceException 
 	{
 		//---Get Calendar object set to the date and time of the given Date object 
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		GregorianCalendar cal = (GregorianCalendar) java.util.Calendar.getInstance();   
 		cal.setTime(day);
 
 		//---Next day = day + 1
-		cal.add(GregorianCalendar.DATE, 1);
+		cal.add(java.util.Calendar.DATE, 1);
 
 		//---Put it back in the Date object   
 		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
@@ -113,11 +108,11 @@ public class CalendarController extends Controller {
 	public ArrayList<Employee> previousDay(Date day) throws PersistanceException 
 	{
 		//---Get Calendar object set to the date and time of the given Date object 
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		GregorianCalendar cal = (GregorianCalendar) java.util.Calendar.getInstance();   
 		cal.setTime(day);
 
 		//---Next day = day - 1
-		cal.add(GregorianCalendar.DATE, -1);
+		cal.add(java.util.Calendar.DATE, -1);
 
 		//---Put it back in the Date object   
 		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
@@ -133,10 +128,10 @@ public class CalendarController extends Controller {
 	private GregorianCalendar setupDate(GregorianCalendar cal, int hour)
 	{
 		//---Set the start time of the day
-		cal.set(GregorianCalendar.HOUR, hour);   
-		cal.set(GregorianCalendar.MINUTE, 0);   
-		cal.set(GregorianCalendar.SECOND, 0);   
-		cal.set(GregorianCalendar.MILLISECOND, 0);
+		cal.set(java.util.Calendar.HOUR, hour);   
+		cal.set(java.util.Calendar.MINUTE, 0);   
+		cal.set(java.util.Calendar.SECOND, 0);   
+		cal.set(java.util.Calendar.MILLISECOND, 0);
 
 		return cal;
 	}
@@ -398,9 +393,9 @@ public class CalendarController extends Controller {
 		
 		this.calendarSize.setSize(dayViewContainer.getWidth(),dayViewContainer.getHeight());
 		
-		this.DayViewContainerPlacement.setSize((int)dayTableView.table.getColumnModel().getColumn(0).getWidth(), 20);
+		this.DayViewContainerPlacement.setSize(dayTableView.table.getColumnModel().getColumn(0).getWidth(), 20);
 		
-		this.DayViewContainerSize.setSize((int)dayTableView.getWidth()-(int)dayTableView.table.getColumnModel().getColumn(0).getWidth(), (int)dayTableView.getHeight()-20);
+		this.DayViewContainerSize.setSize(dayTableView.getWidth()-dayTableView.table.getColumnModel().getColumn(0).getWidth(), dayTableView.getHeight()-20);
 	}
 
 

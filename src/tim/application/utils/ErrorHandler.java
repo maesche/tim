@@ -8,6 +8,7 @@ public class ErrorHandler {
 	 * @param className
 	 * @param methodName
 	 */
+	@Deprecated
 	public static void getException(Exception ex, String className, String methodName) {
 		String error = "--------------------------\n";
 		error += "Class:\t\t" + className + "\n";

@@ -5,15 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.JButton;
-
 import tim.application.Db;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
 
 public class ClientModel extends PersonModel {
 

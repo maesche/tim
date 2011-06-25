@@ -1,35 +1,19 @@
 package tim.view.calendar;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.Box;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import sun.security.jca.GetInstance.Instance;
-import tim.application.Config;
 import tim.application.GlobalRegistry;
-import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.exception.ResourceNotFoundException;
-import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
 import tim.controller.CalendarController;
 import tim.model.Appointment;
-import tim.model.AppointmentModel;
-import tim.model.Element;
 import tim.model.Employee;
-import tim.model.EmployeeModel;
-import tim.view.Application;
 import tim.view.dialog.appointment.AppointmentDialog;
 
 
@@ -41,7 +25,7 @@ public class UserCalendar extends JPanel{
 	
 	CalendarController controller;
 		
-	public UserCalendar(Employee employee){
+	public UserCalendar(final Employee employee){
 
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
@@ -73,14 +57,28 @@ public class UserCalendar extends JPanel{
 			btn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					showDialog(btn.getAppointment());
+					if(btn.getAppointment() == null){
+						showEmptyDialog(btn.getEmployee(), btn.getBegin(),btn.getEnd());
+					}else{
+						showDialog(btn.getAppointment());
+					}
+					
 				}
 			});
 			add(btn);
 		}
-
 	}
 	
+	public void showEmptyDialog(Employee employee, Date begin, Date end) {
+		eventDialog = new AppointmentDialog(employee,begin,end);
+		eventDialog.setModal(true);
+		eventDialog.setResizable(false);
+		eventDialog.pack();
+		eventDialog.setLocationRelativeTo(this);
+		eventDialog.setVisible(true);
+		
+	}
+
 	public void showDialog(Appointment appointment) {
 		eventDialog = new AppointmentDialog(appointment);
 		eventDialog.setModal(true);
@@ -108,17 +106,19 @@ public class UserCalendar extends JPanel{
 		}
 	}
 
+	@Override
 	public void paintComponent(Graphics g) {
 	    // Appel de la m√©thode de la classe JPanel
 	    super.paintComponent(g);
 	    eventSizing();
-	    System.out.println("        " + this.getWidth() + " " + this.getHeight());
+	    //System.out.println("        " + this.getWidth() + " " + this.getHeight());
 	}
 	
+	@Override
 	public void validate(){
 		//this.setSize(this.controller.getDayViewContainerSize());
 		this.controller.updateCalendarDimension();
-		System.out.println("        " + this.getWidth() + " " + this.getHeight());
+		//System.out.println("        " + this.getWidth() + " " + this.getHeight());
 		eventSizing();
 		
 		

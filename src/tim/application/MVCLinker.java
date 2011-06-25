@@ -2,8 +2,6 @@ package tim.application;
 
 import java.util.HashMap;
 import java.util.Observable;
-import java.util.Observer;
-
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
 import tim.model.AbstractModel;

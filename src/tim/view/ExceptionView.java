@@ -8,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 import tim.application.Config;
 
@@ -25,8 +26,8 @@ public class ExceptionView extends JDialog {
 		JTextArea message = new JTextArea(error);
 		JScrollPane scrollPaneArea = 
 		      new JScrollPane(message,
-		                      JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-		                      JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		                      ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+		                      ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
 		scrollPaneArea.setPreferredSize(new Dimension(400, 400));
 	

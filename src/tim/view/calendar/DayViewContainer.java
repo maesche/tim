@@ -6,16 +6,20 @@ import java.awt.GridLayout;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
+
 import javax.swing.JPanel;
 import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
 import tim.model.Employee;
+import tim.view.ChildView;
 import tim.view.ExceptionView;
+import tim.view.ParentView;
 
 
-public class DayViewContainer extends JPanel {
+public class DayViewContainer extends JPanel implements ChildView {
 	
 	CalendarController controller;
 
@@ -60,11 +64,12 @@ public class DayViewContainer extends JPanel {
 		
 	}
 	
+	@Override
 	public void validate(){
-		int x = 200;
+		/*int x = 200;
 		int width=0;
 		int height;
-		int y = 19;
+		int y = 19;*/
 		
 		/*if(CalendarContainer.getCalendarHourWidth() > 0){
 			width = CalendarContainer.getCalendarHourWidth();
@@ -78,22 +83,60 @@ public class DayViewContainer extends JPanel {
 		//this.controller.setCalendarSize(this.getWidth(), this.getHeight());
 		
 		//System.out.println(this.getWidth() +" "+ this.getHeight());
-		this.controller.updateCalendarDimension();
+		/*this.controller.updateCalendarDimension();
 		x = (int) this.controller.getDayViewContainerPlacement().getWidth();
 		y = (int) this.controller.getDayViewContainerPlacement().getHeight();
 		width = (int) this.controller.getDayViewContainerSize().getWidth();
-		height = (int) this.controller.getDayViewContainerSize().getHeight();
+		height = (int) this.controller.getDayViewContainerSize().getHeight();*/
 		//this.setSize(this.controller.getDayViewContainerSize());
 		
 		//System.out.println(x +" "+ y  +" "+ width  +" "+ height);
+<<<<<<< HEAD
 		this.setBounds(x, y, width, height);
+=======
+		
+		
+		
+		
+		
+		//this.setBounds(x, y, width, height);
+>>>>>>> refs/remotes/origin/mnoverraz
 		
 	}
 	
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		validate();
 		
+		
+	}
+	
+	public void test(){
+		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setParentView(ParentView view) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setData(Object value) {
+		// TODO Auto-generated method stub
 		
 	}
 	

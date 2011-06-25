@@ -68,6 +68,7 @@ public class Appointment extends Element {
 		return client;
 	}
 	
+	@Override
 	public String toString() {
 		String ret = "";
 		

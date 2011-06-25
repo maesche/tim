@@ -3,20 +3,13 @@ package tim.view.calendar;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.border.Border;
-
 import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
 import tim.model.Appointment;
-import tim.model.AppointmentModel;
 import tim.model.Employee;
-import tim.model.EmployeeModel;
 
 public class EventButton extends JButton {
 	
@@ -28,7 +21,7 @@ public class EventButton extends JButton {
 	
 	private Employee employee;
 
-	public EventButton(String title, Date begin, Date end, int duration, Color color) {
+	/*public EventButton(String title, Date begin, Date end, int duration, Color color) {
 		
 		this.duration = duration;
 		this.title = title;
@@ -43,7 +36,7 @@ public class EventButton extends JButton {
 		this.setBackground(color);
 		this.setText(title);
 
-	}
+	}*/
 	
 	public EventButton(Appointment appointment) {
 		
@@ -118,6 +111,7 @@ public class EventButton extends JButton {
 	 * g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
 	 * 0.5f)); super.paintComponent(g2); g2.dispose(); }
 	 */
+	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
