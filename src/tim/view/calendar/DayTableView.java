@@ -1,10 +1,9 @@
 package tim.view.calendar;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
+<<<<<<< HEAD
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,24 +13,22 @@ import java.util.ResourceBundle;
 import java.util.Vector;
 
 import javax.swing.JButton;
+=======
+>>>>>>> refs/remotes/origin/mnoverraz
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.JTableHeader;
-
-import sun.tools.tree.ThisExpression;
-import tim.application.Config;
 import tim.application.GlobalRegistry;
-import tim.application.XMLResourceBundleControl;
-import tim.application.exception.PersistanceException;
-import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
+<<<<<<< HEAD
 import tim.model.Client;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.view.ChildView;
 import tim.view.ParentView;
+=======
+>>>>>>> refs/remotes/origin/mnoverraz
 
 public class DayTableView extends JPanel implements ChildView {
 	
@@ -104,12 +101,16 @@ public class DayTableView extends JPanel implements ChildView {
 		table.setBounds(0,0, (int) dimension.getWidth(), (int) dimension.getHeight());
 	}
 	
+<<<<<<< HEAD
 	public void setDimension(Dimension dimension) {
 		this.dimension = dimension;
 	}
 	
 	
 	
+=======
+	@Override
+>>>>>>> refs/remotes/origin/mnoverraz
 	public void validate(){
 
 
@@ -142,6 +143,7 @@ public class DayTableView extends JPanel implements ChildView {
 		*/
 	}
 	
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		validate();

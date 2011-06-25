@@ -1,18 +1,13 @@
 package tim.view.dialog.appointment;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,18 +15,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import tim.application.Config;
-import tim.application.exception.ExceptionFormatter;
-import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
-import tim.controller.AppointmentDialogController;
 import tim.model.Appointment;
 import tim.model.Client;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.view.ChildView;
 import tim.view.ParentView;
-import tim.view.dialog.appointment.AppointmentDialogValidator;
 
 public class Form extends JPanel implements ChildView {
 	private JLabel lblClient;
@@ -170,6 +160,7 @@ public class Form extends JPanel implements ChildView {
 		}
 	}
 
+	@Override
 	public void setParentView(ParentView view) {
 		this.view = view;
 	}
@@ -219,7 +210,7 @@ public class Form extends JPanel implements ChildView {
 
 	protected void setClients(ArrayList<Element> elements, Integer selectedId) {
 		for (Element element : elements) {
-			cbClient.addItem((Client) element);
+			cbClient.addItem(element);
 			if (selectedId != null && element.getId() == selectedId) {
 				cbClient.setSelectedItem(element);
 			}

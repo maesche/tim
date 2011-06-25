@@ -55,6 +55,7 @@ public abstract class Person extends Element {
 
 
 
+	@Override
 	public String toString() {
 		return firstName + " " + lastName;
 	}

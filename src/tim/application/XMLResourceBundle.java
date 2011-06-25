@@ -31,6 +31,7 @@ private Properties props;
 	//	Method: handleGetObject ; return: Object
 	//	Parameter: String key ; The key of the xml file to retrieve the value
 	//______________________________________________________________________________
+	@Override
 	protected Object handleGetObject(String key) 
 	{
 		return props.getProperty(key);
@@ -41,6 +42,7 @@ private Properties props;
 	//	Method: getKeys ; 
 	//	return: all keys contained in this ResourceBundle and its parents bundles
 	//______________________________________________________________________________
+	@Override
 	public Enumeration<String> getKeys() 
 	{
 		Set<String> handleKeys = props.stringPropertyNames();

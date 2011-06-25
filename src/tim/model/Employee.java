@@ -38,6 +38,7 @@ public class Employee extends Person {
 	 * 
 	 * @deprecated use Calendar.getColor instead
 	 */
+	@Deprecated
 	public Color getColor() {
 		return color;
 	}

@@ -148,10 +148,10 @@ public class CustomTable extends JPanel implements ChildView {
 			Client client = (Client) element;
 			rowData = new Vector<Object>();
 			rowData.add((int) client.getId());
-			rowData.add((String) client.getFirstName());
-			rowData.add((String) client.getLastName());
-			rowData.add((String) client.getAddress());
-			rowData.add((String) client.getPhone());
+			rowData.add(client.getFirstName());
+			rowData.add(client.getLastName());
+			rowData.add(client.getAddress());
+			rowData.add(client.getPhone());
 			rowData.add(renderer);
 			data.add(rowData);
 		}

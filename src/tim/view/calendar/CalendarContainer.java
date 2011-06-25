@@ -1,11 +1,7 @@
 package tim.view.calendar;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -13,7 +9,6 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Vector;
 
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -48,6 +43,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		
 		controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
+<<<<<<< HEAD
 		
 		try {
 			employees = controller.getCalendars(begin, end);
@@ -56,6 +52,9 @@ public class CalendarContainer extends JPanel implements ParentView {
 			e.printStackTrace();
 		}
 		
+=======
+		CalendarContainer.calendarHourWidth = 0;
+>>>>>>> refs/remotes/origin/mnoverraz
 		
 		this.setLayout(new BorderLayout());
 		
@@ -104,15 +103,28 @@ public class CalendarContainer extends JPanel implements ParentView {
 		repaint();
 	}
 	
+	@Override
 	public void paintComponent(Graphics g) {
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
+<<<<<<< HEAD
+=======
+	    CalendarContainer.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
+>>>>>>> refs/remotes/origin/mnoverraz
 	    
+<<<<<<< HEAD
 	    setPreferredSize(this.getSize());
+=======
+	    this.setPreferredSize(CalendarContainer.getCalendarDimension());
+>>>>>>> refs/remotes/origin/mnoverraz
 	    
+<<<<<<< HEAD
 	    //this.controller.updateCalendarDimension(this.calendarSize,this.dayViewContainer.getSize());
 	    
 	    //this.calendarDimension.setSize(this.getWidth(), this.getHeight());
+=======
+	    CalendarContainer.calendarDimension.setSize(this.getWidth(), this.getHeight());
+>>>>>>> refs/remotes/origin/mnoverraz
 	    
 	    
 	    

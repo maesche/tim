@@ -23,6 +23,7 @@ public abstract class AbstractController {
 	public abstract void save(String action, Element element) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException;
 	public abstract void saveAll(String action, ArrayList<Element> elements) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException;
 	
+	@Override
 	public String toString() {
 		return this.getClass().getSimpleName();
 	}

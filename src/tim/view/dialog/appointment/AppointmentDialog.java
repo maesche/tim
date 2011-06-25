@@ -2,7 +2,6 @@ package tim.view.dialog.appointment;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,18 +14,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import tim.application.Config;
-import tim.application.GlobalRegistry;
 import tim.application.exception.OperationNotPossibleException;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
 import tim.controller.AppointmentDialogController;
 import tim.model.Appointment;
-import tim.model.Client;
-import tim.model.Element;
 import tim.model.Employee;
-import tim.model.Person;
-import tim.view.Application;
 import tim.view.ParentView;
 
 public class AppointmentDialog extends JDialog implements ActionListener, ParentView {

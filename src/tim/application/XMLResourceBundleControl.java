@@ -35,6 +35,7 @@ public class XMLResourceBundleControl extends ResourceBundle.Control
 	//
 	//		Method (overrided): getFormats ; return: String list
 	//______________________________________________________________________________
+	@Override
 	public List<String> getFormats(String baseName) 
 	{
 		//System.out.println("baseName: " + baseName);
@@ -53,6 +54,7 @@ public class XMLResourceBundleControl extends ResourceBundle.Control
 	//	the specific needs. In this case, we want to plug in our XMLResourceBundle class, 
 	//	passing it a BufferedInputStream.
 	//______________________________________________________________________________
+	@Override
 	public ResourceBundle newBundle(String baseName, 
 									Locale locale, 
 									String format,

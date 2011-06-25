@@ -4,8 +4,6 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
-import tim.application.Config;
-
 public class CustomTableModel extends AbstractTableModel {
 
 	Vector<String> columnNames = null;
@@ -40,17 +38,20 @@ public class CustomTableModel extends AbstractTableModel {
 		return data.get(row).get(col);
 	}
 	
+	@Override
 	public String getColumnName(int col) { 
 		return columnNames.get(col).toString();
 	}
 	
 
+	@Override
 	public void setValueAt(Object value, int row, int col) {
-		Vector<Object> rowData = (Vector<Object>)data.get(row);
+		Vector<Object> rowData = data.get(row);
         rowData.set(col, value);
 		fireTableCellUpdated(row, col);
 	}
 	
+	@Override
 	public boolean isCellEditable(int row, int col) {
 		return col != 0;
 	}

@@ -64,6 +64,7 @@ public class DayViewContainer extends JPanel implements ChildView {
 		
 	}
 	
+	@Override
 	public void validate(){
 		/*int x = 200;
 		int width=0;
@@ -99,6 +100,7 @@ public class DayViewContainer extends JPanel implements ChildView {
 		
 	}
 	
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		validate();

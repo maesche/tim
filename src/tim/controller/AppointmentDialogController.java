@@ -1,20 +1,14 @@
 package tim.controller;
 
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import tim.application.Config;
-import tim.application.GlobalRegistry;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
-import tim.model.AbstractModel;
 import tim.model.Appointment;
 import tim.model.Client;
-import tim.model.ClientModel;
-import tim.model.Element;
 import tim.model.Employee;
-import tim.model.EmployeeModel;
 
 
 public class AppointmentDialogController extends Controller {
