@@ -28,6 +28,7 @@ public class ActionBar extends JPanel {
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("sauvegarder");
 				if (performAction) {
 					save();
 				}
@@ -37,9 +38,11 @@ public class ActionBar extends JPanel {
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (performAction) {
+				System.out.println("delete");
+				delete();
+				/*if (performAction) {
 					delete();
-				}
+				}*/
 			}
 		});
 		add(btnSave);

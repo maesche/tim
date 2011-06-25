@@ -1,3 +1,8 @@
+/**
+ * @author 
+ * @version 
+ */
+
 package tim.controller;
 
 
@@ -324,7 +329,10 @@ public class CalendarController extends Controller {
 		return this.nbrMinutesPerDay;
 	}
 	
-
+	/**
+	 * 
+	 * @return
+	 */
 	public JTable getFormatedTable(){
 		String h;
 		
@@ -338,6 +346,7 @@ public class CalendarController extends Controller {
 			h = Integer.toString(i-1 + Config.CALENDAR_DAY_START);
 			
 			columnNames.add(h + ":00");
+			System.out.println("première boucle " + i);
 		}
 		Vector<Object> rowData;
 		int i = 0;
@@ -345,8 +354,11 @@ public class CalendarController extends Controller {
 			rowData = new Vector<Object>();
 			rowData.add(e);
 			data.add(rowData);
+			System.out.println("deuxième boucle " + i);
 			i++;
+
 		}
+		System.out.println("Lignes " + data.size());
 		this.table = new JTable(data, columnNames);
 		return table;
 	}

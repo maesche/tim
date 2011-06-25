@@ -85,7 +85,7 @@ public class DayViewContainer extends JPanel {
 		height = (int) this.controller.getDayViewContainerSize().getHeight();
 		//this.setSize(this.controller.getDayViewContainerSize());
 		
-		System.out.println(x +" "+ y  +" "+ width  +" "+ height);
+		//System.out.println(x +" "+ y  +" "+ width  +" "+ height);
 		this.setBounds(x, y, width, height);
 		
 	}
