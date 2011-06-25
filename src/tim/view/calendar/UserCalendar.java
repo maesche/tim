@@ -41,7 +41,7 @@ public class UserCalendar extends JPanel{
 	
 	CalendarController controller;
 		
-	public UserCalendar(Employee employee){
+	public UserCalendar(final Employee employee){
 
 		//Layout du calendrier
 		FlowLayout layout = new FlowLayout();
@@ -73,14 +73,28 @@ public class UserCalendar extends JPanel{
 			btn.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					showDialog(btn.getAppointment());
+					if(btn.getAppointment() == null){
+						showEmptyDialog(btn.getEmployee(), btn.getBegin(),btn.getEnd());
+					}else{
+						showDialog(btn.getAppointment());
+					}
+					
 				}
 			});
 			add(btn);
 		}
-
 	}
 	
+	public void showEmptyDialog(Employee employee, Date begin, Date end) {
+		eventDialog = new AppointmentDialog(employee,begin,end);
+		eventDialog.setModal(true);
+		eventDialog.setResizable(false);
+		eventDialog.pack();
+		eventDialog.setLocationRelativeTo(this);
+		eventDialog.setVisible(true);
+		
+	}
+
 	public void showDialog(Appointment appointment) {
 		eventDialog = new AppointmentDialog(appointment);
 		eventDialog.setModal(true);
@@ -112,13 +126,13 @@ public class UserCalendar extends JPanel{
 	    // Appel de la m√©thode de la classe JPanel
 	    super.paintComponent(g);
 	    eventSizing();
-	    System.out.println("        " + this.getWidth() + " " + this.getHeight());
+	    //System.out.println("        " + this.getWidth() + " " + this.getHeight());
 	}
 	
 	public void validate(){
 		//this.setSize(this.controller.getDayViewContainerSize());
 		this.controller.updateCalendarDimension();
-		System.out.println("        " + this.getWidth() + " " + this.getHeight());
+		//System.out.println("        " + this.getWidth() + " " + this.getHeight());
 		eventSizing();
 		
 		

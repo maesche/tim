@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.ParseException;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +16,7 @@ import tim.application.BootLoader;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
+import tim.application.utils.DateHelper;
 import tim.controller.Controller;
 import tim.view.calendar.CalendarContainer;
 import tim.view.calendar.DayNavigation;
@@ -54,8 +56,11 @@ public class Application extends JFrame {
 		
 		menu = new Menu(this);
 		setJMenuBar(menu);
+		
+		Date begin = DateHelper.StringToDate("2011-05-14");
+		Date end = DateHelper.StringToDate("2011-06-30");
 
-		calendarContainer = new CalendarContainer();
+		calendarContainer = new CalendarContainer(begin, end);
 
 		setLayout(new BorderLayout());
 		

@@ -8,6 +8,10 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Observable;
+import java.util.Vector;
 
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -15,26 +19,43 @@ import javax.swing.JPanel;
 
 import tim.application.Config;
 import tim.application.GlobalRegistry;
+import tim.application.exception.PersistanceException;
 import tim.controller.CalendarController;
+import tim.model.Employee;
+import tim.view.ParentView;
 
 
 
-public class CalendarContainer extends JPanel {
+public class CalendarContainer extends JPanel implements ParentView {
 	
-	private static Dimension calendarDimension;
-	private static int calendarHourWidth;
-	private static int calendarPersonColWidth;
+
 	
 	private JLayeredPane layer;
+	private Dimension calendarSize;
 	
+	private	DayViewContainer dayViewContainer;
+	private DayTableView dayTableView;
 	
-	CalendarController controller;
+	private CalendarController controller;
 	
-	public CalendarContainer() throws ParseException {
+	private ArrayList<Employee> employees;
+	
+	private Dimension dimension;
+	
+	public CalendarContainer(Date begin, Date end){
+		this.calendarSize = null;
+		dimension = new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT);
 		
-		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
+		controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
 		
-		this.calendarHourWidth = 0;
+		
+		try {
+			employees = controller.getCalendars(begin, end);
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		this.setLayout(new BorderLayout());
 		
@@ -42,28 +63,56 @@ public class CalendarContainer extends JPanel {
 		
 		this.layer = new JLayeredPane();
 		
-		setJLayerPaneDimension(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,1000));
-		this.setPreferredSize(getCalendarDimension());		
+		//this.setJLayerPaneDimension(dimension);
+		layer.setPreferredSize(dimension);		
 		
-		controller.addView("DayViewContainer", new DayViewContainer());
-		controller.addView("DayTableView", new DayTableView());
+		//controller.addView("DayViewContainer", new DayViewContainer());
+		//controller.addView("DayTableView", new DayTableView());
+		try {
+			this.dayViewContainer = new DayViewContainer();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dayTableView = new DayTableView();
 		
-		this.layer.add((DayViewContainer) controller.getViews("DayViewContainer"),new Integer(0));
-		this.layer.add((DayTableView) controller.getViews("DayTableView"),new Integer(-3));
+		dayViewContainer.setData(employees);
+		
+		int hoursPerDay = controller.getHoursPerDay();
+		Vector<String> columnNames = new Vector<String>();
+		
+		columnNames.add("Collaborateur");
+		String h;
+
+		for(int i=1; i<hoursPerDay+1; i++){
+			h = Integer.toString(i-1 + Config.CALENDAR_DAY_START);
+			
+			columnNames.add(h + ":00");
+		}
+		dayTableView.setColumnNames(columnNames);
+		
+		dayTableView.setData(employees);
+		//dayTableView.setRowHeight(200);
+		dayTableView.setDimension(dimension);
+		dayTableView.load();
+		
+		layer.add(dayViewContainer,new Integer(0));
+		layer.add(dayTableView,new Integer(-3));
 		
 
-		add(this.layer);
+		add(layer);
 		repaint();
 	}
 	
 	public void paintComponent(Graphics g) {
 	    // Appel de la méthode de la classe JPanel
 	    super.paintComponent(g);
-	    this.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
 	    
-	    this.setPreferredSize(this.getCalendarDimension());
+	    setPreferredSize(this.getSize());
 	    
-	    this.calendarDimension.setSize(this.getWidth(), this.getHeight());
+	    //this.controller.updateCalendarDimension(this.calendarSize,this.dayViewContainer.getSize());
+	    
+	    //this.calendarDimension.setSize(this.getWidth(), this.getHeight());
 	    
 	    
 	    
@@ -75,32 +124,20 @@ public class CalendarContainer extends JPanel {
 	    //validate();
 	}
 	
-	/*public void validate(){
-		this.getCalendarDimension().setSize(this.getWidth(), this.getHeight());
-	    
-	    this.setPreferredSize(this.getCalendarDimension());
-	    //this.setSize(this.getCalendarDimension());
-	}*/
-
-	public static void setJLayerPaneDimension(Dimension jLayerPaneDimension) {
-		calendarDimension = jLayerPaneDimension;
+	public void validate(){
+		
 	}
 
-	public static Dimension getCalendarDimension() {
-		return calendarDimension;
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public static void setCalendarHourWidth(int width){
-		calendarHourWidth = width;
-	}
-	public static int getCalendarHourWidth(){
-		return calendarHourWidth;
-	}
-	
-	public static int getCalendarPersonColWidth(){
-		return calendarPersonColWidth;
-	}
-	public static void setCalendarPersonColWidth(int width){
-		calendarPersonColWidth = width;
+
+	@Override
+	public void save(String action, Object value) {
+		// TODO Auto-generated method stub
+		
 	}
 }

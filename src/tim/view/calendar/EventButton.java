@@ -28,7 +28,7 @@ public class EventButton extends JButton {
 	
 	private Employee employee;
 
-	public EventButton(String title, Date begin, Date end, int duration, Color color) {
+	/*public EventButton(String title, Date begin, Date end, int duration, Color color) {
 		
 		this.duration = duration;
 		this.title = title;
@@ -43,7 +43,7 @@ public class EventButton extends JButton {
 		this.setBackground(color);
 		this.setText(title);
 
-	}
+	}*/
 	
 	public EventButton(Appointment appointment) {
 		

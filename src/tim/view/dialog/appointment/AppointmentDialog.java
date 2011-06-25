@@ -46,6 +46,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	public AppointmentDialog (Employee employee, Date begin, Date end) {
 		Appointment appointment = new Appointment(begin, end, null, employee, null);
 		System.out.println(appointment);
+
 		init(appointment);
 	}
 	
