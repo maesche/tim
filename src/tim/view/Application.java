@@ -57,6 +57,8 @@ public class Application extends JFrame {
 				GlobalRegistry.resizer.setDimension(getSize());
 			}
 		});
+		
+		
 
 		menu = new Menu(this);
 		setJMenuBar(menu);
@@ -71,6 +73,10 @@ public class Application extends JFrame {
 		add(calendarContainer, BorderLayout.CENTER);
 
 	}
+	
+	/*public void validate(){
+		GlobalRegistry.resizer.setDimension(getSize());
+	}*/
 	
 	public void close() {
 		try {

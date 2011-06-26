@@ -85,7 +85,8 @@ public class UserCalendar extends JPanel implements ChildView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
-			System.out.println("Taille obtenue par le Resizer: " + dimension);
+			System.out.println("            UserCalendar");
+			System.out.println("               Taille obtenue par le Resizer: " + dimension);
 			repaint();
 		}
 

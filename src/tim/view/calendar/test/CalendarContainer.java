@@ -30,6 +30,8 @@ public class CalendarContainer extends JPanel implements ParentView {
 	private ArrayList<Element> elements;
 	
 	public CalendarContainer() {
+		this.setBounds(0, 0, 500, 500);
+		
 		controller = new CalendarController();
 		dimension = new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT-88);
 		
@@ -66,7 +68,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		layeredPane = new JLayeredPane();
 		layeredPane.setPreferredSize(dimension);
 
-		setPreferredSize(dimension);		
+		setPreferredSize(dimension);
 		
 		layeredPane.add(dayTableView, new Integer(5));
 		layeredPane.add(dayViewContainer, new Integer(20));
@@ -123,6 +125,8 @@ public class CalendarContainer extends JPanel implements ParentView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
+			System.out.println("CalendarContainer");
+			System.out.println("   Taille obtenue par le Resizer: " + dimension);
 			repaint();
 		}
 
