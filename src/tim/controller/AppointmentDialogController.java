@@ -53,8 +53,11 @@ public class AppointmentDialogController extends Controller {
 			
 			Date a_begin = app.getBegin();
 			Date a_end = app.getEnd();
+			System.out.println("existant begin: " +a_begin + "end: " + a_end);
+			System.out.println("nouveau begin: " +begin + "end: " + end);
 			
 			canInsert = (a_end.before(begin) || a_begin.after(end));
+			System.out.println("canInsert: " + canInsert);
 		}
 		
 		return canInsert;

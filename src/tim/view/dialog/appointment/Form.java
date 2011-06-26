@@ -255,6 +255,7 @@ public class Form extends JPanel implements ChildView {
 			}
 
 			txtDate.setText(date);
+			txtDate.setEditable(false);
 
 			cbBeginH.setSelectedItem(beginH);
 			cbBeginM.setSelectedItem(beginM);
