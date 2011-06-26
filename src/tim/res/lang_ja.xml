@@ -30,6 +30,9 @@
 	<entry key="dialogSave">保存</entry>
 	<entry key="dialogDelete">消去</entry>
 	<entry key="dialogAction">アクション</entry>
+	<entry key="dialogErrorClient">氏名を入力して下さい。</entry>
+	
+	<entry key="calendarCollaborator">ユーザ</entry>	
 	
 	<entry key="personId">ID</entry>
 	<entry key="personFirstname">名前</entry>

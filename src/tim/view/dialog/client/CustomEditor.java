@@ -5,6 +5,7 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+import tim.application.Config;
 import tim.model.Client;
 import tim.view.ParentView;
 
@@ -34,7 +35,7 @@ public class CustomEditor extends AbstractCellEditor {
 		Client client = new Client(id, firstName, lastName, phone, address,
 				null);
 		renderer.setClient(client);
-		if (firstName == null || "".equals(firstName)) {
+		if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName)) {
 			buttonPressed(table, row, col);
 			renderer.setPerformAction(false);
 		} else {
@@ -46,7 +47,7 @@ public class CustomEditor extends AbstractCellEditor {
 
 	private void buttonPressed(JTable table, int row, int column) {
 		JOptionPane.showMessageDialog(table,
-				"Please fill in at least the first and lastname.");
+				Config.RESSOURCE_BUNDLE.getString("dialogErrorClient"));
 	}
 
 }

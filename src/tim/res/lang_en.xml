@@ -30,6 +30,9 @@
 	<entry key="dialogDelete">Delete</entry>
 	<entry key="dialogAddBlankRow">Add new blank row</entry>
 	<entry key="dialogAction">Action</entry>
+	<entry key="dialogErrorClient">Please fill in at least the first- and lastname.</entry>
+	
+	<entry key="calendarCollaborator">Collaborator</entry>
 	
 	<entry key="personId">ID</entry>
 	<entry key="personFirstname">Firstname</entry>

@@ -30,8 +30,10 @@
 	<entry key="dialogDelete">Löschen</entry>
 	<entry key="dialogAddBlankRow">Neue Zeile hinzufügen</entry>
 	<entry key="dialogAction">Aktion</entry>
+	<entry key="dialogErrorClient">Der Vor-und Nachname muss ausgefüllt sein.</entry>
 
-	
+	<entry key="calendarCollaborator">Mitarbeiter</entry>
+
 	<entry key="personId">ID</entry>
 	<entry key="personFirstname">Vorname</entry>
 	<entry key="personLastname">Nachname</entry>

@@ -34,8 +34,7 @@ public class Menu extends JMenuBar implements AbstractView {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-				
+				close();
 			}
 		});
 		file.add(quit);
@@ -131,6 +130,10 @@ public class Menu extends JMenuBar implements AbstractView {
 		repaint();
 	}
 
+	public void close() {
+		application.close();
+	}
+	
 	@Override
 	public void update(Observable observable, Object arg) {
 		update();

@@ -79,7 +79,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		dayTableView = new DayTableView();
 		
 		Vector<String> columnNames = new Vector<String>();
-		columnNames.add("Collaborateur");
+		columnNames.add(Config.RESSOURCE_BUNDLE.getString("calendarCollaborator"));
 		String hour;
 		for(int i=1; i<Config.CALENDAR_DAY_END-Config.CALENDAR_DAY_START+1; i++){
 			hour = Integer.toString(i-1 + Config.CALENDAR_DAY_START);
