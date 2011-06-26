@@ -1,18 +1,13 @@
 package tim.view.dialog.appointment;
 
-import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
 
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,11 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import tim.application.Config;
-import tim.application.exception.ExceptionFormatter;
-import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
-import tim.controller.AppointmentDialogController;
 import tim.model.Appointment;
 import tim.model.Client;
 import tim.model.Element;
@@ -46,7 +37,7 @@ public class Form extends JPanel implements ChildView {
 	private JComboBox cbEndH;
 	private JLabel lblDescription;
 	private JTextArea txtDescription;
-	private ParentView view;
+	private Employee employee;
 
 	public Form() {
 		lblClient = new JLabel(
@@ -153,7 +144,6 @@ public class Form extends JPanel implements ChildView {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(txtDate, gbc);
 
-
 		init();
 	}
 
@@ -171,7 +161,7 @@ public class Form extends JPanel implements ChildView {
 	}
 
 	public void setParentView(ParentView view) {
-		this.view = view;
+
 	}
 
 	@Override
@@ -182,7 +172,7 @@ public class Form extends JPanel implements ChildView {
 
 	@Override
 	public Object getData() {
-
+		Appointment appointment = null;
 		Date begin = null;
 		int beginH = 0, endH = 0, beginM = 0, endM = 0;
 
@@ -192,28 +182,32 @@ public class Form extends JPanel implements ChildView {
 		endM = (Integer) cbEndM.getSelectedItem();
 
 		Client client = (Client) cbClient.getSelectedItem();
-		try {
-			begin = DateHelper.StringToDate(
-					txtDate.getText() + " " + String.valueOf(beginH) + ":"
-							+ String.valueOf(beginM), Config.DATE_FORMAT_LONG);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Date end = null;
-		try {
-			end = DateHelper.StringToDate(
-					txtDate.getText() + " " + String.valueOf(endH) + ":"
-							+ String.valueOf(endM), Config.DATE_FORMAT_LONG);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+		if ((AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator
+				.startEnd(lblBegin, lblEnd, beginH, beginM, endH, endM))) {
+			try {
+				begin = DateHelper.StringToDate(
+						txtDate.getText() + " " + String.valueOf(beginH) + ":"
+								+ String.valueOf(beginM),
+						Config.DATE_FORMAT_LONG);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			Date end = null;
+			try {
+				end = DateHelper
+						.StringToDate(
+								txtDate.getText() + " " + String.valueOf(endH)
+										+ ":" + String.valueOf(endM),
+								Config.DATE_FORMAT_LONG);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+			appointment = new Appointment(begin, end, txtDescription.getText(),
+					employee, client);
 		}
 
-
-		Appointment appointment = new Appointment(begin, end,
-				txtDescription.getText(), new Employee(2, "test", "test"),
-				client);
 		return appointment;
 	}
 
@@ -232,6 +226,7 @@ public class Form extends JPanel implements ChildView {
 
 			Appointment appointment = (Appointment) value;
 
+			this.employee = (Employee) appointment.getEmployee();
 			Date begin = appointment.getBegin();
 			Date end = appointment.getEnd();
 
@@ -258,8 +253,6 @@ public class Form extends JPanel implements ChildView {
 			if (appointment.getDescription() != null) {
 				description = appointment.getDescription();
 			}
-			
-
 
 			txtDate.setText(date);
 

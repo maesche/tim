@@ -90,8 +90,10 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				save("add", form.getData());
-				close();
+				if (check((Appointment) form.getData())) {
+					save("add", form.getData());
+					close();	
+				}
 			}
 		});
 		
@@ -100,8 +102,10 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				save("delete", form.getData());
-				close();	
+				if (check((Appointment) form.getData())) {
+					save("delete", form.getData());
+					close();	
+				}
 			}
 		});
 		
@@ -118,6 +122,15 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
+	private boolean check(Appointment appointment) {
+		boolean ret = true;
+		if (appointment == null) {
+			lblErrorMsg.setText("Please check the following errors: ");
+			ret = false;
+		}
+		return ret;
+	}
+	
 	private void close() {
 		setVisible(false);
 		dispose();
@@ -132,19 +145,13 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	@Override
 	public void save(String action, Object value) {
 		lblErrorMsg.setText(" ");
-		/*if (!(AppointmentDialogValidator.dateField(lblDate, txtDate) && AppointmentDialogValidator
-				.startEnd(lblBegin, lblEnd, beginH, beginM, endH, endM))) {
-			lblErrorMsg.setText("Please check the following errors: ");
-
-		} else {
-
-		}*/
+		
 		try {
 			if ("add".equals(action)) {
 				boolean ret = ((AppointmentDialogController)controller).checkAvailability((Appointment) value);
 				if (ret) {
 					System.out.println("Disponible");
-					controller.save(action, (Appointment) value);
+					//controller.save(action, (Appointment) value);
 				}
 				else {
 					System.out.println("Pas disponible");
