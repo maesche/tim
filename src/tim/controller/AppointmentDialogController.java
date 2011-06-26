@@ -15,6 +15,7 @@ import tim.model.ClientModel;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.model.EmployeeModel;
+import tim.model.AppointmentModel;
 
 
 public class AppointmentDialogController extends Controller {
@@ -33,5 +34,29 @@ public class AppointmentDialogController extends Controller {
 		this.models.get("AppointmentModel").add(appointment);
 
 		return true;
+	}
+	
+	
+	public boolean checkAvailability(Appointment appointment) throws PersistanceException, ParseException {
+		boolean canInsert = true;
+
+		Date begin =  DateHelper.StringToDate(DateHelper.DateToString(appointment.getBegin(), Config.DATE_FORMAT_SHORT) + " 0:00", Config.DATE_FORMAT_LONG);
+		Date end = DateHelper.StringToDate(DateHelper.DateToString(appointment.getEnd(), Config.DATE_FORMAT_SHORT));
+		
+		AppointmentModel appointmentModel = (AppointmentModel) models.get("AppointmentModel");
+		
+		
+		ArrayList<Element> appointments = (ArrayList<Element>)appointmentModel.get((Employee)appointment.getEmployee(), begin, end);
+		
+		for (Element element : appointments) {
+			Appointment app = (Appointment) element;
+			
+			Date a_begin = app.getBegin();
+			Date a_end = app.getEnd();
+			
+			canInsert = (a_end.before(begin) || a_begin.after(end));
+		}
+		
+		return canInsert;
 	}
 }

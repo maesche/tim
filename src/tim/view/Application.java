@@ -48,13 +48,7 @@ public class Application extends JFrame {
 
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				try {
-					BootLoader.dispose();
-				} catch (PersistanceException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				System.exit(0);
+				close();
 			}
 		});
 
@@ -76,6 +70,16 @@ public class Application extends JFrame {
 		add(navBar, BorderLayout.NORTH);
 		add(calendarContainer, BorderLayout.CENTER);
 
+	}
+	
+	public void close() {
+		try {
+			BootLoader.dispose();
+		} catch (PersistanceException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.exit(0);
 	}
 
 	public void showClientDialog() {

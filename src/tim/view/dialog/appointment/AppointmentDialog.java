@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Observable;
 
@@ -140,7 +141,14 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		}*/
 		try {
 			if ("add".equals(action)) {
-				controller.save(action, (Appointment) value);
+				boolean ret = ((AppointmentDialogController)controller).checkAvailability((Appointment) value);
+				if (ret) {
+					System.out.println("Disponible");
+					controller.save(action, (Appointment) value);
+				}
+				else {
+					System.out.println("Pas disponible");
+				}
 			}
 			else if("delete".equals(action)) {
 				controller.save(action, (Appointment) value);
@@ -156,6 +164,9 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (OperationNotPossibleException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

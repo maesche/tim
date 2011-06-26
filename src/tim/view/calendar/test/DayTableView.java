@@ -1,6 +1,7 @@
 package tim.view.calendar.test;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Vector;
@@ -10,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
+import tim.application.GlobalRegistry;
+import tim.application.Resizer;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.view.ChildView;
@@ -21,8 +24,10 @@ public class DayTableView extends JPanel implements ChildView {
 	private Vector<String> columnNames;
 	private int rowHeight;
 	private Vector<Integer> columnWidth;
+	private Dimension dimension;
 	
 	public DayTableView () {
+		GlobalRegistry.resizer.addObserver(this);
 		data = new Vector<Vector<Object>>();
 		setLayout(new BorderLayout());
 	}
@@ -73,7 +78,12 @@ public class DayTableView extends JPanel implements ChildView {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		if (o instanceof Resizer) {
+			this.dimension = (Dimension) arg;
+		    setSize(dimension);
+		    setPreferredSize(dimension);
+		    System.out.println("resize");
+		}
 
 	}
 

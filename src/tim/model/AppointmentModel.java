@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -191,6 +192,8 @@ public class AppointmentModel extends AbstractModel{
 			stmt.executeUpdate(sql_appointment);
 			stmt.executeUpdate(sql_dates);
 			stmt.close();
+			setChanged();
+			notifyObservers(element);
 		} catch (SQLException ex) {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "add"));
 		}
@@ -230,53 +233,5 @@ public class AppointmentModel extends AbstractModel{
 			Db.close();
 		}
 
-	}
-	
-	public boolean checkAvailability(Appointment appointment) throws PersistanceException {
-		/*
-		 *  $nbEvents = 0;
-        $canInsert = true;
-
-
-        for ($i = 0; $i < count($currentEvents) && $canInsert; $i++) {
-            $start = strtotime($currentEvents[$i]['start']);
-            $end = strtotime($currentEvents[$i]['end']);
-            $id = $currentEvents[$i]['id'];
-
-            $e_start = strtotime($newEvent['start']);
-            $e_end = strtotime($newEvent['end']);
-            $e_id = $newEvent['id'];
-
-            $canInsert = ($e_end <= $start || $e_start >= $end);
-
-
-//if (!$canInsert && $id != $e_id) {
-            if (!$canInsert) {
-                $nbEvents++;
-                $canInsert = $nbEvents < $maxEvents;
-            }
-        }
-
-
-        return $canInsert;
-		 */
-		boolean canInsert = true;
-
-		Date begin = appointment.getBegin();
-	//	Date end = DateHelper.StringToDate(DateHelper.DateToString(appointment.getEnd(), Config.DATE_FORMAT_SHORT));
-		
-		
-		ArrayList<Element> appointments = this.get(appointment.getBegin(), appointment.getEnd());
-		
-		for (Element element : appointments) {
-			Appointment app = (Appointment) element;
-			
-			Date a_begin = app.getBegin();
-			Date a_end = app.getEnd();
-			
-			//canInsert = (a_end < begin || a_begin >= end);
-		}
-		
-		return true;
 	}
 }
