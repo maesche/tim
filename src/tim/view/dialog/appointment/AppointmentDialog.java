@@ -125,7 +125,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	private boolean check(Appointment appointment) {
 		boolean ret = true;
 		if (appointment == null) {
-			lblErrorMsg.setText("Please check the following errors: ");
+			lblErrorMsg.setText(Config.RESSOURCE_BUNDLE.getString("dialogMessages"));
 			ret = false;
 		}
 		return ret;

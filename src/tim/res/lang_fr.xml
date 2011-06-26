@@ -30,6 +30,9 @@
 	<entry key="dialogDelete">Supprimer</entry>
 	<entry key="dialogAddBlankRow">Ajouter une nouvelle ligne</entry>
 	<entry key="dialogAction">Action</entry>
+	<entry key="dialogErrorClient">Le prénom et le nom de famille doivent être renseignés.</entry>
+	
+	<entry key="calendarCollaborator">Collaborateur</entry>	
 	
 	<entry key="personId">ID</entry>
 	<entry key="personFirstname">Prénom</entry>

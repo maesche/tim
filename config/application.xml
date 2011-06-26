@@ -4,7 +4,7 @@
 		<db-pwd>tim</db-pwd>
 		<db-url>jdbc:mysql://localhost:3306/tim?autoReconnect=true</db-url>
 		<db-driver>com.mysql.jdbc.Driver</db-driver>
-		<default-lang>de</default-lang>
+		<default-lang>ja</default-lang>
 		<date-format>yyyy-MM-dd</date-format>
 		<time-format>HH:mm</time-format>
 	</system>
