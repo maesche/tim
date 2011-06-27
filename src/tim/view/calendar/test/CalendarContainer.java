@@ -61,16 +61,9 @@ public class CalendarContainer extends JPanel implements ParentView {
 	
 	
 	public void loadData(Date begin, Date end) {
-		begin = null;
 		try {
-			begin = DateHelper.StringToDate("2011-05-14");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		end = null;
-		try {
-			end = DateHelper.StringToDate("2011-06-15");
+			end = DateHelper.StringToDate(DateHelper.DateToString(end) + " 19:00", Config.DATE_FORMAT_LONG);
+			//end = DateHelper.StringToDate("2011-06-26 19:00", Config.DATE_FORMAT_LONG);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -134,8 +127,6 @@ public class CalendarContainer extends JPanel implements ParentView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
-			System.out.println("CalendarContainer");
-			System.out.println("   Taille obtenue par le Resizer: " + dimension);
 			repaint();
 		}
 	}

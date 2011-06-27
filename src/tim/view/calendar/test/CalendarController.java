@@ -48,7 +48,6 @@ public class CalendarController extends Controller {
 		AppointmentModel appointmentModel = (AppointmentModel) this.models
 		.get("AppointmentModel");
 		Calendar calendar = employee.getCalendar();
-		System.out.println("begin: " + begin + " end" + end);
 		appointments = new ArrayList<Appointment>();
 
 		ArrayList<Element> elements = appointmentModel.get(employee, begin,
@@ -57,7 +56,6 @@ public class CalendarController extends Controller {
 		for (Element el : elements) {
 			Appointment appointment = (Appointment) el;
 			appointments.add(appointment);
-			System.out.println(appointment);
 		}
 
 		calendar.setAppointments(appointments);

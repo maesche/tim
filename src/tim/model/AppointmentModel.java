@@ -45,10 +45,10 @@ public class AppointmentModel extends AbstractModel{
 		}
 
 		if (fSince != null) {
-			filter.add("begin >= '" + DateHelper.DateToString(fSince) + "'");
+			filter.add("begin >= '" + DateHelper.DateToString(fSince, Config.DATE_FORMAT_LONG) + "'");
 			
 			if (fUntil != null) {
-				filter.add("end <= '" + DateHelper.DateToString(fUntil) + "'");
+				filter.add("end <= '" + DateHelper.DateToString(fUntil, Config.DATE_FORMAT_LONG) + "'");
 			}
 		}
 		
@@ -216,7 +216,7 @@ public class AppointmentModel extends AbstractModel{
 		
 		
 		sql = "DELETE FROM appointments WHERE appointment_id=" + id;
-		System.out.println(sql);
+
 
 		try {
 			conn = Db.open();

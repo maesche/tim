@@ -82,8 +82,6 @@ public class DayTableView extends JPanel implements ChildView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
-			System.out.println("      DayTableView");
-			System.out.println("         Taille obtenue par le Resizer: " + dimension);
 		    setSize(dimension);
 		    setPreferredSize(dimension);
 		    System.out.println("rowHeight" + (dimension.getHeight()-20) / data.size());

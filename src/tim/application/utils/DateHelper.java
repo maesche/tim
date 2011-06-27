@@ -77,7 +77,6 @@ public class DateHelper {
 		cal.set(GregorianCalendar.MINUTE, 0);   
 		cal.set(GregorianCalendar.SECOND, 0);   
 		cal.set(GregorianCalendar.MILLISECOND, 0);
-		System.out.println(cal.getTime());
 		//---Put it back in the Date object   
 		return cal.getTime();  
 	}

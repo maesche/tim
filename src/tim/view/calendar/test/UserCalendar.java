@@ -106,9 +106,6 @@ public class UserCalendar extends JPanel implements ChildView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
-			System.out.println("            UserCalendar");
-			System.out.println("               Taille obtenue par le Resizer: " + dimension);
-
 		}
 		else if (o instanceof AppointmentModel) {
 			reload(null);
@@ -121,6 +118,7 @@ public class UserCalendar extends JPanel implements ChildView {
 		employee = ((CalendarContainer) parentView).getData(employee, date);
 		appointments = employee.getCalendar().getAppointments();
 		load();
+		repaint();
 	}
 
 	@Override
