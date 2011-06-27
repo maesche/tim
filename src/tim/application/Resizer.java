@@ -8,6 +8,7 @@ public class Resizer extends CustomObservable {
 	public void setDimension(Dimension dimension) {
 		setChanged();
 		notifyObservers(dimension);
+		
 		this.dimension = dimension;
 	}
 

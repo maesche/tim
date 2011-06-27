@@ -58,6 +58,8 @@ public class Application extends JFrame {
 				
 			}
 		});
+		
+		
 
 		menu = new Menu(this);
 		setJMenuBar(menu);
@@ -80,6 +82,10 @@ public class Application extends JFrame {
 	public void validate() {
 		GlobalRegistry.resizer.setDimension(getSize());
 	}
+	
+	/*public void validate(){
+		GlobalRegistry.resizer.setDimension(getSize());
+	}*/
 	
 	public void close() {
 		try {
