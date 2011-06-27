@@ -84,7 +84,6 @@ public class DayTableView extends JPanel implements ChildView {
 			this.dimension = (Dimension) arg;
 		    setSize(dimension);
 		    setPreferredSize(dimension);
-		    System.out.println("rowHeight" + (dimension.getHeight()-20) / data.size());
 			table.setRowHeight((int) (dimension.getHeight()) / data.size());
 		}
 

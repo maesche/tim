@@ -34,6 +34,7 @@ public class UserCalendar extends JPanel implements ChildView {
 	private ParentView parentView;
 	private Dimension dimension;
 	private Employee employee;
+	private Date date;
 	
 	public UserCalendar() {
 		GlobalRegistry.resizer.addObserver(this);
@@ -106,14 +107,16 @@ public class UserCalendar extends JPanel implements ChildView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
+			repaint();
 		}
 		else if (o instanceof AppointmentModel) {
-			reload(null);
+			reload(date);
 		}
-		repaint();
+
 	}
 	
 	public void reload(Date date) {
+		this.date = date;
 		this.removeAll();
 		employee = ((CalendarContainer) parentView).getData(employee, date);
 		appointments = employee.getCalendar().getAppointments();
