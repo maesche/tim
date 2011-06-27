@@ -55,6 +55,7 @@ public class DateHelper {
 		//Calendar cal = Calendar.getInstance();   
 		cal.setTime(dayToday);
 
+		cal.set(GregorianCalendar.AM_PM , GregorianCalendar.AM);
 		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
 		cal.set(GregorianCalendar.MINUTE, 0);   
 		cal.set(GregorianCalendar.SECOND, 0);   
@@ -71,10 +72,12 @@ public class DateHelper {
 		//---Next day = day + 1
 		cal.add(GregorianCalendar.DATE, 1);
 
+		cal.set(GregorianCalendar.AM_PM , GregorianCalendar.AM);
 		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
 		cal.set(GregorianCalendar.MINUTE, 0);   
 		cal.set(GregorianCalendar.SECOND, 0);   
 		cal.set(GregorianCalendar.MILLISECOND, 0);
+		System.out.println(cal.getTime());
 		//---Put it back in the Date object   
 		return cal.getTime();  
 	}
@@ -84,9 +87,10 @@ public class DateHelper {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
 		cal.setTime(day);
 		
-		//---Next day = day + 1
+		//---Previous day = day - 1
 		cal.add(GregorianCalendar.DATE, -1);
 
+		cal.set(GregorianCalendar.AM_PM , GregorianCalendar.AM);
 		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
 		cal.set(GregorianCalendar.MINUTE, 0);   
 		cal.set(GregorianCalendar.SECOND, 0);   

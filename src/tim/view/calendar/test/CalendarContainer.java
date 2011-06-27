@@ -61,21 +61,21 @@ public class CalendarContainer extends JPanel implements ParentView {
 	
 	
 	public void loadData(Date begin, Date end) {
-		/*Date begin = null;
+		begin = null;
 		try {
 			begin = DateHelper.StringToDate("2011-05-14");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Date end = null;
+		end = null;
 		try {
 			end = DateHelper.StringToDate("2011-06-15");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 		
 		try {
 			elements = controller.getCalendars(begin, end);
