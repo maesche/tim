@@ -9,5 +9,5 @@ public class GlobalRegistry {
 	public static LanguageLinker languageLinker = null;
 	public static XmlConfigHandler xmlConfigHandler = null;
 	
-	public static Resizer resizer = new Resizer();
+	public static Resizer resizer = null;
 }

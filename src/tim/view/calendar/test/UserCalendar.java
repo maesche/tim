@@ -63,7 +63,7 @@ public class UserCalendar extends JPanel implements ChildView {
 			int x, y;
 
 			x = (int) ((eventButton.getDuration()*dimension.getWidth())/((Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60));
-			y = getHeight();
+			y = (int)dimension.getHeight();
 			
 			btnDimension = new Dimension(x, y);
 			

@@ -93,6 +93,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		
 		dayTableView.setColumnWidth(columnWidth);
 		dayTableView.setColumnNames(columnNames);
+
 		dayTableView.setRowHeight((int) (dimension.getHeight()-20) / elements.size());
 		dayTableView.setData(elements);
 		dayTableView.load();
@@ -141,6 +142,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 	public void validate(){
 	    setSize(dimension);
 	    setPreferredSize(dimension);
+	    layeredPane.setPreferredSize(dimension);
 	}
 	public void paintComponent(Graphics g) {
 	    super.paintComponent(g);

@@ -38,6 +38,8 @@ public class DayTableView extends JPanel implements ChildView {
 		
 			for (int i = 0; i < columnWidth.size(); i++) {
 				table.getColumnModel().getColumn(i).setMinWidth(columnWidth.get(i));
+				table.getColumnModel().getColumn(i).setPreferredWidth(columnWidth.get(i));
+				table.getColumnModel().getColumn(i).setMaxWidth(columnWidth.get(i));
 			}
 		
 		table.getTableHeader().setReorderingAllowed(false);
@@ -84,6 +86,8 @@ public class DayTableView extends JPanel implements ChildView {
 			System.out.println("         Taille obtenue par le Resizer: " + dimension);
 		    setSize(dimension);
 		    setPreferredSize(dimension);
+		    System.out.println("rowHeight" + (dimension.getHeight()-20) / data.size());
+			table.setRowHeight((int) (dimension.getHeight()) / data.size());
 		}
 
 	}

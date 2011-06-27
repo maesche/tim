@@ -53,14 +53,6 @@ public class Application extends JFrame {
 			}
 		});
 
-		this.addComponentListener(new java.awt.event.ComponentAdapter() {
-			public void componentResized(ComponentEvent e) {
-				
-			}
-		});
-		
-		
-
 		menu = new Menu(this);
 		setJMenuBar(menu);
 
@@ -88,7 +80,6 @@ public class Application extends JFrame {
 		try {
 			BootLoader.dispose();
 		} catch (PersistanceException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		System.exit(0);
