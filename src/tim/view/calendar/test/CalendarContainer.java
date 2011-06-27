@@ -62,18 +62,13 @@ public class CalendarContainer extends JPanel implements ParentView {
 	
 	public void loadData(Date begin, Date end) {
 		try {
-			end = DateHelper.StringToDate(DateHelper.DateToString(end) + " 19:00", Config.DATE_FORMAT_LONG);
-			//end = DateHelper.StringToDate("2011-06-26 19:00", Config.DATE_FORMAT_LONG);
+			begin =  DateHelper.StringToDate(DateHelper.DateToString(end) + " " + Config.CALENDAR_DAY_START + ":00", Config.DATE_FORMAT_LONG);
+			end = DateHelper.StringToDate(DateHelper.DateToString(end) + " " + Config.CALENDAR_DAY_END + ":00", Config.DATE_FORMAT_LONG);
+			elements = controller.getCalendars(begin, end);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		try {
-			elements = controller.getCalendars(begin, end);
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
+		catch (PersistanceException e) {
 			e.printStackTrace();
 		}
 	}
@@ -133,8 +128,6 @@ public class CalendarContainer extends JPanel implements ParentView {
 
 	@Override
 	public void save(String action, Object value) {
-		// TODO Auto-generated method stub
-
 	}
 	
 	public Employee getData(Employee employee, Date date) {

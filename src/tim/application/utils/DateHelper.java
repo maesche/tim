@@ -47,21 +47,7 @@ public class DateHelper {
 	}
 	
 	public static  Date getToday() {
-		//---Today date
-		Date dayToday = new Date();
-
-		//---Get Calendar object set to the date and time of the given Date object 
-		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
-		//Calendar cal = Calendar.getInstance();   
-		cal.setTime(dayToday);
-
-		cal.set(GregorianCalendar.AM_PM , GregorianCalendar.AM);
-		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
-		cal.set(GregorianCalendar.MINUTE, 0);   
-		cal.set(GregorianCalendar.SECOND, 0);   
-		cal.set(GregorianCalendar.MILLISECOND, 0);
-		//---Put it back in the Date object   
-		return cal.getTime();  
+		return  new Date();  
 	}
 	
 	public static Date getNextDay(Date day) {
@@ -72,11 +58,6 @@ public class DateHelper {
 		//---Next day = day + 1
 		cal.add(GregorianCalendar.DATE, 1);
 
-		cal.set(GregorianCalendar.AM_PM , GregorianCalendar.AM);
-		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
-		cal.set(GregorianCalendar.MINUTE, 0);   
-		cal.set(GregorianCalendar.SECOND, 0);   
-		cal.set(GregorianCalendar.MILLISECOND, 0);
 		//---Put it back in the Date object   
 		return cal.getTime();  
 	}
@@ -89,11 +70,6 @@ public class DateHelper {
 		//---Previous day = day - 1
 		cal.add(GregorianCalendar.DATE, -1);
 
-		cal.set(GregorianCalendar.AM_PM , GregorianCalendar.AM);
-		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
-		cal.set(GregorianCalendar.MINUTE, 0);   
-		cal.set(GregorianCalendar.SECOND, 0);   
-		cal.set(GregorianCalendar.MILLISECOND, 0);
 		//---Put it back in the Date object   
 		return cal.getTime();  
 	}
