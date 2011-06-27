@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 
 import javax.swing.JPanel;
@@ -56,10 +57,18 @@ public class UserCalendar extends JPanel implements ChildView {
 		
 		for (EventButton eventButton : eventButtons) {
 			final Appointment appointment = eventButton.getAppointment();
+			final Date begin = eventButton.getBegin();
+			final Date end = eventButton.getEnd();
+			
 			eventButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					showDialog(appointment);
+					if (appointment != null) {
+						showDialog(appointment);
+					}
+					else {
+						showDialog(new Appointment(begin, end, null, employee, null));
+					}
 				}
 			});
 			add(eventButton);
@@ -81,6 +90,7 @@ public class UserCalendar extends JPanel implements ChildView {
 		    eventButton.setPreferredSize(btnDimension);
 		}
 	}
+	
 	
 	public void showDialog(Appointment appointment) {
 		appointmentDialog = new AppointmentDialog(appointment);

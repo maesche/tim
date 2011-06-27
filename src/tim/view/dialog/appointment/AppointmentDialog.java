@@ -41,13 +41,10 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	private JLabel lblErrorMsg;
 
 	public AppointmentDialog(Appointment appointment) {
-		init(appointment);
-	}
-	
-	public AppointmentDialog (Employee employee, Date begin, Date end) {
-		Appointment appointment = new Appointment(begin, end, null, employee, null);
-		System.out.println(appointment);
-		init(appointment);
+		
+			init(appointment);
+
+
 	}
 	
 	private void init(Appointment appointment) {
@@ -56,7 +53,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		
 		try {
 			form.setClients(controller.getAll("client"), null);
-			if (appointment != null) {
+			if (appointment.getClient() != null) {
 				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
 			}
 		} catch (PersistanceException e) {
