@@ -2,6 +2,7 @@ package tim.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
@@ -54,7 +55,7 @@ public class Application extends JFrame {
 
 		this.addComponentListener(new java.awt.event.ComponentAdapter() {
 			public void componentResized(ComponentEvent e) {
-				GlobalRegistry.resizer.setDimension(getSize());
+				
 			}
 		});
 
@@ -70,6 +71,14 @@ public class Application extends JFrame {
 		add(navBar, BorderLayout.NORTH);
 		add(calendarContainer, BorderLayout.CENTER);
 
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponents(g);
+	}
+	
+	public void validate() {
+		GlobalRegistry.resizer.setDimension(getSize());
 	}
 	
 	public void close() {

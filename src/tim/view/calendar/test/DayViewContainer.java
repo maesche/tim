@@ -38,6 +38,8 @@ public class DayViewContainer extends JPanel implements ChildView {
 		}
 
 	}
+	
+	
 
 	@Override
 	public void update(Observable o, Object arg) {
