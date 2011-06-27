@@ -15,7 +15,10 @@ import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.Resizer;
 import tim.application.exception.PersistanceException;
+import tim.application.exception.ResourceNotFoundException;
 import tim.model.Appointment;
+import tim.model.AppointmentModel;
+import tim.model.Element;
 import tim.model.Employee;
 import tim.view.ChildView;
 import tim.view.ParentView;
@@ -29,9 +32,16 @@ public class UserCalendar extends JPanel implements ChildView {
 	private AppointmentDialog appointmentDialog;
 	private ParentView parentView;
 	private Dimension dimension;
+	private Employee employee;
 	
 	public UserCalendar() {
 		GlobalRegistry.resizer.addObserver(this);
+		try {
+			GlobalRegistry.mvcLinker.addObserverToModel("AppointmentModel", this);
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		FlowLayout flowLayout = new FlowLayout();
 		flowLayout.setAlignment(FlowLayout.LEFT);
 		flowLayout.setHgap(0);
@@ -81,15 +91,22 @@ public class UserCalendar extends JPanel implements ChildView {
 		appointmentDialog.setVisible(true);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
 			System.out.println("            UserCalendar");
 			System.out.println("               Taille obtenue par le Resizer: " + dimension);
-			repaint();
-		}
 
+		}
+		else if (o instanceof AppointmentModel) {
+			this.removeAll();
+			employee = ((CalendarContainer) parentView).getData(employee);
+			appointments = employee.getCalendar().getAppointments();
+			load();
+		}
+		repaint();
 	}
 
 	@Override
@@ -106,8 +123,8 @@ public class UserCalendar extends JPanel implements ChildView {
 	@Override
 	public void setData(Object value) {
 		Employee employee = (Employee) value;
+		this.employee = employee;
 		appointments = employee.getCalendar().getAppointments();
-
 	}
 	
 	public void validate(){
@@ -115,7 +132,6 @@ public class UserCalendar extends JPanel implements ChildView {
 	    setSize(dimension);
 	    setPreferredSize(dimension);
 	    eventSizing();
-	    //System.out.println("Taille vue par validate: " + dimension);
 	}
 	public void paintComponent(Graphics g) {
 	    super.paintComponent(g);

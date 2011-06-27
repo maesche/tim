@@ -98,7 +98,8 @@ CREATE TABLE IF NOT EXISTS appointments (
 INSERT INTO appointments VALUES
 	(1, 1, 1, 'description 1'),
 	(2, 2, 2, 'description 2'),
-	(3, 2, 3, 'description 3');
+	(3, 2, 3, 'description 3'),
+	(4, 2, 3, 'description 4');
 
 DROP TABLE IF EXISTS appointment_dates;
 CREATE TABLE IF NOT EXISTS appointment_dates (
@@ -114,4 +115,6 @@ CREATE TABLE IF NOT EXISTS appointment_dates (
 INSERT INTO appointment_dates VALUES
 	(1, 1, '2011-05-14 09:00', '2011-05-14 10:00'),
 	(2, 2, '2011-05-14 08:00', '2011-05-14 09:00'),
-	(3, 3, '2011-05-14 15:00', '2011-05-14 16:30');
+	(3, 3, '2011-05-14 15:00', '2011-05-14 16:30'),
+	(4, 4, '2011-05-14 17:00', '2011-05-14 18:30');
+

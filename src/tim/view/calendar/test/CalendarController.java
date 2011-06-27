@@ -26,34 +26,43 @@ public class CalendarController extends Controller {
 	public ArrayList<Element> getCalendars(Date begin, Date end)
 			throws PersistanceException {
 		ArrayList<Element> employees = new ArrayList<Element>();
-		ArrayList<Appointment> appointments;
+
 		EmployeeModel employeeModel = (EmployeeModel) this.models
 				.get("EmployeeModel");
-		AppointmentModel appointmentModel = (AppointmentModel) this.models
-				.get("AppointmentModel");
+
 
 		for (Element element : employeeModel.get()) {
 			Employee employee = (Employee) element;
-			Calendar calendar = employee.getCalendar();
-
-			appointments = new ArrayList<Appointment>();
-
-			ArrayList<Element> elements = appointmentModel.get(employee, begin,
-					end);
-
-			for (Element el : elements) {
-				Appointment appointment = (Appointment) el;
-				appointments.add(appointment);
-			}
-
-			calendar.setAppointments(appointments);
-
-			employee.setCalendar(calendar);
+			
+			employee = getCalendar(employee, begin, end);
 
 			employees.add(employee);
 		}
 
 		return employees;
+	}
+	
+	private Employee getCalendar(Employee employee, Date begin, Date end) throws PersistanceException {
+		ArrayList<Appointment> appointments;
+		AppointmentModel appointmentModel = (AppointmentModel) this.models
+		.get("AppointmentModel");
+		Calendar calendar = employee.getCalendar();
+
+		appointments = new ArrayList<Appointment>();
+
+		ArrayList<Element> elements = appointmentModel.get(employee, begin,
+				end);
+
+		for (Element el : elements) {
+			Appointment appointment = (Appointment) el;
+			appointments.add(appointment);
+		}
+
+		calendar.setAppointments(appointments);
+
+		employee.setCalendar(calendar);
+		
+		return employee;
 	}
 
 	/**

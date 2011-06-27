@@ -38,6 +38,7 @@ public class Form extends JPanel implements ChildView {
 	private JLabel lblDescription;
 	private JTextArea txtDescription;
 	private Employee employee;
+	private long id;
 
 	public Form() {
 		lblClient = new JLabel(
@@ -203,9 +204,14 @@ public class Form extends JPanel implements ChildView {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-
+			if (id > 0) {
+				appointment = new Appointment(id, begin, end, txtDescription.getText(),
+						employee, client);
+			}
+			else {
 			appointment = new Appointment(begin, end, txtDescription.getText(),
 					employee, client);
+			}
 		}
 
 		return appointment;
@@ -225,7 +231,7 @@ public class Form extends JPanel implements ChildView {
 		if (value != null) {
 
 			Appointment appointment = (Appointment) value;
-
+			this.id = appointment.getId();
 			this.employee = (Employee) appointment.getEmployee();
 			Date begin = appointment.getBegin();
 			Date end = appointment.getEnd();

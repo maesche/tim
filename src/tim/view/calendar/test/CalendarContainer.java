@@ -10,7 +10,10 @@ import java.util.Observable;
 import java.util.Vector;
 
 import tim.model.Appointment;
+import tim.model.AppointmentModel;
 import tim.model.Element;
+import tim.model.Employee;
+
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
@@ -18,6 +21,7 @@ import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.Resizer;
 import tim.application.exception.PersistanceException;
+import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.view.ParentView;
 
@@ -37,6 +41,26 @@ public class CalendarContainer extends JPanel implements ParentView {
 		
 		GlobalRegistry.resizer.addObserver(this);
 		
+
+		loadData();
+		initDayTableView(elements);
+		initDayViewContainer(elements);
+		
+		setLayout(new BorderLayout());
+		
+		layeredPane = new JLayeredPane();
+		layeredPane.setPreferredSize(dimension);
+
+		setPreferredSize(dimension);
+		
+		layeredPane.add(dayTableView, new Integer(5));
+		layeredPane.add(dayViewContainer, new Integer(20));
+	
+		add(layeredPane, BorderLayout.NORTH);
+	}
+	
+	
+	public void loadData() {
 		Date begin = null;
 		try {
 			begin = DateHelper.StringToDate("2011-05-14");
@@ -59,23 +83,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		initDayTableView(elements);
-		initDayViewContainer(elements);
-		
-		setLayout(new BorderLayout());
-		
-		layeredPane = new JLayeredPane();
-		layeredPane.setPreferredSize(dimension);
-
-		setPreferredSize(dimension);
-		
-		layeredPane.add(dayTableView, new Integer(5));
-		layeredPane.add(dayViewContainer, new Integer(20));
-	
-		add(layeredPane, BorderLayout.NORTH);
 	}
-	
 	
 	private void initDayTableView(ArrayList<Element> elements) {
 		dayTableView = new DayTableView();
@@ -130,13 +138,25 @@ public class CalendarContainer extends JPanel implements ParentView {
 			System.out.println("   Taille obtenue par le Resizer: " + dimension);
 			repaint();
 		}
-
 	}
 
 	@Override
 	public void save(String action, Object value) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public Employee getData(Employee employee) {
+		loadData();
+		Employee employRet = null;
+
+		for (Element element : elements) {
+			if (element.getId() == employee.getId()) {
+				employRet = (Employee) element;
+			}
+		}
+		return employRet;
+		
 	}
 	
 	public void validate(){

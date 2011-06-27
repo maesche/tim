@@ -63,7 +63,7 @@ public class EmployeeModel extends PersonModel {
 				Color color = new Color(rs.getInt("color_r"), rs.getInt("color_g"), rs.getInt("color_b"), Config.CALENDAR_EVENT_ALPHA);
 				Calendar calendar = new Calendar(rs.getLong("Cal.calendar_id"), color);
 				Employee employee = new Employee(rs.getInt("employee_id"),
-						rs.getString("firstName"), rs.getString("lastName"), color);
+						rs.getString("firstName"), rs.getString("lastName"));
 				employee.setCalendar(calendar);
 				employees.add(employee);
 			}
