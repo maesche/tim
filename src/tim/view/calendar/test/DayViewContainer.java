@@ -47,7 +47,9 @@ public class DayViewContainer extends JPanel implements ChildView {
 			this.dimension = (Dimension) arg;
 			System.out.println("      DayViewContainer");
 			System.out.println("         Taille obtenue par le Resizer: " + dimension);
-			setBounds(200,20, (int)dimension.getWidth()-200, (int)dimension.getHeight()-20);
+			
+			
+			setBounds(200,20, (int)dimension.getWidth()-200, (int)dimension.getHeight()-87-20);
 			repaint();
 		}
 

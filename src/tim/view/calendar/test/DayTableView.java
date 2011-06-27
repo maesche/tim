@@ -34,6 +34,7 @@ public class DayTableView extends JPanel implements ChildView {
 	
 	public void load() {
 		table = new JTable(data, columnNames);
+		table.setAutoResizeMode(1);
 		table.setRowHeight(rowHeight);
 		
 			for (int i = 0; i < columnWidth.size(); i++) {
@@ -86,11 +87,44 @@ public class DayTableView extends JPanel implements ChildView {
 			System.out.println("         Taille obtenue par le Resizer: " + dimension);
 		    setSize(dimension);
 		    setPreferredSize(dimension);
-		    System.out.println("rowHeight" + (dimension.getHeight()-20) / data.size());
-			table.setRowHeight((int) (dimension.getHeight()) / data.size());
+		    
+		    System.out.println("rowHeight1 " + (dimension.getHeight()-20) / data.size());
+			//table.setRowHeight((int) (dimension.getHeight()-30) / data.size());
+		    
+		    
+		    
+		    
+		    int rowHeight2 = (int) ((int) (dimension.getHeight()-30) / (float)data.size());
+		    int rowHeight3 = (int) ((dimension.getHeight()-20) / data.size());
+		    
+		    System.out.println("rowHeight1 " + rowHeight2);
+		    System.out.println("rowHeight2 " + rowHeight3);
+		    table.setRowHeight(rowHeight3);
+			
+
+		    
+		    //int rowHeight = (int) (dimension.getHeight()-30) / data.size();
+		    //table.setRowHeight(rowHeight);
+		    
+		    
+		    //System.out.println(dimension.getHeight());
+		    //int rowHeight = table.getHeight()/data.size();
+		    //System.out.println(rowHeight);
+		    
+		    //this.rowHeight = rowHeight;
+		    //table.setRowHeight(rowHeight);
+		    //table.setSize((int) dimension.getWidth(),rowHeight);
+		    //table.setPreferredSize(new Dimension((int) dimension.getWidth(),tableSize));
+		    //table.setRowHeight(rowHeight);
+		    
+		    //System.out.println(table.getRowHeight());
+		    
+		    
+			
 		}
 
 	}
+
 
 	@Override
 	public void setParentView(ParentView view) {
