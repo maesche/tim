@@ -41,13 +41,6 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	private JLabel lblErrorMsg;
 
 	public AppointmentDialog(Appointment appointment) {
-		
-			init(appointment);
-
-
-	}
-	
-	private void init(Appointment appointment) {
 		form = new Form();
 		form.setParentView(this);
 		

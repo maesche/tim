@@ -1,6 +1,5 @@
-package tim.view.calendar;
+package tim.view.calendar.test;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.util.Observable;
@@ -12,11 +11,15 @@ import javax.swing.JTextField;
 import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.exception.ResourceNotFoundException;
+import tim.application.utils.DateHelper;
 import tim.view.AbstractView;
 
 public class DayNavigation extends JPanel implements AbstractView{
 	
 	private JButton btnToday;
+	private JButton btnPreview;
+	private JTextField dayField;
+	private JButton btnNext;
 
 	public DayNavigation(){
 		try {
@@ -29,9 +32,9 @@ public class DayNavigation extends JPanel implements AbstractView{
 		this.setLayout(new FlowLayout());
 		
 		btnToday = new JButton();
-		JButton btnPreview = new JButton("<");
-		JTextField dayField = new JTextField("19.07.1986");
-		JButton btnNext = new JButton(">");
+		btnPreview = new JButton("<");
+		dayField = new JTextField(DateHelper.DateToString(DateHelper.getToday()));
+		btnNext = new JButton(">");
 		
 		dayField.setMargin(new Insets(4,4,4,4));
 		
@@ -45,12 +48,12 @@ public class DayNavigation extends JPanel implements AbstractView{
 
 	public void update() {
 		btnToday.setText(Config.RESSOURCE_BUNDLE.getString("applicationNavigationToday"));
+		dayField.setEditable(false);
 		repaint();
 	}
 	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		update();
-		
 	}
 }

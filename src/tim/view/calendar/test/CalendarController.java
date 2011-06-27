@@ -3,6 +3,7 @@ package tim.view.calendar.test;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import tim.application.Config;
 import tim.application.exception.PersistanceException;
@@ -17,7 +18,84 @@ import tim.model.EmployeeModel;
 import tim.view.calendar.test.EventButton;
 
 public class CalendarController extends Controller {
+	//__________________________________________________________________________________
+	//
+	//		Method todayDay. Can occur when the "Today" button is pressed
+	//__________________________________________________________________________________
+	public ArrayList<Element> todayDay() throws PersistanceException 
+	{
+		//---Today date
+		Date dayToday = new Date();
 
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		//Calendar cal = Calendar.getInstance();   
+		cal.setTime(dayToday);
+
+		//---Put it back in the Date object   
+		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
+		Date end = setupDate(cal, Config.CALENDAR_DAY_END).getTime();
+
+		return getCalendars(begin, end);
+	}
+
+	//__________________________________________________________________________________
+	//
+	//		Method nextDay. Can occur when the "Next Day" button is pressed
+	//__________________________________________________________________________________
+	public ArrayList<Element> nextDay(Date day) throws PersistanceException 
+	{
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		cal.setTime(day);
+
+		//---Next day = day + 1
+		cal.add(GregorianCalendar.DATE, 1);
+
+		//---Put it back in the Date object   
+		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
+		Date end = setupDate(cal, Config.CALENDAR_DAY_END).getTime();
+
+		return getCalendars(begin, end);
+	}
+
+	//__________________________________________________________________________________
+	//
+	//	Method previousDay. Can occur when the "PreviousDay Day" button is pressed
+	//__________________________________________________________________________________
+	public ArrayList<Element> previousDay(Date day) throws PersistanceException 
+	{
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		cal.setTime(day);
+
+		//---Next day = day - 1
+		cal.add(GregorianCalendar.DATE, -1);
+
+		//---Put it back in the Date object   
+		Date begin = setupDate(cal, Config.CALENDAR_DAY_START).getTime(); 
+		Date end = setupDate(cal, Config.CALENDAR_DAY_END).getTime();
+
+		return getCalendars(begin, end);
+	}
+
+	//__________________________________________________________________________________
+	//
+	//		Method to setup the date (Hour, Minute, Second, Millisecond
+	//__________________________________________________________________________________
+	private GregorianCalendar setupDate(GregorianCalendar cal, int hour)
+	{
+		//---Set the start time of the day
+		cal.set(GregorianCalendar.HOUR, hour);   
+		cal.set(GregorianCalendar.MINUTE, 0);   
+		cal.set(GregorianCalendar.SECOND, 0);   
+		cal.set(GregorianCalendar.MILLISECOND, 0);
+
+		return cal;
+	}
+	
+	
+	
 	// __________________________________________________________________________________
 	//
 	// Method getCalendars ; Start and End date for each Employee

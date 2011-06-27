@@ -4,11 +4,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import tim.application.Config;
 
 public class DateHelper {
 
+
+	
 	public static Date StringToDate(String date) throws ParseException {
 		return StringToDate(date, Config.DATE_FORMAT_SHORT);
 	}
@@ -41,5 +44,22 @@ public class DateHelper {
 	public static int DateDiff(Date date1, Date date2){
 		return (int) (date2.getTime()-date1.getTime())/60000;
 		
+	}
+	
+	public static  Date getToday() {
+		//---Today date
+		Date dayToday = new Date();
+
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
+		//Calendar cal = Calendar.getInstance();   
+		cal.setTime(dayToday);
+
+		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
+		cal.set(GregorianCalendar.MINUTE, 0);   
+		cal.set(GregorianCalendar.SECOND, 0);   
+		cal.set(GregorianCalendar.MILLISECOND, 0);
+		//---Put it back in the Date object   
+		return cal.getTime();  
 	}
 }
