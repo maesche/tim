@@ -42,7 +42,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 		GlobalRegistry.resizer.addObserver(this);
 		
 
-		loadData();
+		loadData(DateHelper.getToday(), DateHelper.getToday());
 		initDayTableView(elements);
 		initDayViewContainer(elements);
 		
@@ -60,8 +60,8 @@ public class CalendarContainer extends JPanel implements ParentView {
 	}
 	
 	
-	public void loadData() {
-		Date begin = null;
+	public void loadData(Date begin, Date end) {
+		/*Date begin = null;
 		try {
 			begin = DateHelper.StringToDate("2011-05-14");
 		} catch (ParseException e) {
@@ -75,7 +75,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		
 		try {
 			elements = controller.getCalendars(begin, end);
@@ -146,8 +146,8 @@ public class CalendarContainer extends JPanel implements ParentView {
 
 	}
 	
-	public Employee getData(Employee employee) {
-		loadData();
+	public Employee getData(Employee employee, Date date) {
+		loadData(date, date);
 		Employee employRet = null;
 
 		for (Element element : elements) {
@@ -157,6 +157,10 @@ public class CalendarContainer extends JPanel implements ParentView {
 		}
 		return employRet;
 		
+	}
+	
+	public void goTo(Date date) {
+		dayViewContainer.goTo(date);
 	}
 	
 	public void validate(){

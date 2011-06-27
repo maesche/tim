@@ -60,7 +60,7 @@ public class Application extends JFrame {
 
 		setLayout(new BorderLayout());
 
-		navBar = new DayNavigation();
+		navBar = new DayNavigation(calendarContainer);
 
 		add(navBar, BorderLayout.NORTH);
 		add(calendarContainer, BorderLayout.CENTER);

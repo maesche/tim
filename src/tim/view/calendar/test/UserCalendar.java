@@ -111,12 +111,16 @@ public class UserCalendar extends JPanel implements ChildView {
 
 		}
 		else if (o instanceof AppointmentModel) {
-			this.removeAll();
-			employee = ((CalendarContainer) parentView).getData(employee);
-			appointments = employee.getCalendar().getAppointments();
-			load();
+			reload(null);
 		}
 		repaint();
+	}
+	
+	public void reload(Date date) {
+		this.removeAll();
+		employee = ((CalendarContainer) parentView).getData(employee, date);
+		appointments = employee.getCalendar().getAppointments();
+		load();
 	}
 
 	@Override

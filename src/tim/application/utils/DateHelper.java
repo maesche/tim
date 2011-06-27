@@ -62,4 +62,36 @@ public class DateHelper {
 		//---Put it back in the Date object   
 		return cal.getTime();  
 	}
+	
+	public static Date getNextDay(Date day) {
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		cal.setTime(day);
+
+		//---Next day = day + 1
+		cal.add(GregorianCalendar.DATE, 1);
+
+		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
+		cal.set(GregorianCalendar.MINUTE, 0);   
+		cal.set(GregorianCalendar.SECOND, 0);   
+		cal.set(GregorianCalendar.MILLISECOND, 0);
+		//---Put it back in the Date object   
+		return cal.getTime();  
+	}
+	
+	public static Date getPreviousDay(Date day) {
+		//---Get Calendar object set to the date and time of the given Date object 
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		cal.setTime(day);
+		
+		//---Next day = day + 1
+		cal.add(GregorianCalendar.DATE, -1);
+
+		cal.set(GregorianCalendar.HOUR, Config.CALENDAR_DAY_START);   
+		cal.set(GregorianCalendar.MINUTE, 0);   
+		cal.set(GregorianCalendar.SECOND, 0);   
+		cal.set(GregorianCalendar.MILLISECOND, 0);
+		//---Put it back in the Date object   
+		return cal.getTime();  
+	}
 }

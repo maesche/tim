@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 
 import javax.swing.JPanel;
@@ -20,10 +21,12 @@ public class DayViewContainer extends JPanel implements ChildView {
 	private UserCalendar userCalendar;
 	private ParentView parentView;
 	private Dimension dimension;
+	private ArrayList<UserCalendar> userCalendars;
 	
 	public DayViewContainer() {
 		GlobalRegistry.resizer.addObserver(this);
 		setOpaque(false);
+		userCalendars = new ArrayList<UserCalendar>();
 	}
 	
 	public void load() {
@@ -34,6 +37,7 @@ public class DayViewContainer extends JPanel implements ChildView {
 			userCalendar.setData(element);
 			userCalendar.setParentView(parentView);
 			userCalendar.load();
+			userCalendars.add(userCalendar);
 			add(userCalendar);
 		}
 
@@ -51,6 +55,12 @@ public class DayViewContainer extends JPanel implements ChildView {
 			repaint();
 		}
 
+	}
+	
+	public void goTo (Date date) {
+		for (UserCalendar userCalendar : userCalendars) {
+			userCalendar.reload(date);
+		}
 	}
 
 	@Override
