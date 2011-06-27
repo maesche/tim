@@ -80,12 +80,9 @@ public class Application extends JFrame {
 	}
 	
 	public void validate() {
+		super.validate();
 		GlobalRegistry.resizer.setDimension(getSize());
 	}
-	
-	/*public void validate(){
-		GlobalRegistry.resizer.setDimension(getSize());
-	}*/
 	
 	public void close() {
 		try {
