@@ -12,8 +12,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 
+import tim.application.Config;
 import tim.application.GlobalRegistry;
+import tim.application.LanguageLinker;
 import tim.application.Resizer;
+import tim.application.exception.ResourceNotFoundException;
 import tim.model.Element;
 import tim.model.Employee;
 import tim.view.ChildView;
@@ -29,6 +32,16 @@ public class DayTableView extends JPanel implements ChildView {
 	
 	public DayTableView () {
 		GlobalRegistry.resizer.addObserver(this);
+		
+		try {
+			GlobalRegistry.mvcLinker.addObserverToSystemResource(
+					"LanguageLinker", this);
+		} catch (ResourceNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		
 		data = new Vector<Vector<Object>>();
 		setLayout(new BorderLayout());
 	}
@@ -84,7 +97,7 @@ public class DayTableView extends JPanel implements ChildView {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
 
-			repaint();
+
 
 		    
 		    //int rowHeight = (int) (dimension.getHeight()-30) / data.size();
@@ -104,7 +117,10 @@ public class DayTableView extends JPanel implements ChildView {
 		    //System.out.println(table.getRowHeight());
 
 		}
-
+		else if (o instanceof LanguageLinker) {
+			table.getColumnModel().getColumn(0).setHeaderValue(Config.RESSOURCE_BUNDLE.getString("calendarCollaborator"));
+		}
+		repaint();
 	}
 
 	@Override

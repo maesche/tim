@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 
 import tim.application.Config;
 import tim.application.GlobalRegistry;
+import tim.application.LanguageLinker;
 import tim.application.Resizer;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
@@ -35,6 +36,8 @@ public class CalendarContainer extends JPanel implements ParentView {
 	
 	public CalendarContainer() {
 		this.setBounds(0, 0, 500, 500);
+		
+	
 		
 		controller = new CalendarController();
 		dimension = new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT-88);
