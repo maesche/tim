@@ -1,5 +1,6 @@
 package tim.view.calendar.test;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -98,7 +99,7 @@ public class UserCalendar extends JPanel implements ChildView {
 		appointmentDialog.setModal(true);
 		appointmentDialog.setResizable(false);
 		appointmentDialog.pack();
-		appointmentDialog.setLocationRelativeTo(this);
+		appointmentDialog.setLocationRelativeTo((Component) parentView);
 		appointmentDialog.setVisible(true);
 	}
 	
