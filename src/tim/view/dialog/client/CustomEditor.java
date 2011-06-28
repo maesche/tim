@@ -34,6 +34,7 @@ public class CustomEditor extends AbstractCellEditor {
 
 		Client client = new Client(id, firstName, lastName, phone, address,
 				null);
+
 		renderer.setClient(client);
 		if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName)) {
 			buttonPressed(table, row, col);

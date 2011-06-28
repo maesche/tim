@@ -59,8 +59,7 @@ public class ClientModel extends PersonModel {
 			while (rs.next()) {
 				
 				Person client = new Client(rs.getInt("client_id"),
-						rs.getString("firstName"), rs.getString("lastName"));
-
+						rs.getString("firstName"), rs.getString("lastName"), rs.getString("phone"), rs.getString("address"), rs.getString("description"));
 
 				clients.add(client);
 			}
@@ -95,6 +94,7 @@ public class ClientModel extends PersonModel {
 		address = client.getAddress();
 		comment = client.getComment();
 		
+
 		
 
 		sql = "INSERT INTO clients (firstName, lastName, phone, address, description) VALUES(" 
@@ -104,6 +104,7 @@ public class ClientModel extends PersonModel {
 				+ "'" + address + "', "
 				+ "'" + comment + "'"
 				+		")";
+
 		try {
 			conn = Db.open();
 			
