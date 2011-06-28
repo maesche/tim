@@ -49,7 +49,7 @@ public class DayViewContainer extends JPanel implements ChildView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
-			setBounds(200,20, (int)dimension.getWidth()-200, (int)dimension.getHeight()-20);
+			setBounds(200,20, (int)dimension.getWidth()-200, (int)dimension.getHeight()-87-20);
 			repaint();
 		}
 

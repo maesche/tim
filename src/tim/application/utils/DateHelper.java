@@ -31,7 +31,7 @@ public class DateHelper {
 	}
 	
 	public static int getHour(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("h");
+		SimpleDateFormat sdf = new SimpleDateFormat("H");
 		return Integer.parseInt(sdf.format(date));
 	}
 	

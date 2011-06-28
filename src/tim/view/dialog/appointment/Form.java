@@ -249,6 +249,8 @@ public class Form extends JPanel implements ChildView {
 
 				beginH = DateHelper.getHour(appointment.getBegin());
 				beginM = DateHelper.getHour(appointment.getBegin());
+				System.out.println(DateHelper.getHour(appointment.getBegin()));
+				System.out.println(beginH);
 
 				if (end != null) {
 					endH = DateHelper.getHour(appointment.getEnd());
