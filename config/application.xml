@@ -2,7 +2,7 @@
 	<system>
 		<db-user>tim</db-user>
 		<db-pwd>tim</db-pwd>
-		<db-url>jdbc:mysql://localhost:3306/tim?autoReconnect=true</db-url>
+		<db-url>jdbc:mysql://localhost:3306/tim?autoReconnect=true&amp;characterSetResults=UTF-8&amp;characterEncoding=UTF-8&amp;useUnicode=yes</db-url>
 		<db-driver>com.mysql.jdbc.Driver</db-driver>
 		<default-lang>fr</default-lang>
 		<date-format>yyyy-MM-dd</date-format>
