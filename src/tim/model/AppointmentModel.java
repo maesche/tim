@@ -202,8 +202,9 @@ public class AppointmentModel extends AbstractModel{
 		}
 	}
 
-	public void edit(Element element) {
-		// TODO Auto-generated method stub
+	public void edit(Element element) throws PersistanceException {
+		remove(element);
+		add(element);
 
 	}
 	public void remove(Element element) throws PersistanceException {

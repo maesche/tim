@@ -18,7 +18,7 @@
 	<entry key="applicationMenuLanguageGerman">Français</entry>
 	<entry key="applicationMenuLanguageJapanese">日本語</entry>
 	<entry key="applicationNavigationToday">Today</entry>
-	<entry key="dialogMenuAbout">About</entry>
+	<entry key="dialogMenuAbout">About TIM</entry>
 	
 	<entry key="dialogMessages">Please check the following errors:</entry>
 	<entry key="dialogBegin">Begin</entry>
@@ -32,6 +32,7 @@
 	<entry key="dialogAddBlankRow">Add new blank row</entry>
 	<entry key="dialogAction">Action</entry>
 	<entry key="dialogErrorClient">Please fill in at least the first- and lastname.</entry>
+	<entry key="dialogErrorAppointment">This date is unavailable.</entry>
 	<entry key="dialogAboutAuthor">Authors</entry>
 	<entry key="dialogAboutCompany">Company</entry>
 	

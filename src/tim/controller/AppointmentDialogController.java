@@ -22,8 +22,12 @@ public class AppointmentDialogController extends Controller {
 	public boolean checkAvailability(Appointment appointment) throws PersistanceException, ParseException {
 		boolean canInsert = true;
 
-		Date begin =  DateHelper.StringToDate(DateHelper.DateToString(appointment.getBegin(), Config.DATE_FORMAT_SHORT) + " 0:00", Config.DATE_FORMAT_LONG);
-		Date end = DateHelper.StringToDate(DateHelper.DateToString(appointment.getEnd(), Config.DATE_FORMAT_SHORT));
+		Date begin =  null;
+		Date end = null;
+		
+		
+		begin =  DateHelper.StringToDate(DateHelper.DateToString(appointment.getBegin()) + " " + Config.CALENDAR_DAY_START + ":00", Config.DATE_FORMAT_LONG);
+		end = DateHelper.StringToDate(DateHelper.DateToString(appointment.getEnd()) + " " + Config.CALENDAR_DAY_END + ":00", Config.DATE_FORMAT_LONG);
 		
 		AppointmentModel appointmentModel = (AppointmentModel) models.get("AppointmentModel");
 		
@@ -35,11 +39,8 @@ public class AppointmentDialogController extends Controller {
 			
 			Date a_begin = app.getBegin();
 			Date a_end = app.getEnd();
-			System.out.println("existant begin: " +a_begin + "end: " + a_end);
-			System.out.println("nouveau begin: " +begin + "end: " + end);
-			
-			canInsert = (a_end.before(begin) || a_begin.after(end));
-			System.out.println("canInsert: " + canInsert);
+
+			canInsert = (appointment.getEnd().before(a_begin) || appointment.getEnd().equals(a_begin)) || (appointment.getBegin().after(a_end) || appointment.getBegin().equals(a_end));
 		}
 		
 		return canInsert;

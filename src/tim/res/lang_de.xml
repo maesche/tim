@@ -18,7 +18,7 @@
 	<entry key="applicationMenuLanguageGerman">Deutsch</entry>
 	<entry key="applicationMenuLanguageJapanese">日本語</entry>
 	<entry key="applicationNavigationToday">Heute</entry>
-	<entry key="dialogMenuAbout">Über</entry>
+	<entry key="dialogMenuAbout">Über TIM</entry>
 	
 	<entry key="dialogMessages">Überprüfen Sie bitte die folgende Fehlermeldung:</entry>
 	<entry key="dialogBegin">Beginn</entry>
@@ -32,6 +32,7 @@
 	<entry key="dialogAddBlankRow">Neue Zeile hinzufügen</entry>
 	<entry key="dialogAction">Aktion</entry>
 	<entry key="dialogErrorClient">Der Vor-und Nachname muss ausgefüllt sein.</entry>
+	<entry key="dialogErrorAppointment">Dieses Zeitfenster ist nicht verfügbar.</entry>
 	<entry key="dialogAboutAuthor">Autoren</entry>
 	<entry key="dialogAboutCompany">Firma</entry>
 

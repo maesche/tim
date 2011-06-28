@@ -13,6 +13,7 @@ import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import tim.application.Config;
@@ -39,24 +40,9 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	private JButton btnDelete;
 	private JPanel errorPanel;
 	private JLabel lblErrorMsg;
+	private String mode = "add";
 
 	public AppointmentDialog(Appointment appointment) {
-		form = new Form();
-		form.setParentView(this);
-		
-		try {
-			form.setClients(controller.getAll("client"), null);
-			if (appointment.getClient() != null) {
-				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
-			}
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		form.setData(appointment);
 		errorPanel = new JPanel();
 		lblErrorMsg = new JLabel(" ");
 		lblErrorMsg.setForeground(Color.RED);
@@ -80,10 +66,25 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("appointment: " + form.getData());
 				if (check((Appointment) form.getData())) {
-					save("add", form.getData());
-					close();	
+					Appointment appointment =  (Appointment) form.getData();
+					boolean ret;
+					try {
+						ret = ((AppointmentDialogController)controller).checkAvailability(appointment);
+						if (ret) {
+							save("add", appointment);
+							close();
+						}
+						else {
+							notAvailable();
+						}
+					} catch (PersistanceException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
 				}
 			}
 		});
@@ -99,6 +100,27 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 				}
 			}
 		});
+		
+		form = new Form();
+		form.setParentView(this);
+		
+		try {
+			form.setClients(controller.getAll("client"), null);
+			if (appointment.getClient() != null) {
+				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
+				mode = "edit";
+			} else {
+				btnDelete.setEnabled(false);
+			}
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		form.setData(appointment);
+		
 		
 		
 		buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -139,14 +161,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		
 		try {
 			if ("add".equals(action)) {
-				boolean ret = ((AppointmentDialogController)controller).checkAvailability((Appointment) value);
-				if (ret) {
-					System.out.println("Disponible");
-					//controller.save(action, (Appointment) value);
-				}
-				else {
-					System.out.println("Pas disponible");
-				}
+				controller.save(mode, (Appointment) value);
 			}
 			else if("delete".equals(action)) {
 				controller.save(action, (Appointment) value);
@@ -164,10 +179,13 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		} catch (OperationNotPossibleException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+	}
+	
+	public void notAvailable() {
+		JOptionPane.showMessageDialog(
+				this,
+				Config.RESSOURCE_BUNDLE.getString("dialogErrorAppointment"));
 	}
 
 	@Override
