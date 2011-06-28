@@ -113,7 +113,6 @@ public class UserCalendar extends JPanel implements ChildView {
 		else if (o instanceof AppointmentModel) {
 			reload(date);
 		}
-
 	}
 	
 	public void reload(Date date) {

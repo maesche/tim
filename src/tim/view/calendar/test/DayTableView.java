@@ -83,9 +83,7 @@ public class DayTableView extends JPanel implements ChildView {
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
-			System.out.println("      DayTableView");
-			System.out.println("         Taille obtenue par le Resizer: " + dimension);
-		    
+
 			repaint();
 
 		    
@@ -127,11 +125,18 @@ public class DayTableView extends JPanel implements ChildView {
 	}
 	
 	public void validate() {
-		dimension = getSize();
+		if (dimension == null) {
+			dimension = getSize();
+			table.setRowHeight((int)dimension.getHeight() / data.size());
+		}
+		else {
+			table.setRowHeight((int)dimension.getHeight() / data.size() - 30);
+		}
+
 		setSize(dimension);
 	    setPreferredSize(dimension);
-	    
-	    System.out.println("rowHeight1 " + (dimension.getHeight()-20) / data.size());
+
+	   /* System.out.println("rowHeight1 " + (dimension.getHeight()-20) / data.size());
 		//table.setRowHeight((int) (dimension.getHeight()-30) / data.size());
 	    
 	    
@@ -142,7 +147,7 @@ public class DayTableView extends JPanel implements ChildView {
 	    
 	    System.out.println("rowHeight1 " + rowHeight2);
 	    System.out.println("rowHeight2 " + rowHeight3);
-	    table.setRowHeight(rowHeight3);
+	    table.setRowHeight(rowHeight3);*/
 	}
 	
 	public void paintComponent(Graphics g) {
