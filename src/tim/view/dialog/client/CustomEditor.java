@@ -28,12 +28,19 @@ public class CustomEditor extends AbstractCellEditor {
 
 		String firstName = (String) table.getModel().getValueAt(row, 1);
 		String lastName = (String) table.getModel().getValueAt(row, 2);
-		String phone = String.valueOf(table.getModel().getValueAt(row, 3));
-		String address = String.valueOf(table.getModel().getValueAt(row, 4));
+		String address = String.valueOf(table.getModel().getValueAt(row, 3));
+		String phone = String.valueOf(table.getModel().getValueAt(row, 4));
+
 
 		Client client = new Client(id, firstName, lastName, phone, address,
 				null);
 
+		if (id > -1) {
+			renderer.setMode("edit");
+		}
+		else {
+			renderer.setMode("add");
+		}
 		renderer.setClient(client);
 		if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName) /*|| check for numeric(phone != null && phone.i)*/) {
 			buttonPressed(table, row, col);

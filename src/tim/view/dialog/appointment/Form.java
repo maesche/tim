@@ -218,7 +218,6 @@ public class Form extends JPanel implements ChildView {
 	}
 
 	protected void setClients(ArrayList<Element> elements, Integer selectedId) {
-		cbClient.removeAll();
 		for (Element element : elements) {
 			cbClient.addItem((Client) element);
 			if (selectedId != null && element.getId() == selectedId) {

@@ -5,14 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.swing.JButton;
 
 import tim.application.Db;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.utils.DateHelper;
+import tim.application.utils.SQLQueryHelper;
 
 public class ClientModel extends PersonModel {
 
@@ -93,8 +90,9 @@ public class ClientModel extends PersonModel {
 		address = client.getAddress();
 		comment = client.getComment();
 		
+		System.out.println(address);
 
-		
+		address = SQLQueryHelper.removeUnrecognizedChar(address);
 
 		sql = "INSERT INTO clients (firstName, lastName, phone, address, description) VALUES(" 
 				+ "'" + firstName + "', "
@@ -108,6 +106,7 @@ public class ClientModel extends PersonModel {
 			conn = Db.open();
 			
 			stmt = conn.createStatement();
+			stmt.setEscapeProcessing(true);
 			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
@@ -124,6 +123,7 @@ public class ClientModel extends PersonModel {
 	public void remove(Element element) throws ClassCastException, PersistanceException {
 		Connection conn;
 		Statement stmt;
+		int rowAffected = 0;
 
 		String sql;
 		
@@ -135,7 +135,7 @@ public class ClientModel extends PersonModel {
 			conn = Db.open();
 			
 			stmt = conn.createStatement();
-			stmt.executeUpdate(sql);
+			rowAffected = stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
 			notifyObservers(get());
@@ -148,8 +148,9 @@ public class ClientModel extends PersonModel {
 	}
 
 	@Override
-	public void edit(Element element) throws ClassCastException {
-		// TODO Auto-generated method stub
+	public void edit(Element element) throws ClassCastException, PersistanceException {
+		remove(element);
+		add(element);
 
 	}
 

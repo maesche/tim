@@ -112,12 +112,7 @@ public class ClientDialog extends JDialog implements ParentView {
 	@Override
 	public void save(String action, Object value) {
 		try {
-			if ("add".equals(action)) {
-				controller.save(action, (Client)value);
-			}
-			else if ("delete".equals(action)) {
-				controller.save(action, (Client)value);
-			}
+			controller.save(action, (Client)value);
 		} catch (ClassCastException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

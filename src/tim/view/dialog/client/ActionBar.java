@@ -17,18 +17,18 @@ public class ActionBar extends JPanel {
 	
 	private Client client = null;
 	private boolean performAction = false;
+	private String mode;
 	
 	private ParentView view;
 
 
 	public ActionBar() {
-
+		mode = "add";
 		setLayout(new FlowLayout());
 		btnSave = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogSave"));
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("sauvegarder");
 				if (performAction) {
 					save();
 				}
@@ -38,15 +38,18 @@ public class ActionBar extends JPanel {
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("delete");
 				delete();
-				/*if (performAction) {
+				if (performAction) {
 					delete();
-				}*/
+				}
 			}
 		});
 		add(btnSave);
 		add(btnDelete);
+	}
+	
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 	
 
@@ -59,7 +62,7 @@ public class ActionBar extends JPanel {
 	}
 	
 	private void save() {
-		view.save("add", client);
+		view.save(mode, client);
 	}
 	
 	private void delete() {

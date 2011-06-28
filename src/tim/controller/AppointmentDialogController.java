@@ -40,7 +40,7 @@ public class AppointmentDialogController extends Controller {
 			Date a_begin = app.getBegin();
 			Date a_end = app.getEnd();
 
-			canInsert = (appointment.getEnd().before(a_begin) || appointment.getEnd().equals(a_begin)) || (appointment.getBegin().after(a_end) || appointment.getBegin().equals(a_end));
+			canInsert = appointment.getId() == element.getId() || (appointment.getEnd().before(a_begin) || appointment.getEnd().equals(a_begin)) || (appointment.getBegin().after(a_end) || appointment.getBegin().equals(a_end));
 		}
 		
 		return canInsert;

@@ -60,6 +60,24 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			}
 		});
 		
+		form = new Form();
+		
+		try {
+			if (appointment.getClient() != null) {
+				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
+				mode = "edit";
+			} else {
+				form.setClients(controller.getAll("client"), null);
+				btnDelete.setEnabled(false);
+			}
+		} catch (PersistanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ResourceNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		btnSave = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogSave"));
 		
@@ -72,7 +90,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 					try {
 						ret = ((AppointmentDialogController)controller).checkAvailability(appointment);
 						if (ret) {
-							save("add", appointment);
+							save(mode, appointment);
 							close();
 						}
 						else {
@@ -101,24 +119,10 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			}
 		});
 		
-		form = new Form();
+
 		form.setParentView(this);
 		
-		try {
-			form.setClients(controller.getAll("client"), null);
-			if (appointment.getClient() != null) {
-				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
-				mode = "edit";
-			} else {
-				btnDelete.setEnabled(false);
-			}
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ResourceNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		form.setData(appointment);
 		
 		
@@ -133,6 +137,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		add(errorPanel, BorderLayout.NORTH);
 		add(form, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
+		System.out.println(mode);
 	}
 
 	private boolean check(Appointment appointment) {
@@ -160,13 +165,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		lblErrorMsg.setText(" ");
 		
 		try {
-			if ("add".equals(action)) {
-				controller.save(mode, (Appointment) value);
-			}
-			else if("delete".equals(action)) {
-				controller.save(action, (Appointment) value);
-			}
-			
+			controller.save(action, (Appointment) value);			
 		} catch (ClassCastException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -191,6 +190,5 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		close();
-		
 	}
 }
