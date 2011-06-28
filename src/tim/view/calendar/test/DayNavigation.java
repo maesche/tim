@@ -105,8 +105,8 @@ public class DayNavigation extends JPanel implements AbstractView {
 		btnToday.setText(Config.RESSOURCE_BUNDLE
 				.getString("applicationNavigationToday"));
 		dayField.setText((DateHelper.DateToString(currentDate)));
-		dayField.setEditable(false);
 		Config.CURRENT_DATE = DateHelper.DateToString(currentDate);
+		dayField.setEditable(false);
 		calendarContainer.goTo(currentDate);
 		repaint();
 	}

@@ -7,7 +7,7 @@ public class ExceptionFormatter {
 		error += "Method:\t" + methodName + "\n";
 		error += "Exception:\t" + ex.getClass() + "\n";
 		error += "Message\t" + ex.getMessage() + "\n";
-		error += "\nsd";
+		error += "\n";
 
 		return error;
 	}

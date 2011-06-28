@@ -16,7 +16,6 @@ import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
 import tim.application.utils.DateHelper;
-import tim.application.utils.ErrorHandler;
 
 public class AppointmentModel extends AbstractModel{
 

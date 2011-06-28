@@ -10,7 +10,6 @@ import tim.application.Config;
 import tim.application.Db;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-import tim.application.utils.ErrorHandler;
 
 public class EmployeeModel extends PersonModel {
 	public ArrayList<Element> get(long fId) throws PersistanceException {
