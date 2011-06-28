@@ -89,10 +89,10 @@ public class ClientModel extends PersonModel {
 		phone = client.getPhone();
 		address = client.getAddress();
 		comment = client.getComment();
-		
-		System.out.println(address);
 
-		address = SQLQueryHelper.removeUnrecognizedChar(address);
+		if (address != null) {
+			address = SQLQueryHelper.removeUnrecognizedChar(address);
+		}
 
 		sql = "INSERT INTO clients (firstName, lastName, phone, address, description) VALUES(" 
 				+ "'" + firstName + "', "
