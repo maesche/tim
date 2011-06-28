@@ -24,7 +24,6 @@ public class CustomEditor extends AbstractCellEditor {
 		new String();
 		if (table.getModel().getValueAt(row, 0) != null) {
 			id = (Integer) table.getModel().getValueAt(row, 0);
-			System.out.println("action on " + id);
 		}
 
 		String firstName = (String) table.getModel().getValueAt(row, 1);
@@ -36,7 +35,7 @@ public class CustomEditor extends AbstractCellEditor {
 				null);
 
 		renderer.setClient(client);
-		if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName)) {
+		if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName) /*|| check for numeric(phone != null && phone.i)*/) {
 			buttonPressed(table, row, col);
 			renderer.setPerformAction(false);
 		} else {

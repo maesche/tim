@@ -35,10 +35,8 @@ public class CalendarContainer extends JPanel implements ParentView {
 	private ArrayList<Element> elements;
 	
 	public CalendarContainer() {
-		this.setBounds(0, 0, 500, 500);
-		
-	
-		
+		//setBounds(0, 0, 500, 500);
+
 		controller = new CalendarController();
 		dimension = new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT-88);
 		
@@ -102,7 +100,7 @@ public class CalendarContainer extends JPanel implements ParentView {
 	public ArrayList<EventButton> getButtonsForCalendar(ArrayList<Appointment> appointments) {
 		ArrayList<EventButton> eventButtons = new ArrayList<EventButton>();
 		try {
-			eventButtons = new CalendarController().getButtonsCalendar(appointments);
+			eventButtons = controller.getButtonsCalendar(appointments);
 		} catch (PersistanceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

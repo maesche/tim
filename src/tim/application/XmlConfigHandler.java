@@ -90,6 +90,7 @@ public class XmlConfigHandler {
 					Config.CALENDAR_DAY_START = Integer.parseInt(getTagValue("day-start", eElement));
 					Config.CALENDAR_DAY_END = Integer.parseInt(getTagValue("day-end", eElement));
 					Config.CALENDAR_DAY_INTERVAL = Integer.parseInt(getTagValue("day-interval", eElement));
+					Config.CURRENT_DATE = getTagValue("current-date", eElement);
 				}
 			}
 		} catch (Exception ex) {
@@ -108,15 +109,6 @@ public class XmlConfigHandler {
 	}
 	
 	public void writeConfig(String xmlFilePath) throws PersistanceException {
-		updateConfig(xmlFilePath);
-	}
-	
-	//______________________________________________________________________________
-	//
-	//	updateConfig method. Update the XML file of configuration's application 
-	//______________________________________________________________________________
-	public void updateConfig(String xmlFilePath) throws PersistanceException 
-	{
 		try
 		{
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -125,9 +117,9 @@ public class XmlConfigHandler {
 
 	        //---Get the element by tag name directly. Ex.: "default-lang"
 			
-			String xmlElement = "default-lang";
-			String tagValue = Config.DEFAULT_LANG;
-	        Node nodeToUpdate = doc.getElementsByTagName(xmlElement).item(0);
+
+	        doc.getElementsByTagName("default-lang").item(0).setTextContent(Config.DEFAULT_LANG);
+	        doc.getElementsByTagName("current-date").item(0).setTextContent(Config.CURRENT_DATE);
 	        
 	        
 	        /*
@@ -142,7 +134,7 @@ public class XmlConfigHandler {
 	        
 	        //nodeToUpdate.setNodeValue("en"); 	 <== not the good method
 	        //nodeToUpdate.setTextContent("en"); <== the good method
-	        nodeToUpdate.setTextContent(tagValue);
+	       
 	        
 		    //---Write the content into xml file
 		    TransformerFactory transformerFactory = TransformerFactory.newInstance();

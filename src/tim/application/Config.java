@@ -10,6 +10,7 @@ public class Config {
 	public static String DB_DRIVER = null;
 	
 	public static String DEFAULT_LANG = null;
+	public static String CURRENT_DATE = null;
 	
 	public static String DATE_FORMAT_SHORT = "yyyy-MM-dd";
 	
