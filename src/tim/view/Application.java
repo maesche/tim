@@ -51,7 +51,12 @@ public class Application extends JFrame {
 			public void windowClosing(WindowEvent e) {
 				close();
 			}
+			public void windowStateChanged(WindowEvent e) {
+				validate();
+			}
 		});
+		
+		
 
 		menu = new Menu(this);
 		setJMenuBar(menu);
@@ -93,4 +98,5 @@ public class Application extends JFrame {
 		clientDialog.setLocationRelativeTo(Application.this);
 		clientDialog.setVisible(true);
 	}
+
 }

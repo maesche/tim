@@ -18,6 +18,7 @@
 	<entry key="applicationMenuLanguageGerman">Deutsch</entry>
 	<entry key="applicationMenuLanguageJapanese">日本語</entry>
 	<entry key="applicationNavigationToday">Aujourd'hui</entry>
+	<entry key="dialogMenuAbout">A propos de</entry>
 	
 	<entry key="dialogMessages">Veuillez vérifier l'erreur suivante:</entry>
 	<entry key="dialogBegin">Début</entry>
@@ -31,6 +32,8 @@
 	<entry key="dialogAddBlankRow">Ajouter une nouvelle ligne</entry>
 	<entry key="dialogAction">Action</entry>
 	<entry key="dialogErrorClient">Le prénom et le nom de famille doivent être renseignés.</entry>
+	<entry key="dialogAboutAuthor">Auteurs</entry>
+	<entry key="dialogAboutCompany">Société</entry>
 	
 	<entry key="calendarCollaborator">Collaborateur</entry>	
 	

@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.text.ParseException;
 import java.util.Enumeration;
 
@@ -40,10 +41,13 @@ public class TIM {
 
 			Application app = new Application();
 			
+			app.setIconImage(Toolkit.getDefaultToolkit() 
+					 .getImage(System.getProperty("user.dir") + "/res/currency_dollar_red.png"));
 			app.setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
 			app.setVisible(true);
 			app.pack();
 			app.setLocationRelativeTo(null);
+
 		} catch (PersistanceException e) {
 			new ExceptionView (ExceptionFormatter.format(e, new CurrentClassGetter().getClassName(), "main"));
 		}

@@ -114,7 +114,7 @@ public class Menu extends JMenuBar implements AbstractView {
 		add(tools);
 
 		help = new JMenu("?");
-		about = new JMenuItem("About");
+		about = new JMenuItem();
 		about.addActionListener(new ActionListener() {
 
 			@Override
@@ -139,16 +139,17 @@ public class Menu extends JMenuBar implements AbstractView {
 		french.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageFrench"));
 		german.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageGerman"));
 		japanese.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuLanguageJapanese"));
+		about.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuAbout"));
 		repaint();
 	}
 
 	private void about() {
 		JOptionPane.showMessageDialog(application,
-			"<html>Company: SAM<br />" +
-		    "Authors:<ul style='list-style-type: none'><li>" + "Stefan Meier  ;</li>"  +
+			"<html>" + Config.RESSOURCE_BUNDLE.getString("dialogAboutAuthor") + ": SAM<br />" +
+			Config.RESSOURCE_BUNDLE.getString("dialogAboutCompany") + ":<ul style='list-style-type: none'><li>" + "Stefan Meier  ;</li>"  +
 						  "<li>Mathieu Noverraz ;</li>" + 
 						  "<li>Alain Bellatalla.</li></ul></html>",
-		    "About TIM v 1.0.0",
+						  Config.RESSOURCE_BUNDLE.getString("applicationMenuAbout") +" TIM v 1.0.0",
 		    JOptionPane.PLAIN_MESSAGE);
 	}	
 	
