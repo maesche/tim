@@ -52,6 +52,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		
 		buttonPanel = new JPanel();
 		btnCancel = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogCancel"));
+		btnDelete = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogDelete"));
 		
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
@@ -61,7 +62,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		});
 		
 		form = new Form();
-		
+		form.setData(appointment);
 		try {
 			if (appointment.getClient() != null) {
 				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
@@ -107,7 +108,7 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 			}
 		});
 		
-		btnDelete = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogDelete"));
+
 		
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
@@ -120,10 +121,6 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		});
 		
 
-		form.setParentView(this);
-		
-
-		form.setData(appointment);
 		
 		
 		

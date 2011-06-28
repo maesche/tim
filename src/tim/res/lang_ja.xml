@@ -32,7 +32,7 @@
 	<entry key="dialogDelete">消去</entry>
 	<entry key="dialogAction">アクション</entry>
 	<entry key="dialogErrorClient">氏名を入力して下さい。</entry>
-	<entry key="dialogErrorAppointment">このイベントの時間が暇でわございません。</entry>
+	<entry key="dialogErrorAppointment">この期間は使用できません。</entry>
 	<entry key="dialogAboutAuthor">作家</entry>
 	<entry key="dialogAboutCompany">会社</entry>
 	
