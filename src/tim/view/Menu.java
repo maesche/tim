@@ -155,10 +155,10 @@ public class Menu extends JMenuBar implements AbstractView {
 				application,
 				"<html>"
 						+ Config.RESSOURCE_BUNDLE
-								.getString("dialogAboutAuthor")
+								.getString("dialogAboutCompany")
 						+ ": SAM<br />"
 						+ Config.RESSOURCE_BUNDLE
-								.getString("dialogAboutCompany")
+								.getString("dialogAboutAuthor")
 						+ ":<ul style='list-style-type: none'>"
 						+ "<li>Stefan Meier ;</li>"
 						+ "<li>Mathieu Noverraz ;</li>"
