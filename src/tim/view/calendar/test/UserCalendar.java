@@ -88,8 +88,12 @@ public class UserCalendar extends JPanel implements ChildView {
 			
 			btnDimension = new Dimension(x, y);
 			
+			System.out.println("Bouton: " + eventButton.getTitle() + " " + btnDimension);
+			
 			eventButton.setSize(btnDimension);
 		    eventButton.setPreferredSize(btnDimension);
+		    eventButton.setMinimumSize(btnDimension);
+		    eventButton.setMaximumSize(btnDimension);
 		}
 	}
 	

@@ -106,4 +106,11 @@ public class EventButton extends JButton {
 		
 	}
 	
+	public String toString(){
+		String message = "";
+		message += employee.getFirstName();
+		//message += ": " + begin.getHours();
+		return message;
+	}
+	
 }
