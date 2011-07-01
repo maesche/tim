@@ -50,6 +50,10 @@ public class UserCalendar extends JPanel implements ChildView {
 		flowLayout.setHgap(0);
 		flowLayout.setVgap(0);
 		setLayout(flowLayout);
+		
+		
+		
+		System.out.println(flowLayout.toString());
 		setOpaque(false);
 	}
 	
