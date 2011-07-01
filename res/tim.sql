@@ -56,20 +56,27 @@ CREATE TABLE IF NOT EXISTS clients (
   firstName VARCHAR(30) NOT NULL,
   lastName VARCHAR(30) NOT NULL,
   phone VARCHAR(30) NOT NULL,
-  address VARCHAR(30) NOT NULL,
+  address VARCHAR(250) NOT NULL,
   description TEXT,
   PRIMARY KEY (client_id)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `clients` VALUES 
-(1,'Stephen','Harper','021 333 33 33','Rue du Canada 23',''),
-(2,'直人','管','021 444 44 44','総理大臣道路','null'),
-(3,'Barak','Obama','021 333 33 33','Route des états-unis','null'),
-(4,'Angela','Merkel','021 333 33 33','Bundespräsidentinnenplatz 45','null'),
-(5,'Ruth','Dreifuss','021 333 33 33','Place des quatres jambes 3','null'),
-(6,'Stefan','Apfel','021 333 33 33','Apple-Street 90','null'),
-(7,'Nicolas','Sarkozy','021 333 33 33','Route du centre-droit 4','null'),
-(8,'Heidi','Von der Alp','021 333 33 33','Peterweg 1','null');
+(1,'Bill','Microsoft','095 959 59 59','Anywhere 95 1000 Lausanne',NULL),
+(2,'Mac','Job','085 585 58 55','Funstreet 5 1000 Lausanne',NULL),
+(3,'Gérard','Lacosse','077 777 77 77','Paradis 7 1000 Lausanne',NULL),
+(4,'André','Kud','21 432 88 88','1033 Cheseaux',NULL),
+(5,'Arthure','Migros','021 432 99 99','2000 Neuchâtel',NULL),
+(6,'Alain','Possible','026 663 12 67','1400 Yverdon-les-Bains',NULL),
+(7,'Stephen','Harper','021 333 33 33','Rue du Canada 23',''),
+(8,'直人','管','021 444 44 44','総理大臣道路','null'),
+(9,'Barak','Obama','021 333 33 33','Route des états-unis','null'),
+(10,'Angela','Merkel','021 333 33 33','Bundespräsidentinnenplatz 45','null'),
+(11,'Ruth','Dreifuss','021 333 33 33','Place des quatres jambes 3','null'),
+(12,'Stefan','Apfel','021 333 33 33','Apple-Street 90','null'),
+(13,'Nicolas','Sarkozy','021 333 33 33','Route du centre-droit 4','null'),
+(14,'Heidi','Von der Alp','021 333 33 33','Peterweg 1','null');
+
 
 
 DROP TABLE IF EXISTS employees;
