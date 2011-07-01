@@ -1,128 +1,166 @@
 package tim.view.calendar;
-import java.awt.Color;
+
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
 
-import javax.swing.Box;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import sun.security.jca.GetInstance.Instance;
 import tim.application.Config;
 import tim.application.GlobalRegistry;
-import tim.application.exception.ExceptionFormatter;
+import tim.application.Resizer;
 import tim.application.exception.PersistanceException;
 import tim.application.exception.ResourceNotFoundException;
-import tim.application.utils.DateHelper;
-import tim.controller.CalendarController;
 import tim.model.Appointment;
 import tim.model.AppointmentModel;
 import tim.model.Element;
 import tim.model.Employee;
-import tim.model.EmployeeModel;
-import tim.view.Application;
+import tim.view.ChildView;
+import tim.view.ParentView;
+import tim.view.calendar.EventButton;
 import tim.view.dialog.appointment.AppointmentDialog;
 
+public class UserCalendar extends JPanel implements ChildView {
 
-public class UserCalendar extends JPanel{
-	
 	private ArrayList<EventButton> eventButtons;
-	private AppointmentDialog eventDialog;
+	private ArrayList<Appointment> appointments;
+	private AppointmentDialog appointmentDialog;
+	private ParentView parentView;
+	private Dimension dimension;
+	private Employee employee;
+	private Date date;
 	
-	
-	CalendarController controller;
-		
-	public UserCalendar(Employee employee){
-
-		//Layout du calendrier
-		FlowLayout layout = new FlowLayout();
-		layout.setAlignment(FlowLayout.LEFT);
-		layout.setHgap(0);
-		layout.setVgap(0);
-		setLayout(layout);
-		this.setOpaque(false);
-		
-		//Initialisation des collections
-		this.eventButtons = new ArrayList<EventButton>();
-		
-		//Initialisation du controller
-		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
-		
-
+	public UserCalendar() {
+		GlobalRegistry.resizer.addObserver(this);
 		try {
-			eventButtons = controller.getButtonsCalendar(employee);
-		} catch (PersistanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
+			GlobalRegistry.mvcLinker.addObserverToModel("AppointmentModel", this);
+		} catch (ResourceNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		for (final EventButton btn : eventButtons) {
-			
-			btn.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					showDialog(btn.getAppointment());
-				}
-			});
-			add(btn);
-		}
-
+		FlowLayout flowLayout = new FlowLayout();
+		flowLayout.setAlignment(FlowLayout.LEFT);
+		flowLayout.setHgap(0);
+		flowLayout.setVgap(0);
+		setLayout(flowLayout);
+		setOpaque(false);
 	}
 	
-	public void showDialog(Appointment appointment) {
-		eventDialog = new AppointmentDialog(appointment);
-		eventDialog.setModal(true);
-		eventDialog.setResizable(false);
-		eventDialog.pack();
-		eventDialog.setLocationRelativeTo(this);
-		eventDialog.setVisible(true);
+	public void load() {
+		eventButtons = (ArrayList<EventButton>) ((CalendarContainer) parentView).getButtonsForCalendar(appointments);
+
+		
+		for (EventButton eventButton : eventButtons) {
+			final Appointment appointment = eventButton.getAppointment();
+			final Date begin = eventButton.getBegin();
+			final Date end = eventButton.getEnd();
+			eventButton.setEmployee(employee);
+			
+			eventButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (appointment != null) {
+						showDialog(appointment);
+					}
+					else {
+						showDialog(new Appointment(begin, end, null, employee, null));
+					}
+				}
+			});
+			add(eventButton);
+		}
 	}
 	
 	public void eventSizing(){
 
-		for(EventButton btn : eventButtons){
-			int x,y;
-			this.controller.updateCalendarDimension();
-			/*x = (int) ((btn.getDuration()*calendarDimension.getWidth())/this.controller.getMinutesPerDay());
-			y = (int) calendarDimension.getHeight();*/
-			x = (int) ((btn.getDuration()*controller.getCalendarSize().getWidth())/this.controller.getMinutesPerDay());
-			y = this.getHeight();
+		Dimension btnDimension;
+		System.out.println("-----------------");
+		if(eventButtons.size() == 0){
+			System.out.println("Il n'y a pas de boutons");
+		}
+		for(EventButton eventButton : eventButtons){
+			int x, y;
+
+			x = (int) ((eventButton.getDuration()*dimension.getWidth())/((Config.CALENDAR_DAY_END - Config.CALENDAR_DAY_START) * 60));
+			y = (int)dimension.getHeight();
 			
-			Dimension btnDimension = new Dimension(x , y);
+			btnDimension = new Dimension(x, y);
 			
-			//It must be setSize and setPreferredSize for this button, Otherwise the button is misplaced
-			btn.setSize(btnDimension);
-		    btn.setPreferredSize(btnDimension);
+			System.out.println("Bouton: " + btnDimension);
+			
+			eventButton.setSize(btnDimension);
+		    eventButton.setPreferredSize(btnDimension);
+		    //eventButton.setMinimumSize(btnDimension);
+		    //eventButton.setMaximumSize(btnDimension);
+		}
+		System.out.println("-----------------");
+	}
+	
+	
+	public void showDialog(Appointment appointment) {
+		appointmentDialog = new AppointmentDialog(appointment);
+		appointmentDialog.setModal(true);
+		appointmentDialog.setResizable(false);
+		appointmentDialog.pack();
+		appointmentDialog.setLocationRelativeTo((Component) parentView);
+		appointmentDialog.setVisible(true);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void update(Observable o, Object arg) {
+		if (o instanceof Resizer) {
+			this.dimension = (Dimension) arg;
+			repaint();
+		}
+		else if (o instanceof AppointmentModel) {
+			reload(date);
 		}
 	}
+	
+	public void reload(Date date) {
+		this.date = date;
+		this.removeAll();
+		employee = ((CalendarContainer) parentView).getData(employee, date);
+		appointments = employee.getCalendar().getAppointments();
+		load();
+		repaint();
+	}
 
-	public void paintComponent(Graphics g) {
-	    // Appel de la m√©thode de la classe JPanel
-	    super.paintComponent(g);
-	    eventSizing();
-	    System.out.println("        " + this.getWidth() + " " + this.getHeight());
+	@Override
+	public void setParentView(ParentView view) {
+		this.parentView = view;
+	}
+
+	@Override
+	public Object getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setData(Object value) {
+		Employee employee = (Employee) value;
+		this.employee = employee;
+		appointments = employee.getCalendar().getAppointments();
 	}
 	
 	public void validate(){
-		//this.setSize(this.controller.getDayViewContainerSize());
-		this.controller.updateCalendarDimension();
-		System.out.println("        " + this.getWidth() + " " + this.getHeight());
-		eventSizing();
-		
-		
-		
-		
-		//this.controller.setUserCalendarSize(this.getWidth(), this.getHeight());
+		dimension = getSize();
+	    setSize(dimension);
+	    setPreferredSize(dimension);
+	    eventSizing();
 	}
+	public void paintComponent(Graphics g) {
+	    super.paintComponent(g);
+	    validate();
+	}
+
 }

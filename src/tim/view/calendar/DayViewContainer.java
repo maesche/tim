@@ -1,102 +1,92 @@
 package tim.view.calendar;
 
-
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
+
 import javax.swing.JPanel;
+
 import tim.application.GlobalRegistry;
-import tim.application.exception.PersistanceException;
-import tim.application.utils.DateHelper;
-import tim.controller.CalendarController;
-import tim.model.Employee;
-import tim.view.ExceptionView;
+import tim.application.Resizer;
+import tim.model.Element;
+import tim.view.ChildView;
+import tim.view.ParentView;
 
-
-public class DayViewContainer extends JPanel {
+public class DayViewContainer extends JPanel implements ChildView {
 	
-	CalendarController controller;
+	private ArrayList<Element> elements;
+	private UserCalendar userCalendar;
+	private ParentView parentView;
+	private Dimension dimension;
+	private ArrayList<UserCalendar> userCalendars;
+	
+	public DayViewContainer() {
+		GlobalRegistry.resizer.addObserver(this);
+		setOpaque(false);
+		userCalendars = new ArrayList<UserCalendar>();
+	}
+	
+	public void load() {
+		setLayout(new GridLayout(elements.size(),1));
+		
+		for (Element element : elements) {
+			userCalendar = new UserCalendar();
+			userCalendar.setData(element);
+			userCalendar.setParentView(parentView);
+			userCalendar.load();
+			userCalendars.add(userCalendar);
+			add(userCalendar);
+		}
 
-	public DayViewContainer() throws ParseException{		
-		//Init controller
-		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
-		
-		
-		//Date selector
-		Date begin = null;
-		try {
-			begin = DateHelper.StringToDate("2011-05-14");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	}
+	
+	
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if (o instanceof Resizer) {
+			this.dimension = (Dimension) arg;
+			setBounds(200,20, (int)dimension.getWidth()-200, (int)dimension.getHeight()-70-20);
+			repaint();
 		}
-		Date end = null;
-		try {
-			end = DateHelper.StringToDate("2011-06-15");
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+	}
+	
+	public void goTo (Date date) {
+		for (UserCalendar userCalendar : userCalendars) {
+			userCalendar.reload(date);
 		}
-		
-		
-		//Connection to controller
-		ArrayList<Employee> employees = null;
-		try {
-			employees = controller.getCalendars(begin, end);
-		} catch (PersistanceException e) {
-			new ExceptionView (e.toString());
-		}
-		
-		//Visual aspect
-		this.setOpaque(false);
-		setLayout(new GridLayout(employees.size(),1));
-		
-		for(Employee employee : employees){
-			add(new UserCalendar(employee));
-		}
-		
-		
+	}
+
+	@Override
+	public void setParentView(ParentView view) {
+		this.parentView = view;
+
+	}
+
+	@Override
+	public Object getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void setData(Object value) {
+		this.elements = (ArrayList<Element>) value;
+
 	}
 	
 	public void validate(){
-		int x = 200;
-		int width=0;
-		int height;
-		int y = 19;
-		
-		/*if(CalendarContainer.getCalendarHourWidth() > 0){
-			width = CalendarContainer.getCalendarHourWidth();
-		}
-		if(CalendarContainer.getCalendarPersonColWidth() > 0){
-			x = CalendarContainer.getCalendarPersonColWidth();
-		}
-		
-		this.setBounds(x, y, width, (int)CalendarContainer.getCalendarDimension().getHeight()-y);*/
-		
-		//this.controller.setCalendarSize(this.getWidth(), this.getHeight());
-		
-		//System.out.println(this.getWidth() +" "+ this.getHeight());
-		this.controller.updateCalendarDimension();
-		x = (int) this.controller.getDayViewContainerPlacement().getWidth();
-		y = (int) this.controller.getDayViewContainerPlacement().getHeight();
-		width = (int) this.controller.getDayViewContainerSize().getWidth();
-		height = (int) this.controller.getDayViewContainerSize().getHeight();
-		//this.setSize(this.controller.getDayViewContainerSize());
-		
-		//System.out.println(x +" "+ y  +" "+ width  +" "+ height);
-		this.setBounds(x, y, width, height);
-		
+		dimension = getSize();
+	    setSize(dimension);
+	    setPreferredSize(dimension);
 	}
-	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		validate();
-		
-		
+	public void paintComponent(Graphics g) {
+	    super.paintComponent(g);
+	    validate();
 	}
-	
-
-	
 }
