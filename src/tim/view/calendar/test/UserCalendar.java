@@ -80,6 +80,10 @@ public class UserCalendar extends JPanel implements ChildView {
 	public void eventSizing(){
 
 		Dimension btnDimension;
+		System.out.println("-----------------");
+		if(eventButtons.size() == 0){
+			System.out.println("Il n'y a pas de boutons");
+		}
 		for(EventButton eventButton : eventButtons){
 			int x, y;
 
@@ -88,13 +92,14 @@ public class UserCalendar extends JPanel implements ChildView {
 			
 			btnDimension = new Dimension(x, y);
 			
-			System.out.println("Bouton: " + eventButton.getTitle() + " " + btnDimension);
+			System.out.println("Bouton: " + btnDimension);
 			
 			eventButton.setSize(btnDimension);
 		    eventButton.setPreferredSize(btnDimension);
-		    eventButton.setMinimumSize(btnDimension);
-		    eventButton.setMaximumSize(btnDimension);
+		    //eventButton.setMinimumSize(btnDimension);
+		    //eventButton.setMaximumSize(btnDimension);
 		}
+		System.out.println("-----------------");
 	}
 	
 	
