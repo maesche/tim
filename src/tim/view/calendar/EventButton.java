@@ -53,7 +53,7 @@ public class EventButton extends JButton {
 		this.setFocusPainted(false);
 		this.setBackground(color);
 		this.setText(title);
-		this.setToolTipText("adsfasd");
+		this.setToolTipText(appointment.getDescription());
 
 	}
 	
