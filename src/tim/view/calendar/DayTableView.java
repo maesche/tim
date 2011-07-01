@@ -1,104 +1,174 @@
 package tim.view.calendar;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.Observable;
 import java.util.Vector;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.table.JTableHeader;
 
-import sun.tools.tree.ThisExpression;
 import tim.application.Config;
 import tim.application.GlobalRegistry;
-import tim.application.XMLResourceBundleControl;
-import tim.application.exception.PersistanceException;
-import tim.application.utils.DateHelper;
-import tim.controller.CalendarController;
+import tim.application.LanguageLinker;
+import tim.application.Resizer;
+import tim.application.exception.ResourceNotFoundException;
+import tim.model.Element;
 import tim.model.Employee;
+import tim.view.ChildView;
+import tim.view.ParentView;
 
-public class DayTableView extends JPanel {
+public class DayTableView extends JPanel implements ChildView {
+	private JTable table;
+	private Vector<Vector<Object>> data;
+	private Vector<String> columnNames;
+	private int rowHeight;
+	private Vector<Integer> columnWidth;
+	private Dimension dimension;
 	
-	public /*static*/ JTable table;
-	int nbrPerson = 0;
-	
-	CalendarController controller;
-	
-	public DayTableView(){
-		this.setOpaque(false);
-		this.setLayout(new BorderLayout());
+	public DayTableView () {
+		GlobalRegistry.resizer.addObserver(this);
 		
-		this.controller = (CalendarController) GlobalRegistry.mvcLinker.getControllers().get("CalendarController");
-		
-		
-		//this.hourInDay = controller.getHoursPerDay();
-		
-	
-		
-		nbrPerson = controller.getNbrPerson();
-		
-
-		this.table = controller.getFormatedTable();
-		
-		
-		
-
-		table.getColumnModel().getColumn(0).setPreferredWidth(200);
-		table.getColumnModel().getColumn(0).setMinWidth(150);
-		table.setRowHeight(100);
+		try {
+			GlobalRegistry.mvcLinker.addObserverToSystemResource(
+					"LanguageLinker", this);
+		} catch (ResourceNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		
-		table.getTableHeader().setReorderingAllowed(false); 
+		data = new Vector<Vector<Object>>();
+		setLayout(new BorderLayout());
+	}
+	
+	public void load() {
+		table = new JTable(data, columnNames);
+		table.setRowHeight(rowHeight);
+		
+			for (int i = 0; i < columnWidth.size(); i++) {
+				table.getColumnModel().getColumn(i).setMinWidth(columnWidth.get(i));
+				table.getColumnModel().getColumn(i).setPreferredWidth(columnWidth.get(i));
+				table.getColumnModel().getColumn(i).setMaxWidth(columnWidth.get(i));
+			}
+		
+		table.getTableHeader().setReorderingAllowed(false);
 		table.setEnabled(false);
 		
-		JScrollPane scroll = new JScrollPane(table);
-		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		
-		add(scroll);
+		add(scrollPane, BorderLayout.CENTER);
+	}
+	
+	public void createData(Object value) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Element> elements = (ArrayList<Element>) value;
+		data = new Vector<Vector<Object>>();
+		Vector<Object> rowData;
+
+		for (Element element : elements) {
+			Employee employee = (Employee) element;
+			rowData = new Vector<Object>();
+			rowData.add(employee);
+			data.add(rowData);
+		}
+	}
+
+	public void setColumnNames(Vector<String> columnNames) {
+		this.columnNames = columnNames;
+	}
+	
+	public void setRowHeight(int rowHeight) {
+		this.rowHeight = rowHeight;
+	}
+	
+	public void setColumnWidth(Vector<Integer> columnWidth) {
+		this.columnWidth = columnWidth;
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		if (o instanceof Resizer) {
+			this.dimension = (Dimension) arg;
+
+
+
+		    
+		    //int rowHeight = (int) (dimension.getHeight()-30) / data.size();
+		    //table.setRowHeight(rowHeight);
+		    
+		    
+		    //System.out.println(dimension.getHeight());
+		    //int rowHeight = table.getHeight()/data.size();
+		    //System.out.println(rowHeight);
+		    
+		    //this.rowHeight = rowHeight;
+		    //table.setRowHeight(rowHeight);
+		    //table.setSize((int) dimension.getWidth(),rowHeight);
+		    //table.setPreferredSize(new Dimension((int) dimension.getWidth(),tableSize));
+		    //table.setRowHeight(rowHeight);
+		    
+		    //System.out.println(table.getRowHeight());
+
+		}
+		else if (o instanceof LanguageLinker) {
+			table.getColumnModel().getColumn(0).setHeaderValue(Config.RESSOURCE_BUNDLE.getString("calendarCollaborator"));
+		}
+		repaint();
+	}
+
+	@Override
+	public void setParentView(ParentView view) {
+		// TODO Auto-generated method stub
 
 	}
-	
-	public void validate(){
-		this.setSize(CalendarContainer.getCalendarDimension());
-		
-		
-		
-		Dimension d = new Dimension((int)CalendarContainer.getCalendarDimension().getWidth(), (int)CalendarContainer.getCalendarDimension().getHeight());
-		table.setSize(d);
-		table.setPreferredSize(d);
-		table.setBounds(0,0, (int) CalendarContainer.getCalendarDimension().getWidth(), (int) CalendarContainer.getCalendarDimension().getHeight());
-		
-		
-		table.setRowHeight((int) ((table.getSize().getHeight()-20)/nbrPerson));
-		
-		int calHourWidth = table.getColumnModel().getColumn(1).getWidth() * this.controller.getHoursPerDay();
-		CalendarContainer.setCalendarHourWidth(calHourWidth);
-		CalendarContainer.setCalendarPersonColWidth(table.getColumnModel().getColumn(0).getWidth());
-		
-		
-		
-		//this.controller.setUserCalendarSize(table.getColumnModel().getColumn(1).getWidth(), 20);
-		//System.out.println(this.getWidth());
-		//this.controller.setDayViewContainerSize((int)table.getPreferredSize().getWidth()-table.getColumnModel().getColumn(1).getWidth(), (int) controller.getCalendarSize().getHeight()-20);
-		//this.controller.setDayViewContainerPlacement(table.getColumnModel().getColumn(1).getWidth(), 20);
-		//this.controller.setDayViewContainerPlacement();
-		
-		
+
+	@Override
+	public Object getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setData(Object value) {
+		createData(value);
 	}
 	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
+	public void validate() {
+		if (dimension == null) {
+			dimension = getSize();
+			table.setRowHeight((int)dimension.getHeight() / data.size());
+		}
+		else {
+			table.setRowHeight((int)dimension.getHeight() / data.size() - 30);
+		}
+
+		setSize(dimension);
+	    setPreferredSize(dimension);
+
+	   /* System.out.println("rowHeight1 " + (dimension.getHeight()-20) / data.size());
+		//table.setRowHeight((int) (dimension.getHeight()-30) / data.size());
+	    
+	    
+	    
+	    
+	    int rowHeight2 = (int) ((int) (dimension.getHeight()-30) / (float)data.size());
+	    int rowHeight3 = (int) ((dimension.getHeight()-20) / data.size());
+	    
+	    System.out.println("rowHeight1 " + rowHeight2);
+	    System.out.println("rowHeight2 " + rowHeight3);
+	    table.setRowHeight(rowHeight3);*/
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponents(g);
 		validate();
 	}
+	
 }

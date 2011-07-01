@@ -1,4 +1,4 @@
-package tim.view.calendar.test;
+package tim.view.calendar;
 
 import java.awt.FlowLayout;
 import java.awt.Insets;

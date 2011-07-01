@@ -3,23 +3,15 @@ package tim.view.calendar;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Insets;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Date;
 
 import javax.swing.JButton;
-import javax.swing.border.Border;
 
 import tim.application.utils.DateHelper;
-import tim.controller.CalendarController;
 import tim.model.Appointment;
-import tim.model.AppointmentModel;
 import tim.model.Employee;
-import tim.model.EmployeeModel;
 
 public class EventButton extends JButton {
-	
 	private Color color = null;
 	private String title;
 	private int duration;
@@ -46,9 +38,7 @@ public class EventButton extends JButton {
 	}
 	
 	public EventButton(Appointment appointment) {
-		
-		CalendarController controller = new CalendarController();
-		
+
 		this.appointment = appointment;
 		this.duration = DateHelper.DateDiff(appointment.getBegin(), appointment.getEnd());
 		this.title = "<html>" + appointment.getClient().getFirstName() + " " + appointment.getClient().getLastName() + "</html>";
@@ -63,7 +53,7 @@ public class EventButton extends JButton {
 		this.setFocusPainted(false);
 		this.setBackground(color);
 		this.setText(title);
-		this.setToolTipText(controller.getEventTitle(appointment));
+		this.setToolTipText("adsfasd");
 
 	}
 	
@@ -79,6 +69,23 @@ public class EventButton extends JButton {
 		this.setBorderPainted(false);
         this.setBackground(new Color(1f,1f,1f,0));
         this.setOpaque(false);
+	}
+	
+	public EventButton(Date begin, Date end) {
+		this.begin = begin;
+		this.end = end;
+		this.duration = DateHelper.DateDiff(begin, end);
+		this.title = "";
+		this.color = null;
+		this.appointment = null;
+		
+		this.setBorderPainted(false);
+        this.setBackground(new Color(1f,1f,1f,0));
+        this.setOpaque(false);
+	}
+	
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	public String getTitle() {
@@ -111,18 +118,16 @@ public class EventButton extends JButton {
 		return employee;
 	}
 
-	/*
-	 * public void paintComponent(Graphics g) {
-	 * 
-	 * Graphics2D g2 = (Graphics2D) g.create();
-	 * g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,
-	 * 0.5f)); super.paintComponent(g2); g2.dispose(); }
-	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
 	}
 	
+	public String toString(){
+		String message = "";
+		message += employee.getFirstName();
+		//message += ": " + begin.getHours();
+		return message;
+	}
 	
-
 }
