@@ -149,8 +149,52 @@ public class ClientModel extends PersonModel {
 
 	@Override
 	public void edit(Element element) throws ClassCastException, PersistanceException {
-		remove(element);
-		add(element);
+		Connection conn;
+		Statement stmt;
+
+		String sql;
+		Client client = (Client) element;
+
+		
+		String firstName = null;
+		String lastName = null;
+		String phone = null;
+		String address = null;
+		String comment = null;
+		
+		firstName = client.getFirstName();
+		lastName = client.getLastName();
+		phone = client.getPhone();
+		address = client.getAddress();
+		comment = client.getComment();
+
+		if (address != null) {
+			address = SQLQueryHelper.removeUnrecognizedChar(address);
+		}
+
+		sql = "UPDATE clients SET " +
+				"firstName='" + firstName + "', " +
+				"lastName='" + lastName + "'," +
+				"phone='" + phone + "'," +
+				"address='" + address + "'," +
+				"description='" + comment + "' " +
+			 "WHERE client_id=" + client.getId();
+		try {
+			conn = Db.open();
+			
+			stmt = conn.createStatement();
+			stmt.executeUpdate(sql);
+			stmt.close();
+			setChanged();
+			notifyObservers(get());
+		} catch (SQLException ex) {
+			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "update"));
+		}
+		finally {
+			Db.close();
+		}
+		/*remove(element);
+		add(element);*/
 
 	}
 
