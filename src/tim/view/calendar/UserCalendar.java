@@ -159,8 +159,11 @@ public class UserCalendar extends JPanel implements ChildView {
 	public void validate(){
 		dimension = getSize();
 	    setSize(dimension);
+	    System.out.println("setSize(" + dimension + ")");
 	    setPreferredSize(dimension);
 	    eventSizing();
+	    System.out.println("EVENTSIZING");
+	    doLayout();
 	}
 	public void paintComponent(Graphics g) {
 	    super.paintComponent(g);
