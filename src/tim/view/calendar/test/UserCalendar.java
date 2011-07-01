@@ -61,6 +61,7 @@ public class UserCalendar extends JPanel implements ChildView {
 			final Appointment appointment = eventButton.getAppointment();
 			final Date begin = eventButton.getBegin();
 			final Date end = eventButton.getEnd();
+			eventButton.setEmployee(employee);
 			
 			eventButton.addActionListener(new ActionListener() {
 				@Override

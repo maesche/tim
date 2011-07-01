@@ -278,10 +278,11 @@ public class CalendarController extends Controller {
 		//Si le calendrier n'a pas d'événement on ajout un événement invisible
 		if(i == 1){
 			//faitre dernier bouton
-			Date begin = actualMinutesOfDayToDate(today, beginOfDay);
-			Date end = actualMinutesOfDayToDate(today, endOfDay);
+			Date date = DateHelper.StringToDate(Config.CURRENT_DATE);
+			Date begin = actualMinutesOfDayToDate(date, beginOfDay);
+			Date end = actualMinutesOfDayToDate(date, endOfDay);
 			
-			eventButtons.add(new EventButton(employee,begin, end));
+			eventButtons.add(new EventButton(begin, end));
 		}
 		
 		return eventButtons;

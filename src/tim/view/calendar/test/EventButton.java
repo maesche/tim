@@ -71,6 +71,23 @@ public class EventButton extends JButton {
         this.setOpaque(false);
 	}
 	
+	public EventButton(Date begin, Date end) {
+		this.begin = begin;
+		this.end = end;
+		this.duration = DateHelper.DateDiff(begin, end);
+		this.title = "";
+		this.color = null;
+		this.appointment = null;
+		
+		this.setBorderPainted(false);
+        this.setBackground(new Color(1f,1f,1f,0));
+        this.setOpaque(false);
+	}
+	
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	
 	public String getTitle() {
 		return title;
 	}
