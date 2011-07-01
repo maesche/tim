@@ -72,13 +72,13 @@ public class CalendarController extends Controller {
 	 * @throws PersistanceException
 	 * @throws ParseException
 	 */
-	public ArrayList<EventButton> getButtonsCalendar(ArrayList<Appointment> appointments)
-			throws PersistanceException, ParseException {
+	/*public ArrayList<EventButton> getButtonsCalendar(ArrayList<Appointment> appointments)throws PersistanceException, ParseException {
 		ArrayList<EventButton> eventButtons = new ArrayList<EventButton>();
 		EventButton eventButton = null;
 
 		int actualMinuteOfDay = Config.CALENDAR_DAY_START * 60;
 		int endOfDay = Config.CALENDAR_DAY_END * 60;
+		int beginOfDay = Config.CALENDAR_DAY_START*60;
 		int startOfButton = 0;
 		int i = 1;
 
@@ -123,7 +123,8 @@ public class CalendarController extends Controller {
 			// add event button
 			eventButtons.add(eventButton);
 			actualMinuteOfDay += eventButton.getDuration();
-
+			
+			//on est au dernier élément donc on ajoute le dernier bouton invisible
 			if (i == appointments.size()) {
 				Date end = actualMinutesOfDayToDate(appointment.getBegin(),
 						endOfDay);
@@ -133,8 +134,18 @@ public class CalendarController extends Controller {
 			i++;
 
 		}
+		
+		//Si le calendrier n'a pas d'événement on ajout un événement invisible
+		if(i == 1){
+			//faitre dernier bouton
+			Date begin = actualMinutesOfDayToDate(date, beginOfDay);
+			Date end = actualMinutesOfDayToDate(date, endOfDay);
+			
+			eventButtons.add(new EventButton(employee,begin, end));
+		}
+		
 		return eventButtons;
-	}
+	}*/
 
 	private Date actualMinutesOfDayToDate(Date day, int minutes) {
 		String hour = String.valueOf(minutes / 60);
@@ -161,4 +172,135 @@ public class CalendarController extends Controller {
 
 		return null;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public ArrayList<EventButton> getButtonsCalendar(ArrayList<Appointment> appointments)throws PersistanceException, ParseException {
+		ArrayList<EventButton> eventButtons = new ArrayList<EventButton>();
+		EventButton eventButton = null;
+
+		int actualMinuteOfDay = Config.CALENDAR_DAY_START * 60;
+		int endOfDay = Config.CALENDAR_DAY_END * 60;
+		int beginOfDay = Config.CALENDAR_DAY_START*60;
+		int startOfButton = 0;
+		int i = 1;
+
+		for (Appointment appointment : appointments) {
+			Employee employee = (Employee) appointment.getEmployee();
+			eventButton = new EventButton(appointment);
+
+			startOfButton = Integer.parseInt(DateHelper.DateToString(
+					appointment.getBegin(), "H")) * 60;
+
+			// add invisible button
+			if (startOfButton >= actualMinuteOfDay) {
+				String hour = String.valueOf(actualMinuteOfDay / 60);
+				String minutes = String.valueOf(actualMinuteOfDay % 60);
+
+				if (hour.length() <= 1) {
+					hour = "0" + hour;
+				}
+				if (minutes.length() <= 1) {
+					minutes = "0" + minutes;
+				}
+
+				Date begin = DateHelper.StringToDate(
+						DateHelper.DateToString(appointment.getBegin(),
+								Config.DATE_FORMAT_SHORT)
+								+ " "
+								+ hour
+								+ ":"
+								+ minutes,
+
+						Config.DATE_FORMAT_LONG);
+
+				Date end = appointment.getBegin();
+
+				EventButton invisibleButton = new EventButton(employee, begin,
+						end);
+				eventButtons.add(invisibleButton);
+				actualMinuteOfDay += invisibleButton.getDuration();
+
+			}
+
+			// add event button
+			eventButtons.add(eventButton);
+			actualMinuteOfDay += eventButton.getDuration();
+			
+			//on est au dernier élément donc on ajoute le dernier bouton invisible
+			if (i == appointments.size()) {
+				Date end = actualMinutesOfDayToDate(appointment.getBegin(),
+						endOfDay);
+				eventButtons.add(new EventButton(employee,
+						appointment.getEnd(), end));
+			}
+			i++;
+
+		}
+		
+		//Si le calendrier n'a pas d'événement on ajout un événement invisible
+		if(i == 1){
+			//faitre dernier bouton
+			Date begin = actualMinutesOfDayToDate(today, beginOfDay);
+			Date end = actualMinutesOfDayToDate(today, endOfDay);
+			
+			eventButtons.add(new EventButton(employee,begin, end));
+		}
+		
+		return eventButtons;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
