@@ -193,8 +193,6 @@ public class ClientModel extends PersonModel {
 		finally {
 			Db.close();
 		}
-		/*remove(element);
-		add(element);*/
 
 	}
 
