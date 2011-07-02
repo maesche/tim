@@ -15,24 +15,24 @@ public class Appointment extends Element {
 	private Person client;
 	
 	public Appointment(long id, Date begin, Date end, 
-			String description, Person employee, Person client) {
+			String description, /*Person employee,*/ Person client) {
 		super(id);
-		initialize(begin, end, description, employee, client);
+		initialize(begin, end, description, /*employee,*/ client);
 
 	}
 	
 	private void initialize(Date begin, Date end, 
-			String description, Person employee, Person client) {
+			String description, /*Person employee,*/ Person client) {
 		this.begin = begin;
 		this.end = end;
 		this.description = description;
-		this.employee = employee;
+		/*this.employee = employee;*/
 		this.client = client;
 	}
 	
-	public Appointment(Date begin, Date end, String description, Person employee, Person client) {
+	public Appointment(Date begin, Date end, String description, /*Person employee,*/ Person client) {
 		super(new Date().getTime());	
-		initialize(begin, end, description, employee, client);
+		initialize(begin, end, description,/* employee,*/ client);
 	}
 	
 	
@@ -57,10 +57,10 @@ public class Appointment extends Element {
 	}
 	/**
 	 * @return the employee
-	 */
+	 *//*
 	public Person getEmployee() {
 		return employee;
-	}
+	}*/
 	/**
 	 * @return the client
 	 */

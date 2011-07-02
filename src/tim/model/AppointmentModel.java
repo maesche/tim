@@ -91,7 +91,7 @@ public class AppointmentModel extends AbstractModel{
 				Person employee = (Employee) employeeModel.get(rs.getInt("E_id")).get(0);
 				Person client = (Client) clientModel.get(rs.getInt("C_id")).get(0);
 
-				Appointment appointment = new Appointment(id, begin, end, description, employee, client);
+				Appointment appointment = new Appointment(id, begin, end, description, /*employee,*/ client);
 				
 				appointments.add(appointment);
 			}
