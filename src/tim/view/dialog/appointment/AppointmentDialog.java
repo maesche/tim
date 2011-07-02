@@ -134,7 +134,6 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		add(errorPanel, BorderLayout.NORTH);
 		add(form, BorderLayout.CENTER);
 		add(buttonPanel, BorderLayout.SOUTH);
-		System.out.println(mode);
 	}
 
 	private boolean check(Appointment appointment) {

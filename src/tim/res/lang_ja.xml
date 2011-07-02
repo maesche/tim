@@ -42,4 +42,12 @@
 	<entry key="personLastname">名字</entry>
 	<entry key="personAddress">住所</entry>
 	<entry key="personPhone">電話番語</entry>
+	
+	<entry key="dayOfWeek1">日曜日</entry>
+	<entry key="dayOfWeek2">月曜日</entry>
+	<entry key="dayOfWeek3">火曜日</entry>
+	<entry key="dayOfWeek4">水曜日</entry>
+	<entry key="dayOfWeek5">木曜日</entry>
+	<entry key="dayOfWeek6">金曜日</entry>
+	<entry key="dayOfWeek7">土曜日</entry>
 </properties> 

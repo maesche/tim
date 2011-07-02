@@ -42,4 +42,12 @@
 	<entry key="personLastname">Lastname</entry>
 	<entry key="personAddress">Address</entry>
 	<entry key="personPhone">Phone</entry>
+	
+	<entry key="dayOfWeek1">Sunday</entry>
+	<entry key="dayOfWeek2">Monday</entry>
+	<entry key="dayOfWeek3">Tuesday</entry>
+	<entry key="dayOfWeek4">Wednesday</entry>
+	<entry key="dayOfWeek5">Thursday</entry>
+	<entry key="dayOfWeek6">Friday</entry>
+	<entry key="dayOfWeek7">Saturday</entry>
 </properties> 
