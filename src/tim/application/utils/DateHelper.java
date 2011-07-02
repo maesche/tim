@@ -3,6 +3,7 @@ package tim.application.utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -73,4 +74,13 @@ public class DateHelper {
 		//---Put it back in the Date object   
 		return cal.getTime();  
 	}
+	
+	public static int DayOfWeek(Date date) {
+		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();   
+		cal.setTime(date);
+		
+		return cal.get(Calendar.DAY_OF_WEEK);
+	}
+	
+
 }
