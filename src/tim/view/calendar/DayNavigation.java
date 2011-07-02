@@ -115,7 +115,6 @@ public class DayNavigation extends JPanel implements AbstractView {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println(Config.DEFAULT_LANG);
 		update();
 	}
 }
