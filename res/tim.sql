@@ -14,7 +14,7 @@
 */
 
 /*
- * As there exists no drop user if exists in mysql, the following work
+ * As there exists no "drop user if exists" in mysql, the following work
  * around will do the job (described in http://bugs.mysql.com/bug.php?id=19166)
  */
 GRANT USAGE ON *.* TO 'tim'@'localhost';
@@ -22,16 +22,22 @@ DROP USER 'tim'@'localhost';
 
 
 /*
- * Create database and tables
+ * Create database
  */
 
 DROP DATABASE IF EXISTS tim;
 CREATE DATABASE tim DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE tim;
 
+/*
+ * Create user tim and grant all privileges
+ */
 CREATE USER 'tim'@'localhost' IDENTIFIED BY 'tim';
 GRANT ALL PRIVILEGES ON *.* TO 'tim'@'localhost' WITH GRANT OPTION;
 
+/*
+ * Create tables
+ */
 DROP TABLE IF EXISTS colors;
 CREATE TABLE IF NOT EXISTS colors (
   color_id INTEGER(9) NOT NULL AUTO_INCREMENT,
