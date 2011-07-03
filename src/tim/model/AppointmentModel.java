@@ -19,7 +19,7 @@ import tim.application.utils.DateHelper;
 
 public class AppointmentModel extends AbstractModel{
 
-	public ArrayList<Element> get(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) throws PersistanceException {
+	public ArrayList<Element> get(Client fClient, Calendar fCalendar, Date fSince, Date fUntil, long fId) throws PersistanceException {
 		Connection conn;
 		Statement stmt = null;
 		ResultSet rs;
@@ -55,8 +55,8 @@ public class AppointmentModel extends AbstractModel{
 			filter.add("A.client_id = " + fClient.getId());
 		}
 		
-		if (fEmployee != null) {
-			filter.add("A.employee_id = " + fEmployee.getId());
+		if (fCalendar != null) {
+			filter.add("A.calendar_id = " + fCalendar.getId());
 		}
 		
 		for (int i = 0; i < filter.size(); i++) {
@@ -76,8 +76,6 @@ public class AppointmentModel extends AbstractModel{
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
-			
-			EmployeeModel employeeModel = (EmployeeModel) GlobalRegistry.mvcLinker.getModels().get("EmployeeModel");
 			ClientModel clientModel = (ClientModel) GlobalRegistry.mvcLinker.getModels().get("ClientModel");
 			
 			while (rs.next()) {
@@ -88,7 +86,6 @@ public class AppointmentModel extends AbstractModel{
 				Date end = rs.getTimestamp("end");
 				String description = rs.getString("description");
 	
-				Person employee = (Employee) employeeModel.get(rs.getInt("E_id")).get(0);
 				Person client = (Client) clientModel.get(rs.getInt("C_id")).get(0);
 
 				Appointment appointment = new Appointment(id, begin, end, description, /*employee,*/ client);
@@ -133,24 +130,24 @@ public class AppointmentModel extends AbstractModel{
 		return this.get(client, null, begin, end, 0);
 	}
 	
-	public ArrayList<Element> get(Employee employee) throws PersistanceException {
-		return this.get(null, employee, null, null, 0);
+	public ArrayList<Element> get(Calendar calendar) throws PersistanceException {
+		return this.get(null, calendar, null, null, 0);
 	}
 	
-	public ArrayList<Element> get(Employee employee, Date begin) throws PersistanceException {
-		return this.get(null, employee, begin, null, 0);
+	public ArrayList<Element> get(Calendar calendar, Date begin) throws PersistanceException {
+		return this.get(null, calendar, begin, null, 0);
 	}
 	
-	public ArrayList<Element> get(Employee employee, Date begin, Date end) throws PersistanceException {
-		return this.get(null, employee, begin, end, 0);
+	public ArrayList<Element> get(Calendar calendar, Date begin, Date end) throws PersistanceException {
+		return this.get(null, calendar, begin, end, 0);
 	}
 	
-	public ArrayList<Element> get(Client client, Employee employee) throws PersistanceException {
-		return this.get(client, employee, null, null, 0);
+	public ArrayList<Element> get(Client client, Calendar calendar) throws PersistanceException {
+		return this.get(client, calendar, null, null, 0);
 	}
 	
-	public ArrayList<Element> get(Client client, Employee employee, Date begin) throws PersistanceException {
-		return this.get(client, employee, begin, null, 0);
+	public ArrayList<Element> get(Client client, Calendar calendar, Date begin) throws PersistanceException {
+		return this.get(client, calendar, begin, null, 0);
 	}
 
 	public void add(Element element) throws PersistanceException {
@@ -164,7 +161,7 @@ public class AppointmentModel extends AbstractModel{
 		
 		Appointment appointment = (Appointment) element;
 		client_id = appointment.getClient().getId();
-		employee_id = appointment.getEmployee().getId();
+		calendar_id = appointment.getEmployee().getId();
 		description = appointment.getDescription();
 		
 		begin = DateHelper.DateToString(appointment.getBegin(), Config.DATE_FORMAT_LONG);

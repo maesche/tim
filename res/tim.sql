@@ -83,12 +83,12 @@ DROP TABLE IF EXISTS appointments;
 CREATE TABLE IF NOT EXISTS appointments (
   appointment_id VARCHAR(255) NOT NULL,
   client_id INTEGER(9) NOT NULL,
-  employee_id INTEGER(9) NOT NULL,
+  calendar_id INTEGER(9) NOT NULL,
   description TEXT NOT NULL,
   PRIMARY KEY (appointment_id),
   FOREIGN KEY (client_id) REFERENCES clients(client_id)
     ON DELETE cascade,
-  FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
+  FOREIGN KEY (calendar_id) REFERENCES calendars(calendar_id)
     ON DELETE cascade
  ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
