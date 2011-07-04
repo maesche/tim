@@ -2,13 +2,17 @@ package tim.application;
 
 import java.util.HashMap;
 import java.util.Observable;
-import java.util.Observer;
-
 import tim.application.exception.ResourceNotFoundException;
 import tim.controller.AbstractController;
 import tim.model.AbstractModel;
 import tim.view.AbstractView;
 
+/**
+ * This class holds all globally registered models, controllers and observables
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class MVCLinker {
 	private HashMap<String, AbstractModel> models;
 	private HashMap<String, AbstractController> controllers;
@@ -21,7 +25,7 @@ public class MVCLinker {
 	}
 	
 	/**
-	 * Get all globally registered models
+	 * Gets all globally registered models
 	 * @return models
 	 */
 	public HashMap<String, AbstractModel> getModels() {
@@ -30,7 +34,7 @@ public class MVCLinker {
 		
 	
 	/**
-	 * Register model to global register
+	 * Registers model to global register
 	 * 
 	 * @param model
 	 */
@@ -40,7 +44,7 @@ public class MVCLinker {
 	}
 	
 	/**
-	 * Unregister model from global register
+	 * Unregisters model from global register
 	 * @param model
 	 */
 	public void unregisterModel(AbstractModel model) {
@@ -49,7 +53,7 @@ public class MVCLinker {
 
 
 	/**
-	 * Get all globally registered controller
+	 * Gets all globally registered controller
 	 * 
 	 * @return controllers
 	 */
@@ -57,14 +61,28 @@ public class MVCLinker {
 		return controllers;
 	}
 	
+	/**
+	 * Unregisters a specific controller
+	 * @param controller
+	 */
 	public void registerController(AbstractController controller) {
 		controllers.put(controller.toString(), controller);
 	}
 	
+	/**
+	 * 
+	 * @param controller
+	 */
 	public void unregisterController(AbstractController controller) {
 		controllers.remove(controller.toString());
 	}
 	
+	/**
+	 * Adds an observer to a specified model
+	 * @param modelKey (short class name)
+	 * @param view
+	 * @throws ResourceNotFoundException
+	 */
 	public void addObserverToModel(String modelKey, AbstractView view) throws ResourceNotFoundException {
 		AbstractModel model = models.get(modelKey);
 		
@@ -76,6 +94,12 @@ public class MVCLinker {
 		}
 	}
 	
+	/**
+	 * Removes an observer from a specified model
+	 * @param modelKey (short class name)
+	 * @param view
+	 * @throws ResourceNotFoundException
+	 */
 	public void removeObserverFromModel(String modelKey, AbstractView view) throws ResourceNotFoundException {
 		AbstractModel model = models.get(modelKey);
 		
@@ -87,18 +111,36 @@ public class MVCLinker {
 		}
 	}
 	
+	/**
+	 * Returns all system observables
+	 * @return systemObservables
+	 */
 	public HashMap<String, Observable> getSystemObservables() {
 		return systemObservables;
 	}
 	
+	/**
+	 * Registers system observable
+	 * @param observable
+	 */
 	public void registerSystemObservable(Observable observable) {
 		systemObservables.put(observable.toString(), observable);
 	}
 	
+	/**
+	 * Unregisters a system observable
+	 * @param observable
+	 */
 	public void unregisterSystemObservable(Observable observable) {
 		controllers.remove(observable.toString());
 	}
 	
+	/**
+	 * Adds an observable (eg. AbstractView) to a specified system resource
+	 * @param resourceKey (eg. short class name)
+	 * @param view
+	 * @throws ResourceNotFoundException
+	 */
 	public void addObserverToSystemResource(String resourceKey, AbstractView view) throws ResourceNotFoundException {
 		Observable observable = systemObservables.get(resourceKey);
 		
@@ -110,6 +152,12 @@ public class MVCLinker {
 		}
 	}
 	
+	/**
+	 * Removes a system observer from the global register
+	 * @param resourceKey (eg. short class name)
+	 * @param view
+	 * @throws ResourceNotFoundException
+	 */
 	public void removeObserverFromSystemResource(String resourceKey, AbstractView view) throws ResourceNotFoundException {
 		Observable observable = systemObservables.get(resourceKey);
 		

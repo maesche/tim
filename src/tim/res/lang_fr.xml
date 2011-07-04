@@ -19,6 +19,7 @@
 	<entry key="applicationMenuLanguageJapanese">日本語</entry>
 	<entry key="applicationNavigationToday">Aujourd'hui</entry>
 	
+	
 	<entry key="dialogMessages">Veuillez vérifier l'erreur suivante:</entry>
 	<entry key="dialogBegin">Début</entry>
 	<entry key="dialogCancel">Annuler</entry>
@@ -43,4 +44,11 @@
 	<entry key="personAddress">Adresse</entry>
 	<entry key="personPhone">Téléphone</entry>
 	
+	<entry key="dayOfWeek1">Dimanche</entry>
+	<entry key="dayOfWeek2">Lundi</entry>
+	<entry key="dayOfWeek3">Mardi</entry>
+	<entry key="dayOfWeek4">Mercredi</entry>
+	<entry key="dayOfWeek5">Jeudi</entry>
+	<entry key="dayOfWeek6">Vendredi</entry>
+	<entry key="dayOfWeek7">Samedi</entry>
 </properties> 

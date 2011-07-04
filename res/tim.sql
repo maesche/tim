@@ -1,24 +1,43 @@
 /*
-	Auteur: Alain Bellatalla
-			Mathieu Noverraz
-			Stefan Meier
-	Version: 201105.07
+	Authors:		Alain Bellatalla
+					Mathieu Noverraz
+					Stefan Meier
+	Version: 		20110703
 	
-	Description: script de création de tables pour la base
-				 tim)
+	Description:	script to create tim database
 				 
-	Détails: 	 l'ordre de création est à respecter (contraintes)
+	Détails:		creation order needs to be respected (dependencies)
 
-	Restauration d'un fichier depuis la ligne de commande: 
+	To execute from command line interface :
 	mysql --user=USR --password=PWD --default-character-set=utf8  < /tim.sql
 
 */
+
+/*
+ * As there exists no "drop user if exists" in mysql, the following work
+ * around will do the job (described in http://bugs.mysql.com/bug.php?id=19166)
+ */
+GRANT USAGE ON *.* TO 'tim'@'localhost';
+DROP USER 'tim'@'localhost';
+
+
+/*
+ * Create database
+ */
+
 DROP DATABASE IF EXISTS tim;
 CREATE DATABASE tim DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE tim;
 
+/*
+ * Create user tim and grant all privileges
+ */
+CREATE USER 'tim'@'localhost' IDENTIFIED BY 'tim';
+GRANT ALL PRIVILEGES ON *.* TO 'tim'@'localhost' WITH GRANT OPTION;
 
-
+/*
+ * Create tables
+ */
 DROP TABLE IF EXISTS colors;
 CREATE TABLE IF NOT EXISTS colors (
   color_id INTEGER(9) NOT NULL AUTO_INCREMENT,
@@ -28,13 +47,6 @@ CREATE TABLE IF NOT EXISTS colors (
   PRIMARY KEY (color_id)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
-INSERT INTO colors VALUES 
-	(1, 255, 0, 0),
-	(2, 0, 255, 0),
-	(3, 0, 0, 255),
-	(4, 255, 6, 200);
-
 DROP TABLE IF EXISTS calendars;
 CREATE TABLE IF NOT EXISTS calendars (
   calendar_id INTEGER(9) NOT NULL AUTO_INCREMENT,
@@ -43,12 +55,6 @@ CREATE TABLE IF NOT EXISTS calendars (
   FOREIGN KEY (color_id) REFERENCES colors(color_id)
   	ON DELETE cascade
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO calendars VALUES 
-	(1, 1),
-	(2, 2),
-	(3, 3),
-	(4, 4);
 
 DROP TABLE IF EXISTS clients;
 CREATE TABLE IF NOT EXISTS clients (
@@ -61,23 +67,6 @@ CREATE TABLE IF NOT EXISTS clients (
   PRIMARY KEY (client_id)
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-INSERT INTO `clients` VALUES 
-(1,'Bill','Microsoft','095 959 59 59','Anywhere 95 1000 Lausanne',NULL),
-(2,'Mac','Job','085 585 58 55','Funstreet 5 1000 Lausanne',NULL),
-(3,'Gérard','Lacosse','077 777 77 77','Paradis 7 1000 Lausanne',NULL),
-(4,'André','Kud','21 432 88 88','1033 Cheseaux',NULL),
-(5,'Arthure','Migros','021 432 99 99','2000 Neuchâtel',NULL),
-(6,'Alain','Possible','026 663 12 67','1400 Yverdon-les-Bains',NULL),
-(7,'Stephen','Harper','021 333 33 33','Rue du Canada 23',''),
-(8,'直人','管','021 444 44 44','総理大臣道路','null'),
-(9,'Barak','Obama','021 333 33 33','Route des états-unis','null'),
-(10,'Angela','Merkel','021 333 33 33','Bundespräsidentinnenplatz 45','null'),
-(11,'Ruth','Dreifuss','021 333 33 33','Place des quatres jambes 3','null'),
-(12,'Stefan','Apfel','021 333 33 33','Apple-Street 90','null'),
-(13,'Nicolas','Sarkozy','021 333 33 33','Route du centre-droit 4','null'),
-(14,'Heidi','Von der Alp','021 333 33 33','Peterweg 1','null');
-
-
 
 DROP TABLE IF EXISTS employees;
 CREATE TABLE IF NOT EXISTS employees (
@@ -89,12 +78,6 @@ CREATE TABLE IF NOT EXISTS employees (
   FOREIGN KEY (calendar_id) REFERENCES calendars(calendar_id)
   	ON DELETE cascade
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-INSERT INTO employees VALUES 
-	(1, 'Alain', 'Bellatalla', 1), 
-	(2, 'Mathieu', 'Noverraz', 2),
-	(3, 'Stefan', 'Meier', 3);
-
 
 DROP TABLE IF EXISTS appointments;
 CREATE TABLE IF NOT EXISTS appointments (
@@ -120,9 +103,43 @@ CREATE TABLE IF NOT EXISTS appointment_dates (
     ON DELETE cascade
 ) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+/*
+ * Create dummy data
+ */
+INSERT INTO colors VALUES 
+	(1, 255, 0, 0),
+	(2, 0, 255, 0),
+	(3, 0, 0, 255),
+	(4, 255, 6, 200);
+	
+INSERT INTO calendars VALUES 
+	(1, 1),
+	(2, 2),
+	(3, 3),
+	(4, 4);
 
-INSERT INTO appointments (appointment_id,client_id,employee_id,description)
-VALUES
+INSERT INTO `clients` VALUES 
+(1,'Bill','Microsoft','095 959 59 59','Anywhere 95 1000 Lausanne',NULL),
+(2,'Mac','Job','085 585 58 55','Funstreet 5 1000 Lausanne',NULL),
+(3,'Gérard','Lacosse','077 777 77 77','Paradis 7 1000 Lausanne',NULL),
+(4,'André','Kud','21 432 88 88','1033 Cheseaux',NULL),
+(5,'Arthure','Migros','021 432 99 99','2000 Neuchâtel',NULL),
+(6,'Alain','Possible','026 663 12 67','1400 Yverdon-les-Bains',NULL),
+(7,'Stephen','Harper','021 333 33 33','Rue du Canada 23',''),
+(8,'直人','管','021 444 44 44','総理大臣道路','null'),
+(9,'Barak','Obama','021 333 33 33','Route des états-unis','null'),
+(10,'Angela','Merkel','021 333 33 33','Bundespräsidentinnenplatz 45','null'),
+(11,'Ruth','Dreifuss','021 333 33 33','Place des quatres jambes 3','null'),
+(12,'Stefan','Apfel','021 333 33 33','Apple-Street 90','null'),
+(13,'Nicolas','Sarkozy','021 333 33 33','Route du centre-droit 4','null'),
+(14,'Heidi','Von der Alp','021 333 33 33','Peterweg 1','null');
+
+INSERT INTO employees VALUES 
+	(1, 'Alain', 'Bellatalla', 1), 
+	(2, 'Mathieu', 'Noverraz', 2),
+	(3, 'Stefan', 'Meier', 3);
+
+INSERT INTO appointments VALUES
 ('1',1,1,'description 1'),
 ('2',2,2,'description 2'),
 ('3',3,3,'description 3'),
@@ -180,9 +197,7 @@ VALUES
 ('55',7,1,'description 55'),
 ('56',8,2,'description 56');
 
-
-INSERT appointment_dates(appointment_date_id,appointment_id,begin,end)
-VALUES
+INSERT appointment_dates VALUES
 ('1',1,'2011-6-27 8:00','2011-6-27 11:00'),
 ('2',2,'2011-6-27 8:30','2011-6-27 11:30'),
 ('3',3,'2011-6-27 9:00','2011-6-27 12:30'),

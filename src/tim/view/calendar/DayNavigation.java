@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Observable;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -53,8 +54,10 @@ public class DayNavigation extends JPanel implements AbstractView {
 		btnToday = new JButton();
 
 		btnPreview = new JButton("<");
-		dayField = new JTextField();
+		dayField = new JTextField(15);
 		btnNext = new JButton(">");
+		
+		dayField.setEditable(false);
 
 		btnToday.addActionListener(new ActionListener() {
 			@Override
@@ -78,7 +81,6 @@ public class DayNavigation extends JPanel implements AbstractView {
 		});
 
 		dayField.setMargin(new Insets(4, 4, 4, 4));
-
 		add(btnToday);
 		add(btnPreview);
 		add(dayField);
@@ -104,9 +106,9 @@ public class DayNavigation extends JPanel implements AbstractView {
 	public void update() {
 		btnToday.setText(Config.RESSOURCE_BUNDLE
 				.getString("applicationNavigationToday"));
-		dayField.setText((DateHelper.DateToString(currentDate)));
+		dayField.setText(Config.RESSOURCE_BUNDLE
+				.getString("dayOfWeek" + DateHelper.DayOfWeek(currentDate)) + " - " + (DateHelper.DateToString(currentDate)));
 		Config.CURRENT_DATE = DateHelper.DateToString(currentDate);
-		dayField.setEditable(false);
 		calendarContainer.goTo(currentDate);
 		repaint();
 	}

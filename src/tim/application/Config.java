@@ -2,7 +2,12 @@ package tim.application;
 
 import java.util.ResourceBundle;
 
-
+/**
+ * Global configuration class, holds all application parameters
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class Config {
 	public static String DB_USER = null;
 	public static String DB_PWD = null;
