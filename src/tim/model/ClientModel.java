@@ -123,7 +123,6 @@ public class ClientModel extends PersonModel {
 	public void remove(Element element) throws ClassCastException, PersistanceException {
 		Connection conn;
 		Statement stmt;
-		int rowAffected = 0;
 
 		String sql;
 		
@@ -135,7 +134,7 @@ public class ClientModel extends PersonModel {
 			conn = Db.open();
 			
 			stmt = conn.createStatement();
-			rowAffected = stmt.executeUpdate(sql);
+			stmt.executeUpdate(sql);
 			stmt.close();
 			setChanged();
 			notifyObservers(get());
