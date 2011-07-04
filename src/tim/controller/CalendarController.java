@@ -3,7 +3,6 @@ package tim.controller;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import tim.application.Config;
 import tim.application.exception.PersistanceException;
