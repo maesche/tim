@@ -13,39 +13,45 @@ import tim.model.Employee;
 
 public class Controller extends AbstractController {
 	
-	private AbstractModel getModel(Element element, String elementKey) throws ResourceNotFoundException {
-		String modelKey = null;
+	private AbstractModel getModel(Element element, String modelKey) throws ResourceNotFoundException {
+		String key = null;
 		AbstractModel  model = null;
-		if (element instanceof Client || "client".equals(elementKey)) {
-			modelKey = "ClientModel";
+		if (element instanceof Client || "client".equals(key)) {
+			key = "ClientModel";
 		}
-		else if (element instanceof Appointment || "appointment".equals(elementKey)) {
-			modelKey = "AppointmentModel";
+		else if (element instanceof Appointment || "appointment".equals(key)) {
+			key = "AppointmentModel";
 		}
-		else if (element instanceof Employee || "employee".equals(elementKey)) {
-			modelKey = "EmployeeModel";
+		else if (element instanceof Employee || "employee".equals(key)) {
+			key = "EmployeeModel";
 		}
 		else {
-			throw new ResourceNotFoundException("The model doesn't exist for Element '" + element + "' or elementKey '" + elementKey +"'", "global registry");
+			throw new ResourceNotFoundException("The model doesn't exist for Element '" + element + "' or modelKey '" + key +"'", "global registry");
 		}
-		model = this.models.get(modelKey);
+		model = this.models.get(key);
 		
 		return model;
 	}
 
 
 	@Override
-	public Element get(String action, Object params) {
+	/**
+	 * {@inheritDoc}
+	 */
+	public Element get(String modelKey, Object params) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<Element> getAll(String action) throws PersistanceException, ResourceNotFoundException {
+	/**
+	 * {@inheritDoc}
+	 */
+	public ArrayList<Element> getAll(String modelKey) throws PersistanceException, ResourceNotFoundException {
 		AbstractModel model = null;
 		ArrayList<Element> ret = null;
 		
-		model = getModel(null, action);
+		model = getModel(null, modelKey);
 		
 		if (model != null) {
 			ret = model.get();
@@ -57,33 +63,38 @@ public class Controller extends AbstractController {
 	}
 
 	@Override
-	public void save(String action, Element element) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException {
+	/**
+	 * {@inheritDoc}
+	 */
+	public void save(String modelKey, Element element) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException {
 		AbstractModel model = getModel(element, null);
 
 
 		if (model != null) {
-			if ("add".equals(action)) {
+			if ("add".equals(modelKey)) {
 				model.add(element);
 			}
-			else if ("delete".equals(action)) {
+			else if ("delete".equals(modelKey)) {
 				model.remove(element);
 			}
-			else if (("edit").equals(action)) {
+			else if (("edit").equals(modelKey)) {
 				model.edit(element);
 			}
 			else {
-				throw new OperationNotPossibleException(action, "add, delete or edit");
+				throw new OperationNotPossibleException(modelKey, "add, delete or edit");
 
 			}
 		}
 	}
 
 	@Override
-	public void saveAll(String action, ArrayList<Element> elements) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException {
+	/**
+	 * {@inheritDoc}
+	 */
+	public void saveAll(String modelKey, ArrayList<Element> elements) throws ClassCastException, PersistanceException, ResourceNotFoundException, OperationNotPossibleException {
 		for (Element element : elements) {
-			save(action, element);
+			save(modelKey, element);
 		}
-
 	}
 
 }

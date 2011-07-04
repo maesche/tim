@@ -2,8 +2,10 @@ package tim.application.utils;
 
 /**
  * This class is a helper for escaping apostrophes in SQL queries
- * @param label
- * @param text
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
  */
 public class SQLQueryHelper {
 
