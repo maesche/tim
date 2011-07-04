@@ -4,8 +4,6 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
-import tim.application.Config;
-
 public class CustomTableModel extends AbstractTableModel {
 
 	Vector<String> columnNames = null;
