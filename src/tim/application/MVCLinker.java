@@ -63,7 +63,7 @@ public class MVCLinker {
 	
 	/**
 	 * Unregisters a specific controller
-	 * @param Controller object
+	 * @param controller
 	 */
 	public void registerController(AbstractController controller) {
 		controllers.put(controller.toString(), controller);
@@ -79,7 +79,7 @@ public class MVCLinker {
 	
 	/**
 	 * Adds an observer to a specified model
-	 * @param modelkey (short class name)
+	 * @param modelKey (short class name)
 	 * @param view
 	 * @throws ResourceNotFoundException
 	 */

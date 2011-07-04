@@ -18,8 +18,8 @@ public class BootLoader {
 	private static String configFile = null;
 	
 	/**
-	 * Register global system resources with specified application settings
-	 * @param configFile Path to XML application configuration
+	 * Registers global system resources with specified application settings
+	 * @param configFilePath (Path to XML application configuration(
 	 * @throws PersistanceException
 	 */
 	public static void init(String configFilePath) throws PersistanceException {

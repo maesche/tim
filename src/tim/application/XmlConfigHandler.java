@@ -1,19 +1,5 @@
 package tim.application;
 
-//__________________________________________________________________________________
-//
-//	Project: 		TIM (Time Is Money)
-//	class:			ReadXmlFile
-//	Authors: 		Stefan Meier ; Mathieu Noverraz ; Alain Bellatalla
-//	School team: 	IGL3
-//	Creation Date: 	02.06.2011
-//	Last update:	22.06.2011
-//	Comments:		This class is used to read and update 
-//					the application config file (xml)
-//	To test the updateConfig method:
-//	String xmlFilePath = "..\\tim\\config\\application.xml";
-//	new XmlReader().updateConfig(xmlFilePath, "default-lang", "fr");
-//__________________________________________________________________________________
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
@@ -29,21 +15,21 @@ import org.w3c.dom.Element;
 
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
-//import tim.application.utils.CurrentClassGetter;
-//import tim.application.utils.ErrorHandler;
 
 import java.io.File;
 
-//__________________________________________________________________________________
-//
-//	XmlReader class
-//__________________________________________________________________________________
+/**
+ * This class is used to read and update the application config file (xml)
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704 
+ */
 public class XmlConfigHandler {
 	
-	//______________________________________________________________________________
-	//
-	//	readConfig method. Read the application configuration from a XML file
-	//______________________________________________________________________________
+	/**
+	 * Reads the application configuration from a XML file
+	 */
 	public void readConfig(String xmlFilePath) throws PersistanceException {
 		File fXmlFile = null;
 		DocumentBuilderFactory dbFactory = null;
@@ -97,10 +83,11 @@ public class XmlConfigHandler {
 			throw new PersistanceException(ExceptionFormatter.format(ex, this.getClass().getName(), "readConfig"));
 		}
 	}
-	//______________________________________________________________________________
-	//
-	//	getTagValue method. Get the desired node value of the XML file
-	//______________________________________________________________________________
+
+	/**
+	 * Gets the desired node value of the XML file
+	 * 
+	 */
 	private String getTagValue(String sTag, Element eElement) {
 		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
 		Node nValue = (Node) nlList.item(0);
@@ -108,6 +95,11 @@ public class XmlConfigHandler {
 		return nValue.getNodeValue();
 	}
 	
+	/**
+	 * Writes the current configuraiton to the config file
+	 * @param xmlFilePath
+	 * @throws PersistanceException
+	 */
 	public void writeConfig(String xmlFilePath) throws PersistanceException {
 		try
 		{
@@ -121,16 +113,6 @@ public class XmlConfigHandler {
 	        doc.getElementsByTagName("default-lang").item(0).setTextContent(Config.DEFAULT_LANG);
 	        doc.getElementsByTagName("current-date").item(0).setTextContent(Config.CURRENT_DATE);
 	        
-	        
-	        /*
-	         * Config.DATE_FORMAT_SHORT = getTagValue("date-format", eElement);
-					Config.TIME_FORMAT = getTagValue("time-format", eElement);
-					Config.DB_URL = getTagValue("db-url", eElement);
-					Config.DB_DRIVER = getTagValue("db-driver", eElement);
-					Config.DB_USER = getTagValue("db-user", eElement);
-					Config.DB_PWD = getTagValue("db-pwd", eElement);
-					Config.DEFAULT_LANG = getTagValue("default-lang", eElement);
-	         */
 	        
 	        //nodeToUpdate.setNodeValue("en"); 	 <== not the good method
 	        //nodeToUpdate.setTextContent("en"); <== the good method
@@ -150,7 +132,7 @@ public class XmlConfigHandler {
 	    {
 			throw new PersistanceException(ExceptionFormatter.format(ex, 
 																	 this.getClass().getName(), 
-																	 "updateConfig"));
+																	 "writeConfig"));
 	    }
 	}
 	
