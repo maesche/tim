@@ -11,6 +11,14 @@ import tim.model.Client;
 import tim.model.Element;
 import tim.model.Employee;
 
+/**
+ * Concrete implementation of AbstractController
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ * @see AbstractController
+ */
 public class Controller extends AbstractController {
 	
 	private AbstractModel getModel(Element element, String modelKey) throws ResourceNotFoundException {
