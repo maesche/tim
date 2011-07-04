@@ -1,9 +1,3 @@
-/**
- * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
- * @version 2011.0704
- * 
- * @description loads and unloads system registry and settings
- */
 package tim.application;
 
 import java.awt.Dimension;
@@ -13,12 +7,18 @@ import tim.model.AppointmentModel;
 import tim.model.ClientModel;
 import tim.model.EmployeeModel;
 
+/**
+ * Loads and unloads system register and settings
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704 
+ */
 public class BootLoader {		
 	
 	private static String configFile = null;
 	
 	/**
-	 * @description register global system resources with specified application settings
+	 * Register global system resources with specified application settings
 	 * @param configFile Path to XML application configuration
 	 * @throws PersistanceException
 	 */
@@ -43,7 +43,7 @@ public class BootLoader {
 	}
 	
 	/**
-	 * @description on unload saves application parameters to config file
+	 * On unload saves application parameters to config file
 	 * @throws PersistanceException
 	 */
 	public static void dispose() throws PersistanceException {

@@ -1,11 +1,11 @@
-/**
- * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
- * @version 2011.0704
- * 
- * @description global register which holds system elements
- */
 package tim.application;
 
+/**
+ * Global register which holds all system relevant objects
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class GlobalRegistry {	
 
 	/**
