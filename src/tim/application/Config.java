@@ -1,3 +1,9 @@
+/**
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ * 
+ * @description global configuration class, holds all application parameters
+ */
 package tim.application;
 
 import java.util.ResourceBundle;

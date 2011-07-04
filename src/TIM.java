@@ -1,3 +1,9 @@
+/**
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ * 
+ * @description main class which initializes the application
+ */
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -12,13 +18,15 @@ import tim.view.ExceptionView;
 
 import tim.application.BootLoader;
 import tim.application.Config;
-import tim.application.GlobalRegistry;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.CurrentClassGetter;
 
 public class TIM {
-	
+	/**
+	 * 
+	 * @description Changes font for all components
+	 */
 	private static void setUIFont(FontUIResource f)
 	{
 	    Enumeration<Object> keys = UIManager.getDefaults().keys();
@@ -33,6 +41,9 @@ public class TIM {
 	    }
 	}
 	
+	/**
+	 * @description loads components from BootLoader and set visibility of application to true
+	 */
 	public static void main(String[] args) throws ParseException {
 		setUIFont (new FontUIResource(new Font("Arial Unicode MS", Font.BOLD, 14)));
 

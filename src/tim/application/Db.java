@@ -1,3 +1,9 @@
+/**
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ * 
+ * @description Data Base Manager which gives and operates connections
+ */
 package tim.application;
 
 import java.sql.Connection;
@@ -10,6 +16,7 @@ import tim.application.utils.CurrentClassGetter;
 
 public class Db {
 	private static Connection conn = null;
+	/*incremental value, if not equal to 0, at least one connection is open */
 	private static int nbConnRequest = 0;
 
 	public static Connection open() throws PersistanceException {
@@ -24,7 +31,10 @@ public class Db {
 		}
 		return conn;
 	}
-	
+	/**
+	 * @description closes DB connection if there is exactly one open connection
+	 * @throws PersistanceException
+	 */
 	public static void close() throws PersistanceException {
 		nbConnRequest--;
 		if (conn != null && nbConnRequest <= 0) {
