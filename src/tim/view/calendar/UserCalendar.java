@@ -27,6 +27,12 @@ import tim.view.ParentView;
 import tim.view.calendar.EventButton;
 import tim.view.dialog.appointment.AppointmentDialog;
 
+/**
+ * Shows and resizes all EventButtons
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.07.04 
+ */
 public class UserCalendar extends JPanel implements ChildView {
 
 	private ArrayList<EventButton> eventButtons;
@@ -37,6 +43,9 @@ public class UserCalendar extends JPanel implements ChildView {
 	private Employee employee;
 	private Date date;
 	
+	/**
+	 * Initializes the FlowLayout
+	 */
 	public UserCalendar() {
 		GlobalRegistry.resizer.addObserver(this);
 		try {
@@ -54,6 +63,9 @@ public class UserCalendar extends JPanel implements ChildView {
 		setOpaque(false);
 	}
 	
+	/**
+	 * Loads the whole eventsButton and applies the event pop-up
+	 */
 	public void load() {
 		eventButtons = (ArrayList<EventButton>) ((CalendarContainer) parentView).getButtonsForCalendar(appointments);
 
@@ -79,6 +91,9 @@ public class UserCalendar extends JPanel implements ChildView {
 		}
 	}
 	
+	/**
+	 * Resizes the Buttons when the application dimensions are changed 
+	 */
 	public void eventSizing(){
 
 		Dimension btnDimension;
@@ -95,7 +110,10 @@ public class UserCalendar extends JPanel implements ChildView {
 		}
 	}
 	
-	
+	/**
+	 * Shows pop-up to enter or modify the event
+	 * @param appointment
+	 */
 	public void showDialog(Appointment appointment) {
 		appointmentDialog = new AppointmentDialog(appointment);
 		appointmentDialog.setModal(true);
@@ -107,6 +125,9 @@ public class UserCalendar extends JPanel implements ChildView {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	/**
+	 * Applies the dimension when the application size is changed
+	 */
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
@@ -117,6 +138,10 @@ public class UserCalendar extends JPanel implements ChildView {
 		}
 	}
 	
+	/**
+	 * Reloads the calendar
+	 * @param date
+	 */
 	public void reload(Date date) {
 		this.date = date;
 		this.removeAll();
@@ -138,6 +163,9 @@ public class UserCalendar extends JPanel implements ChildView {
 	}
 
 	@Override
+	/**
+	 * Sets the appointments into the view
+	 */
 	public void setData(Object value) {
 		Employee employee = (Employee) value;
 		this.employee = employee;
