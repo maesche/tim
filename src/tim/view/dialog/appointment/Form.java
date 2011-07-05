@@ -152,15 +152,10 @@ public class Form extends JPanel implements ChildView {
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
 		add(txtDate, gbc);
 
-		init();
+		load();
 	}
 	
 	public void load() {
-		
-	}
-
-	public void init() {
-
 		for (int i = Config.CALENDAR_DAY_START; i <= Config.CALENDAR_DAY_END; i++) {
 			cbBeginH.addItem(i);
 			cbEndH.addItem(i);

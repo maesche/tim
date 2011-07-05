@@ -32,17 +32,18 @@ public class Controller extends AbstractController {
 	private AbstractModel getModel(Element element, String modelKey) throws ResourceNotFoundException {
 		String key = null;
 		AbstractModel  model = null;
-		if (element instanceof Client || "client".equals(key)) {
+
+		if (element instanceof Client || "client".equals(modelKey)) {
 			key = "ClientModel";
 		}
-		else if (element instanceof Appointment || "appointment".equals(key)) {
+		else if (element instanceof Appointment || "appointment".equals(modelKey)) {
 			key = "AppointmentModel";
 		}
-		else if (element instanceof Employee || "employee".equals(key)) {
+		else if (element instanceof Employee || "employee".equals(modelKey)) {
 			key = "EmployeeModel";
 		}
 		else {
-			throw new ResourceNotFoundException("The model doesn't exist for Element '" + element + "' or modelKey '" + key +"'", "global registry");
+			throw new ResourceNotFoundException("The model doesn't exist for Element '" + element + "' or modelKey '" + modelKey +"'", "global registry");
 		}
 		model = this.models.get(key);
 		
@@ -66,7 +67,6 @@ public class Controller extends AbstractController {
 	public ArrayList<Element> getAll(String modelKey) throws PersistanceException, ResourceNotFoundException {
 		AbstractModel model = null;
 		ArrayList<Element> ret = null;
-		
 		model = getModel(null, modelKey);
 		
 		if (model != null) {
