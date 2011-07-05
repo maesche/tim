@@ -4,6 +4,12 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
+/**
+ * This is a custom model for a JTable
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class CustomTableModel extends AbstractTableModel {
 
 	Vector<String> columnNames = null;
@@ -13,6 +19,10 @@ public class CustomTableModel extends AbstractTableModel {
 		this.data = data;
 	}
 	
+	/**
+	 * If data changes, table needs to be updated
+	 * @param data
+	 */
 	public void updateData(Vector<Vector<Object>> data) {
 		setData(data);
 		fireTableDataChanged();
@@ -49,15 +59,26 @@ public class CustomTableModel extends AbstractTableModel {
 		fireTableCellUpdated(row, col);
 	}
 	
+	/**
+	 * First row is not editable as it holds the clients id
+	 */
 	public boolean isCellEditable(int row, int col) {
 		return col != 0;
 	}
 	
+	/**
+	 * Adds a row at the end of the JTable
+	 * @param rowData
+	 */
 	public void addRow(Vector<Object> rowData) {
 		data.add(rowData);
 		fireTableDataChanged();
 	}
 	
+	/**
+	 * Removes the last row of the JTable
+	 * @param row
+	 */
 	public void removeRow(int row) {
 		data.remove(row);
 		fireTableDataChanged();

@@ -9,15 +9,24 @@ import tim.application.Config;
 import tim.model.Client;
 import tim.view.ParentView;
 
+/**
+ * This editor is called if an action on the ActionPanel is called
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class CustomEditor extends AbstractCellEditor {
 
-	CustomRenderer renderer = new CustomRenderer();
+	private CustomRenderer renderer = new CustomRenderer();
 
 	public CustomEditor(ParentView view) {
 		renderer.setParentView(view);
 	}
 
 	@Override
+	/**
+	 * Executes the action concernint the pressed button on the Actionpanel
+	 */
 	public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean hasFocus, int row, int col) {
 		int id = -1;

@@ -11,6 +11,12 @@ import tim.application.Config;
 import tim.model.Client;
 import tim.view.ParentView;
 
+/**
+ * Action panel for client dialog
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class ActionBar extends JPanel {
 	private JButton btnSave;
 	private JButton btnDelete;
@@ -48,6 +54,10 @@ public class ActionBar extends JPanel {
 		add(btnDelete);
 	}
 	
+	/**
+	 * Defines what to do
+	 * @param mode (save, edit, delete)
+	 */
 	public void setMode(String mode) {
 		this.mode = mode;
 	}
@@ -57,6 +67,10 @@ public class ActionBar extends JPanel {
 		this.client = client;
 	}
 	
+	/**
+	 * Work around to prevent action if button is called accidently or
+	 * if values specified contains error
+	 */
 	public void setPerformAction(boolean performAction) {
 		this.performAction = performAction;
 	}
@@ -69,6 +83,11 @@ public class ActionBar extends JPanel {
 		view.save("delete", client);
 	}
 	
+	/**
+	 * Needs to know the ParentView which needs to execute the action called
+	 * by the user
+	 * @param view
+	 */
 	public void setParentView(ParentView view) {
 		this.view = view;
 	}

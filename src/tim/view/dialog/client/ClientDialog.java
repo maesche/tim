@@ -20,8 +20,17 @@ import tim.model.Client;
 import tim.model.Element;
 import tim.view.ParentView;
 
+/**
+ * ClientDialog wich manages client information
+ * Add, edit and delete operations are currently
+ * offered
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class ClientDialog extends JDialog implements ParentView {
-	CustomTable table;
+	/*Custom JTable */
+	private CustomTable table;
 	private JButton btnCancel;
 	private AbstractController controller;
 	private JButton addRow;
@@ -52,6 +61,9 @@ public class ClientDialog extends JDialog implements ParentView {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		/*
+		 * Columns names of Customtable
+		 */
 		Vector<String> columnNames = new Vector<String>();
 		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personId"));
 		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personFirstname"));
@@ -60,6 +72,9 @@ public class ClientDialog extends JDialog implements ParentView {
 		columnNames.add(Config.RESSOURCE_BUNDLE.getString("personPhone"));
 		columnNames.add(Config.RESSOURCE_BUNDLE.getString("dialogAction"));
 		
+		/*
+		 * Columns width of CustomTable 
+		 */
 		Vector<Integer> columnWidth = new Vector<Integer>();
 		columnWidth.add(40);
 		columnWidth.add(100);
@@ -95,7 +110,7 @@ public class ClientDialog extends JDialog implements ParentView {
 		add(addRow, BorderLayout.NORTH);
 		add(table, BorderLayout.CENTER);
 		add(btnCancel, BorderLayout.SOUTH);
-		this.pack();
+		pack();
 	}
 	
 	private void close() {

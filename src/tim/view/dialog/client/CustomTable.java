@@ -1,6 +1,5 @@
 package tim.view.dialog.client;
 
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
@@ -21,7 +20,13 @@ import tim.model.Element;
 import tim.view.ChildView;
 import tim.view.ParentView;
 
-
+/**
+ * This class holds a custom JTable. It is only a container.
+ * All data and other informations are provided from ParentView
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class CustomTable extends JPanel implements ChildView {
 	private Vector<Vector<Object>> data;
 	private Vector<String> columnNames;
@@ -54,6 +59,10 @@ public class CustomTable extends JPanel implements ChildView {
 		actionColumn.setCellRenderer(renderer);
 		actionColumn.setCellEditor(editor);
 		
+		/*
+		 * Sets the appropriated column width for every column specified
+		 * in columnWidth Vector
+		 */
 		if (columnWidth.size() == columnNames.size()) {
 			for (int i = 0; i < columnWidth.size(); i++) {
 				table.getColumnModel().getColumn(i).setMinWidth(columnWidth.get(i));
@@ -69,6 +78,9 @@ public class CustomTable extends JPanel implements ChildView {
 		
 		setLayout(new BorderLayout());
 		add(new JScrollPane(table), BorderLayout.CENTER);
+		/*
+		 * Size of this Panel is equal to the number of rows
+		 */
 		setPreferredSize(new Dimension(preferredSize, data.size() * rowHeight + 150));
 	}
 
@@ -87,9 +99,7 @@ public class CustomTable extends JPanel implements ChildView {
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+	public void update(Observable o, Object arg) {		
 	}
 
 	@Override
@@ -100,7 +110,6 @@ public class CustomTable extends JPanel implements ChildView {
 
 	@Override
 	public Object getData() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -137,7 +146,10 @@ public class CustomTable extends JPanel implements ChildView {
 		System.out.println(row);
 		model.removeRow(row);
 	}
-	
+	/**
+	 * Transforms specified value to represent in JTable
+	 * @param value
+	 */
 	public void createData(Object value) {
 		@SuppressWarnings("unchecked")
 		ArrayList<Element> elements = (ArrayList<Element>) value;
@@ -157,7 +169,10 @@ public class CustomTable extends JPanel implements ChildView {
 		}
 	}
 	
-
+	/**
+	 * If called, data has probably changed an the Model needs to be updated
+	 * @param value
+	 */
 	public void update(Object value) {
 		createData(value);
 		model.updateData(data);

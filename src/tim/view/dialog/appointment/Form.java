@@ -24,6 +24,13 @@ import tim.view.ChildView;
 import tim.view.ParentView;
 import tim.view.dialog.appointment.AppointmentDialogValidator;
 
+/**
+ * This form permits the user to specify information for appointments
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class Form extends JPanel implements ChildView {
 	private JLabel lblClient;
 	private JComboBox cbClient;

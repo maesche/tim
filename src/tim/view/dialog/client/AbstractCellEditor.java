@@ -5,7 +5,15 @@ import java.util.EventObject;
 import javax.swing.event.CellEditorListener;
 import javax.swing.table.TableCellEditor;
 
-abstract public class AbstractCellEditor implements TableCellEditor {
+/**
+ * This class replaces the default TableCellEditor
+ * It's main objective is to disable events on the current
+ * table cell
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
+public abstract class AbstractCellEditor implements TableCellEditor {
 
 	@Override
 	public void addCellEditorListener(CellEditorListener cellEditorListener) {

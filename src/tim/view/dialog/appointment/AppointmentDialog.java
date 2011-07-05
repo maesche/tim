@@ -23,6 +23,13 @@ import tim.controller.AppointmentDialogController;
 import tim.model.Appointment;
 import tim.view.ParentView;
 
+/**
+ * This dialog offers the possiblity to change appointments
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class AppointmentDialog extends JDialog implements ActionListener, ParentView {
 	Form form = null;
 	AbstractController controller = new AppointmentDialogController();
@@ -56,6 +63,9 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		form = new Form();
 		form.setData(appointment);
 		try {
+			/*
+			 * Retrives informaiton from the controller and forwards it to ChildView
+			 */
 			if (appointment.getClient() != null) {
 				form.setClients(controller.getAll("client"), (int)appointment.getClient().getId());
 				mode = "edit";
@@ -74,6 +84,10 @@ public class AppointmentDialog extends JDialog implements ActionListener, Parent
 		
 		btnSave = new JButton(Config.RESSOURCE_BUNDLE.getString("dialogSave"));
 		
+		/*
+		 * If the users wants to save information, the View will ask the Controller if
+		 * date and time is available (only for new and editing method)
+		 */
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
