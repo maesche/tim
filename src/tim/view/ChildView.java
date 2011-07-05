@@ -27,5 +27,8 @@ public interface ChildView extends AbstractView {
 	 */
 	public void setData(Object value);
 	
+	/**
+	 * Loads the content one all necessary data has been received
+	 */
 	public void load();
 }
