@@ -21,6 +21,14 @@ import tim.model.Employee;
  */
 public class Controller extends AbstractController {
 	
+	/**
+	 * Retrieves the model corresponding to the modelKey and returns it
+	 * 
+	 * @param element
+	 * @param modelKey
+	 * @return
+	 * @throws ResourceNotFoundException
+	 */
 	private AbstractModel getModel(Element element, String modelKey) throws ResourceNotFoundException {
 		String key = null;
 		AbstractModel  model = null;

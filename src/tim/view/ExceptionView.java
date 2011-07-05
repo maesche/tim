@@ -11,6 +11,13 @@ import javax.swing.JTextArea;
 
 import tim.application.Config;
 
+/**
+ * This Dialog appears if an error occured
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class ExceptionView extends JDialog {
 	public ExceptionView(String error) {
 		JLabel title = new JLabel();
@@ -20,7 +27,6 @@ public class ExceptionView extends JDialog {
 		} else {
 			title.setText("The following error occured: ");
 		}
-		//JLabel message = new JLabel(error);
 		
 		JTextArea message = new JTextArea(error);
 		JScrollPane scrollPaneArea = 

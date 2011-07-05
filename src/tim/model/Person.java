@@ -1,7 +1,14 @@
 package tim.model;
 
 
-
+/**
+ * This class is a Bean for Persons and holds common informations
+ * between all child objects
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public abstract class Person extends Element {
 	private String firstName;
 	private String lastName;

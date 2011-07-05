@@ -11,9 +11,19 @@ import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.SQLQueryHelper;
 
+/**
+ * This models is a DAO for Client objects and interacts whith the database
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class ClientModel extends PersonModel {
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<Element> get(long fId) throws PersistanceException {
 		Connection conn;
 		Statement stmt = null;
@@ -70,6 +80,9 @@ public class ClientModel extends PersonModel {
 	}
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void add(Element element) throws ClassCastException, PersistanceException {
 		Connection conn;
 		Statement stmt;
@@ -120,6 +133,9 @@ public class ClientModel extends PersonModel {
 	}
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void remove(Element element) throws ClassCastException, PersistanceException {
 		Connection conn;
 		Statement stmt;
@@ -128,7 +144,7 @@ public class ClientModel extends PersonModel {
 		
 		long id = element.getId();
 		
-		
+		/*Delete the client if there is no appointment associated */
 		sql = "DELETE FROM clients WHERE client_id=" + id + " AND NOT EXISTS (SELECT client_id FROM appointments WHERE client_id= " + id + " )";
 		try {
 			conn = Db.open();
@@ -147,6 +163,9 @@ public class ClientModel extends PersonModel {
 	}
 
 	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void edit(Element element) throws ClassCastException, PersistanceException {
 		Connection conn;
 		Statement stmt;
@@ -167,10 +186,15 @@ public class ClientModel extends PersonModel {
 		address = client.getAddress();
 		comment = client.getComment();
 
+		/*
+		 * If there is an address specified, enapsulate apostrophes as they
+		 * can cause SQL errors
+		 */
 		if (address != null) {
 			address = SQLQueryHelper.removeUnrecognizedChar(address);
 		}
-
+		/*Updates all client attributes, in a futher version it would be
+		 * better to only update changed fields */
 		sql = "UPDATE clients SET " +
 				"firstName='" + firstName + "', " +
 				"lastName='" + lastName + "'," +

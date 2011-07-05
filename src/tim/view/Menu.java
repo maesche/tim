@@ -13,6 +13,13 @@ import tim.application.Config;
 import tim.application.GlobalRegistry;
 import tim.application.exception.ResourceNotFoundException;
 
+/**
+ * This class holds the applications menu
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class Menu extends JMenuBar implements AbstractView {
 	private JMenu file, tools, help, language, manage;
 	private JMenuItem quit, english, french, german, japanese, clients;
@@ -21,6 +28,10 @@ public class Menu extends JMenuBar implements AbstractView {
 
 	public Menu(Application application) {
 		this.application = application;
+		/**
+		 * Register to LanguageLinker as labels may change, following
+		 * the current language
+		 */
 		try {
 			GlobalRegistry.mvcLinker.addObserverToSystemResource(
 					"LanguageLinker", this);
@@ -128,6 +139,9 @@ public class Menu extends JMenuBar implements AbstractView {
 		update();
 	}
 
+	/**
+	 * On update, replaces all labels with the current language text
+	 */
 	public void update() {
 		file.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuFile"));
 		quit.setText(Config.RESSOURCE_BUNDLE.getString("applicationMenuQuit"));

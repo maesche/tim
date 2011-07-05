@@ -3,6 +3,14 @@ package tim.model;
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ * This class is a Bean for Calendars and represents the database table
+ * corresponding to this object
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class Calendar extends Element {
 	
 	private Color color;

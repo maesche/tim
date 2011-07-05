@@ -5,6 +5,14 @@ import java.util.Date;
 import tim.application.Config;
 import tim.application.utils.DateHelper;
 
+/**
+ * This class is a Bean for Appointments and represents the database table
+ * corresponding to this object
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class Appointment extends Element {
 
 	private Date begin;

@@ -11,6 +11,13 @@ import tim.application.Db;
 import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 
+/**
+ * This models is a DAO for Employee objects and interacts whith the database
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class EmployeeModel extends PersonModel {
 	public ArrayList<Element> get(long fId) throws PersistanceException {
 

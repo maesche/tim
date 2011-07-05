@@ -23,16 +23,21 @@ import tim.view.calendar.CalendarContainer;
 import tim.view.calendar.DayNavigation;
 import tim.view.dialog.client.ClientDialog;
 
+/**
+ * This class is the main frame of the application it places
+ * all ParentView containers
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class Application extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	Menu menu;
-	CalendarContainer calendarContainer;
-	JPanel navBar;
-	ClientDialog clientDialog;
+
+	private Menu menu;
+	private CalendarContainer calendarContainer;
+	private JPanel navBar;
+	private ClientDialog clientDialog;
 
 	public Application() throws ParseException {
 		try {
@@ -46,6 +51,9 @@ public class Application extends JFrame {
 		setPreferredSize(new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH,
 				Config.APPLICATION_DEFAULT_FRAME_HEIGHT));
 
+		/*
+		 * Listens to closing and windows state events (maximize, minimize)
+		 */
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				close();
@@ -75,11 +83,18 @@ public class Application extends JFrame {
 		super.paintComponents(g);
 	}
 	
+	/**
+	 * Everytime this method is called, the Resizer is informed
+	 * about the current window size
+	 */
 	public void validate() {
 		super.validate();
 		GlobalRegistry.resizer.setDimension(getSize());
 	}
 	
+	/**
+	 * On close, call Bootloader to dispose
+	 */
 	public void close() {
 		try {
 			BootLoader.dispose();

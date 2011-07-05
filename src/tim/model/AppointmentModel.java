@@ -15,8 +15,18 @@ import tim.application.exception.ExceptionFormatter;
 import tim.application.exception.PersistanceException;
 import tim.application.utils.DateHelper;
 
+/**
+ * This models is a DAO for Appointment objects and interacts whith the database
+ * 
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704
+ */
 public class AppointmentModel extends AbstractModel{
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public ArrayList<Element> get(Client fClient, Employee fEmployee, Date fSince, Date fUntil, long fId) throws PersistanceException {
 		Connection conn;
 		Statement stmt = null;
@@ -151,6 +161,10 @@ public class AppointmentModel extends AbstractModel{
 		return this.get(client, employee, begin, null, 0);
 	}
 
+	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void add(Element element) throws PersistanceException {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		long id = cal.getTimeInMillis();;
@@ -199,11 +213,20 @@ public class AppointmentModel extends AbstractModel{
 		}
 	}
 
+	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void edit(Element element) throws PersistanceException {
 		remove(element);
 		add(element);
 
 	}
+	
+	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public void remove(Element element) throws PersistanceException {
 		Connection conn;
 		Statement stmt;
