@@ -26,4 +26,6 @@ public interface ChildView extends AbstractView {
 	 * @param value
 	 */
 	public void setData(Object value);
+	
+	public void load();
 }

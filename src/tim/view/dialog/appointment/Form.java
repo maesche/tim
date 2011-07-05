@@ -154,6 +154,10 @@ public class Form extends JPanel implements ChildView {
 
 		init();
 	}
+	
+	public void load() {
+		
+	}
 
 	public void init() {
 
