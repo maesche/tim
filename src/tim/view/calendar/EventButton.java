@@ -11,6 +11,13 @@ import tim.application.utils.DateHelper;
 import tim.model.Appointment;
 import tim.model.Employee;
 
+/**
+ * Design an appointment
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.07.04 
+ */
+
 public class EventButton extends JButton {
 	private Color color = null;
 	private String title;
@@ -19,24 +26,11 @@ public class EventButton extends JButton {
 	private Appointment appointment;
 	
 	private Employee employee;
-
-	public EventButton(String title, Date begin, Date end, int duration, Color color) {
-		
-		this.duration = duration;
-		this.title = title;
-		this.color = color;
-		this.begin = begin;
-		this.end = end;
-
-		this.setMargin(new Insets(0, 2, 0, 2));
-		this.setOpaque(true);
-		this.setRolloverEnabled(false);
-		this.setFocusPainted(false);
-		this.setBackground(color);
-		this.setText(title);
-
-	}
 	
+	/**
+	 * Constructor using when the appointment must be visible
+	 * @param appointment
+	 */
 	public EventButton(Appointment appointment) {
 
 		this.appointment = appointment;
@@ -57,6 +51,12 @@ public class EventButton extends JButton {
 
 	}
 	
+	/**
+	 * Constructor using when the appointment must be invisible
+	 * @param employee
+	 * @param begin
+	 * @param end
+	 */
 	public EventButton(Employee employee, Date begin, Date end){
 		this.employee = employee;
 		this.begin = begin;
@@ -70,6 +70,7 @@ public class EventButton extends JButton {
         this.setBackground(new Color(1f,1f,1f,0));
         this.setOpaque(false);
 	}
+	
 	
 	public EventButton(Date begin, Date end) {
 		this.begin = begin;

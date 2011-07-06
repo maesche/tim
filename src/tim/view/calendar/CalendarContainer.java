@@ -1,6 +1,7 @@
 package tim.view.calendar;
 
 import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.text.ParseException;
@@ -27,6 +28,12 @@ import tim.application.utils.DateHelper;
 import tim.controller.CalendarController;
 import tim.view.ParentView;
 
+/**
+ * This is the main view, it contain a JLayeredPane to create the different layers
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.07.04 
+ */
 public class CalendarContainer extends JPanel implements ParentView {
 	private Dimension dimension;
 	private JLayeredPane layeredPane;
@@ -36,8 +43,6 @@ public class CalendarContainer extends JPanel implements ParentView {
 	private ArrayList<Element> elements;
 	
 	public CalendarContainer() {
-		//setBounds(0, 0, 500, 500);
-
 		controller = new CalendarController();
 		dimension = new Dimension(Config.APPLICATION_DEFAULT_FRAME_WIDTH, Config.APPLICATION_DEFAULT_FRAME_HEIGHT-88);
 		
@@ -61,7 +66,11 @@ public class CalendarContainer extends JPanel implements ParentView {
 		add(layeredPane, BorderLayout.NORTH);
 	}
 	
-	
+	/**
+	 * Loads the date to show
+	 * @param begin
+	 * @param end
+	 */
 	public void loadData(Date begin, Date end) {
 		try {
 			begin =  DateHelper.StringToDate(DateHelper.DateToString(begin) + " " + Config.CALENDAR_DAY_START + ":00", Config.DATE_FORMAT_LONG);
@@ -75,6 +84,10 @@ public class CalendarContainer extends JPanel implements ParentView {
 		}
 	}
 	
+	/**
+	 * Shows the TimeTable with all legends
+	 * @param elements
+	 */
 	private void initDayTableView(ArrayList<Element> elements) {
 		dayTableView = new DayTableView();
 		
@@ -98,6 +111,11 @@ public class CalendarContainer extends JPanel implements ParentView {
 		dayTableView.setSize(dimension);
 	}
 	
+	/**
+	 * Gets EventButtons for the calendar
+	 * @param appointments
+	 * @return
+	 */
 	public ArrayList<EventButton> getButtonsForCalendar(ArrayList<Appointment> appointments) {
 		ArrayList<EventButton> eventButtons = new ArrayList<EventButton>();
 		try {
@@ -112,6 +130,10 @@ public class CalendarContainer extends JPanel implements ParentView {
 		return eventButtons;
 	}
 	
+	/**
+	 * Initializes the view
+	 * @param elements
+	 */
 	private void initDayViewContainer(ArrayList<Element> elements) {
 		dayViewContainer = new DayViewContainer();
 		dayViewContainer.setData(elements);
@@ -121,6 +143,9 @@ public class CalendarContainer extends JPanel implements ParentView {
 	}
 
 	@Override
+	/**
+	 * ResetDimensions when the view has changed
+	 */
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
@@ -132,6 +157,12 @@ public class CalendarContainer extends JPanel implements ParentView {
 	public void save(String action, Object value) {
 	}
 	
+	/**
+	 * Gets an employee but correctly casted
+	 * @param employee
+	 * @param date
+	 * @return
+	 */
 	public Employee getData(Employee employee, Date date) {
 		loadData(date, date);
 		Employee employRet = null;
@@ -145,6 +176,10 @@ public class CalendarContainer extends JPanel implements ParentView {
 		
 	}
 	
+	/**
+	 * Sends the calendar to a preview or future date
+	 * @param date
+	 */
 	public void goTo(Date date) {
 		dayViewContainer.goTo(date);
 	}
