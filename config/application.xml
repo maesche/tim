@@ -11,7 +11,7 @@
 	<calendar>
 		<day-start>7</day-start>
 		<day-end>19</day-end>
-		<day-interval>30</day-interval>
-		<current-date>2011-07-02</current-date>
+		<day-interval>15</day-interval>
+		<current-date>2011-07-06</current-date>
 	</calendar>
 </configuration>
