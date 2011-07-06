@@ -29,6 +29,9 @@ public class DayViewContainer extends JPanel implements ChildView {
 		userCalendars = new ArrayList<UserCalendar>();
 	}
 	
+	/**
+	 * Sets the calendar view for a specified user
+	 */
 	public void load() {
 		setLayout(new GridLayout(elements.size(),1));
 		
@@ -46,6 +49,9 @@ public class DayViewContainer extends JPanel implements ChildView {
 	
 
 	@Override
+	/**
+	 * Places the panel to the right location on the timetable
+	 */
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
@@ -55,6 +61,10 @@ public class DayViewContainer extends JPanel implements ChildView {
 
 	}
 	
+	/**
+	 * Sends the calendar to a date
+	 * @param date
+	 */
 	public void goTo (Date date) {
 		for (UserCalendar userCalendar : userCalendars) {
 			userCalendar.reload(date);
