@@ -27,10 +27,6 @@ public class EventButton extends JButton {
 	
 	private Employee employee;
 	
-	/**
-	 * Constructor using when the appointment must be visible
-	 * @param appointment
-	 */
 	public EventButton(Appointment appointment) {
 
 		this.appointment = appointment;
@@ -51,12 +47,6 @@ public class EventButton extends JButton {
 
 	}
 	
-	/**
-	 * Constructor using when the appointment must be invisible
-	 * @param employee
-	 * @param begin
-	 * @param end
-	 */
 	public EventButton(Employee employee, Date begin, Date end){
 		this.employee = employee;
 		this.begin = begin;
@@ -85,36 +75,74 @@ public class EventButton extends JButton {
         this.setOpaque(false);
 	}
 	
+	/**
+	 * Sets Employee
+	 * @param employee
+	 */
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
 	
+	/**
+	 * Gets Event Title
+	 * @return
+	 */
 	public String getTitle() {
 		return title;
 	}
+	/**
+	 * Gets Event duration
+	 * @return
+	 */
 	public int getDuration() {
 		return duration;
 	}
+	/**
+	 * Sets Event duration
+	 * @param duration
+	 */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	
+	/**
+	 * Gets Event Color
+	 * @return
+	 */
 	public Color getColor() {
 		return color;
 	}
+	/**
+	 * Sets Event color
+	 * @param color
+	 */
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
+	/**
+	 * Gets Event date begin
+	 * @return
+	 */
 	public Date getBegin() {
 		return begin;
 	}
+	/**
+	 * Gets Event date end
+	 * @return
+	 */
 	public Date getEnd() {
 		return end;
 	}
+	/**
+	 * Gets Event appointment
+	 * @return
+	 */
 	public Appointment getAppointment() {
 		return appointment;
 	}
+	/**
+	 * Gets Employee of the event
+	 * @return
+	 */
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -124,6 +152,9 @@ public class EventButton extends JButton {
 		
 	}
 	
+	/**
+	 * Shows the Events
+	 */
 	public String toString(){
 		String message = "";
 		message += employee.getFirstName();
