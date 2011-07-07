@@ -15,6 +15,12 @@ import tim.model.Element;
 import tim.view.ChildView;
 import tim.view.ParentView;
 
+/**
+ * Contains all the personal calendars
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704 
+ */
 public class DayViewContainer extends JPanel implements ChildView {
 	
 	private ArrayList<Element> elements;
@@ -72,12 +78,18 @@ public class DayViewContainer extends JPanel implements ChildView {
 	}
 
 	@Override
+	/**
+	 * Affects the parent View
+	 */
 	public void setParentView(ParentView view) {
 		this.parentView = view;
 
 	}
 
 	@Override
+	/**
+	 * Gets data
+	 */
 	public Object getData() {
 		// TODO Auto-generated method stub
 		return null;
@@ -85,6 +97,9 @@ public class DayViewContainer extends JPanel implements ChildView {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	/**
+	 * Sets data
+	 */
 	public void setData(Object value) {
 		this.elements = (ArrayList<Element>) value;
 

@@ -19,6 +19,12 @@ import tim.application.exception.ResourceNotFoundException;
 import tim.application.utils.DateHelper;
 import tim.view.AbstractView;
 
+/**
+ * Shows the day navigation menu
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704 
+ */
 public class DayNavigation extends JPanel implements AbstractView {
 
 	private JButton btnToday;
@@ -87,22 +93,34 @@ public class DayNavigation extends JPanel implements AbstractView {
 		add(btnNext);
 		update();
 	}
-
+	
+	/**
+	 * Updates the calendar to the currentDay
+	 */
 	private void today() {
 		currentDate = DateHelper.getToday();
 		update();
 	}
-
+	
+	/**
+	 * Updates the calendar to the next day
+	 */
 	private void next() {
 		currentDate = DateHelper.getNextDay(currentDate);
 		update();
 	}
-
+	
+	/**
+	 * Updates the calendar to the previous day
+	 */
 	private void previous() {
 		currentDate = DateHelper.getPreviousDay(currentDate);
 		update();
 	}
-
+	
+	/**
+	 * Loads the calendar with the options
+	 */
 	public void update() {
 		btnToday.setText(Config.RESSOURCE_BUNDLE
 				.getString("applicationNavigationToday"));

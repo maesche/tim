@@ -22,6 +22,12 @@ import tim.model.Employee;
 import tim.view.ChildView;
 import tim.view.ParentView;
 
+/**
+ * Shows the time table with the employees
+ * 
+ * @author BELLATALLA Alain, MEIER Stefan, NOVERRAZ Mathieu
+ * @version 2011.0704 
+ */
 public class DayTableView extends JPanel implements ChildView {
 	private JTable table;
 	private Vector<Vector<Object>> data;
@@ -46,6 +52,9 @@ public class DayTableView extends JPanel implements ChildView {
 		setLayout(new BorderLayout());
 	}
 	
+	/**
+	 * Loads the table with the labels
+	 */
 	public void load() {
 		table = new JTable(data, columnNames);
 		table.setRowHeight(rowHeight);
@@ -66,6 +75,10 @@ public class DayTableView extends JPanel implements ChildView {
 		add(scrollPane, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Creates table with the employees informations
+	 * @param value
+	 */
 	public void createData(Object value) {
 		@SuppressWarnings("unchecked")
 		ArrayList<Element> elements = (ArrayList<Element>) value;
@@ -80,19 +93,33 @@ public class DayTableView extends JPanel implements ChildView {
 		}
 	}
 
+	/**
+	 * Sets ColumnNames
+	 * @param columnNames
+	 */
 	public void setColumnNames(Vector<String> columnNames) {
 		this.columnNames = columnNames;
 	}
 	
+	/**
+	 * Sets the height of a row
+	 * @param rowHeight
+	 */
 	public void setRowHeight(int rowHeight) {
 		this.rowHeight = rowHeight;
 	}
-	
+	/**
+	 * Sets column width
+	 * @param columnWidth
+	 */
 	public void setColumnWidth(Vector<Integer> columnWidth) {
 		this.columnWidth = columnWidth;
 	}
 	
 	@Override
+	/**
+	 * Updates the table dimensions
+	 */
 	public void update(Observable o, Object arg) {
 		if (o instanceof Resizer) {
 			this.dimension = (Dimension) arg;
@@ -124,6 +151,9 @@ public class DayTableView extends JPanel implements ChildView {
 	}
 
 	@Override
+	/**
+	 * Sets the parent view
+	 */
 	public void setParentView(ParentView view) {
 		// TODO Auto-generated method stub
 
@@ -136,6 +166,9 @@ public class DayTableView extends JPanel implements ChildView {
 	}
 
 	@Override
+	/**
+	 * Sets data table
+	 */
 	public void setData(Object value) {
 		createData(value);
 	}
