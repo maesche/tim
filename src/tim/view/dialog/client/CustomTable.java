@@ -81,7 +81,7 @@ public class CustomTable extends JPanel implements ChildView {
 		/*
 		 * Size of this Panel is equal to the number of rows
 		 */
-		setPreferredSize(new Dimension(preferredSize, data.size() * rowHeight + 150));
+		setPreferredSize(new Dimension(preferredSize, 500));
 	}
 
 	public void addRow(Vector<Object> rowData) {
