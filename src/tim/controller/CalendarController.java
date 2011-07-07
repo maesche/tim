@@ -165,7 +165,8 @@ public class CalendarController extends Controller {
 			eventButtons.add(eventButton);
 			actualMinuteOfDay += eventButton.getDuration();
 			
-			//on est au dernier élément donc on ajoute le dernier bouton invisible
+			//if there is some time left between the last appointment and the calendar end
+			//add invisible button
 			if (i == appointments.size()) {
 				Date end = actualMinutesOfDayToDate(appointment.getBegin(),
 						endOfDay);
@@ -176,9 +177,9 @@ public class CalendarController extends Controller {
 
 		}
 		
-		//Si le calendrier n'a pas d'événement on ajout un événement invisible
+		//if calendar has no existing appointments, create invisible button
 		if(i == 1){
-			//faitre dernier bouton
+			//create last button
 			Date date = DateHelper.StringToDate(Config.CURRENT_DATE);
 			Date begin = actualMinutesOfDayToDate(date, beginOfDay);
 			Date end = actualMinutesOfDayToDate(date, endOfDay);
